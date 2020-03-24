@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!--spring-ctx에 있던 디비 연결 주소를 여기로 옮긴다  -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url" value="jdbc:oracle:thin:@orcl.cnjo6tor1umt.ap-northeast-2.rds.amazonaws.com:1521:orcl"></property>
+		<property name="username" value="scott"></property>
+		<property name="password" value="tigertiger"></property>
+	</bean> 
+
+	<!--보안 관련 설정 추가  -->
+	<security:http auto-config="true">
+		<!-- 접근제어  -->
+		<security:intercept-url pattern="/common/customLogin" access="permitAll"/>
+		<!--  
+		    access의 값 참고사항	
+			hasAnyRole([role1,role2]) : Returns true if the current principal has any of the supplied roles (given as a comma-separated list of strings)
+			principal : Allows direct access to the principal object representing the current user
+			authentication : Allows direct access to the current Authentication object obtained from the SecurityContext
+			permitAll : Always evaluates to true
+			denyAll : Always evaluates to false
+			isAnonymous() : Returns true if the current principal is an anonymous user
+			isRememberMe() : Returns true if the current principal is a remember-me user
+			isAuthenticated() : Returns true if the user is not anonymous
+			isFullyAuthenticated() : Returns true if the user is not an anonymous or a remember-me user
+		-->
+	
+	<!--커스텀 로그인 페이지를 이용해서 로그인  -->
+		<security:form-login login-page="/common/customLogin" />
+	<!--커스텀 로그아웃 페이지를 이용해서 로그아웃  -->
+		<security:logout 
+			delete-cookies="JSESSIONID" 
+			invalidate-session="true" 
+			logout-url="/common/customLogout" 
+			logout-success-url="/" />
+ 	</security:http>
+ 
+ 	<bean id="passwordEncoder" class="kr.co.openkitchen.security.CustomPasswordEncoder" />
+	
+ 	<bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+		<security:jdbc-user-service 
+			data-source-ref="dataSource" 
+			users-by-username-query=
+				"select id username, pwd password, enabled from member where id= ?"
+			authorities-by-username-query=
+				"select username, authority from authorities where username=?" />
+		<security:password-encoder ref="encoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- sring 기본설정 스키마 파일  -->
+	<!-- @annotation 처리  -->
+	<mvc:annotation-driven />
+
+	<!-- view를 해설   -->
+	<mvc:view-resolvers>
+		<mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp"/>
+	</mvc:view-resolvers>
+	
+	<!-- 스프링이 알 수 없는 요청을 일반적으로 처리해줄 핸들러  -->
+	<mvc:default-servlet-handler/>
+	
+	<!-- 정적 자원의 절대경로를 자동으로 지정  -->
+	<mvc:resources location="/resources/**" mapping="/resources/" />
+	
+	<!-- base package 아래에 등록되어 있는 빈들을 자동으로 탐색 추가 -->
+	<context:component-scan base-package="kr.co.openkitchen" />
+	
+</beans:beans>
