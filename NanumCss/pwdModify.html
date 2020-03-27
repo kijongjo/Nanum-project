@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="reset.css" />
+    <style>
+      /* Container => 비밀번호 변경 전체를 감싸는 div */
+      body > div {
+        margin: 0px auto;
+        width: 1200px;
+        height: 759px;
+        padding: 146px 0px 0px;
+        padding-left: 22.5%;
+      }
+ 
+      /* 비밀번호 변경 제목 글자 부분 */
+      h2 {
+        width: 350px;
+        height: 45px;
+        color: #000000;
+        font-size: 30px !important;
+      }
+      /* 기존 비밀번호, 새 비밀번호, 새 비밀번호 확인 부분 div */
+      #pwdModify > div:nth-child(2) input,
+      #pwdModify > div:nth-child(3) input,
+      #pwdModify > div:nth-child(4) input {
+        margin: 4px;
+        border: 2px solid #f6f5f5;
+        border-radius: 3px;
+        width: 350px;
+        height: 50px;
+        font-size: 14px;
+        color: #2e2e2e;
+        background: #f6f5f5;
+        padding: 0px 12px;
+      }
+      /* 확인 버튼 */
+      #pwdModify > button {
+        border-radius: 3px;
+        margin-top: 8px;
+        margin-left: 4px;
+        width: 378px;
+        height: 54px;
+        font-size: 16px;
+        line-height: 50px;
+        color: #fff;
+        background: #d9d9d9;
+        line-height: 50px;
+        display: inline-block;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div id="pwdModify">
+        <h2>비밀번호 변경</h2>
+        <div>
+          <input type="password" name="" id="" placeholder="기존 비밀번호" />
+        </div>
+        <div>
+          <input type="password" name="" id="" placeholder="새 비밀번호(8~20자 이내 영문, 숫자의 조합)"
+          />
+        </div>
+        <div>
+          <input type="password" name="" id="" placeholder="새 비밀번호 확인" />
+        </div>
+        <button>확인</button>
+      </div>
+    </div>
+  </body>
+</html>
