@@ -12,7 +12,7 @@
 
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-
+    <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
     <style>
         img {
             filter: gray; /* IE6-9 */
@@ -26,19 +26,75 @@
             filter: none; /* IE6-9 */
             -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
         }
+        /* 불러오기 */
+         /* header */
+         .navbar-header{
+            height: 80px;
+        }
+        /* logo img */
+        .navbar-header img{
+            width: 110px;
+        }
+
+        /* side bar */
+        .side-nav{
+            width: 260px;
+            margin-top: 30px;
+            padding-left: 40px;
+        }
+        .navbar-inverse .navbar-nav>li>a{
+            padding-left: 0;
+            font-size: 17px;
+            line-height: 25px;
+        }
+        #active p{
+            margin: 0;
+            margin-top: 30px;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        #active h1{
+            margin: 0;
+            margin-bottom: 60px;
+            font-size: 30px;
+            line-height: 43px;
+            font-weight: 700;
+        }
+        /* sid
+        ebar selected */
+        .selected{
+            border-left: none;
+            border-bottom: 3px solid white;
+            padding-bottom: 5px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        /* contents */
+        #page-wrapper{
+            padding-left: 52px;
+            width: auto;
+        }
         /* 내꺼 */
         table,td,th{
-            border: 3px solid #EDEFF0;
             border-collapse: collapse;
         }
         table{
+            border:1px solid #5d5e63;
             width: 1000px;
         }
-        tr:nth-child(odd){
-            background-color: #1B1C1D;
+        td,th{
+            padding: 8.4px;
+            height: 18.2px;
         }
-        tr:nth-child(even){
-            background-color: #495057;
+        thead tr{
+            background-color: #111111;
+        }
+        tbody > tr:nth-child(odd){
+            background-color: #181818;
+        }
+        tbody > tr:nth-child(even){
+            background-color: #3A3A3A;
         }
         
         .ad_serch{
@@ -64,7 +120,8 @@
 
     <div id="wrapper">
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+          <!-- 헤더 -->
+          <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -72,52 +129,50 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Back to Admin</a>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../icon/logo2.png" alt="">
+                </a>
             </div>
+
+            <!-- 사이드바 -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li><a href="index.html"><i class="fa fa-bullseye"></i> Dashboard</a></li>
-                    <li class="selected"><a href="portfolio.html"><i class="fa fa-tasks"></i> Portfolio</a></li>
-                    <li><a href="blog.html"><i class="fa fa-globe"></i> Blog</a></li>
-                    <li><a href="signup.html"><i class="fa fa-list-ol"></i> SignUp</a></li>
-                    <li><a href="register.html"><i class="fa fa-font"></i> Register</a></li>
-                    <li><a href="timeline.html"><i class="fa fa-font"></i> Timeline</a></li>
-                    <li><a href="forms.html"><i class="fa fa-list-ol"></i> Forms</a></li>
-                    <li><a href="typography.html"><i class="fa fa-font"></i> Typography</a></li>
+                <ul id="active" class="nav navbar-nav side-nav">
+                    <li>
+                        <p>관리자 페이지</p>
+                        <h1>사업그래프</h1>
+                    </li>
+                    <li><a href="index.html">
+                        <span class="selected"><i class="fa fa-bar-chart-o"></i> 사업그래프</span>
+                    </a></li>
+                    <li><a href="portfolio.html"><i class="fa fa-tasks"></i> 회원관리</a></li>
+                    <li><a href="blog.html"><i class="fa fa-globe"></i> 상태관리</a></li>
                     <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
-                    <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i > Bootstrap Grid</a></li>            
+                    <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li>
                 </ul>
+
+                <!-- 헤더 사이드바 -->
                 <ul class="nav navbar-nav navbar-right navbar-user">
-                    <li class="dropdown messages-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">2</span> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">2 New Messages</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-bell"></i></span>
-                                    <span class="message">Security alert</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-bell"></i></span>
-                                    <span class="message">Security alert</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#">Go to Inbox <span class="badge">2</span></a></li>
-                        </ul>
+                    <li>
+                        <form class="navbar-search">
+                            <input type="text" placeholder="Search" class="form-control">
+                        </form>
                     </li>
                     <li class="dropdown user-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Steve Miller<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                            <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                            
+                            <li><a href="#"><i class="fa fa-gear"></i> 공공의주방 이야기</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> 공지사항</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> 이벤트</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> 자주하는 질문</a></li>
+                            <li><a href="#"><i class="fa fa-gear"></i> 공지사항</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> 마이페이지</a></li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> 로그아웃</a></li>
+
                         </ul>
                     </li>
+                    <li class="divider-vertical"></li>
                 </ul>
             </div>
         </nav>
@@ -125,63 +180,76 @@
         <hr />
 
         <div class="container">
+            <div>
+                <div class="ad_serch">
+                    <input type="text">
+                    <span class="iconify" data-icon="fe:search" data-inline="false"></span>
+                </div>
+                <div id="Sort">
+                    정렬 넣어주세요
+                </div>
+            </div>
             <table>
-                <tr>
-                    <th>아이디</th>
-                    <th>이름</th>
-                    <th>폰번호</th>
-                    <th>생년월일</th>
-                    <th>회원등급</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>폰번호</th>
+                        <th>생년월일</th>
+                        <th>회원등급</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
