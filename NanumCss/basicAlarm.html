@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* section{border: 1px solid;} */
+        /* 전체 페이지 섹션 크기 지정 */
+        #lay03basicAlarm{
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            width: 1200px;
+            margin: 0 auto;
+        }
+        /* 왼쪽 섹션의 크기 지정 */
+        #lay03basicAlarm > #left01MsgAlarm{
+            height: 126px;
+            /* background: red; */
+        }
+        /* 왼쪽 섹션의 p태그(공공의 주방) */
+        #lay03basicAlarm>#left01MsgAlarm >p{
+            height: 24px;
+            margin: 0px;
+            font-size: 16px;
+        }
+        /* 왼쪽 태그의 h1 태그(1:1 메세지) */
+        #lay03basicAlarm>#left01MsgAlarm h1{
+            height: 43px;
+            margin: 0px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        /* 오른쪽 전체 감싸고 있는 섹션의 속성 */
+        #lay03basicAlarm > #right01BasicAlarm{
+            width: 100%;
+            height: 453px;
+            padding: 0px 0px 120px;
+            /* background-color: green; */
+        }
+        /* 오른쪽 섹션 안에 맨위의 div 속성 */
+        #lay03basicAlarm > #right01BasicAlarm>div{
+            width: 100%;
+            height: 23px;
+            /* text-align: right; */
+            /* background-color: pink; */
+        }
+        /* 오른쪽 섹션안의 위 오른쪽 div */
+        #lay03basicAlarm > #right01BasicAlarm>div>#labelDiv{
+            /* display: inline-block; */
+            float: right;
+            /* background-color: blue; */
+        }
+        /* 오른쪽 섹션 위 오른쪽 select, option 속성 */
+        #lay03basicAlarm > #right01BasicAlarm>div>#labelDiv select,option{
+            font-size: 17px;
+            font-weight: bold;
+            font-family: 'Roboto','Noto Sans', 'Noto Sans KR', sans-serif;
+            padding: 0px 18px 0px 0px;
+            color: #8E0032;
+        }
+        /* 오른쪽 select 속성 */
+        #lay03basicAlarm > #right01BasicAlarm>div>#labelDiv>select{
+            border: 0;
+            width: 150px;
+            height: 25px;
+            appearance: none;
+            -webkit-appearance: none;
+            background:url(../icon/ico-sel_arrow.png) no-repeat right 20px center;
+            background-size: 5%;
+        }
+        /* select를 눌렀을때 테두리를 지우기 위함 */
+        #lay03basicAlarm > #right01BasicAlarm>div>#labelDiv>select:focus{
+            outline: none;
+        }
+        /* 오른쪽 섹션의 기본 화살표를 없앤걸 expoler에서 보여주지 않기 위함 */
+        #lay03basicAlarm > #right01BasicAlarm>div>#labelDiv>select::-ms-expand{
+            display: none;
+        }
+        /* 오른쪽 섹션의 가운데를 차지 하는 div */
+        #lay03basicAlarm > #right01BasicAlarm > #not-alarm{
+            width: 100%;
+            height: 430px;
+            padding: 38px 0px;
+            /* background-color: pink; */
+        }
+        /* 오른쪽 섹션의 가운데 div안에 div */
+        #lay03basicAlarm > #right01BasicAlarm > #not-alarm > #innerNotAlarm{
+            width: 100%;
+            height: 354px;
+            padding: 127px 0px;
+            /* background-color: red; */
+        }
+        /* 오른쪽 섹션의 p태그(받은 알림이 없습니다) */
+        #lay03basicAlarm > #right01BasicAlarm > #not-alarm > #innerNotAlarm > #Notalarm{
+            width: 100%;
+            height: 100px;
+            /* padding: 78px 0px 0px; */
+            /* background-color: blue; */
+            text-align: center;
+            font-weight: 600;
+        }
+        /* 이미지를 넣기 위한 ::before 태그 */
+        #lay03basicAlarm > #right01BasicAlarm > #not-alarm > #innerNotAlarm > #Notalarm::before{
+            content: "";
+            display: block;
+            margin: 0 auto;
+            width: 65px;
+            height: 65px;
+            background-image: url(../icon/ico-empty_bell.png);
+            background-size: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="lay03basicAlarm">
+        <section id="left01MsgAlarm">
+            <p>마이페이지</p>
+            <h1>알림</h1>
+        </section>
+        <section id="right01BasicAlarm">
+            <div>
+                <!-- select id 테스트 하기 위해 임의로 부여 바꿔야 할수 있음 -->
+                <div id="labelDiv">
+                    <select name="" id="sel01">
+                        <option selected>전체</option>
+                        <option value="">공지</option>
+                        <option value="">광고</option>
+                        <option value="">요리 만들기</option>
+                        <option value="">클래스 만들기</option>
+                        <option value="">공간 공유하기</option>
+                    </select>
+                </div>
+            </div>
+            <div id="not-alarm">
+                <div id="innerNotAlarm">
+                    <p id="Notalarm">
+                        받은 알림이 없습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

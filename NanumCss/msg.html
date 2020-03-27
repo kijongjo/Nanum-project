@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* section{border: 1px solid;} */
+        /* 전체 페이지 섹션 크기 지정 */
+        #lay03Msg{
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            width: 1200px;
+            margin: 0 auto;
+        }
+        /* 왼쪽 섹션의 크기 지정 */
+        #lay03Msg > #left01Msg{
+            height: 126px;
+            /* background: red; */
+        }
+        /* 왼쪽 섹션의 p태그(공공의 주방) */
+        #lay03Msg>#left01Msg >p{
+            height: 24px;
+            margin: 0px;
+            font-size: 16px;
+        }
+        /* 왼쪽 태그의 h1 태그(1:1 메세지) */
+        #lay03Msg>#left01Msg h1{
+            height: 42px;
+            margin: 0px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        /* 오른쪽 섹션의 속성 */
+        #lay03Msg > #right01Msg{
+            /* background: springgreen; */
+            padding: 0px 0px 120px;
+        }
+        /* 오른쪽 섹션 안에 ul의 속성 */
+        #lay03Msg > #right01Msg ul{
+            list-style: none;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        /* 오른쪽 섹션의 li 속성 */
+        #lay03Msg > #right01Msg li{
+            width: 915px;
+            height: 127px;
+            padding: 25px 40px;
+            /* background-color: pink; */
+            border-bottom: 0.5px #E1E1E1 solid;
+        }
+        /* 오른쪽 섹션의 a태그 */
+        #lay03Msg > #right01Msg a{
+            margin: 0 auto;
+            width: 100%;
+            /* background-color: blue; */
+            float: left;
+            height: 76px;
+        }
+        /* 오른쪽 섹션의 이미지 속성 */
+        #lay03Msg > #right01Msg a >img{
+            width: 64px;
+            height: 64px;
+            border-radius: 32px;
+            float: left;
+        }
+        /* 오른쪽 섹션의 div 속성 */
+        #lay03Msg > #right01Msg .list-content{
+            float: left;
+            width: 771px;
+            /* height: 76px; */
+            padding: 0px 80px 0px 20px;
+            /* background-color: orange; */
+        }
+        /* 오른쪽 섹션의 제목태그 */
+        .list-title{
+            display: block;
+            width: 580px;
+            height: 21px;
+            margin-bottom: 8px;
+            font-size: 18px;
+            overflow: hidden;
+        }
+        /* 오른쪽 섹션의 메세지 내용 태그 속성 */
+        #lay03Msg > #right01Msg .list-content p{
+            font-size: 16px;
+            margin: 4px 0px 0px;
+            overflow: hidden;
+        }
+        /* 오른쪽 섹션의 시간 태그를 감싸고 있는 div */
+        #lay03Msg > #right01Msg .list-content .al-r{
+            width: 70px;
+            height: 18px;
+            margin: 0px;
+            padding: 0px 0px 0px 10px;
+            float: right;
+            position: relative;
+            left: 75px;
+        }
+        /* 오른쪽 섹션의 시간 div 안에 있는 span 속성 */
+        #lay03Msg > #right01Msg .list-content .MsgTime{
+            width: 60px;
+            height: 18px;
+            font-size: 14px;
+        }
+        
+    </style>
+</head>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- strong과 p 태그의 임의의 글 넣어놈 테스트 용이기 때문에 지워서 el 태그 사용해서 가져오면 됨 -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<body>
+    <div id="lay03Msg">
+        <section id="left01Msg">
+            <p>공공의 주방</p>
+            <h1>1:1 메시지</h1>
+        </section>
+        <section id="right01Msg">
+            <div>
+                <ul>
+                    <li>
+                        <a href="#">
+                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <div class="list-content">
+                                <div class="al-r">
+                                    <span class="MsgTime">20.03.25</span>
+                                </div>
+                                <strong class="list-title">커피에 진심을 담다aaaaaaaaaaaaaaaaaaaaad</strong>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <div class="list-content">
+                                <div class="al-r">
+                                    <span class="MsgTime">20.03.25</span>
+                                </div>
+                                <strong class="list-title">커피에 진심을 담다</strong>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <div class="list-content">
+                                <div class="al-r">
+                                    <span class="MsgTime">20.03.25</span>
+                                </div>
+                                <strong class="list-title">커피에 진심을 담다</strong>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <div class="list-content">
+                                <div class="al-r">
+                                    <span class="MsgTime">20.03.25</span>
+                                </div>
+                                <strong class="list-title">커피에 진심을 담다</strong>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <div class="list-content">
+                                <div class="al-r">
+                                    <span class="MsgTime">20.03.25</span>
+                                </div>
+                                <strong class="list-title">커피에 진심을 담다</strong>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <div class="list-content">
+                                <div class="al-r">
+                                    <span class="MsgTime">20.03.25</span>
+                                </div>
+                                <strong class="list-title">커피에 진심을 담다</strong>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <div class="list-content">
+                                <div class="al-r">
+                                    <span class="MsgTime">20.03.25</span>
+                                </div>
+                                <strong class="list-title">커피에 진심을 담다</strong>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <div class="list-content">
+                                <div class="al-r">
+                                    <span class="MsgTime">20.03.25</span>
+                                </div>
+                                <strong class="list-title">커피에 진심을 담다</strong>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

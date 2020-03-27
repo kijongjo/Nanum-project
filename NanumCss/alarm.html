@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <style>
+        /* section{border: 1px solid;} */
+        /* 전체 페이지 섹션 크기 지정 */
+        #lay03Alarm{
+            display: grid;
+            grid-template-columns: 285px 1fr;
+            width: 1200px;
+            margin: 0 auto;
+        }
+        /* 왼쪽 섹션의 크기 지정 */
+        #lay03Alarm > #left01MsgAlarm{
+            height: 126px;
+            /* background: red; */
+        }
+        /* 왼쪽 섹션의 p태그(공공의 주방) */
+        #lay03Alarm>#left01MsgAlarm >p{
+            height: 24px;
+            margin: 0px;
+            font-size: 16px;
+        }
+        /* 왼쪽 태그의 h1 태그(1:1 메세지) */
+        #lay03Alarm>#left01MsgAlarm h1{
+            height: 43px;
+            margin: 0px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        /* 오른쪽 섹션 속성 */
+        #lay03Alarm > #right01Alarm{
+            width: 100%;
+            /* height: 453px; */
+            padding: 0px 0px 120px;
+            /* background-color: green; */
+        }
+        /* 오른쪽 섹션 안에 맨 위에 div */
+        #lay03Alarm > #right01Alarm>#alarmSelectDiv{
+            width: 100%;
+            height: 23px;
+            text-align: left;
+            /* background-color: pink; */
+        }
+        /* 오른쪽 섹션 안에 select를 감싸고 있는 div */
+        #lay03Alarm > #right01Alarm>div>#labelDiv{
+            /* display: inline-block; */
+            float: right;
+            /* background-color: blue; */
+        }
+        /* 오른쪽 섹션의 select, option 속성 */
+        #lay03Alarm > #right01Alarm>div>#labelDiv select,option{
+            font-size: 17px;
+            font-weight: bold;
+            font-family: 'Roboto','Noto Sans', 'Noto Sans KR', sans-serif;
+            padding: 0px 18px 0px 0px;
+            color: #8E0032;
+        }
+        /* 오른쪽 섹션의 select 속성(화살표 관련) */
+        #lay03Alarm > #right01Alarm>div>#labelDiv>select{
+            border: 0;
+            width: 150px;
+            height: 25px;
+            appearance: none;
+            -webkit-appearance: none;
+            background:url(../icon/ico-sel_arrow.png) no-repeat right 20px center;
+            background-size: 5%;
+        }
+        /* select 누를시에 테두리가 나오는것을 방지 하기 위함 */
+        #lay03Alarm > #right01Alarm>div>#labelDiv>select:focus{
+            outline: none;
+        }
+        /* 화살표 수정 한 것을 explore 에서도 보여주기 위함 */
+        #lay03Alarm > #right01Alarm>div>#labelDiv>select::-ms-expand{
+            display: none;
+        }
+        /* 전체 리스트를 감싸고 있는 div */
+        #list-alarm{
+            width: 100%;
+            margin-top: 30px;
+        }
+        /* 오른쪽 섹션 안에 ul의 속성 */
+        #lay03Alarm > #right01Alarm >#list-alarm> ul{
+            list-style: none;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+        /* 오른쪽 섹션의 li 속성 */
+        #lay03Alarm > #right01Alarm #list-alarm>ul li{
+            width: 915px;
+            height: 115px;
+            padding: 25px 40px;
+            /* background-color: pink; */
+            border-top: 0.5px #E1E1E1 solid;
+        }
+        /* 오른쪽 섹션의 a태그 */
+        #lay03Alarm > #right01Alarm #list-alarm >ul a{
+            margin: 0 auto;
+            width: 100%;
+            /* background-color: blue; */
+            float: left;
+            /* height: 76px; */
+            /* background-color: red; */
+        }
+        /* 오른쪽 섹션의 이미지 속성 */
+        #lay03Alarm > #right01Alarm #list-alarm a >img{
+            width: 64px;
+            height: 64px;
+            border-radius: 32px;
+            float: left;
+        }
+        /* 오른쪽 섹션의 div 속성 */
+        #lay03Alarm > #right01Alarm .list-alarm-con{
+            float: left;
+            width: 771px;
+            /* height: 76px; */
+            padding: 0px 80px 0px 20px;
+            /* background-color: orange; */
+        }
+        /* 오른쪽 섹션의 제목태그 */
+        #lay03Alarm .alarmS{
+            display: block;
+            width: 580px;
+            height: 21px;
+            margin: 8px 0px; 
+            font-size: 18px;
+            overflow: hidden;
+        }
+        /* 오른쪽 섹션의 메세지 내용 태그 속성 */
+        #lay03Alarm > #right01Alarm .list-alarm-con p{
+            font-size: 16px;
+            margin: 4px 0px 0px;
+            overflow: hidden;
+        }
+        /* 오른쪽 섹션의 시간 태그를 감싸고 있는 div */
+        #lay03Alarm > #right01Alarm .list-alarm-con .alarmDate{
+            width: 70px;
+            height: 18px;
+            margin: 0px;
+            padding: 0px 0px 0px 10px;
+            float: right;
+            position: relative;
+            left: 75px;
+        }
+        /* 오른쪽 섹션의 시간 div 안에 있는 span 속성 */
+        #lay03Alarm > #right01Alarm .list-alarm-con .alarmTime{
+            width: 60px;
+            height: 18px;
+            font-size: 14px;
+        }
+
+        /* ---------------------------------------------------------------------------------- */
+        /* ------------------------------------페이징----------------------------------------- */
+        /* --------------------------------------------------------------------------------------- */
+
+       /* paging 아이콘 출력 영역 */
+       .contents-paging {
+            margin-top: 34px;
+            text-align: center;
+        }
+        
+        /* prev, next 아이콘 통합 설정 
+
+        */
+        .contents-paging > .paging-wrapper > .extra {
+            /* 공간을 한정짓기 위해 포지션 relative 설정 */
+            position: relative;
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: url(../icon/ico-arrow_right.png) no-repeat 50% / 7px auto;
+            transform: rotate(180deg);
+            vertical-align: middle;
+        
+        }
+
+        /* next 아이콘 설정 
+           이 방식은 무엇인가..?  
+        */
+        .contents-paging > .paging-wrapper > ul ~ .extra {
+            transform: rotate(0deg);
+        }
+
+        /* minus-next 아이콘 출력 */
+        .contents-paging > .paging-wrapper > .extra:first-child::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 5px;
+            width: 100%;
+            height: 100%;
+            background: url(../icon/ico-arrow_right.png) no-repeat 50% / 7px auto;;
+        }
+
+        /* plust-next 아이콘 출력 */
+        .contents-paging > .paging-wrapper > .extra:last-child::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 5px;
+            width: 100%;
+            height: 100%;
+            background: url(../icon/ico-arrow_right.png) no-repeat 50% / 7px auto;;
+        }
+
+        /* 데이터량의 따라 늘어나는 숫자를 담고있는 영역 */
+        .contents-paging > .paging-wrapper > ul {
+            display: inline-block;
+            margin: 0 8px;
+        }
+
+        /* 페이징 숫자를 출력하는 영역  */
+        .contents-paging > .paging-wrapper > ul > li {
+            display: inline-block;
+            margin: 0 12px;
+            position: relative;
+            font-size: 18px;
+            font-weight: 600;
+
+        }
+
+        /* 현재 숫자를 표시하는 부분 */
+        .contents-paging > .paging-wrapper > ul > li::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #8E0032;
+        }
+    </style>
+</head>
+<body>
+    <div id="lay03Alarm">
+        <section id="left01MsgAlarm">
+            <p>마이페이지</p>
+            <h1>알림</h1>
+        </section>
+        <section id="right01Alarm">
+            <div id="alarmSelectDiv">
+                <!-- select id 테스트 하기 위해 임의로 부여 바꿔야 할수 있음 -->
+                <div id="labelDiv">
+                    <select name="" id="sel01">
+                        <option selected>전체</option>
+                        <option value="">공지</option>
+                        <option value="">광고</option>
+                        <option value="">요리 만들기</option>
+                        <option value="">클래스 만들기</option>
+                        <option value="">공간 공유하기</option>
+                    </select>
+                </div>
+            </div>
+            <div id="list-alarm">
+                    <ul>
+                        <li>
+                            <a href="">
+                                <img src="../icon/img-alert_msg.png" alt="">
+                                <div class="list-alarm-con">
+                                    <div class="alarmDate">
+                                        <span class="alarmTime">20.03.12</span>
+                                    </div>
+                                    <strong class="alarmS">요리배우기</strong>
+                                    <p class="alarmP">신청하신 클래스(냉파스타와 알리오올리오)가 예약 취소되었습니다. 취소 확인은 요리 배우기-...</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="../icon/img-alert_msg.png" alt="">
+                                <div class="list-alarm-con">
+                                    <div class="alarmDate">
+                                        <span class="alarmTime">20.03.09</span>
+                                    </div>
+                                    <strong class="alarmS">요리배우기</strong>
+                                    <p class="alarmP">신청하신 클래스(냉파스타와 알리오올리오)가 예약 완료되었습니다. 예약 확인은 요리 배우기-...</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="../icon/img-alert_msg.png" alt="">
+                                <div class="list-alarm-con">
+                                    <div class="alarmDate">
+                                        <span class="alarmTime">20.03.08</span>
+                                    </div>
+                                    <strong class="alarmS">요리배우기</strong>
+                                    <p class="alarmP">신청하신 클래스(아쿠아돈까스(9명가능))가 예약 취소되었습니다. 취소 확인은 요리 배우기-...</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="../icon/img-alert_msg.png" alt="">
+                                <div class="list-alarm-con">
+                                    <div class="alarmDate">
+                                        <span class="alarmTime">20.03.08</span>
+                                    </div>
+                                    <strong class="alarmS">요리배우기</strong>
+                                    <p class="alarmP">신청하신 클래스(냉파스타와 알리오올리오)가 예약 취소되었습니다. 취소 확인은 요리 배우기-...</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="../icon/img-alert_msg.png" alt="">
+                                <div class="list-alarm-con">
+                                    <div class="alarmDate">
+                                        <span class="alarmTime">20.03.08</span>
+                                    </div>
+                                    <strong class="alarmS">요리배우기</strong>
+                                    <p class="alarmP">신청하신 클래스(냉파스타와 알리오올리오)가 예약 취소되었습니다. 취소 확인은 요리 배우기-...</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <img src="../icon/img-alert_msg.png" alt="">
+                                <div class="list-alarm-con">
+                                    <div class="alarmDate">
+                                        <span class="alarmTime">20.03.08</span>
+                                    </div>
+                                    <strong class="alarmS">요리배우기</strong>
+                                    <p class="alarmP">신청하신 클래스(냉파스타와 알리오올리오)가 예약 취소되었습니다. 취소 확인은 요리 배우기-...</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="contents-paging">
+                        <div class="paging-wrapper">
+                            <a href="" class="extra"></a>
+                            <a href="" class="extra"></a>
+                            <ul class="">
+                                <li><a href="">1</a></li>
+                            </ul>
+                            <a href="" class="extra"></a>
+                            <a href="" class="extra"></a>
+                        </div>
+                    </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
