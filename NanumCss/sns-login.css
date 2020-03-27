@@ -1,0 +1,64 @@
+/* sns login */
+#sns_login {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 50px;
+  padding-top: 50px;
+}
+#sns_login div {
+  border-radius: 10px;
+}
+#sns_login div:nth-child(1) {
+  border: 2px solid #405ea8;
+}
+
+#sns_login div:nth-child(n + 2) {
+  margin-top: 8px;
+}
+#sns_login div:nth-child(2) {
+  border: 2px solid #4fae48;
+}
+#sns_login div:nth-child(3) {
+  border: 2px solid #efda43;
+}
+/* sns login link */
+#sns_login div a {
+  position: relative;
+  display: block;
+  padding: 13px 0;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 3px;
+  line-height: 18px;
+}
+#sns_login > div:nth-child(1) a::before {
+  content: "";
+  position: absolute;
+  left: 75px;
+  width: 10px;
+  height: 17px;
+  background-image: url("../icon/facebook_Color.png");
+  background-size: 100%;
+}
+#sns_login > div:nth-child(2) a::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 75px;
+  width: 13px;
+  height: 18px;
+  background-image: url("../icon/naver_Color.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+#sns_login > div:nth-child(3) a::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 75px;
+  width: 13px;
+  height: 18px;
+  background-image: url("../icon/kakao_Color.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}

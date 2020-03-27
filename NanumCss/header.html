@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="reset.css">
+    
+      
+
+    <style>
+        section{
+            margin: 0 auto;
+            width: 1200px;
+        }
+        section > div{
+            margin-top: 70px;
+            overflow: hidden;
+        }
+        
+        section span,
+        #item05 div div{
+            color: #7F7F7F;
+        }
+
+
+
+        /*-------------- Item 공용코드------------------- */
+        /* 타이틀 관련 */
+        .itemTitle h2{
+            letter-spacing: -1.5px;
+            font-family: 'Roboto', 'Noto', sans-serif;
+        }
+        .itemTitle h2:nth-child(2){
+            margin-top: 3px;
+        }
+
+        /* 서브 타이틀 & 한줄소개 */
+        div > ul > li> a > p{
+            font-size: 15px;
+            letter-spacing: -2px;
+            font-weight: 500;
+        }
+
+        /* 슬라이더 공용 */
+        .slideItem > ul{
+            margin-top: 25px;
+            display: flex;
+        }
+        .slideItem > ul > li{
+            margin-right: 15px;
+            width: 340px;
+        }
+        .slideItem span{
+            font-weight: bold;
+            font-size: 15px;
+        }
+        
+        /* 슬라이드 이미지 */
+        .slideItem img{
+            width: 340px; height: 214px;
+        }
+        #item01 img{
+            width: 100%; 
+        }
+        /* 슬라이드 contents */
+        .slideItem h4{
+            margin-top: 12px;
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: -1.5px;
+        }
+        .slideItem ul li > a > div:nth-child(3){
+            margin-top: 4px;
+        }
+        .slideItem ul li > a > div:nth-child(4){
+            margin-top: 10px;
+        }
+
+        /* sapn after */
+        .slideItem > ul > li > a > div > span:nth-child(1),
+        .slideItem > ul > li > a > div > span:nth-child(2){
+            padding-right: 7px;
+            position: relative;
+        }
+        
+        .slideItem > ul > li > a > div > span:nth-child(1)::after,
+        .slideItem > ul > li > a > div > span:nth-child(2)::after{
+            content: "";
+            position: absolute; 
+            top: 5px; right: 0;
+            background-color: #8D8D8D;
+            width: 1px; height: 14px;
+        }
+
+
+        /* -----------------------------------------------------------
+        ------------------------------------------------------------- */
+
+
+        /* Item01 어떤 클래스를 찾으시나요?*/
+        #item01 img{height: 100%;}
+        #item01 > ul{
+            margin:  25px 0 0 -12px;
+            width: 1212px ; height: 245.625px;
+        }
+        #item01 > ul > li{
+            margin: 0 7px;
+            float: left;
+            width: 390px;
+        }
+
+
+
+
+
+        /* Item05 오늘의 기획전*/
+        #item05 div div{
+            display: inline-block;
+            border: 1px solid #C6C6C6;
+            border-radius: 14px;
+            margin:0 2px 7px 0;
+            padding: 0 8px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -2px;
+            line-height: 25px;
+        }
+
+
+        
+      
+        
+        /* Event AD */
+        #Event-AD img{
+            width: 100%;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+    <div id="header">
+        <div>
+            <a href="#"><img src="../logo.png" alt="logo"></a>
+        </div>
+        <h3><a href="#">클래스</a></h3>
+        <h3><a href="#">선생님</a></h3>
+        <h3><a href="#">공간</a></h3>
+        <div id="serch">
+            <img src="../icon/serch.png" alt="serch">
+            <input type="text" name="" id="" value="">
+            <span>나와 맞는 공간을 찾아볼까?</span>
+        </div>
+        
+        <div>
+            <a href="#"><img src="../icon/heart.png" alt="heart"></a>
+        </div>
+            
+        <div>
+            <img src="../icon/expansion.png" alt="expansion">
+        </div>
+       
+    </div>
+
+
+
+
+    <!-- Main -->
+    <div id="main-slider">
+        <ul>
+            <li><img src="../main-slider/main-slider01.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider02.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider03.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider04.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider05.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider06.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider07.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider08.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider09.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider10.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider11.jpg" alt=""></li>
+            <li><img src="../main-slider/main-slider12.jpg" alt=""></li>
+        </ul>
+    </div>
+
+
+    <section>
+        <div id="item01">
+            <div class="itemTitle">
+                <h2>남택수님,</h2>
+                <h2>어떤 클래스를 찾으시나요?</h2>
+            </div> 
+            <ul>
+                <li>
+                    <a href="#"> <img src="../img-view_class.jpg" alt="Class"> </a>
+                </li>
+                <li>
+                    <a href="#"> <img src="../img-view_teacher.jpg" alt="Expert"> </a>
+                </li>
+                <li>
+                    <a href="#"> <img src="../img-view_place.jpg" alt="Place"> </a>
+                </li>
+            </ul>  
+        </div>
+
+
+        <!-- 베스트 클래스 -->
+        <div id="item02" class="slideItem">
+            <div class="itemTitle">
+                <h2>베스트 클래스</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/best01.jpg" alt="">
+                        <h4>자타공인밥도둑, 매콤꽃게무침</h4>
+                        <div>
+                            <span>한식</span>
+                            <span>경기도 용인시</span>
+                            <span>3월~5월</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 46,200
+                        </div>
+                    </a>
+                </li>
+                <!-- 테스트용 복사 -->
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/best02.jpg" alt="">
+                        <h4>자타공인밥도둑, 매콤꽃게무침</h4>
+                        <div>
+                            <span>한식</span>
+                            <span>경기도 용인시</span>
+                            <span>3월~5월</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 46,200
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/best03.jpg" alt="">
+                        <h4>노오븐'쌀'츄러스</h4>
+                        <div>
+                            <span>베이킹</span>
+                            <span>경기도 김포시</span>
+                            <span>3월 1회 진행</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 10,000
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/best03.jpg" alt="">
+                        <h4>노오븐'쌀'츄러스</h4>
+                        <div>
+                            <span>베이킹</span>
+                            <span>경기도 김포시</span>
+                            <span>3월 1회 진행</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 10,000
+                        </div>
+                    </a>
+                </li>
+                <!-- 테스트 복사 끝 -->
+            </ul>
+        </div>
+
+
+        <div id="item03" class="slideItem">
+            <div class="itemTitle">
+                <h2>가화만사성, 만(滿)원의클래스</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/ManClass01.jpg" alt="">
+                        <h4>노오븐'쌀'츄러스</h4>
+                        <div>
+                            <span>베이킹</span>
+                            <span>경기도 김포시</span>
+                            <span>3월 1회 진행</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 10,000
+                        </div>
+                    </a>
+                </li>
+                <!-- 테스트용 복사 -->
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/ManClass02.jpg" alt="">
+                        <h4>노오븐'쌀'츄러스</h4>
+                        <div>
+                            <span>베이킹</span>
+                            <span>경기도 김포시</span>
+                            <span>3월 1회 진행</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 10,000
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/ManClass03.jpg" alt="">
+                        <h4>노오븐'쌀'츄러스</h4>
+                        <div>
+                            <span>베이킹</span>
+                            <span>경기도 김포시</span>
+                            <span>3월 1회 진행</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 10,000
+                        </div>
+                    </a>
+                </li>
+                <!-- 테스트 복사 끝 -->
+            </ul>
+        </div>
+
+
+        <div id="item04" class="slideItem">
+            <div class="itemTitle">
+                <h2>단 1명이라도 열리는, 동시모집</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content04/1people01.jpeg" alt="">
+                        <h4>불타는 금요일에 쿡맥하자!</h4>
+                        <div>
+                            <span>세계요리</span>
+                            <span>경기도 안양시</span>
+                            <span>3월~4월</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 49,500
+                        </div>
+                    </a>
+                </li>
+                <!-- 테스트용 복사 -->
+                <li>
+                    <a href="#">
+                        <img src="../Main-content04/1people02.jpg" alt="">
+                        <h4>불타는 금요일에 쿡맥하자!</h4>
+                        <div>
+                            <span>세계요리</span>
+                            <span>경기도 안양시</span>
+                            <span>3월~4월</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 49,500
+                        </div>
+                    </a>
+                </li><li>
+                    <a href="#">
+                        <img src="../Main-content04/1people03.jpg" alt="">
+                        <h4>불타는 금요일에 쿡맥하자!</h4>
+                        <div>
+                            <span>세계요리</span>
+                            <span>경기도 안양시</span>
+                            <span>3월~4월</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong> 49,500
+                        </div>
+                    </a>
+                </li>
+                <!-- 테스트용 복사 끝 -->
+            </ul>
+        </div>
+
+
+        <!-- 광고 이미지 -->
+        <div id="Event-AD">
+            <img src="../1year-event-AD.jpg" alt="AD">
+        </div>
+
+
+        <!-- 오늘의 기획전 -->
+        <div id="item05" class="slideItem">
+            <div class="itemTitle">
+                <h2>오늘의 기획전</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/today-project01.jpg" alt="">
+                        <h4>집밥처럼 든든한 금손들의 도시락</h4>
+                        <p>좋아하는 메뉴로 도시락을 채워봅시다! 곰손도 금손처럼 만들 수 있어요</p>
+                        <div>
+                            <div>#맛과 비주얼</div>
+                            <div>#모두 잡았어요</div>
+                            <div>#금손도시락</div>
+                            <div>#든든해요</div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/today-project02.jpg" alt="">
+                        <h4>디저트 배는 따로 있잖아요?</h4>
+                        <p>배가 불러도 디저트는 꼭 드시는 분들은 주목하세요</p>
+                        <div>
+                            <div>#디저트배는</div>
+                            <div>#따로있으니까</div>
+                            <div>#기분좋은단맛</div>
+                            <div>예술적디저트</div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../Main-content05/today-project03.jpg" alt="">
+                        <h4>지금 꼭 먹어야 할 제철요리</h4>
+                        <p>재료의 풍미를 끌어 올려주는 특별한 레시피로 제철요리를 맘껏 즐겨봅시다</p>
+                        <div>
+                            <div>#지금이가장</div>
+                            <div>#맛있는메뉴</div>
+                            <div>#이달의재료는</div>
+                            <div>#딸기입니다</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- 인기 클래스 -->
+        <div id="all-content">
+            <div class="itemTitle">
+                <h2>인기 클래스</h2>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="../sample01.jpg" alt="img">
+                        <h4>향 은은 얼그레이 초코쿠키</h4>
+                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 송파구</span>
+                            <span>앵콜</span>
+                        </div>
+                    </a>
+                </li>
+                <!-- 테스트용 복사코드-->
+                <li>
+                    <a href="#">
+                        <img src="../sample02.jpg" alt="img">
+                        <h4>손이가요 손이가! 해물잡채</h4>
+                        <p>한식 클래스</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 송파구</span>
+                            <span>앵콜</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../sample03.jpg" alt="img">
+                        <h4>향 은은 얼그레이 초코쿠키</h4>
+                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 송파구</span>
+                            <span>앵콜</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../sample10.jpg" alt="img">
+                        <h4>향 은은 얼그레이 초코쿠키</h4>
+                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 송파구</span>
+                            <span>앵콜</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../sample10.jpg" alt="img">
+                        <h4>향 은은 얼그레이 초코쿠키</h4>
+                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 송파구</span>
+                            <span>앵콜</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../sample03.jpg" alt="img">
+                        <h4>향 은은 얼그레이 초코쿠키</h4>
+                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 송파구</span>
+                            <span>앵콜</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../sample02.jpg" alt="img">
+                        <h4>향 은은 얼그레이 초코쿠키</h4>
+                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 송파구</span>
+                            <span>앵콜</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="../sample01.jpg" alt="img">
+                        <h4>향 은은 얼그레이 초코쿠키</h4>
+                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 송파구</span>
+                            <span>앵콜</span>
+                        </div>
+                    </a>
+                </li>
+                <!-- 테스트용 복사코드 끝-->
+            </ul>
+        </div>
+
+        <button>
+            더 많은 클래스가 궁금하다면?
+            <img src="../icon/ico-more.png" alt="more">
+        </button>
+    </section>
+</body>
+</html>
