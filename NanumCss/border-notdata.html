@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        html,body{
+            background-color: #fff;
+            letter-spacing: -0.03em;
+        }
+       
+        /* 왼쪽 */
+        #lay03 > #left01 > div{
+            margin-bottom: 60px;
+
+        }
+        #lay03 > #left01 p{
+            font-weight: 200;
+        }
+        #lay03 > #left01 h1{
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 43px;
+       }
+        #lay03 > #left01 a{
+            display: block;
+            margin-bottom: 20px;
+            padding-bottom: 2px;
+            font-size: 17px;
+            font-weight: 400;
+       }
+       /* 선택시 */
+       .select-On{
+            width: 80px;
+            border-bottom: 3px solid #8E0032;
+            font-weight: bold;
+            color: #8E0032;
+       }
+
+
+       /* 오른쪽 */
+       div > #right02{
+           display: table;
+           height: 354px;
+        }
+        div > #right02 > div{
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        div > #right02 > div > p{
+            font-size: 20px;
+            letter-spacing: -0.45px;
+        }
+        div > #right02 > div > p::before{
+            content: "";
+            display: block;
+            margin: 0 auto;
+            width: 65px; height: 65px;
+            background-image: url(../icon/class.png);
+            background-size: 100%;
+        }
+        
+        </style>
+
+</head>
+<body>
+    <div id="lay03">
+        <section id="left01">
+            <div>
+                <p>수강생</p>
+                <h1>요리 배우기</h1>
+            </div>
+            <div>
+                <a href="#" class="select-On">예약 클래스</a>
+                <a href="#" >취소 / 환불</a>
+                <a href="#" >종료 클래스</a>
+                <a href="#" >종료 클래스</a>
+                <a href="#" >종료 클래스</a>
+                <a href="#" >종료 클래스</a>
+            </div>
+
+        </section>
+        <section id="right02" >
+            <div>
+                <p>
+                    예약한 클래스가 없어요 <br />
+                    클래스를 예약해보는건 어떠세요?
+                </p>
+                <a href="#" class="more-type2">클래스 예약하러 가기</a>
+            </div>
+            <div></div>
+        </section>
+        
+    </div>
+</body>
+</html>
