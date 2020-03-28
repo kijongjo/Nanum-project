@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        html,
+        body {
+            background-color: #fff;
+            letter-spacing: -0.03em;
+        }
+        /* 왼쪽 */
+        
+        #lay03>#left01>div {
+            margin-bottom: 60px;
+        }
+        
+        #lay03>#left01 p {
+            font-weight: 200;
+        }
+        
+        #lay03>#left01 h1 {
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 43px;
+        }
+        
+        #lay03>#left01>div:nth-child(2) span {
+            display: block;
+            margin-top: 16px;
+            color: #838383;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        #lay03>#left01>div:nth-child(2) span::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            display: inline-block;
+            margin-left: 8px;
+            width: 17px;
+            height: 17px;
+            background-image: url(../icon/ico-tooltip.png);
+            background-size: 100%;
+        }
+        /* 리스트 항목 */
+        
+        #lay03>#left01 a {
+            display: block;
+            margin-bottom: 20px;
+            padding-bottom: 2px;
+            font-size: 17px;
+            line-height: 25px;
+            font-weight: 200;
+        }
+        
+        #left01>div:nth-child(3)>a {
+            width: 85px;
+            position: relative;
+        }
+        
+        #left01>div:nth-child(3)>a::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 3px;
+            right: -2px;
+            width: 19px;
+            height: 19px;
+            background-image: url("../icon/ico-tab_check.svg");
+            background-position: -19px;
+        }
+        /* 선택시 */
+        
+        #lay03>#left01 .On_active {
+            font-weight: 600;
+            border-bottom: 3px solid #8E0032;
+            position: relative;
+        }
+        
+        #lay03>#left01 .On_active::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 3px;
+            right: -2px;
+            width: 19px;
+            height: 19px;
+            background-image: url("../icon/ico-tab_check.svg");
+            background-position: 0;
+        }
+        /* 오른쪽 */
+        
+        #right01 {
+            padding: 45px 0 120px 60px;
+            background-color: #F6F5F5;
+            font-size: 15px;
+            line-height: 22px;
+        }
+        /* 항목 타이틀 */
+        
+        #right01>form>h4 {
+            margin-bottom: 8px;
+            color: #5B5B5B;
+        }
+        
+        #right01>form>h4:nth-child(n+2) {
+            margin-top: 40px;
+        }
+        
+        .basic_apply {
+            width: 855px;
+            background-color: white;
+        }
+        
+        #apply02 p,
+        #form2>div:nth-child(2) p {
+            padding-top: 10px;
+            background-color: #F6F5F5;
+            color: #838383;
+        }
+        /* 프로필 사진 */
+        
+        #apply01 p {
+            width: 580px;
+            font-weight: 200;
+            color: #B7B7B7;
+        }
+        /* input txt */
+        
+        #right01 input {
+            border: none;
+            padding: 0 20px;
+            width: 815px;
+            height: 46px;
+        }
+        /* txt area */
+        
+        #right01 textarea {
+            border: none;
+            outline-color: #8E0032;
+            width: 100%;
+            height: 100%;
+            font: 400 13.3333px Arial;
+            word-break: keep-all;
+            overflow: auto;
+            vertical-align: top;
+            resize: none;
+        }
+        
+        #txtarea01 {
+            height: 120px;
+        }
+        
+        #txtarea02 {
+            height: 360px;
+        }
+        /* 체크박스 */
+        
+        #right01 .Off-checkBox,
+        .buisness span {
+            margin-right: 10px;
+            position: relative;
+            padding: 0 24px 0;
+            width: 300px;
+            font-weight: 400;
+            color: #838383;
+            cursor: pointer;
+        }
+        
+        #right01 .Off-checkBox::before,
+        .buisness span::before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 3px;
+            width: 16px;
+            height: 16px;
+            background-image: url("../icon/bg-checkbox.png");
+            background-size: 40px;
+        }
+        
+        #right01 div.On-CheckBox,
+        .buisness span {
+            margin: 14px 0 10px;
+            font-weight: 600;
+            color: black;
+        }
+        
+        .On-CheckBox::before,
+        .buisness span {
+            border: none;
+            background-position: 17px;
+        }
+        /* ㅡ,.ㅡ 전문분야 */
+        
+        #right01 h3 {
+            margin: 40px 0 8px;
+            color: #5B5B5B;
+            font-size: 15px;
+        }
+        
+        #right01 h3 span {
+            margin-left: 5px;
+            font-weight: 400;
+            color: #838383;
+        }
+        
+        #Specialty ul {
+            display: grid;
+            grid-template-columns: repeat(8, 95px);
+            grid-gap: 10px;
+        }
+        
+        #Specialty ul li {
+            border-radius: 40px;
+            height: 41px;
+            text-align: center;
+            line-height: 41px;
+            color: #b7b7b7;
+            background-color: white;
+        }
+        /* - _ - 전분분야 선택시 */
+        
+        #Specialty ul .On-Specialty {
+            color: white;
+            background-color: #8E0032;
+        }
+        
+        #btn_submit {
+            width: 855px;
+            margin-top: 50px;
+        }
+        
+        #btn_submit div {
+            float: right;
+        }
+        
+        #btn_submit input {
+            border-radius: 3px;
+            margin-left: 12px;
+            width: 168px;
+            height: 64px;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 64px;
+        }
+        
+        #btn_submit input:nth-child(1) {
+            color: #2e2e2e;
+            background-color: white;
+        }
+        
+        #btn_submit input:nth-child(2) {
+            color: white;
+            background-color: #8E0032;
+        }
+        /* form2 */
+        
+        #form2>div:nth-child(2) div {
+            margin-top: 15px;
+        }
+        /* space */
+        
+        #space_textarea textarea {
+            width: 815px;
+            padding: 20px;
+            height: 360px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="lay03">
+        <section id="left01">
+            <!-- 선생님 신청시 입력한 DATA들이 전부 들어간다. -->
+            <div>
+                <p>관리페이지</p>
+                <h1>선생님 <br/> 신청관리</h1>
+            </div>
+            <div>
+                <p>
+                    승인하기 전에 정보를 꼼꼼히 <br/> 확인해 주세요
+                </p>
+                <span>가이드라인 확인하기</span>
+            </div>
+            <div>
+                <a href="#" class="On_active">기본정보</a>
+                <a href="#">공간등록</a>
+            </div>
+
+        </section>
+        <section id="right01">
+            <form action="">
+                <h4>프로필 사진</h4>
+                <div class="basic_apply image_upload" id="apply01">
+                    <p>
+                        선생님 소개 페이지에서 보여지는 사진입니다. 수강생들에게 선생님의 모습을 멋지게 보여주세요. Tip. 선생님의 얼굴이 보이는 상반신의 인물 사진
+                    </p>
+                    <div>
+                        <!-- 사진 파일 업로드/삭제 api ? -->
+                    </div>
+                </div>
+
+                <h4>이름</h4>
+                <div class="basic_apply">
+                    <input type="text">
+                </div>
+
+                <h4>닉네임</h4>
+                <div class="Off-checkBox On-CheckBox">클래스 등록 시 닉네임을 사용합니다</div>
+                <div class="basic_apply" id="apply02">
+                    <input type="text" name="" id="" value="최대 한글 10자, 영문 20자, 숫자 혼용 가능">
+                    <p>이미 활동중인 닉네임이 있는 선생님만 사용 부탁드리며, 없으실 경우 실명으로 사용하실 것을 권장합니다.</p>
+                </div>
+
+                <!-- 전문분야 -->
+                <h3>전문 분야 <span>*중복 선택 가능</span></h3>
+                <div id="Specialty">
+                    <ul>
+                        <li class="On-Specialty">커피</li>
+                        <li>음료</li>
+                        <li>티</li>
+                        <li>피자</li>
+                        <li>파스타</li>
+                        <li>베이킹</li>
+                        <li>디저트</li>
+                        <li>도시락</li>
+                        <li>샌드위치</li>
+                        <li>반찬</li>
+                        <li>웰빙</li>
+                        <li>오가닉</li>
+                        <li>발효</li>
+                        <li>약선</li>
+                        <li>세계요리</li>
+                        <li>중식</li>
+                        <li>일식</li>
+                        <li>퓨전</li>
+                        <li>한식</li>
+                        <li>손님초대</li>
+                        <li>데코레이션</li>
+                        <li>스타일링</li>
+                        <li>설명회</li>
+                    </ul>
+                </div>
+
+                <h4>전문분야 호칭</h4>
+                <div class="basic_apply">
+                    <input type="text" name="" id="" value="">
+                </div>
+
+                <h4>주요활동 지역</h4>
+                <div class="basic_apply">
+                    <input type="text" name="" id="" value="">
+                </div>
+
+                <h4>한줄 소개</h4>
+                <div class="basic_apply">
+                    <input type="text" name="" id="" value="">
+                </div>
+
+                <h4>주요 활동</h4>
+                <div class="basic_apply" id="txtarea01">
+                    <textarea name="" id="asd" cols="30" rows="10"></textarea>
+                </div>
+
+                <h4>자기 소개</h4>
+                <div class="basic_apply" id="txtarea02">
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+
+                <h4>사업자 유형</h4>
+                <div class="buisness">
+                    <span>개인</span>
+                    <span>일반과세자</span>
+                    <span>면세사업자</span>
+                    <span class="On-CheckBox">간이과세자</span>
+                </div>
+
+                <h4>업체명</h4>
+                <div class="basic_apply">
+                    <input type="text" name="" id="">
+                </div>
+
+                <h4>은행/증권사 선택</h4>
+                <div class="basic_apply">
+                    <input type="text" name="" id="">
+                </div>
+
+                <h4>계좌번호</h4>
+                <div class="basic_apply">
+                    <input type="text" name="" id="">
+                </div>
+
+                <h4>예금주 명</h4>
+                <div class="basic_apply">
+                    <input type="text" name="" id="">
+                </div>
+
+                <h4>통장 사본 첨부</h4>
+                <div class="basic_apply">
+                    <!-- 첨부구역은 안만들었습니다 -->
+                </div>
+
+                <h4>사업자등록증 첨부</h4>
+                <div class="basic_apply">
+                    <!-- 첨부구역은 안만들었습니다 -->
+                </div>
+
+                <!-- submit -->
+                <div id="btn_submit">
+                    <div>
+                        <input type="submit" value="돌아가기">
+                        <input type="submit" value="다음">
+                    </div>
+                </div>
+
+            </form>
+        </section>
+
+    </div>
+</body>
+
+</html>
