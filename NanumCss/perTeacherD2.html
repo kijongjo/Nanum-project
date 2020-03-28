@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nonAllowDiv.css">
     <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
     <link rel="stylesheet" href="reset.css">
+
     <style>
         /* 오른쪽 */
         
@@ -148,6 +150,11 @@
         }
         
         #btn_submit input:nth-child(2) {
+            color: #2e2e2e;
+            background-color: white;
+        }
+        
+        #btn_submit input:nth-child(3) {
             color: white;
             background-color: #8E0032;
         }
@@ -193,12 +200,41 @@
 </head>
 
 <body>
+    <!-- /////////////////////////////////////공유하기 팝업창 시작//////////////////////////////////////////////// -->
+
+    <!-- 보류 사유를 회원에게 보내도록 하는 popup창이다. div가 나오도록 설정한다. -->
+    <!-- nonallowDiv.css에서 css 설정을 가지고 온다. 주의할 점은 shareDiv.css 설정과 이름이 같다.하지만 nonallowDiv.css는 관리자 부분이고 
+      shareDiv.css는 사용자 부분을 할당하고 있어 id ,name class의 이름이 겹칠 일이 없다. -->
+    <!-- 팝업형식으로 나온다. -->
+    <div id="pop_share">
+        <!-- 안쪽에 팝업 창에 대한 내용 -->
+        <div id="pop_inner">
+            <div id="pop_title">보류사유서</div>
+            <div id="pop_content">
+                <!--  -->
+                <form action="">
+
+                    <ul>
+                        <!-- 보류사유를 작성하는 란 -->
+                        <li><textarea name="reason" id="reason" cols="30" rows="10" placeholder="보류 사유를 작성 하세요"></textarea></li>
+                        <li><input type="submit" value="취소하기">
+                            <input type="button" value="전송하기"></li>
+
+                    </ul>
+                </form>
+            </div>
+            <!-- 클로즈 버튼  -->
+            <a href="" id="btn-close"></a>
+        </div>
+    </div>
+    <!--///////////////////////////////////////////////////// 팝업창 html 코드 끝 ///////////////////////////////////////////////////////-->
+
     <section id="right01">
         <form action="" id="form2">
             <h4>수업공간 대여 여부</h4>
             <div>
-                <div class="Off-CheckBox">공간대여를 원합니다</div>
-                <div class="Off-CheckBox On-CheckBox">내 공간을 보유하고 있습니다</div>
+                <div class="Off-CheckBox">공간대여를 원합니다.</div>
+                <div class="Off-CheckBox On-CheckBox">내 공간을 보유하고 있습니다.</div>
                 <p>클래스 수업이 가능한 공간이 있을 경우 등록해 주세요.</p>
             </div>
 
@@ -256,9 +292,9 @@
 
             <h3>편의시설 <span>*중복 선택 가능</span></h4>
                 <div id="facility">
-                    <span>화장실</span>
-                    <span>환풍기</span>
-                    <span>전등</span>
+                    <span class="On-CheckBox">화장실</span>
+                    <span class="On-CheckBox">환풍기</span>
+                    <span class="On-CheckBox">전등</span>
                     <span class="On-CheckBox">주차시설</span>
                 </div>
                 <div>
@@ -267,19 +303,22 @@
 
                 <h3>안전시설 <span>*중복 선택 가능</span></h4>
                     <div id="facility">
-                        <span>화장실</span>
-                        <span>환풍기</span>
-                        <span>전등</span>
+                        <span class="On-CheckBox">화장실</span>
+                        <span class="On-CheckBox">환풍기</span>
+                        <span class="On-CheckBox">전등</span>
                         <span class="On-CheckBox">주차시설</span>
                     </div>
                     <div id="btn_submit">
                         <div>
-                            <input type="submit" value="임시저장">
-                            <input type="submit" value="다음">
+                            <input type="submit" value="돌아가기">
+                            <input type="submit" value="보류">
+                            <input type="submit" value="승인">
                         </div>
                     </div>
         </form>
     </section>
+
+
 </body>
 
 </html>
