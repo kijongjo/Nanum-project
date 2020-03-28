@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,58 +22,70 @@
     <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
     <style>
         /* header */
-        .navbar-header{
+        
+        .navbar-header {
             height: 80px;
         }
         /* logo img */
-        .navbar-header img{
+        
+        .navbar-header img {
             width: 110px;
         }
-
         /* side bar */
-        .side-nav{
+        
+        .side-nav {
             width: 260px;
             margin-top: 30px;
             padding-left: 40px;
         }
-        .navbar-inverse .navbar-nav>li>a{
+        
+        .navbar-inverse .navbar-nav>li>a {
             padding-left: 0;
             font-size: 17px;
             line-height: 25px;
         }
         /* sidebar selected */
-        .selected{
+        
+        .selected {
             border-left: none;
             border-bottom: 3px solid white;
             padding-bottom: 5px;
             font-size: 17px;
             font-weight: 600;
         }
-
         /* contents */
-        #page-wrapper{
+        
+        #page-wrapper {
             padding-left: 52px;
             width: auto;
         }
-        #active p{
+        
+        #active p {
             margin: 0;
             margin-top: 30px;
             font-size: 16px;
             line-height: 24px;
         }
-        #active h1{
+        
+        #active h1 {
             margin: 0;
             margin-bottom: 60px;
             font-size: 30px;
             line-height: 43px;
             font-weight: 700;
         }
-        </style>
+        
+        #searchBar {
+            width: 300px;
+            margin-top: 15px;
+        }
+    </style>
 </head>
+
 <body>
     <div id="wrapper">
-            <!-- 헤더 -->
-          <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- 헤더 -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -92,26 +105,28 @@
                         <p>관리자 페이지</p>
                         <h1>사업그래프</h1>
                     </li>
-                    <li><a href="index.html">
-                        <span class="selected"><i class="fa fa-bar-chart-o"></i> 사업그래프</span>
-                    </a></li>
-                    <li><a href="portfolio.html"><i class="fa fa-tasks"></i> 회원관리</a></li>
-                    <li><a href="blog.html"><i class="fa fa-globe"></i> 상태관리</a></li>
-                    <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
-                    <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li>
+                    <li>
+                        <a href="index.html">
+                            <span class="selected"><i class="fa fa-bar-chart-o"></i> 사업그래프</span>
+                        </a>
+                    </li>
+                    <li><a href="memberAdmin.html"><i class="fa fa-tasks"></i> 회원관리</a></li>
+                    <li><a href="perAdmin.html"><i class="fa fa-globe"></i> 상태관리</a></li>
+                    <!-- <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
+                    <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li> -->
                 </ul>
 
                 <!-- 헤더 사이드바 -->
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li>
-                        <form class="navbar-search">
+                        <form class="navbar-search" id="searchBar">
                             <input type="text" placeholder="Search" class="form-control">
                         </form>
                     </li>
                     <li class="dropdown user-dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            
+
                             <li><a href="#"><i class="fa fa-gear"></i> 공공의주방 이야기</a></li>
                             <li><a href="#"><i class="fa fa-gear"></i> 공지사항</a></li>
                             <li><a href="#"><i class="fa fa-gear"></i> 이벤트</a></li>
@@ -129,7 +144,7 @@
         </nav>
         <!-- 컨텐츠 -->
         <div id="page-wrapper">
-           
+
             <div class="row">
                 <div class="col-md-8">
                     <div class="panel panel-primary">
@@ -454,8 +469,7 @@
                                     <div class="news-item-info">
                                         <div class="name"><a href="#">Edin Garey</a></div>
                                         <div class="comment">
-                                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur 
-                                            aut odit aut fugit,sed quia
+                                            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,sed quia
                                         </div>
                                     </div>
                                 </li>
@@ -464,8 +478,7 @@
                                     <div class="news-item-info">
                                         <div class="name"><a href="#">Firel Lund</a></div>
                                         <div class="comment">
-                                            Duis aute irure dolor in reprehenderit in voluptate velit
-                                             esse cillum dolore eu fugiat.
+                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
                                         </div>
                                     </div>
                                 </li>
@@ -474,8 +487,7 @@
                                     <div class="news-item-info">
                                         <div class="name"><a href="#">Jessica Desingter</a></div>
                                         <div class="comment">
-                                            Excepteur sint occaecat cupidatat non proident, sunt in
-                                             culpa qui officia deserunt.
+                                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.
                                         </div>
                                     </div>
                                 </li>
@@ -493,8 +505,7 @@
                                     <div class="news-item-info">
                                         <div class="name"><a href="#">Wedol Reier</a></div>
                                         <div class="comment">
-                                            Laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis
-                                            et quasi.
+                                            Laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi.
                                         </div>
                                     </div>
                                 </li>
@@ -508,24 +519,39 @@
     <!-- /#wrapper -->
 
     <script type="text/javascript">
-        jQuery(function ($) {
+        jQuery(function($) {
             var performance = [12, 43, 34, 22, 12, 33, 4, 17, 22, 34, 54, 67],
                 visits = [123, 323, 443, 32],
-                traffic = [
-                {
-                    Source: "Direct", Amount: 323, Change: 53, Percent: 23, Target: 600
-                },
-                {
-                    Source: "Refer", Amount: 345, Change: 34, Percent: 45, Target: 567
-                },
-                {
-                    Source: "Social", Amount: 567, Change: 67, Percent: 23, Target: 456
-                },
-                {
-                    Source: "Search", Amount: 234, Change: 23, Percent: 56, Target: 890
-                },
-                {
-                    Source: "Internal", Amount: 111, Change: 78, Percent: 12, Target: 345
+                traffic = [{
+                    Source: "Direct",
+                    Amount: 323,
+                    Change: 53,
+                    Percent: 23,
+                    Target: 600
+                }, {
+                    Source: "Refer",
+                    Amount: 345,
+                    Change: 34,
+                    Percent: 45,
+                    Target: 567
+                }, {
+                    Source: "Social",
+                    Amount: 567,
+                    Change: 67,
+                    Percent: 23,
+                    Target: 456
+                }, {
+                    Source: "Search",
+                    Amount: 234,
+                    Change: 23,
+                    Percent: 56,
+                    Target: 890
+                }, {
+                    Source: "Internal",
+                    Amount: 111,
+                    Change: 78,
+                    Percent: 12,
+                    Target: 345
                 }];
 
 
@@ -571,14 +597,24 @@
                 },
                 rowHover: false,
                 paging: false,
-                columns: [
-                { field: "Source", width: "170px", title: "Source" },
-                { field: "Amount", title: "Amount" },                
-                { field: "Percent", title: "Percent", format: "{0} %" },
-                { field: "Target", title: "Target" },
-                ]
-            });            
-        });        
+                columns: [{
+                    field: "Source",
+                    width: "170px",
+                    title: "Source"
+                }, {
+                    field: "Amount",
+                    title: "Amount"
+                }, {
+                    field: "Percent",
+                    title: "Percent",
+                    format: "{0} %"
+                }, {
+                    field: "Target",
+                    title: "Target"
+                }, ]
+            });
+        });
     </script>
 </body>
+
 </html>
