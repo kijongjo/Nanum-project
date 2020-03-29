@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="reset.css" />
+    <style>
+/* container */
+#content{
+    width: 1200px;
+    height: 747px;
+    margin: 0px 40px;
+    padding: 146px 0px 0px;
+}
+/* 검색창 부분(#search_wrap 부분)과 타이틀 선택 부분(#tab_title 부분)을 감싸는 영역 */
+#sch_header{
+    width: 1200px;
+    height: 191px;
+
+}
+/* 검색창 부분 */
+#search_wrap{
+    width: 1200px;
+    height: 45px;
+    position: relative;
+    border-bottom: 3px solid #bfbfbf;
+}
+#search_wrap #keyword_sch{
+    width: 100%; height: 44px;
+    padding: 4px 0px 0px;
+    border: none;
+    font-size: 25px;
+    }
+input::placeholder{
+        color: #bfbfbf;
+    }
+    /* 검색창 옆 이미지 버튼  */
+#search_wrap button{
+    margin: 0;
+    position: absolute;
+    top: 0;right: 0;
+    display: block;
+    width: 44px;
+    height: 44px;
+    background-image: url("search.png");
+    background-size: 100%;
+}
+/* 전체, 클래스, 선생님, 공간 타이틀 선택 부분 */
+#tab_title{
+    width: 1200px;
+    height: 29px;
+    margin: 20px 0px 0px;
+}
+/* 타이틀 : 전체 */
+a:nth-of-type(1){
+    width: 35.91px;
+    height: 29px;
+    color: #bfbfbf;
+    font-size: 20px;
+    margin: 0px 45px 0px 0px;
+}
+/* 타이틀 : 클래스 */
+a:nth-of-type(2){
+    width: 53.86px;
+    height: 29px;
+    color: #bfbfbf;
+    font-size: 20px;
+    margin: 0px 45px 0px 0px;
+}
+/* 타이틀 : 선생님 */
+a:nth-of-type(3){
+    width: 53.86px;
+    height: 29px;
+    color: #bfbfbf;
+    font-size: 20px;
+    margin: 0px 45px 0px 0px;
+}
+/* 타이틀 : 공간 */
+a:nth-of-type(4){
+    width: 53.86px;
+    height: 29px;
+    color: #bfbfbf;
+    font-size: 20px;
+    margin: 0px 45px 0px 0px;
+}
+/* 총 0개의 검색결과 멘트 출력 부분 */
+h2{
+    width: 350px;
+    height: 37px;
+    color: #000000;
+    font-size: 25px;
+    margin-top: 80px;
+    }
+/* 카테고리 선택, 검색결과 출력 부분을 감싸는 영역 */
+#result>div{
+    float: none;
+    margin-top: -15px;
+    text-align: right;
+}    
+/* 테마 선택 부분 */
+#theme{
+    width: 50px;
+    height: 32px;
+    margin: 0px 0px 0px 7px;
+    border-radius: 3px;
+    }
+/* 지역 선택 부분 */
+#area{
+    width: 50px;
+    height: 32px;
+    margin: 0px 0px 0px 7px;
+    border-radius: 3px;
+
+}
+/* 월별 선택 부분 */
+#month{
+    width: 50px;
+    height: 32px;
+    margin: 0px 0px 0px 7px;
+    border-radius: 3px;
+}
+/* 검색된 내역이 없다는 멘트 출력 부분 */
+p{
+    width: 1200px;
+    height: 26px;
+    color: #838383;
+    font-size: 20px;
+    margin: 120px 0px 0px;
+    text-align: center;
+    
+}
+    </style>
+</head>
+<body>
+<div id="content">
+<section id="sch_header">
+<div id="search_wrap">
+    <input type="search" name="keyword" id="keyword_sch" maxlength="15" placeholder="클래스 / 선생님 / 공간 검색">
+    <button type="button"></button>
+</div>
+<div id="tab_title">
+    <a href="#">전체</a>
+    <a href="#">클래스</a>
+    <a href="#">선생님</a>
+    <a href="#">공간</a>
+</div>
+<h2>총 0개의 검색결과</h2>
+</section>
+<section id="result">
+<div>
+    <select name="" id="theme">
+        <option value="테마">테마</option>
+        <option value="커피">커피</option>
+        <option value="음료">음료</option>
+    </select>
+    <select name="" id="area">
+        <option value="지역">지역</option>
+        <option value="서울">서울</option>
+        <option value="경기">경기</option>
+    </select>
+    <select name="" id="month">
+        <option value="월별">월별</option>
+        <option value="1개월">1개월</option>
+        <option value="2개월">2개월</option>
+        <option value="3개월">3개월</option>
+    </select>
+
+</div>
+
+    <p id="no_msg">검색된 내용이 없어요.</p>
+
+
+</section>
+
+
+
+
+
+
+
+
+</div>
+    
+</body>
+</html>
