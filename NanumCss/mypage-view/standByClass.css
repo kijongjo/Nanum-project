@@ -1,0 +1,158 @@
+#contents_border {
+    width: 965px;
+}
+
+#contents_border img{
+    width: 100%; height: 185px;
+}
+#contents_border h3{
+    margin: 24px 0 3px;
+}
+#contents_border .Price{
+    margin-bottom: 8px;
+}
+#contents_border > a > ul{
+    width: 965px;
+    overflow: hidden;
+}
+#contents_border > a > ul > li{
+    margin: 0 10px 20px 0;
+    width: 294px; height: 340px;
+    overflow: hidden;
+    float: left;
+}
+
+.more-type2{
+    padding: 0;
+    font-size: 15px;
+}
+.more-type2::after{
+    right: -25px;
+}
+.date{
+    padding-right: 7px;
+    position: relative;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.date:nth-child(1)::after{
+    content: "";
+    position: absolute; 
+    top: 1px; right: 0;
+    background-color: #8D8D8D;
+    width: 1px; height: 14px;
+}
+
+/* 상태값 아이콘 */
+#contents_border .ico-more_arrow {
+    /* content가 없기때문에 공간을 확보 
+    사전처리로 inline속성을 변경해줘야됨
+    */
+
+    width: 18px;
+    height: 18px;
+    /* 글자와 아이콘을 벌리는 역할 */
+    margin-left: 8px;
+    /* 글자와 아이콘의 중앙정렬 오차를 줄이기 위함 */
+    margin-bottom: 4px;
+    /* 태그의 배경에 이미지를 씌움 */
+    background-image: url(../img/ico-more_type2.png);
+    /* i태그는 inline형태라 사이즈를 변경 할 수 없음
+    inline-block 속성으로 바꿔 사이즈를 변경 할 수 있게함.
+    */
+    display: inline-block;
+    /* 배경 이미지 크기조절 속성 */
+    background-size: 100% auto;
+    /* 배경 이미지의 위치를 지정
+    가로, 세로의 위치를 지정(x, y)
+    */
+    background-position: 50% 50%;
+    /* repeat : 이미지를 어떻게 배열 할 것인지 선택 
+    no-repeat : 반복 배열하지 않음
+    */
+    background-repeat: no-repeat;
+    
+    vertical-align: middle;
+}
+
+/* 날짜 밑에 여백 설정 */
+#contents_border .time-wrapper {
+    padding-bottom: 10px;
+}
+
+/* paging 아이콘 출력 영역 */
+.contents-paging {
+    margin-top: 34px;
+    text-align: center;
+}
+
+/* prev, next 아이콘 통합 설정 
+
+*/
+.contents-paging .extra {
+    /* 공간을 한정짓기 위해 포지션 relative 설정 */
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url(../img/ico-arrow_right.png) no-repeat 50% / 7px auto;
+    transform: rotate(180deg);
+    vertical-align: middle;
+
+}
+
+/* next 아이콘 설정 
+   이 방식은 무엇인가..?  
+*/
+.contents-paging  ul ~ .extra {
+    transform: rotate(0deg);
+}
+
+/* minus-next 아이콘 출력 */
+.contents-paging .extra:first-child::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    background: url(../img/ico-arrow_right.png) no-repeat 50% / 7px auto;;
+}
+
+/* plust-next 아이콘 출력 */
+.contents-paging .extra:last-child::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 100%;
+    height: 100%;
+    background: url(../img/ico-arrow_right.png) no-repeat 50% / 7px auto;;
+}
+
+/* 데이터량의 따라 늘어나는 숫자를 담고있는 영역 */
+.contents-paging ul {
+    display: inline-block;
+    margin: 0 8px;
+}
+
+/* 페이징 숫자를 출력하는 영역  */
+.contents-paging ul li {
+    display: inline-block;
+    margin: 0 12px;
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+/* 현재 숫자를 표시하는 부분 */
+.contents-paging ul li::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #8E0032;
+}   

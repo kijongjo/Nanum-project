@@ -1,0 +1,90 @@
+html,body{
+    background-color: #fff;
+    letter-spacing: -0.03em;
+}
+
+/* 왼쪽 */
+#lay03 > #left01 > div{
+    margin-bottom: 60px;
+
+}
+#lay03 > #left01 p{
+    font-weight: 200;
+}
+#lay03 > #left01 h1{
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 43px;
+}
+#lay03 > #left01 a{
+    display: block;
+    margin-bottom: 20px;
+    padding-bottom: 2px;
+    font-size: 17px;
+    font-weight: 400;
+}
+/* 선택시 */
+.select-On{
+    width: 80px;
+    border-bottom: 3px solid #8E0032;
+    font-weight: bold;
+    color: #8E0032;
+}
+
+
+/* 오른쪽 */
+div > #right02{
+   display: table;
+   height: 354px;
+}
+div > #right02 > div{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+div > #right02 > div > p{
+    font-size: 20px;
+    letter-spacing: -0.45px;
+    margin-bottom: 20px;
+}
+div > #right02 > div > p::before{
+    content: "";
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 65px; height: 65px;
+    background-image: url(../img/class.png);
+    background-size: 100%;
+}
+
+/* 상태값 아이콘 */
+.ico-more_arrow {
+    /* content가 없기때문에 공간을 확보 
+    사전처리로 inline속성을 변경해줘야됨
+    */
+
+    width: 18px;
+    height: 18px;
+    /* 글자와 아이콘을 벌리는 역할 */
+    margin-left: 8px;
+    /* 글자와 아이콘의 중앙정렬 오차를 줄이기 위함 */
+    margin-bottom: 4px;
+    /* 태그의 배경에 이미지를 씌움 */
+    background-image: url(../img/ico-more_type2.png);
+    /* i태그는 inline형태라 사이즈를 변경 할 수 없음
+    inline-block 속성으로 바꿔 사이즈를 변경 할 수 있게함.
+    */
+    display: inline-block;
+    /* 배경 이미지 크기조절 속성 */
+    background-size: 100% auto;
+    /* 배경 이미지의 위치를 지정
+    가로, 세로의 위치를 지정(x, y)
+    */
+    background-position: 50% 50%;
+    /* repeat : 이미지를 어떻게 배열 할 것인지 선택 
+    no-repeat : 반복 배열하지 않음
+    */
+    background-repeat: no-repeat;
+    
+    vertical-align: middle;
+}
