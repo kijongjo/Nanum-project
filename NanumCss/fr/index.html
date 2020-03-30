@@ -11,6 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/local.css" />
 
+    <!-- fontawesome icon링크 -->
+    <script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
+    <!-- font 설정 -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+HK&display=swap" rel="stylesheet">
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
@@ -21,15 +25,35 @@
     <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
     <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
     <style>
+        /*  한 행 전체 공간 설정 row class */
+        
+        .row {
+            margin: 50px 0;
+        }
+        
+        .panel-primary>.panel-heading {
+            color: #ffffff;
+            background-color: #9b2121;
+        }
         /* header */
         
         .navbar-header {
             height: 80px;
         }
-        /* logo img */
+        /* logo 글자 */
         
-        .navbar-header img {
-            width: 110px;
+        .navbar-header>a {
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .navbar-header>a>img {
+            position: absolute;
+            left: 59px;
+            width: 114px;
+            border-radius: 97px;
+            z-index: 999;
+            bottom: -53px;
         }
         /* side bar */
         
@@ -43,6 +67,8 @@
             padding-left: 0;
             font-size: 17px;
             line-height: 25px;
+            position: relative;
+            top: 10px;
         }
         /* sidebar selected */
         
@@ -62,7 +88,7 @@
         
         #active p {
             margin: 0;
-            margin-top: 30px;
+            margin-top: 64px;
             font-size: 16px;
             line-height: 24px;
         }
@@ -85,6 +111,212 @@
             width: 300px;
             font-size: 20px;
         }
+        /* 멤버비율 판넬 css 조정 */
+        
+        #MR-panel {
+            padding-top: 34px;
+        }
+        
+        #MR-panel>.panel-primary {
+            border-color: #898484
+        }
+        /* 멤버비율 텍스트로 표현하기 css설정 */
+        
+        #MR-title {
+            font-size: 40px;
+            font-weight: 600;
+            color: white;
+            position: relative;
+            bottom: 2px;
+        }
+        /* 총인원 수 텍스트로 표현하기 css 설정 */
+        
+        .col-md-8>.panel-primary>#MR-total {
+            text-align: center;
+            position: relative;
+            right: 15px;
+            margin-bottom: 31px;
+        }
+        
+        .col-md-8>.panel-primary>#MR-total>strong {
+            display: block;
+            margin: 30px 0;
+            font-size: 30px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .col-md-8>.panel-primary>#MR-total>span {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+        /* 총인원 수 텍스트로 표현하기 css 설정 끝 */
+        /* 멤버 수 텍스트로 표현하기 css 설정 */
+        
+        .col-md-8>.panel-primary>#MR-family {
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            border-top: 1px solid gray;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-member {
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-member>strong {
+            display: block;
+            margin: 30px 0;
+            font-size: 25px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-member>span {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-member>p {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        /* 멤버 수 텍스트로 표현하기 css 설정 끝 */
+        /* 선생님 수 텍스트로 표현하기 css 설정 */
+        
+        .col-md-8>.panel-primary>#MR-family>div {
+            margin: 0 48px;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-teacher {
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-teacher>strong {
+            display: block;
+            margin: 30px 0;
+            font-size: 25px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-teacher>p {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-teacher>span {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+        /* 선생님 수 텍스트로 표현하기 css 설정 끝 */
+        /* 호스트 수 텍스트로 표현하기 css 설정 */
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-host {
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-host>strong {
+            display: block;
+            margin: 30px 0;
+            font-size: 25px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-host>span {
+            font-size: 24px;
+            font-weight: 600;
+            color: white;
+        }
+        
+        .col-md-8>.panel-primary>#MR-family>#MR-host>p {
+            font-size: 15px;
+            font-weight: 600;
+        }
+        /* 호스트 수 텍스트로 표현하기 css 설정 끝 */
+        /* 선생님 클래스 공간의 현황을 보여주는 텍스트 css 설정 */
+        
+        #CTS-row>.col-lg-12>.panel-primary {
+            border: 0px;
+            background-color: #060606;
+        }
+        /* month over month 폰트 css 설정 */
+        
+        #CTS-row>.col-lg-12>.panel-primary>span {
+            font-size: 40px;
+            font-weight: 600;
+            color: white;
+            position: relative;
+            left: 5px;
+        }
+        /* 배경 색 지정  */
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body {
+            text-align: center;
+            margin-top: 14px;
+        }
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body>ul {
+            list-style: none;
+            width: 80%;
+            /* li가 float이라 overflow 써줌. */
+            overflow: hidden;
+            margin-left: 100px;
+            padding: 0;
+        }
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body>ul:nth-child(2) {
+            /* 두번째 ul 조금 떨어트림 */
+            margin-top: 32px;
+            /* ul간의 경계선 만들기 */
+            border-top: 1px solid white;
+            padding-top: 31px;
+        }
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li {
+            /* 가로 정렬 */
+            float: left;
+            /* 간격유지 */
+            padding-right: 44px;
+            width: 33%;
+        }
+        /* title 옆 icon css 설정  */
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>p>span {
+            color: #BDBDBD;
+            margin-right: 3px;
+        }
+        /* 첫번째 p에 폰트 디자인 설정하기  */
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>p:nth-child(1) {
+            color: white;
+            font-weight: 400;
+        }
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>p:nth-child(2) {
+            font-size: 37px;
+            color: white;
+            font-weight: 600;
+        }
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>span {
+            font-size: 17px;
+        }
+        /* Icon을 감싸는 span의 css설정 Icon의 색 위치를 조정한다. */
+        
+        #CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>.CTS-pIcon {
+            position: relative;
+            top: 7px;
+        }
+        /* 업 방향 */
+        /* 선생님 클래스 공간의 현황을 보여주는 텍스트 css 설정 끝 */
     </style>
 </head>
 
@@ -100,7 +332,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    <img src="../icon/logo2.png" alt="">
+                    <img src="../img/logo3.png" alt="">
                 </a>
             </div>
 
@@ -108,7 +340,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul id="active" class="nav navbar-nav side-nav">
                     <li>
-                        <p>관리자 페이지</p>
+                        <p></p>
                         <h1>사업그래프</h1>
                     </li>
                     <li>
@@ -118,8 +350,8 @@
                     </li>
                     <li><a href="memberAdmin.html"><i class="fa fa-tasks"></i> 회원관리</a></li>
                     <li><a href="perAdmin.html"><i class="fa fa-globe"></i> 상태관리</a></li>
-                    <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
-                    <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li>
+                    <!-- <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
+                    <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li> -->
                 </ul>
 
                 <!-- 헤더 사이드바 -->
@@ -130,7 +362,7 @@
                         </form>
                     </li>
                     <li class="dropdown user-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-2x"></i> <b class="caret "></b></a>
                         <ul class="dropdown-menu">
 
                             <li><a href="#"><i class="fa fa-gear"></i> 공공의주방 이야기</a></li>
@@ -152,7 +384,7 @@
         <div id="page-wrapper">
 
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <!-- 이부분부터 그래프 part이다.  -->
                     <div class="panel panel-primary">
                         <!-- 매출현황에 대한 그래프  -->
@@ -179,15 +411,112 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 회원 비율을 텍스트로 표현하기  -->
+                <!-- 제목 MemberRate를 줄여 MR로 표기 -->
+                <div class="col-md-8" id="MR-panel">
+
+                    <span id="MR-title">MemberRate</span>
+                    <div class="panel panel-primary">
+                        <div id="MR-total"><strong>총 회원 수</strong><span>4,321</span></div>
+                        <div id="MR-family">
+                            <div id="MR-member"><strong>멤버 수</strong><span>3,321</span>
+                                <p>80% </p>
+                            </div>
+                            <div id="MR-teacher"><strong>선생님 수</strong><span>711</span>
+                                <p>12% </p>
+                            </div>
+                            <div id="MR-host"><strong>호스트 수</strong><span>289</span>
+                                <p>8% </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- class 선생님 공간 현황을 텍스트로 보여주는 row이다. 
+                1.해당 월 신규 신청 선생님 전월 대비 증감수
+                2.해당 월 신규 개설에 대한 신청 클래스 수             
+                3.해당 월 진행 클래스 수
+                4.해당 월 등록 공간
+                5.해당 월 대여 공간
+                6.해당 월 선생님 대여중인 공간을 나타낸다. 
+                    클래스에서 진행 예정 클래스 수는 뺏다. 해당월이 아니기 때문에  -->
+            <!-- 클래스 선생님 공간의 앞자를 따와서 CTS라고 표현했음 -->
+
+            <div class="row" id="CTS-row">
+                <!-- 이건 div크기 유형을 말함 col-lg-12 col-lg-8 col-lg-4  등이있음   -->
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <!-- 제목 -->
+                        <span id="CTS-title">Month Over Month</span>
+                        <div class="panel-body">
+                            <ul>
+                                <li>
+                                    <p>선생님 신청</p>
+                                    <!-- 증감수 숫자표현  -->
+                                    <p>122</p>
+                                    <!-- !로직처리: 증가이면 증가를 나타내는 색으로 CTS-pn의 색을 color:#ff8589로 표현하며 뒤쪽에 up icon이 들어가도록 설정한다.  -->
+                                    <!-- !로직처리:감소면 감소를 나타내는 색으로 CTS-pn(percent의 약자)의 색을 color:#로 표현하며 뒤쪽에 down icon이 들어가도록 설정한다. -->
+                                    <!-- !퍼센티지가 감소 증가냐에 따라서 글자의 색을 바꾸기 위해 속성값을 태그 안에 주었다.  -->
+                                    <span id="CTS-p1" style="color:#ff8589">4  &nbsp;%</span> <span class="CTS-pIcon" id="CTS-p1Icon" style="color:#ec1c24"><i class="fas fa-caret-up fa-2x "></i></span>
+                                </li>
+                                <li>
+                                    <p>클래스 개설</p>
+
+                                    <p>3,202</p>
+                                    <!-- icon에서 vertical은 icon 뒤집기를 의미 - 감소를 표현했다. 감소를 하게 되면  icon을 감싸는 style의 color 속성을 #0418ea로 주자 -->
+                                    <span id="CTS-p2" style="color:#56abe0 ">12 &nbsp;%</span><span class="CTS-pIcon" id="CTS-p2Icon" style="color:#0418ea"><i class="fas fa-caret-down fa-2x  "></i></span>
+                                </li>
+                                <li>
+                                    <p>
+                                        </span>진행 클래스 </p>
+
+                                    <p>1,017</p>
+
+                                    <span id="CTS-p3" style="color:#ff8589">8 &nbsp;%</span> <span class="CTS-pIcon" id="CTS-p3Icon" style="color:#ec1c24"><i class="fas fa-caret-up fa-2x "></i></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+
+                                    <p>공간 등록</p>
+
+                                    <p>899</p>
+                                    <!-- 변동이 없으면 Icon 아무것도 안나오도록 설정하기 -->
+                                    <span id="CTS-p4" style="color:#56abe0">12 &nbsp;%</span><span class="CTS-pIcon" id="CTS-p4Icon" style="color:#0418ea"><i class="fas fa-caret-down fa-2x"></i></span>
+                                </li>
+                                <li>
+                                    <!-- 아이콘 설정 -->
+                                    <p>대여 가능 공간 </p>
+
+                                    <p>1,099</p>
+                                    </span>
+                                    <span id="CTS-p5" style="color:#56abe0">8 &nbsp;%</span> <span class="CTS-pIcon" id="CTS-p5Icon" style="color:#0418ea"><i class="fas fa-caret-down fa-2x "></i></span>
+                                </li>
+
+                                <li>
+                                    <p>대여 중인 공간</p>
+
+                                    <p>122</p>
+
+                                    <span id="CTS-p3" style="color:#ff8589">21 &nbsp;%</span><span class="CTS-pIcon" id="CTS-p6Icon" style="color:#ec1c24"><i class="fas fa-caret-up fa-2x "></i></span>
+
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <!-- 이건 div크기 유형을 말함 col-lg-12 col-lg-8 col-lg-4  등이있음   -->
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <!-- 이부분부터 그래프 part이다.  -->
                     <div class="panel panel-primary">
                         <!--선생님 현황에 대한 그래프  -->
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> 매출현황</h3>
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> 선생님 현황</h3>
                         </div>
                         <div class="panel-body">
                             <!-- 첫번째 차트로써 전월대비 증감률에 대한 선생님현황에 대해 나온다. -->
@@ -195,15 +524,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <!-- 이부분부터 그래프 part이다.  -->
                     <div class="panel panel-primary">
                         <!--신청클래스(해당 월 새 클래스), 개강예정클래스(해당 월 기준), 진행클래스(해당 월
 업 진행 클래스)에 대한 그래프  -->
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> 매출현황</h3>
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> 클래스현황</h3>
                         </div>
                         <div class="panel-body">
                             <!-- 첫번째 차트로써 매출현황에 대해 나온다. -->
@@ -211,26 +538,20 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <div class="row">
-                <!-- 총등록공간 수 등에 대해서 보여준다. -->
-                <div class="col-lg-12" id="spaceTotal">
-                    <div id="spaceNumber">
-                        <span>총 등록 공간 수 </span>
-                    </div>
-                    <div id="totalNumber"></div>
-                </div>
 
-            </div>
+
+
+
+
             <div class="row">
                 <div class="col-lg-12">
                     <!-- 이부분부터 그래프 part이다.  -->
                     <div class="panel panel-primary">
                         <!--해당 월 등록 공간, 대여공간(총 공간), 선생님 대여 중인 공간을 그래프로 출력 -->
                         <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> 매출현황</h3>
+                            <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> 공간현황</h3>
                         </div>
                         <div class="panel-body">
                             <!-- 첫번째 차트로써 매출현황에 대해 나온다. -->
@@ -340,23 +661,6 @@
                 }]
             });
 
-            /* 현황 숫자 애니메이션 */
-            var rn = Math.round(Math.random() * 99999);
-
-            var $el = $("#totalNumber");
-            $({
-                val: 0
-            }).animate({
-                val: rn
-            }, {
-                duration: 2000,
-                step: function() {
-                    $el.text(Math.floor(this.val));
-                },
-                complete: function() {
-                    $el.text(Math.floor(this.val));
-                }
-            });
 
         });
     </script>
