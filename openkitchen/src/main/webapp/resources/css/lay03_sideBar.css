@@ -1,0 +1,53 @@
+/*  기본 형식 */
+/* side bar */
+#lay03 > #left01 > div{
+    margin-bottom: 60px;
+
+}
+#lay03 > #left01 p{
+    font-weight: 200;
+}
+#lay03 > #left01 h1{
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 43px;
+}
+/* 리스트 항목 */
+#lay03 > #left01 a{
+    display: block;
+    margin-bottom: 20px;
+    padding-bottom: 2px;
+    line-height: 25px;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+
+/*-------------------------------------
+ (class space)만들기 형식 
+ ------------------------------*/
+#lay03 > #left01 > div:nth-child(2) span{
+    display: block;
+    margin-top: 16px;
+    color: #838383;
+    cursor: pointer;
+    position: relative;
+}
+#lay03 > #left01 > div:nth-child(2) span::after{
+    content: "";
+    position: absolute;
+    top: 2px;
+    display: inline-block;
+    margin-left: 8px;
+   width: 17px; height: 17px;
+   background-image: url(../icon/ico-tooltip.png);
+   background-size: 100%;
+}
+
+/* selected */
+.select-On{
+	display: inline-block;
+    border-bottom: 3px solid #8E0032;
+    font-weight: bold;
+    color: #8E0032;
+}
