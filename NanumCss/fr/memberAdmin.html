@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="css/local.css" />
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+HK&display=swap" rel="stylesheet">
 
@@ -15,7 +16,7 @@
     <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://code.iconify.design/1/1.0.4/iconify.min.js"></script>
     <style>
-        img {
+        img:not(#logo3) {
             filter: gray;
             /* IE6-9 */
             -webkit-filter: grayscale(1);
@@ -26,28 +27,35 @@
             margin-bottom: 20px;
         }
         
-        img:hover {
+        img:not(#logo3):hover {
             filter: none;
             /* IE6-9 */
             -webkit-filter: grayscale(0);
             /* Google Chrome, Safari 6+ & Opera 15+ */
         }
         /* 불러오기 */
-        /* header */
         
         .navbar-header {
             height: 80px;
         }
-        /* 헤더쪽 검색창 css 조절 */
+        /* logo 글자 */
         
-        #searchBar {
-            width: 300px;
-            margin-top: 15px;
+        .navbar-header>a {
+            overflow: hidden;
+            height: 100%;
         }
-        /* logo img */
         
-        .navbar-header img {
-            width: 110px;
+        .navbar-header>a>img {
+            position: absolute;
+            left: 59px;
+            width: 114px;
+            border-radius: 97px;
+            z-index: 999;
+            bottom: -53px;
+        }
+        
+        .navbar-header>a>img {
+            margin: 0px;
         }
         /* side bar */
         
@@ -62,11 +70,13 @@
             padding-left: 0;
             font-size: 17px;
             line-height: 25px;
+            position: relative;
+            top: 10px;
         }
         
         #active p {
             margin: 0;
-            margin-top: 30px;
+            margin-top: 64px;
             margin-left: 4px;
             font-size: 16px;
             line-height: 24px;
@@ -78,6 +88,11 @@
             font-size: 30px;
             line-height: 43px;
             font-weight: 700;
+        }
+        
+        #searchBar {
+            width: 300px;
+            margin-top: 15px;
         }
         /* sid
         ebar selected */
@@ -267,7 +282,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                    <img src="../icon/logo2.png" alt="">
+                    <img id="logo3" src="../img/logo3.png" alt="">
                 </a>
             </div>
 
@@ -275,8 +290,8 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul id="active" class="nav navbar-nav side-nav">
                     <li>
-                        <p>관리자 페이지</p>
-                        <h1>사업그래프</h1>
+                        <p></p>
+                        <h1>회원관리</h1>
                     </li>
                     <li>
                         <a href="index.html">
@@ -288,7 +303,6 @@
                     <!--  <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
                     <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li> -->
                 </ul>
-
                 <!-- 헤더 사이드바 -->
                 <ul class="nav navbar-nav navbar-right navbar-user">
                     <li>
@@ -297,7 +311,7 @@
                         </form>
                     </li>
                     <li class="dropdown user-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user fa-2x"></i> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
 
                             <li><a href="#"><i class="fa fa-gear"></i> 공공의주방 이야기</a></li>

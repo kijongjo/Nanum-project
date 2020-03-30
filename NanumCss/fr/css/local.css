@@ -5941,18 +5941,15 @@ a.list-group-item-danger.active:focus {
 }
 
 .panel-primary {
-    border-color: #2a9fd6;
+    border-color: #7955485c;
 }
 
 .panel-primary>.panel-heading {
     color: #ffffff;
     background-color: #9b2121;
-    border-color: #2a9fd6;
 }
 
-.panel-primary>.panel-heading+.panel-collapse .panel-body {
-    border-top-color: #2a9fd6;
-}
+.panel-primary>.panel-heading+.panel-collapse .panel-body {}
 
 .panel-primary>.panel-footer+.panel-collapse .panel-body {
     border-bottom-color: #2a9fd6;
