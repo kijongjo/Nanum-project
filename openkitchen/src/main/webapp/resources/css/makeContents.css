@@ -1,0 +1,212 @@
+
+
+
+/* 리스트 선택시 선택시 */
+ #lay03 > #left01 .On_active{
+     font-weight: 600;
+     border-bottom: 3px solid #8E0032;
+     position: relative;
+    display: inline-block;
+ }
+ #lay03 > #left01 .On_active::after{
+    content: "";
+    position: absolute; top: 5px; right: -23px;
+    width: 19px; height: 19px;
+    background-image: url("../icon/ico-tab_check.svg");
+    background-position: 0;
+}
+
+
+/* 오른쪽 */
+#right01{
+    padding: 45px 0 120px 60px;
+    background-color: #F6F5F5;
+    font-size: 15px;
+    line-height: 22px;
+ }
+ 
+ /* class select */
+.selectBox{
+	border : 3px solid #8E0032;
+	border-radius: 5px;
+}
+ 
+ /* 항목 타이틀 */
+#right01 > form > h4{
+    margin-bottom: 8px;
+    color: #5B5B5B;
+}
+#right01 > form > h4:nth-child(n+2){
+    margin-top: 40px;
+}
+.basic_apply{
+    width: 855px;
+    background-color: white;
+}
+#apply02 p,
+#makeSpace02 > #guide p{
+    padding-top:  10px;
+    background-color: #F6F5F5;
+    color: #838383;
+}
+
+/* 프로필 사진 */
+#apply01 p{
+    width: 580px;
+    font-weight: 200;
+    color: #B7B7B7;
+}
+/* input txt */
+#right01 input{
+    border: none;
+    padding: 0 20px;
+    width: 815px; height: 46px;
+}
+/* txt area */
+#right01 textarea{
+    border: none;
+    outline-color: #8E0032;
+    width: 850px; height: 100%;
+    font: 400 13.3333px Arial;
+    word-break: keep-all;
+    overflow: auto;
+    vertical-align: top;
+    resize: none; 
+}
+#txtarea01{
+    height: 120px;
+}
+#txtarea02{
+    height: 360px;
+}
+
+
+/* 체크박스 */
+#right01 .Off-CheckBox,
+.buisness span,
+#facility span{
+    margin-right: 10px;
+    position: relative;
+    padding-left: 24px;
+    width: 300px;
+    font-weight: 400;
+    color: #838383;
+    cursor: pointer;
+}
+#right01 .Off-CheckBox::before,
+.buisness span::before,
+#facility span::before{
+    content: "";
+    position: absolute; left: 0px; top: 2px;
+    width: 16px ; height: 16px;
+    background-image: url("../icon/bg-checkbox.png");
+    background-size: 40px;
+}
+#right01 div.On-CheckBox,
+.buisness span.On-CheckBox,
+#facility span.On-CheckBox{
+    font-weight: 600;
+    color: black;
+}
+.On-CheckBox::before,
+.buisness span,
+#facility span{
+    border: none;
+    background-position: 17px;
+}
+#apply02 p,
+#makeTeacher01 > div:nth-child(2) p{
+    padding-top: 10px;
+    background-color: #F6F5F5;
+    color: #838383;
+}
+
+/* ㅡ,.ㅡ 전문분야 */
+#right01 h3{
+    margin: 40px 0 8px;
+    color: #5B5B5B;
+    font-size: 15px;
+}
+#right01 h3 span{
+    margin-left: 5px;
+    font-weight: 400;
+    color: #838383;
+}
+#Specialty ul{
+    display: grid;
+    grid-template-columns: repeat(8, 95px);
+    grid-gap: 10px;
+}
+#Specialty ul li{
+    border-radius: 40px;
+    height: 41px;
+    text-align: center;
+    line-height: 41px;
+    color: #b7b7b7;
+    background-color: white;
+}
+/* - _ - 전분분야 선택시 */
+#Specialty ul .On-Specialty{
+    color: white;
+    background-color: #8E0032;
+}
+
+#btn_submit{
+    width: 855px;
+    margin-top: 50px;
+}
+#btn_submit div{
+    float:right;
+}
+#btn_submit input{
+    border-radius: 3px;
+    margin-left: 12px;
+    width: 168px; height: 64px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 64px;
+    
+}
+#btn_submit input:nth-child(1){
+    color: #2e2e2e;
+    background-color: white;
+}
+#btn_submit input:nth-child(2){
+    color: white;
+    background-color: #8E0032;
+}
+/* makeSpace02 */
+#makeSpace02 > div:nth-child(2) div{
+    margin-top: 15px;
+}
+
+
+#space_textarea textarea{
+    width: 815px;
+    padding: 20px;
+    height: 360px;
+}
+
+
+
+/* 헤쉬태그 */
+#hashtag{
+	position: relative;
+}
+#hashtag::after{
+	content:"";
+	position: absolute;
+	top:12px;
+	width:20px; height:20px;
+	background-image: url("../icon/ico-file_add.png");
+	background-size: 100%;
+	
+}
+#hashtagTxt span{
+	display:inline-block;
+	border:1px solid;
+	border-radius: 8px;
+	margin:8px 7px 0 0;
+	padding: 15px 32px;
+	color: #707070;
+}

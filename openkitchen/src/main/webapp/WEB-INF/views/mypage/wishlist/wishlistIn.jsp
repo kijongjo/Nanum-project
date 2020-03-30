@@ -19,23 +19,20 @@
 	<div id="lay03">
 		<section id="left01">
 			<div>
-				<p>수강생</p>
-				<h1>요리 배우기</h1>
+				<p>마이페이지</p>
+				<h1>위시리스트</h1>
 			</div>
 			<div class="list">
-				<a href="#"><div class="select-On">예약 클래스</div></a>
-				<a href="#"><div>취소 / 환불</div></a>
-				<a href="#"><div>종료 클래스</div></a>
-				<a href="#"><div>종료 클래스</div></a>
-				<a href="#"><div>종료 클래스</div></a>
-				<a href="#"><div>종료 클래스</div></a>
+				<a href="#"><div class="select-On">클래스</div></a>
+				<a href="#"><div>선생님</div></a>
+				<a href="#"><div>공간</div></a>
+
 			</div>
 
 		</section>
 		<section id="right02">
-		<jsp:include page="cookBookD.jsp"></jsp:include>
-		<jsp:include page="cookRefundD.jsp"></jsp:include>
-		<jsp:include page="notData.jsp"></jsp:include>
+		<jsp:include page="wishlistClass.jsp"></jsp:include>
+		
 		</section>
 
 	</div>
