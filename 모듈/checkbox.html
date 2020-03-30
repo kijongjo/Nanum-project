@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 라벨을 이용한 체크박스 모듈입니다.  -->
+<!-- .checkboxSection>.checkboxWrap >.checkbox 순으로 div가 이루어져 있습니다. -->
+<!-- checkboxSection은 가장 상위 div입니다. -->
+<!-- cheeckboxWrap은 체크박스의 정렬(가로,세로)를 결정합니다. 같은 위치에 있는 WrapWidth n 은 넓이 설정을 줄 수 있으며 checkbox하나당 wrapWidth를 하나주어 따로 따로 적용해야합니다.-->
+<!-- checkbox div는 checkbox 태그와 라벨 태그를 포함하고 있습니다. input css 설정에 content 값을 주면 check박스의 이름을 지정할 수 있습니다. -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <title>Document</title>
+    <style>
+        /* input 요소와 text area요소의 크기를 잡아줌 */
+        
+        input,
+        textarea {
+            width: 100%;
+            border: none;
+        }
+        /* all-check */
+        
+        #all-check {
+            border-bottom: 2px solid #e5e5e5;
+            margin: 30px 0 16px;
+            padding-bottom: 16px;
+        }
+        
+        .checkboxSection div {
+            position: relative;
+        }
+        
+        .checkboxSection div.checkboxWrap {
+            display: flex;
+        }
+        /* 넓이 조정하기 */
+        
+        .checkboxSection div#WrapWidth1 {
+            width: 300px;
+        }
+        
+        .checkboxSection div.checkbox {
+            width: 100%;
+            position: relative;
+            float: left;
+        }
+        
+        .checkboxSection div.checkbox input {
+            width: 60%;
+        }
+        /* checkBox */
+        /* 기본 체크박스 디자인 삭제하기 (라벨을 대신 쓰기 위함) */
+        
+        input[type="checkbox"] {
+            display: block;
+            top: -1px;
+            padding: 10;
+            opacity: 0;
+            cursor: pointer;
+            height: 20px;
+            position: relative;
+            z-index: 3;
+        }
+        /* 체크박스의 위치 지정 요소 */
+        
+        input[type="checkbox"]+label {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            z-index: 1;
+        }
+        /* 체크박스 새로운 디자인 (라벨 이용) */
+        
+        input[type="checkbox"]+label:before {
+            content: "";
+            display: block;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            margin: -2px 8px 0 0;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #cacece;
+            border-radius: 3px;
+        }
+        /* 클릭할시 디자인 */
+        
+        input[type="checkbox"]:checked+label:before {
+            background-image: url("../img/bg-checkbox.png");
+            background-position-x: -21px;
+            background-repeat: no-repeat;
+            background-size: 214%;
+        }
+        /* 체크박스 txt */
+        
+        input[type="checkbox"]+label::after {
+            width: 300px;
+            position: absolute;
+            top: -3px;
+            left: 30px;
+            font-weight: 400;
+            font-size: 16px;
+            color: #838383;
+        }
+        /* input check박스의 속성에 name값을 주면 해당 name값에 맞는 text가 check 박스 옆에 보이게 된다. */
+        
+        input[name="all_agreement"]+label::after {
+            content: "체크박스 이름 넣기";
+        }
+        
+        input[name="terms_use"]+label::after {
+            content: "체크박스 이름 넣기";
+        }
+        
+        input[name="terms_establishment"]+label::after {
+            content: "체크박스 이름 넣기";
+        }
+        
+        input[name="privacy"]+label::after {
+            content: "체크박스 이름 넣기";
+        }
+        
+        input[name="sns_agree"]+label::after {
+            content: "체크박스 이름 넣기";
+        }
+        /* 클래스 만들기 */
+        
+        input[name="nomal"]+label::after {
+            content: "체크박스 이름 넣기";
+        }
+        
+        input[name="manwon"]+label::after {
+            content: "체크박스 이름 넣기";
+        }
+        
+        input[name="onepeople"]+label::after {
+            content: "체크박스 이름 넣기";
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 라벨을 이용한 체크박스 모듈입니다.  -->
+    <!-- .checkboxSection>.checkboxWrap >.checkbox 순으로 div가 이루어져 있습니다. -->
+    <!-- checkboxSection은 가장 상위 div입니다. -->
+    <!-- cheeckboxWrap은 체크박스의 정렬(가로,세로)를 결정합니다. 같은 위치에 있는 WrapWidth n 은 넓이 설정을 줄 수 있으며 checkbox하나당 wrapWidth를 하나주어 따로 따로 적용해야합니다.-->
+    <!-- checkbox div는 checkbox 태그와 라벨 태그를 포함하고 있습니다. input css 설정에 content 값을 주면 check박스의 이름을 지정할 수 있습니다. -->
+
+    <section class="checkboxSection">
+        <div class="checkboxWrap" id="WrapWidth1">
+            <div class="checkbox">
+                <input type="checkbox" name="onepeople" id="">
+                <label for="checkbox"></label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="manwon" id="">
+                <label for="checkbox"></label>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
