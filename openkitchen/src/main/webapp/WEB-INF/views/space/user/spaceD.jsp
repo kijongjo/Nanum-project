@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +16,10 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
 
-
+<!-- jquery 불러오기 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="<c:url value='resources/js/spaceD.js'/>"></script>
 
 <title>Document</title>
 </head>
@@ -75,12 +78,10 @@
 			<section class="intro">
 				<h3>공간 소개</h3>
 				<div class="contents">
-					<span>합정역에서 도보 3분거리에 있는 채식요리 전문 스튜디오입니다.</span><br>
-					<span>최대 8명까지 수용가능하며</span><br>
-					<span></span><br>
-					<span>편안한 분위기 속에서 건강한 음식을 만들고 맛볼 수 있는 공간입니다.</span><br>
-					<br>
-					<span>저녁시간에는 각종 모임, 클래스 등으로 대여 가능합니다. </span>
+					<span>합정역에서 도보 3분거리에 있는 채식요리 전문 스튜디오입니다.</span><br> <span>최대
+						8명까지 수용가능하며</span><br> <span></span><br> <span>편안한 분위기
+						속에서 건강한 음식을 만들고 맛볼 수 있는 공간입니다.</span><br> <br> <span>저녁시간에는
+						각종 모임, 클래스 등으로 대여 가능합니다. </span>
 				</div>
 				<a href="">더보기</a>
 			</section>
@@ -100,8 +101,9 @@
 				<h3>위치</h3>
 				<!-- 공간에 대한 이미지 -->
 				<section class="detailImg">
-				 
-					<img src="<c:url value='resources/img/icon/spaceInfoImg.png'/>" alt="">
+
+					<img src="<c:url value='resources/img/icon/spaceInfoImg.png'/>"
+						alt="">
 				</section>
 				<!-- 링크를 통해 공간 페이지로 이동하게 된다.
                 링크에는 공간의 주소가 들어간다. -->
@@ -121,20 +123,20 @@
 						<div class="reviewInfo">
 							<!-- 회원 이미지가 들어온다. -->
 							<figure>
-								<img src="./img/mDefaultIcon.png" alt="">
+								<img src="<c:url value='resources/img/icon/mDefaultIcon.png'/>" alt="">
 							</figure>
 							<!-- 평가와 이름 적은 날짜가 온다. -->
 							<span class="memberInfo"> <!-- 평가 이모티콘 -->
 								<figure>
-									<img src="./img/smileIcon.png" alt="">
-								</figure>
-								<strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
+									<img src="<c:url value='resources/img/icon/smileIcon.png'/>" alt="">
+								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
 									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
 							</span>
 								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
 									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
 									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
-									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <a href="#">더보기</a>
+									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <a
+								href="javascript:reviewOne(0)">더보기</a>
 							</span>
 						</div>
 
@@ -145,22 +147,24 @@
 						<div class="reviewInfo">
 							<!-- 회원 이미지가 들어온다. -->
 							<figure>
-							
-								<img src="<c:url value='resources/img/icon/mDefaultIcon.png'/>" alt="">
+
+								<img src="<c:url value='resources/img/icon/mDefaultIcon.png'/>"
+									alt="">
 							</figure>
 							<!-- 평가와 이름 적은 날짜가 온다. -->
 							<span class="memberInfo"> <!-- 평가 이모티콘 -->
 								<figure>
-							
-									<img src="	<c:url value='resources/img/icon/smileIcon.png'/>" alt="">
-								</figure>
-								<strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
+
+									<img src="	<c:url value='resources/img/icon/smileIcon.png'/>"
+										alt="">
+								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
 									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
 							</span>
 								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
 									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
 									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
-									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <a href="#">더보기</a>
+									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <a
+								href="javascript:reviewOne(1)">더보기</a>
 							</span>
 						</div>
 
@@ -267,7 +271,7 @@
 				</div>
 				<!-- 이걸 누르면 scheduleOn이 접힌다.접히게 되면 아이콘이 거꾸로 돌아간다. transform속성을 사용하자. -->
 				<p>
-					<a href="#">일정 접기 </a>
+					<a href="javascript:selectBody()">일정 접기 </a>
 				</p>
 				<!-- 신청하기 버튼이 있는 기능에 bottom이라고 지정했다. -->
 				<div class="selectBottom">

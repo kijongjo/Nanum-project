@@ -16,7 +16,10 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
 
-
+<!-- jquery 불러오기 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="<c:url value='resources/js/teacherD.js'/>"></script>
     <title>Document</title>
 </head>
 
@@ -111,7 +114,7 @@
                                 주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나 부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와 다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을 듣고싶은 분께 정말 추천드려요!
                             </p>
                             <!-- 더보기 기능이 있는 a태그 -->
-                            <a href="#">더보기</a>
+                            <a href="javascript:reviewOne(0)">더보기</a>
                             </span>
                         </div>
 
@@ -139,7 +142,7 @@
                                 주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나 부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와 다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을 듣고싶은 분께 정말 추천드려요!
                             </p>
                             <!-- 더보기 기능이 있는 a태그 -->
-                            <a href="#">더보기</a>
+                            <a href="javascript:reviewOne(1)">더보기</a>
                             </span>
                         </div>
 
@@ -155,16 +158,18 @@
             </section>
             <!-- 선생님,클래스,공간에 대한 환불정책이 나와 있다. -->
             <section class="refundPolicy">
-                
+                <div>
                 <figure><img src="  <c:url value='resources/img/icon/refundPolicy1.png'/>" alt=""></figure>
                 <figure><img src="  <c:url value='resources/img/icon/refundPolicy2.png'/>" alt=""></figure>
                 <figure><img src="  <c:url value='resources/img/icon/refundPolicy3.png'/>" alt=""></figure>
-                <a href="#">접기</a>
+                </div>
+                <a href="javascript:refundPolicy()">접기</a>
+            
             </section>
         </section>
 
 
-        </section>
+        
 
 
 

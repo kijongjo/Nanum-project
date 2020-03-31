@@ -235,6 +235,8 @@
 #left02>.review>ul>li>.reviewInfo>.memberInfo>p {
     margin: 17px 35px;
     font-size: 16px;
+    overflow: hidden;
+	height: 50px;
 }
 
 
@@ -553,6 +555,8 @@
     border: 1px solid rgba(0, 0, 0, .1);
     position: relative;
     padding: 20px 0 20px 25px;
+    height: 340px;
+	overflow: hidden;
 }
 
 
@@ -657,6 +661,8 @@
     text-align: center;
     padding: 10px 0;
     font-weight: 200;
+    border-left: 1px solid rgba(0, 0, 0, .1);
+	border-right: 1px solid rgba(0, 0, 0, .1);
 }
 
 #right02>.selectSchedule>p>a {
@@ -680,9 +686,14 @@
     position: absolute;
     background: url("../img/icon/downIcon.png") 50%/100% auto no-repeat;
 }
-
+#right02>.selectSchedule>p>a.changed::after {
+	transform: rotate(180deg);
+}
 
 /* selectBottom에 대한 css 설정 */
+#right02>.selectSchedule>.selectBottom {
+	border: 1px solid rgba(0, 0, 0, .1);
+}
 
 #right02>.selectSchedule>.selectBottom>p {
     line-height: 80px;
