@@ -10,7 +10,7 @@
 <link
    href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
    rel="stylesheet">
-<link rel="stylesheet" href="<c:url value='/resources/css/Reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/alarmD.css'/>">
 <link rel="stylesheet" href="<c:url value='resources/css/Header.css' />">
 </head>

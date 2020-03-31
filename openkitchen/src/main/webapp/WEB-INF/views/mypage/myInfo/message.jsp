@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value='/resources/css/reset1.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/resources/css/message.css'/>" >
-    <link rel="stylesheet" href="<c:url value='resources/css/Header1.css' />">
+    <link rel="stylesheet" href="<c:url value='resources/css/Header.css' />">
 </head>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- strong과 p 태그의 임의의 글 넣어놈 테스트 용이기 때문에 지워서 el 태그 사용해서 가져오면 됨 -->

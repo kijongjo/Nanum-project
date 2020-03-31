@@ -82,10 +82,6 @@ button >img{
     text-align: center;
 }
 
-
-
-
-
 /* ------------------------------------- */
 /* Layout01 */
 #lay01{
@@ -163,21 +159,4 @@ button >img{
     width: 100%;
     height: 100%;
     background-color: darkcyan;
-}
-
-
-
-.more-type2{
-    position: relative;
-    padding: 0 50px;
-    top: 30px;
-    width: 200px;
-}
-.more-type2::after{
-    content: "";
-    position: absolute;
-    top: 0; right: 25px;
-    width: 18px; height: 18px;
-    background-image: url(../icon/ico-more_type2.png);
-    background-size: 100%;
 }

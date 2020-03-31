@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/index.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/index-slide.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/Reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
