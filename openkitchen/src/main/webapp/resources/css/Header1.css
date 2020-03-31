@@ -1,0 +1,81 @@
+#header{
+    margin: 0 auto; padding:30px 0 25px;
+    width: 1200px; 
+    overflow: hidden;
+}
+#header > div,
+#header > h3{
+    float: left;
+    height: 40px;
+}
+
+/* Logo */
+#header > div:nth-child(1) img{
+    margin-right: 20px;
+    width: 110; height: 40px;
+}
+
+/* Link-List */
+#header h3{
+    margin: 5px 0 0 30px;
+    font-size: 19.1975px;
+    letter-spacing: -1.5px;
+}
+
+/* serch */
+#header > div:nth-child(5){
+    margin-left:443px;
+    width: 285px; 
+    border-bottom: 2px solid #B7B7B7;
+}
+
+#header > div:nth-child(5) > img:nth-child(1){
+    width: 22px; height: 24px;
+    position: relative; top:7px;
+}
+#header > div:nth-child(5) > span{
+    position: relative; top: -30px; left: 33px;
+    display: block;
+    color: #B7B7B7;
+    z-index: 1;
+    font-weight: bold;
+}
+#header > div:nth-child(5) > input{
+    position: relative;
+    border: none;
+    width: 250px; height: 34px;
+    font-size: 16px;
+    /* z-index: 4; */
+    opacity: 1;
+    font-weight:300;
+    font-family: 'Roboto','Noto Sans', 'Noto Sans KR', sans-serif;
+}
+#header > div:nth-child(5) > input::placeholder{
+   color: #B7B7B7;
+   font-weight: 300;
+   font-size: 16px;
+}
+#header > div:nth-child(5) > input:focus{
+   outline:none;
+}
+#header > div:nth-child(5) > .inputOn{
+    opacity: 1;
+}
+
+/* Util */
+#header > div:nth-child(6){
+    margin-left: 26px;
+    width: 24px; height: 24px;
+}
+#header > div:nth-child(6) img{
+    width: 100%;
+}
+
+#header > div:nth-child(7){
+    margin-left: 24px;
+    width: 21px; height: 24px;
+}
+#header > div:nth-child(7) img{
+    width: 100%;
+    cursor:pointer;
+}
