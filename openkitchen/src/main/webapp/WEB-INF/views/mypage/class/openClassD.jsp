@@ -18,7 +18,11 @@
 <script>
 	window.onload = function () {
 		var test = ${no};
-		if (test) {
+		var change = document.getElementsByClassName("select-On");
+		console.log(change);
+		if (test=="1") {
+			change.style.backgroundColor = "red";	
+		} else if (test=="2") {
 			
 		}
 	}

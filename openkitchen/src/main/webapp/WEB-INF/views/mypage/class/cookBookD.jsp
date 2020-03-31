@@ -9,7 +9,7 @@
 				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
 				<h3>달래쭈꾸미장과 덮밥</h3>
 				<div class="Price"><strong>\</strong> 45,000</div>
-				<p>진행중</p>
+				<p>진행중<i class="ico-more_arrow"></i></p>
 			</a>
 		</li>
 		<!-- 복사코드  -->
@@ -18,7 +18,7 @@
 				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
 				<h3>달래쭈꾸미장과 덮밥</h3>
 				<div class="Price"><strong>\</strong> 45,000</div>
-				<p>진행중</p>
+				<p>진행중<i class="ico-more_arrow"></i></p>
 			</a>
 		</li>
 		<li>
@@ -26,7 +26,7 @@
 				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
 				<h3>달래쭈꾸미장과 덮밥</h3>
 				<div class="Price"><strong>\</strong> 45,000</div>
-				<p>진행중</p>
+				<p>진행중<i class="ico-more_arrow"></i></p>
 			</a>
 		</li>
 		<li>
@@ -34,7 +34,7 @@
 				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
 				<h3>달래쭈꾸미장과 덮밥</h3>
 				<div class="Price"><strong>\</strong> 45,000</div>
-				<p>진행중</p>
+				<p>진행중<i class="ico-more_arrow"></i></p>
 			</a>
 		</li>
 		<!-- 복사코드  -->

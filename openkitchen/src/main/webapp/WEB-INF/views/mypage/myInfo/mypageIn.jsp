@@ -111,17 +111,17 @@
                         <dd>0 <em>원</em></dd>
                     </dl>
                     <dl>
-                        <dt><a href="">1:1 메시지</a></dt>
+                        <dt><a href="message">1:1 메시지</a></dt>
                     </dl>
                 </div>
                 <div class="notification">
                     <dl>
-                        <dt><a href="">알림</a></dt>
+                        <dt><a href="alarmD">알림</a></dt>
                         <dd>0<em>건</em></dd>
                     </dl>
                     <ul>
                         <li>
-                            <a href="">
+                            <a href="alarmD">
                                 <figure>
                                     <img src="<c:url value='/resources/img/icon/img-alert_msg.png'/>" alt="">
                                 </figure>
@@ -132,7 +132,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="alarmD">
                                 <figure>
                                     <img src="<c:url value='/resources/img/icon/img-alert_msg.png'/>" alt="">
                                 </figure>
@@ -143,7 +143,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="alarmD">
                                 <figure>
                                     <img src="<c:url value='/resources/img/icon/img-alert_msg.png'/>" alt="">
                                 </figure>
