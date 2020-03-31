@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 	@RequestMapping(value = {"mypageIn"})
 	public String mypage() {
-		return "/mypage/myInfo/mypageIn";
+		return "/mypage/mypageIn";
 	}
 	
 	@RequestMapping(value = {"cookBookD", "cookRefunD"})
@@ -46,6 +46,16 @@ public class UserController {
 	public String alarmD() {	
 		return "/mypage/myInfo/alarmD";
 	}
+	
+	
+	@RequestMapping(value = {"wishlistClass", "wishlistTeacher", "wishlistSpace"})
+	public String wishlistIn(@RequestParam("no")String no, Model model) {
+		System.out.println(no);
+		model.addAttribute("no", no);
+		
+		return "/mypage/wishlist/wishlistIn";
+	}
+	
 	
 	
 //	@RequestMapping(value = {"standByClass"})

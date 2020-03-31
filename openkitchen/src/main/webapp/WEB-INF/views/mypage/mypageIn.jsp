@@ -46,7 +46,7 @@
 </head>
 
 <body>
-<jsp:include page="../../header.jsp" flush="false" />
+<jsp:include page="../header.jsp" flush="false" />
 <div id="lay03">
         <section id="left01">
             <div class="breadcrumb">
@@ -160,7 +160,7 @@
             </section>
             <section class="wishlist">
                 <dl>
-                    <dt><a href="">위시리스트</a></dt>
+                    <dt><a href="wishlistClass?no=1">위시리스트</a></dt>
                     <dd>16<em>개</em></dd>
                 </dl>
                 <!--
