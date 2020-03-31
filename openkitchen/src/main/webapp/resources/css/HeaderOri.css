@@ -45,18 +45,8 @@
     border: none;
     width: 250px; height: 34px;
     font-size: 16px;
-    /* z-index: 4; */
+    z-index: 4;
     opacity: 1;
-    font-weight:300;
-    font-family: 'Roboto','Noto Sans', 'Noto Sans KR', sans-serif;
-}
-#header > div:nth-child(5) > input::placeholder{
-   color: #B7B7B7;
-   font-weight: 300;
-   font-size: 16px;
-}
-#header > div:nth-child(5) > input:focus{
-   outline:none;
 }
 #header > div:nth-child(5) > .inputOn{
     opacity: 1;
