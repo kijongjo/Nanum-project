@@ -1,0 +1,818 @@
+@charset "UTF-8";
+/* 클래스 선생님 공간 상세 페이지에 공통으로 들어가는 것을 class로 잡앗고 하나에만 있는 것은 id로 잡앗습니다. */
+
+
+/* //////////////////////////// wishlist part/////////////////////////////////////////////////////// */
+
+
+/* wishlist 버튼 설정 */
+
+* {
+    font-size: 17px;
+    line-height: 29px;
+}
+
+
+/* ///////////////////////////////////left01 Css 설정////////////////////////////////////////////////////////// */
+
+#left01 {
+    background-color: red;
+    /* 이미지가 밖으로 나가더라도 보이도록 설정 <-일단은 이렇게 잡아 놓았는데 slide형식으로 이미지를 보여지도록
+         javascript 로직을 추가하거나 jquery api를 사용한다.*/
+    overflow: hidden;
+}
+
+
+/* 이미지를 넣을 section의 css 설정 */
+
+#left01>section {
+    /* 이미지 위에 absolute로 link 요소를 넣기 위함   */
+    position: relative;
+    height: 100%;
+}
+
+
+/* 이미지가 크기에 딱 맞도록 설정 */
+
+#left01>section>img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* side요소 전체적으로 적용되는 css 설정 */
+
+#left01>section>.share {
+    position: absolute;
+    z-index: 1;
+    top: 15px;
+    right: 24px;
+}
+
+#left01>section>.share>a {
+    background-image: url("../img/icon/shareIcon.png");
+    background-size: cover;
+    width: 27px;
+    height: 30px;
+    display: block;
+}
+
+
+/* //////////////////////////////////left02 CSS 설정////////////////////////////////////////// */
+
+
+/*  left02>section에 공통적으로 적용되는 css 설정*/
+
+#left02>section {
+    padding: 40px 0;
+    border-bottom: 2px solid #e5e5e5;
+}
+
+
+/* 소개,참고사항 내용에 대한 css 설정 db에 저장한 형태 그대로 나오도록 한다. */
+
+#left02>.intro .reference {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+
+/* 각 Part에 대한 소제목 css 설정 ex)선생님 소개 */
+
+#left02>section>h3 {
+    font-size: 22px !important;
+}
+
+
+/* 자기 소개 내용에 대한 css */
+
+#left02>.intro>.contents {
+    font-size: 17px;
+    line-height: 29px;
+    padding: 10px 0;
+}
+
+
+/* 참고 사항 내용에 대한 css 설정 */
+
+#left02>.reference>.contents {
+    font-size: 17px;
+    line-height: 29px;
+    padding: 10px 0;
+}
+
+
+/* 공간 이미지에 대한 css 설정 */
+
+#left02>.spaceInfo>.detailImg>img {
+    width: 100%;
+    height: 485px;
+}
+
+
+/* 공간으로 이동하는 링크에대한 css 설정 */
+
+#left02>.spaceInfo>a {
+    margin: 18px 0 !important;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    display: block;
+}
+
+
+/*  공간 이동 링크 글자 css 설정*/
+
+#left02>.spaceInfo>a>span {
+    display: inline-block;
+    font-size: 18px;
+}
+
+#left02>.spaceInfo>a>span::after {
+    content: "";
+    width: 49px;
+    height: 26px;
+    background: no-repeat 15%/21px auto;
+    background-image: url(../img/icon/rightIcon.png);
+    position: absolute;
+}
+
+#left02>#classSchedule {
+    margin: 35px auto;
+}
+
+#left02>#classSchedule>p {
+    margin: 10px 0;
+}
+
+#left02>#classSchedule>.calendarSchedule {
+    margin-top: 18px;
+    height: 448px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#left02>#classSchedule>.calendarSchedule>.half02 {
+    padding: 55px 55px;
+}
+
+
+/* 스케쥴 리스트가 나오는 div에 대한 css 설정 */
+
+#left02>#classSchedule>.calendarSchedule>.half02>div {
+    overflow-y: scroll;
+    width: 100%;
+    box-sizing: border-box;
+    height: 248px;
+    margin-top: 20px;
+}
+
+
+/* 스크롤바 스타일 설정  */
+
+#left02>#classSchedule>.calendarSchedule>.half02>div::-webkit-scrollbar {
+    width: 4px;
+}
+
+#left02>#classSchedule>.calendarSchedule>.half02>div::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+#left02>#classSchedule>.calendarSchedule>.half02>div::-webkit-scrollbar-thumb {
+    background-color: #8E0032;
+    border-radius: 10px;
+}
+
+#left02>#classSchedule>.calendarSchedule>.half02>div::-webkit-scrollbar-thumb:hover {
+    background: #8E0032;
+}
+
+#left02>#classSchedule>.calendarSchedule>.half02>div::-webkit-scrollbar-button:start:decrement,
+#left02>#classSchedule>.calendarSchedule>.half02>div::-webkit-scrollbar-button:end:increment {
+    width: 16px;
+    height: 16px;
+    background: white;
+}
+
+
+/* 스크롤바 스타일 끝 */
+
+
+/* 스케쥴 리스트의 ul css 설정 */
+
+#left02>#classSchedule>.calendarSchedule>.half02>div>ul {
+    width: 100%;
+    padding-top: 20px;
+}
+
+#left02>#classSchedule>.calendarSchedule>.half02>div>ul>li {
+    line-height: 1.7;
+}
+
+
+/* 시간과 오전오후저녁 글자 나누기 css 설정 */
+
+#left02>#classSchedule>.calendarSchedule>.half02>div>ul>li>span {
+    margin-right: 61px;
+}
+
+
+/* 리뷰 css 설정 하기 */
+
+#left02>.review {
+    /* 최소 높이를 330으로 잡음 */
+    min-height: 330px;
+}
+
+#left02>.review>ul {
+    width: 100%;
+    padding-top: 20px;
+}
+
+
+/* 댓글 하나에 대한 css 설정 */
+
+#left02>.review>ul>li>.reviewInfo {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+/* 리뷰에서 회원의 이미지를 담을 태그에 대한 css 설정 */
+
+#left02>.review>ul>li>.reviewInfo>figure {
+    overflow: hidden;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    background-color: rgb(246, 245, 245);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+/* 회원 이미지 설정 */
+
+#left02>.review>ul>li>.reviewInfo>figure>img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 회원 평가,이름 날짜가 들어가는 span */
+
+#left02>.review>ul>li>.reviewInfo>.memberInfo {
+    position: relative;
+    bottom: 29px;
+    font-weight: 100;
+}
+
+
+/* 이모티콘 설정 */
+
+#left02>.review>ul>li>.reviewInfo>.memberInfo>figure {
+    width: 28px;
+    margin: 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    top: 6px;
+}
+
+#left02>.review>ul>li>.reviewInfo>.memberInfo>figure>img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 댓글에서 회원의 이름에 대한 css 설정 */
+
+#left02>.review>ul>li>.reviewInfo>.memberInfo>span {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #848484;
+}
+
+
+/*  등록 날짜에 대한 css 설정*/
+
+#left02>.review>ul>li>.reviewInfo>.memberInfo>span>em::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    width: 1px;
+    height: 14px;
+    right: 91px;
+    background: #e5e5e5;
+}
+
+
+/* 댓글 내용에 대한 p태그 css 설정 */
+
+#left02>.review>ul>li>.reviewInfo>.memberInfo>p {
+    margin: 17px 35px;
+    font-size: 16px;
+}
+
+
+/*  더보기 기능인 a태그에 대한 css설정 */
+
+#left02>.review>ul>li>.reviewInfo>.memberInfo>a {
+    margin: 5px 33px;
+    font-size: 18px;
+    line-height: 28px;
+    display: block;
+    color: #8e0032;
+}
+
+#left02>.review>p {
+    text-align: center;
+    margin: 29px 0;
+}
+
+#left02>.review>p>a {
+    color: #8e0032;
+    font-weight: 300;
+}
+
+
+/* 환불 정책에 대한 css 설정 */
+
+#left02>.refundPolicy>a {
+    margin: 5px 33px;
+    font-size: 18px;
+    line-height: 28px;
+    display: block;
+    color: #8e0032;
+    text-align: center;
+}
+
+
+/* //////////////////////////////////right01 CSS 설정////////////////////////////////////////// */
+
+#right01>.title {
+    margin-top: 62px;
+}
+
+
+/* 선생님 이름에 대한 css 설정 */
+
+#right01>.title>.t-title>.name {
+    font-weight: 800 !important;
+    font-size: 24px !important;
+    line-height: 1.5;
+}
+
+
+/* 한줄 소개, 선생님 경력을 감싸고 있는 div */
+
+#right01>.title>.cont {
+    margin-top: 15px;
+}
+
+
+/* 선생님 한줄 소개 */
+
+#right01>.title>.cont>.shortIntro {
+    line-height: 29px;
+    font-size: 17px;
+    margin-top: 5px;
+    /* 글자가 section 넓이를 벗어나게 되면 단어를 끊어서 아래로 내려 씀 */
+    word-break: break-all;
+}
+
+
+/* 선생님 칭호에 대한 css 설정입니다. */
+
+#right01>.title>.t-title>#category {
+    margin-left: .2em;
+    font-weight: 200;
+}
+
+
+/* 해쉬태그에 대한 css 설정입니다.  */
+
+#right01>.title>.cont>.hashTag {
+    margin: 15px;
+}
+
+
+/* 해쉬태그 모양 잡기  */
+
+#right01>.title>.cont>.hashTag>a {
+    display: inline-block;
+    border: 1px solid #bbb;
+    padding: 2px 15px;
+    border-radius: 17px;
+    margin: 0 7px 7px 0;
+    color: #2e2e2e;
+}
+
+#right01>.otherInfo {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 31px 0px;
+}
+
+
+/* 주어지는 너비를 넘어가게 되면 ...으로 표시하도록 한다. */
+
+#right01>.otherInfo>li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 15%;
+    margin-top: 9px;
+}
+
+
+/* themeIcon을 배경으로삽입한다. ::before는 가상의 요소이며 li 내용 앞쪽에 오게된다. */
+
+#right01>.otherInfo>#classTime::before {
+    /* content에 아무 내용이 없더라도 가상요소를 쓰기 위해 필수적으로 필요하다. */
+    content: "";
+    /* 가상요소를 쓰기 위해 inline-block으로 잡아줌 */
+    display: inline-block;
+    /* 가상요소의 크기를 잡아줌 */
+    width: 23px;
+    height: 23px;
+    /* 배경쪽에 이미지를 넣음 */
+    background-image: url("../img/icon/timeIcon.png");
+    /* 배경 이미지의 가로 크기와 세로 크기를 정할 수 있다. */
+    background-size: contain;
+}
+
+
+/* areaIcon을 삽입한다. ::로써 위의 css와 동일한 설정이다. */
+
+#right01>.otherInfo>.area::before {
+    /* content에 아무 내용이 없더라도 가상요소를 쓰기 위해 필수적으로 필요하다. */
+    content: "";
+    /* 가상요소를 쓰기 위해 inline-block으로 잡아줌 */
+    display: inline-block;
+    /* 가상요소의 크기를 잡아줌 */
+    width: 23px;
+    height: 23px;
+    /* 배경쪽에 이미지를 넣음 */
+    background-image: url("../img/icon/locIcon.png");
+    /* 배경 이미지의 가로 크기와 세로 크기를 정할 수 있다. */
+    background-size: contain;
+}
+
+
+/* calenarIcon을 삽입한다. ::로써 위의 css와 동일한 설정이다. */
+
+#right01>.otherInfo>#classDate::before {
+    /* content에 아무 내용이 없더라도 가상요소를 쓰기 위해 필수적으로 필요하다. */
+    content: "";
+    /* 가상요소를 쓰기 위해 inline-block으로 잡아줌 */
+    display: inline-block;
+    /* 가상요소의 크기를 잡아줌 */
+    width: 23px;
+    height: 23px;
+    /* 배경쪽에 이미지를 넣음 */
+    background-image: url("../img/icon/calendarIcon.png");
+    /* 배경 이미지의 가로 크기와 세로 크기를 정할 수 있다. */
+    background-size: contain;
+}
+
+
+/* calenarIcon을 삽입한다. ::로써 위의 css와 동일한 설정이다. */
+
+#right01>.otherInfo>.capacity::before {
+    /* content에 아무 내용이 없더라도 가상요소를 쓰기 위해 필수적으로 필요하다. */
+    content: "";
+    /* 가상요소를 쓰기 위해 inline-block으로 잡아줌 */
+    display: inline-block;
+    /* 가상요소의 크기를 잡아줌 */
+    width: 23px;
+    height: 23px;
+    /* 배경쪽에 이미지를 넣음 */
+    background-image: url("../img/icon/capacityIcon.png");
+    /* 배경 이미지의 가로 크기와 세로 크기를 정할 수 있다. */
+    background-size: contain;
+}
+
+
+/* 테마,활동지역,인원 등의 정보를 나타내는 요소에 대해서 css 설정 */
+
+#right01>.otherInfo>li>.otherInfoName {
+    display: inline-block;
+    vertical-align: top;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+
+/* 테마,활동지역,인원 등의 정보를 나타내는 요소의 내용에 대해서 css 설정 */
+
+#right01>.otherInfo>li>.otherInfoContents {
+    vertical-align: top;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* 선생님 상세 페이지 링크에 대한 css 설정 */
+
+#right01>#classTeacher {
+    margin: 23px 0;
+    overflow: hidden;
+}
+
+
+/* 선생님 이미지에 대한 css 설정 */
+
+
+/* float을 하면 상위 부모의 크기가 0이 된다. */
+
+#right01>#classTeacher>img {
+    float: left;
+    max-width: 100%;
+    width: 72px;
+    height: 72px;
+    margin: 0 14px 0 0;
+    border-radius: 100%;
+    /* 위쪽 div와 간격 맞추기 */
+    display: block;
+}
+
+
+/* 선생님 링크 관련 css 설정 */
+
+#right01>#classTeacher>#teacherLink {
+    float: left;
+    margin: 10px;
+}
+
+#right01>#classTeacher>#teacherLink>a {
+    display: block;
+}
+
+#right01>#classTeacher>#teacherLink>a>span {
+    font-size: 22px
+}
+
+#right01>#classTeacher>#teacherLink>a>Strong {
+    display: block;
+    font-size: 22px;
+}
+
+
+/* 선생님 링크 관련  설정에서 가상요소로 이미지 넣기 */
+
+#right01>#classTeacher>#teacherLink>a>span::after {
+    /* before,after는 content가 있어야한다. */
+    content: "";
+    /* 크기 잡아주기 */
+    width: 49px;
+    height: 32px;
+    /* background 이미지를 반복 요소 없애고 백분율 크기로 잡아주고 이미지를 원래크기 설정 */
+    background: no-repeat 15%/21px auto;
+    background-image: url(../img/icon/rightIcon.png);
+    position: absolute;
+}
+
+
+/* //////////////////////////////////////right02 css 설정 시작///////////////////////////////////////////////// */
+
+#right02 {
+    /* background-color: aquamarine; */
+    /* 즐겨찾기 버튼을 위에 올리기 위해 relative로 포지션을 주었다. */
+    position: relative;
+}
+
+#right02>.selectSchedule {
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+
+/*  selectTop부분의 버튼에 대한 css 설정 */
+
+#right02>.selectSchedule>.selectTop>button {
+    display: inline-block;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/*선생님  메세지 보내기 버튼에 대한 css 설정  */
+
+#right02>.selectSchedule>.selectTop>.btn-message {
+    vertical-align: top;
+    /* 크기 설정 */
+    width: 100%;
+    /* 글자 설정 */
+    font-size: 14px;
+    font-weight: 600;
+    /* 색설정 */
+    background-color: #38363d;
+    color: #fff;
+    padding-right: 23px;
+}
+
+#right02>.selectSchedule>.selectTop>.btn-wishlist {
+    /*배경 이미지가 보이도록 block으로 잡아줌 */
+    display: inline-block;
+    /* 버튼 위치  */
+    position: absolute;
+    top: 0;
+    right: 0;
+    /* 버튼 크기 */
+    width: 65px;
+    background: url("../img/icon/wishlistIcon.png") no-repeat;
+    background-size: 30px;
+    background-color: #959595;
+    /* 이미지가 가운데로 오도록 */
+    background-position-x: 17px;
+    background-position-y: 20px;
+    border-radius: 0 8px 0 0;
+}
+
+#right02>.selectSchedule>.selectTop>.btn-message::before {
+    content: "";
+    background: url(../img/icon/messageIcon.png) no-repeat 11%/28px auto;
+    /* position을 잡아줘야 보인다. */
+    /* position absolute를 줘야 하는 이유
+    btn-message는 inline-block이다.안에 contents가 없으면 넓이가 0이되어서 
+    배경인 아이콘이 보이지 않는다. 이를 해결하기 위해 absolute를 줘서 사라지지 않도록
+    최소 넓이와 높이를 주는 것이다. */
+    width: 46px;
+    height: 50px;
+    position: absolute;
+    left: 27px;
+    top: 6px;
+    line-height: 4.6;
+}
+
+
+/* selectBody 부분에 대한 css 설정 */
+
+#right02>.selectSchedule>.selectBody {
+    border: 1px solid rgba(0, 0, 0, .1);
+    position: relative;
+    padding: 20px 0 20px 25px;
+}
+
+
+/* 클래스 일정 선택 */
+
+#right02>.selectSchedule>.selectBody>h3 {
+    margin: 10px 0;
+    font-weight: 600;
+    font-size: 22px;
+    color: #000;
+}
+
+#right02>.selectSchedule>.selectBody>p {
+    margin-bottom: 20px;
+}
+
+
+/* 시간을 선택하는 ul을 감싸는 div에 관한 css 설정 */
+
+#right02>.selectSchedule>.selectBody>#scheduleOn {
+    height: 420px;
+    overflow-y: scroll;
+}
+
+
+/* 시간을 선택하는 ul에 관한 css 설정 */
+
+#right02>.selectSchedule>.selectBody>#scheduleOn>.timeList {
+    width: 97%;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+#right02>.selectSchedule>.selectBody>#scheduleOn>.timeList>li {
+    /* 넓이 높이 잡아주기 */
+    width: 98%;
+    height: 55px;
+    /* 내용물 위치,크기,색 잡아주기 */
+    line-height: 53px;
+    padding: 0 7px;
+    /* li간의 간격 잡아주기 */
+    margin-bottom: 10px;
+    /* 테두리 꾸미기 */
+    border: 1px solid #959595;
+    border-radius: 3px;
+    box-sizing: border-box;
+    /* li에 애니메이션 효과주기 after를 통해 animation 효과를 주면 부담을 줄여준다.  */
+    /* 애니메이션 효과 주기  */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    transition: transform 300ms ease-in-out;
+    /* 마치 링크인것처럼 손모양으로 커서를 바꿈 */
+    cursor: pointer;
+}
+
+#right02>.selectSchedule>.selectBody>#scheduleOn>.timeList>li::after {
+    /* li에 애니메이션 효과주기  */
+    box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.75);
+    /* transform은 이동 확대 축소 회전 경사를 다룸, ms는 변하는데 걸리는 시간 천천히 시작해 천천히 끝난다.:ease-in-out */
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+#right02>.selectSchedule>.selectBody>#scheduleOn>.timeList>li:hover::after {
+    opacity: 1;
+}
+
+
+/* hover 확대기능 */
+
+#right02>.selectSchedule>.selectBody>#scheduleOn>.timeList>li:hover {
+    transform: scale(1.03);
+}
+
+
+/*///////////////////////////////// 애니메이션 설정 끝////////////////////////////////////////////// */
+
+
+/* 시간을 나타내는 span css 설정 */
+
+#right02>.selectSchedule>.selectBody>#scheduleOn>.timeList>li :nth-child(1) {
+    font-weight: 400;
+    font-size: 20px;
+    color: #959595;
+    margin-right: 26px;
+}
+
+
+/* 수용 인원을 나타내는 span css 설정 */
+
+#right02>.selectSchedule>.selectBody>#scheduleOn>.timeList>li :nth-child(2) {
+    font-weight: 400;
+    font-size: 16px;
+    color: #959595;
+    height: 100%;
+}
+
+
+/* 일정접기 링크에 대한 css 설정 */
+
+#right02>.selectSchedule>p {
+    position: relative;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 200;
+}
+
+#right02>.selectSchedule>p>a {
+    position: relative;
+    padding-right: 20px;
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #38363d;
+}
+
+
+/* 일정접기 화살표 모양 */
+
+#right02>.selectSchedule>p>a::after {
+    content: "";
+    width: 11px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    position: absolute;
+    background: url("../img/icon/downIcon.png") 50%/100% auto no-repeat;
+}
+
+
+/* selectBottom에 대한 css 설정 */
+
+#right02>.selectSchedule>.selectBottom>p {
+    line-height: 80px;
+    text-align: center;
+}
+
+
+/* 가격에 대한 css 설정 */
+
+#right02>.selectSchedule>.selectBottom>p>span {
+    font-size: 26px!important;
+    font-weight: 600!important;
+}
+
+
+/* 달러 표시  */
+
+#right02>.selectSchedule>.selectBottom>p>em {
+    font-size: 26px!important;
+    font-weight: 200!important;
+    margin-right: 5px;
+    color: #8E0032;
+    font-style: normal;
+}
+
+#right02>.selectSchedule>.selectBottom>.btn-payment {
+    margin: 0;
+    background: #8E0032;
+    font-weight: 600;
+    color: #fff;
+}
