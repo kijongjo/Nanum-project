@@ -1,0 +1,243 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="<c:url value='resources/css/Reset.css'/>">
+<link rel="stylesheet" href="<c:url value='resources/css/teacherD.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='ressources/css/shareDiv.css'/>">
+<!-- 폰트 -->
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
+	rel="stylesheet">
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- /////////////////////////////////////공유하기 팝업창 시작//////////////////////////////////////////////// -->
+    <!-- fixed로 고정되어 있는 wishlist 버튼이다. 기본값이 fixed였다가 scroll의 y값이 특정 위치에 가게되면
+    이 버튼의 position 상태가 변화한다.-->
+    <button class="btn-wishlist"></button>
+    <!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
+    <!-- 팝업형식으로 나온다. -->
+    <div id="pop_share">
+        <!-- 안쪽에 팝업 창에 대한 내용 -->
+        <div id="pop_inner">
+            <div id="pop_title">공유하기</div>
+            <div id="pop_content">
+                <ul>
+                    <li><a href="" id="facebook">페이스북</a></li>
+                    <li><a href="" id="twitter">트위터</a></li>
+                    <li><a href="" id="kakaoS">카카오스토리</a></li>
+                    <li><a href="" id="band">밴드</a></li>
+                    <li><a href="" id="kakaoT">카카오톡</a></li>
+                    <li><a href="" id="line">라인</a></li>
+                    <li><a href="" id="mail">메일</a></li>
+                    <li><a href="" id="url">URL복사</a></li>
+                </ul>
+
+            </div>
+            <!-- 클로즈 버튼  -->
+            <a href="" id="btn-close"></a>
+
+        </div>
+
+
+    </div>
+
+    <!-- /////////////////////////////////////////////선생님 클래스 공간 정보 출력 시작/////////////////////////////////////// -->
+    <div id="lay01">
+
+
+        <section id="left01">
+            <!-- 상세 이미지 section 설정 -->
+            <section class="detailImg">
+                <img src="https://www.public-kitchen.com/upload/teacher/ad519291-3a29-4f8c-9832-6245472a189a.jpg" alt="">
+                <!-- share 링크 -->
+                <div class="share">
+                    <!-- a링크를 누르게 되면 공유 기능이 있는 div가 나온다  -->
+                    <a href=""></a>
+                </div>
+
+            </section>
+
+        </section>
+
+
+
+        <section id="left02">
+            <!-- 클래스소개,공간소개,선생님소개 들어간다. -->
+            <!-- 선생님 등록시 입력한 자기소개 형태 그대로 들어간다. 아래의 id="career" section을 참고하기 -->
+            <section class="intro">
+                <h3>선생님 소개</h3>
+                <div class="contents"><span>프렌치, 이탈리안을 기본 베이스로 커리어를 쌓아 왔지만</span><br><span>무언가 항상 빠지는 것 같은 느낌이 들었습니다.</span><br><br><span>그러다 어느 날 아시안 요리를 접하게 되면서 '아 내가 원하던 맛은 이런거였어'를</span><span>느낀 이후로 동서양을 넘나 들며 향신료와 맛의 밸런스를 잡는 법을 알게 되었습니다.</span><br><br><span>서양 요리의 텍스쳐(질감)를 잡는 테크닉과 아시안 요리의 향신료와 맛의 밸런스를 잡는</span><br><span>법을 접목 시켜 '이 것(요리원리)' 만 알면 누구나 요리를 쉽게 할 수 있다라는 것을</span><br><span>보여 드리기 위해 공공의 주방에 같이 합류 하게 되었습니다.</span><br><br><span>현재는 주업은 요리를 하고 있지 않지만 현재도 기회만 되면 집에서 홈파티를 열어</span><br><span>사람들을 초대 해서 요리를 해 드리고 있으며 고등학교 때부터 15년간 쌓아 온 내공을</span><br><span>선보여 드리겠습니다.</span>
+                </div>
+
+            </section>
+
+            <!-- 클래스 공간 선생님의 리뷰에 대한 정보가 들어온다 -->
+            <section class="review">
+                <h3>리뷰</h3>
+                <ul>
+
+                    <li>
+                        <!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
+                        <div class="reviewInfo">
+                            <!-- 회원 이미지가 들어온다. -->
+                            <figure>
+                             
+                                <img src="<c:url value='resources/img/icon/mDefaultIcon.png'/>" alt="">
+                            </figure>
+                            <!-- 평가와 이름 적은 날짜가 온다. -->
+                            <span class="memberInfo">
+                                <!-- 평가 이모티콘 -->
+                                <figure>
+                                
+                                <img src="<c:url value='resources/img/icon/smileIcon.png'/>" alt=""></figure><strong>추천해요!</strong>
+                             <!--이름과 댓글 등록 날짜가 오게된다. -->
+                                <span >
+                                    신하림 
+                                    <!--등록 날짜가 온다 -->
+                                    <em>2020.03.25</em>
+                                </span>
+                            <p>
+                                주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나 부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와 다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을 듣고싶은 분께 정말 추천드려요!
+                            </p>
+                            <!-- 더보기 기능이 있는 a태그 -->
+                            <a href="#">더보기</a>
+                            </span>
+                        </div>
+
+
+                    </li>
+                    <li>
+                        <!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
+                        <div class="reviewInfo">
+                            <!-- 회원 이미지가 들어온다. -->
+                            <figure>
+                                <img src="<c:url value='resources/img/icon/mDefaultIcon.png'/>" alt="">
+                            </figure>
+                            <!-- 평가와 이름 적은 날짜가 온다. -->
+                            <span class="memberInfo">
+                                <!-- 평가 이모티콘 -->
+                                <figure>
+                                <img src="<c:url value='resources/img/icon/smileIcon.png'/>" alt=""></figure><strong>추천해요!</strong>
+                             <!--이름과 댓글 등록 날짜가 오게된다. -->
+                                <span >
+                                    신하림 
+                                    <!--등록 날짜가 온다 -->
+                                    <em>2020.03.25</em>
+                                </span>
+                            <p>
+                                주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나 부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와 다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을 듣고싶은 분께 정말 추천드려요!
+                            </p>
+                            <!-- 더보기 기능이 있는 a태그 -->
+                            <a href="#">더보기</a>
+                            </span>
+                        </div>
+
+
+                    </li>
+
+
+
+
+
+                </ul>
+                <p><a href="#">리뷰 펼치기</a></p>
+            </section>
+            <!-- 선생님,클래스,공간에 대한 환불정책이 나와 있다. -->
+            <section class="refundPolicy">
+                
+                <figure><img src="  <c:url value='resources/img/icon/refundPolicy1.png'/>" alt=""></figure>
+                <figure><img src="  <c:url value='resources/img/icon/refundPolicy2.png'/>" alt=""></figure>
+                <figure><img src="  <c:url value='resources/img/icon/refundPolicy3.png'/>" alt=""></figure>
+                <a href="#">접기</a>
+            </section>
+        </section>
+
+
+        </section>
+
+
+
+        <section id="right01">
+            <!--title div에는 이름 칭호 경력이 들어간다.(공간,선생님,클래스)  -->
+            <div class="title">
+                <!-- 이름과 칭호가 들어간다.(칭호는 선생님만) -->
+                <h2 class="t-title">
+                    <!-- 이름이 들어간다.(공간,선생님,클래스) -->
+                    <span class="name">김지호</span>
+                    <!-- 선생님 칭호가 들어간다.(선생님만) -->
+                    <span id="category">세계 요리 전문가</span>
+                </h2>
+                <!-- 한줄소개(선생님,공간,클래스),해시태그(클래스,공간),경력(선생님),나머지정보(선생님,공간,클래스) -->
+                <div class="cont">
+                    <!-- 한줄소개(선생님,공간,클래스) -->
+                    <div class="shortIntro">
+                        이것만 알면 요리가 쉬워진다! 그 팁을 알려드려요
+                    </div>
+
+                    <!-- 경력정보(선생님만) -->
+                    <!-- 
+                     공백도 같이 입력되도록 설정 즉 쓰는 대로 입력 되는 white-space기능을 넣었다.
+                     지금은 보여주기 위해 어쩔 수 없이 text를 br과 조합해서 써놓았지만 선생님 등록시 작성하는 경력에서
+                     쓰는 그대로 저장을 하게 되면 career section 태그에 저장된 그대로 보여지도록 설정 되어 있다.
+                   
+                   ex)
+                     경력을
+                    -경력1
+                    -경력2
+                    -경력3
+                    -경력4
+                    -경력5
+                    -경력6
+                       이러한 형식으로 쓰도록 만들고 저장할때도 형태를 유지한채로 저장되도록 만든다. 
+                    -->
+                    <section id="career">(전)<br> - 하얏트 리젠시 레이크 타호, 네바다 미국 <br> - 그랜드 인터컨티넨탈 서울<br> - 시카고 피자 수퍼바이져<br> - 도우룸 바이 스와니예 수셰프<br> - 현대 백화점 문화 센터 쿠킹 클래스<br> - 라퀴진 쿠킹 클래스<br> - 플레이팅 컴퍼니 - 메뉴 개발<br> - 요리 대회 수상 경력<br> - 팝업 레스토랑<br> - 그 외 다수 강의
+                    </section>
+                </div>
+            </div>
+            <!-- 테마(선생님,공간),위치(공간,클래스),인원(공간,클래스),활동지역(선생님)-->
+            <ul class="otherInfo">
+                <!-- 테마 정보(선생님,공간)가 들어간다. -->
+                <li id="theme">
+                    <!-- 테마,위치,인원,활동지역이라는 이름이 들어간다. -->
+                    <strong class="otherInfoName">테마</strong>
+                    <!-- 테마,위치,인원,활동지역의 내용이 들어가게 된다. 
+                    만약 주어진 너비를 넘어가게 되면 ...으로 표시한다.-->
+                    <span class="otherInfoContents">파스타</span>
+                    <span class="otherInfoContents">반찬</span>
+                    <span class="otherInfoContents">세계요리</span>
+                    <span class="otherInfoContents">중식</span>
+                    <span class="otherInfoContents">한식</span>
+                    <span class="otherInfoContents">손님</span>
+                    <span class="otherInfoContents">파스타</span>
+                    <span class="otherInfoContents">베이킹</span>
+                </li>
+
+                <!-- 활동지역(선생님만)이 들어간다. -->
+                <li id="area">
+                    <!-- 활동지역 위와 동일한 css-->
+                    <strong class="otherInfoName">지역</strong>
+                    <!-- 선생님 활동 지역에 대한 정보를 가지고 오자 어느 지역인지 어느 구인지 따로 DB에 저장 되어 있어 
+                        SPAN을 나누었음 -->
+                    <span class="otherInfoContents">서울특별시</span>
+                    <span class="otherInfoContents">관악구</span>
+                </li>
+
+
+            </ul>
+        </section>
+
+    </div>
+</body>
+
+</html>
