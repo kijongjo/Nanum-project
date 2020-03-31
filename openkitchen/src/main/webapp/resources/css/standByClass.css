@@ -1,38 +1,34 @@
+#contents_border {
+    width: 965px;
+}
 
-
-
-
-/* myBoardCancel */
 #contents_border img{
     width: 100%; height: 185px;
 }
 #contents_border h3{
-    margin: 14px 0 3px;
+    margin: 24px 0 3px;
 }
 #contents_border .Price{
     margin-bottom: 8px;
 }
-#contents_border > ul{
+
+
+#contents_border > a > ul{
     width: 965px;
     overflow: hidden;
 }
-#contents_border > ul > li{
+#contents_border > a > ul > li{
     margin: 0 10px 20px 0;
     width: 294px; height: 340px;
     overflow: hidden;
     float: left;
 }
 
-
-div > #right02 #contents_border{
-	text-align: start;
-}
-
-#contents_border .more-type2{
+.more-type2{
     padding: 0;
     font-size: 15px;
 }
-#contents_border .more-type2::after{
+.more-type2::after{
     right: -25px;
 }
 .date{
@@ -44,44 +40,57 @@ div > #right02 #contents_border{
 .date:nth-child(1)::after{
     content: "";
     position: absolute; 
-    top: 5px; right: 0;
+    top: 1px; right: 0;
     background-color: #8D8D8D;
     width: 1px; height: 14px;
 }
 
+/* 상태값 아이콘 */
+#contents_border .ico-more_arrow {
+    /* content가 없기때문에 공간을 확보 
+    사전처리로 inline속성을 변경해줘야됨
+    */
 
-/*notData  */
-div > #right02{
-   display: table;
-   height: 354px;
-}
-div > #right02 > #notData{
-    display: table-cell;
-	margin: 0 auto;
+    width: 18px;
+    height: 18px;
+    /* 글자와 아이콘을 벌리는 역할 */
+    margin-left: 8px;
+    /* 글자와 아이콘의 중앙정렬 오차를 줄이기 위함 */
+    margin-bottom: 4px;
+    /* 태그의 배경에 이미지를 씌움 */
+    background-image: url(../img/icon/ico-more_type2.png);
+    /* i태그는 inline형태라 사이즈를 변경 할 수 없음
+    inline-block 속성으로 바꿔 사이즈를 변경 할 수 있게함.
+    */
+    display: inline-block;
+    /* 배경 이미지 크기조절 속성 */
+    background-size: 100% auto;
+    /* 배경 이미지의 위치를 지정
+    가로, 세로의 위치를 지정(x, y)
+    */
+    background-position: 50% 50%;
+    /* repeat : 이미지를 어떻게 배열 할 것인지 선택 
+    no-repeat : 반복 배열하지 않음
+    */
+    background-repeat: no-repeat;
+    
     vertical-align: middle;
-    text-align: center;
-}
-div > #right02 > #notData > p{
-    font-size: 20px;
-    letter-spacing: -0.45px;
-}
-div > #right02 > #notData > p::before{
-    content: "";
-    display: block;
-    margin: 0 auto;
-    width: 65px; height: 65px;
-    background-image: url("../icon/class.png");
-    background-size: 100%;
 }
 
-/* //////////////////////// 페이징 처리 디자인 /////////////////////// */
+/* 날짜 밑에 여백 설정 */
+#contents_border .time-wrapper {
+    padding-bottom: 10px;
+}
+
 /* paging 아이콘 출력 영역 */
 .contents-paging {
     margin-top: 34px;
     text-align: center;
 }
 
-/* prev, next 아이콘 통합 설정 */
+/* prev, next 아이콘 통합 설정 
+
+*/
 .contents-paging .extra {
     /* 공간을 한정짓기 위해 포지션 relative 설정 */
     position: relative;
@@ -94,7 +103,9 @@ div > #right02 > #notData > p::before{
 
 }
 
-/* next 아이콘 설정 */
+/* next 아이콘 설정 
+   이 방식은 무엇인가..?  
+*/
 .contents-paging  ul ~ .extra {
     transform: rotate(0deg);
 }
@@ -146,38 +157,4 @@ div > #right02 > #notData > p::before{
     width: 100%;
     height: 2px;
     background-color: #8E0032;
-}
-
-/* /////////////////////// 상태값 아이콘 ///////////////////*/
-.ico-more_arrow {
-    /* content가 없기때문에 공간을 확보 
-    사전처리로 inline속성을 변경해줘야됨
-    */
-
-    width: 18px;
-    height: 18px;
-    /* 글자와 아이콘을 벌리는 역할 */
-    margin-left: 8px;
-    /* 글자와 아이콘의 중앙정렬 오차를 줄이기 위함 */
-    margin-bottom: 4px;
-    /* 태그의 배경에 이미지를 씌움 */
-    background-image: url(../img/ico-more_type2.png);
-    /* i태그는 inline형태라 사이즈를 변경 할 수 없음
-    inline-block 속성으로 바꿔 사이즈를 변경 할 수 있게함.
-    */
-    display: inline-block;
-    /* 배경 이미지 크기조절 속성 */
-    background-size: 100% auto;
-    /* 배경 이미지의 위치를 지정
-    가로, 세로의 위치를 지정(x, y)
-    */
-    background-position: 50% 50%;
-    /* repeat : 이미지를 어떻게 배열 할 것인지 선택 
-    no-repeat : 반복 배열하지 않음
-    */
-    background-repeat: no-repeat;
-    
-    vertical-align: middle;
-}
-
-
+}    

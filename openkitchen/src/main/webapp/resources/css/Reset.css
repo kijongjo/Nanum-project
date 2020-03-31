@@ -1,4 +1,7 @@
-body,h1,h2,h3,h4,h5,p,div,span,ul,ol,li,a,a:visited,input,textarea,dl,dt,dd,figure{
+ /* 태그 초기화 */
+
+body,h1,h2,h3,h4,h5,p,div,span,ul,ol,li,a,a:visited,
+dl,dt,dd,figure {
     list-style: none;
     margin: 0; padding: 0;
     box-sizing: border-box;
@@ -51,7 +54,7 @@ button >img{
     width: 1px; height: 14px;
 }
 
-/* all-content �씤湲� �겢�옒�뒪 */
+/* all-content 인기 클래스 */
 #all-content img{height: 179.77px;}
 #all-content > ul{
     display: grid;
@@ -67,7 +70,7 @@ button >img{
     letter-spacing: -1.5px;
 }
 
-/* �빑肄� */
+/* 앵콜 */
 #all-content > ul > li> a > div > span:nth-child(3){
     position: relative; 
     top: 3px; left: 2px;
@@ -136,7 +139,7 @@ button >img{
 }
 
 
-/* layout04 誘몄젙 */
+/* layout04 미정 */
 #lay03{
     display: grid;
     grid-template-columns: 250px 1fr;
@@ -164,22 +167,3 @@ button >img{
     height: 100%;
     background-color: darkcyan;
 }
-
-
-
-.more-type2{
-    position: relative;
-    padding: 0 50px;
-    top: 30px;
-    width: 200px;
-}
-.more-type2::after{
-    content: "";
-    position: absolute;
-    top: 0; right: 25px;
-    width: 18px; height: 18px;
-    background-image: url(../icon/ico-more_type2.png);
-    background-size: 100%;
-}
-
-

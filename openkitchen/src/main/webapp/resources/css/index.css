@@ -5,15 +5,16 @@ section {
 
 section>div {
 	margin-top: 70px;
-	overflow: hidden;
+	
 }
 
 section span, #item05 div div {
 	color: #7F7F7F;
 }
 
-/*-------------- Item °ø¿ëÄÚµå------------------- */
-/* Å¸ÀÌÆ² °ü·Ã */
+/*-------------- Item ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½------------------- */
+/* Å¸ï¿½ï¿½Æ² ï¿½ï¿½ï¿½ï¿½ */
+
 .itemTitle h2 {
 	letter-spacing: -1.5px;
 	font-family: 'Roboto', 'Noto', sans-serif;
@@ -23,14 +24,14 @@ section span, #item05 div div {
 	margin-top: 3px;
 }
 
-/* ¼­ºê Å¸ÀÌÆ² & ÇÑÁÙ¼Ò°³ */
+/* ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½Æ² & ï¿½ï¿½ï¿½Ù¼Ò°ï¿½ */
 div>ul>li>a>p {
 	font-size: 15px;
 	letter-spacing: -2px;
 	font-weight: 500;
 }
 
-/* ½½¶óÀÌ´õ °ø¿ë */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 .slideItem>ul {
 	margin-top: 25px;
 	display: flex;
@@ -46,7 +47,7 @@ div>ul>li>a>p {
 	font-size: 15px;
 }
 
-/* ½½¶óÀÌµå ÀÌ¹ÌÁö */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ */
 .slideItem img {
 	width: 340px;
 	height: 214px;
@@ -55,7 +56,7 @@ div>ul>li>a>p {
 #item01 img {
 	width: 100%;
 }
-/* ½½¶óÀÌµå contents */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ contents */
 .slideItem h4 {
 	margin-top: 12px;
 	font-weight: 800;
@@ -92,7 +93,7 @@ div>ul>li>a>p {
 /* -----------------------------------------------------------
         ------------------------------------------------------------- */
 
-/* Item01 ¾î¶² Å¬·¡½º¸¦ Ã£À¸½Ã³ª¿ä?*/
+/* Item01 ï¿½î¶² Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½?*/
 #item01 img {
 	height: 100%;
 }
@@ -109,8 +110,8 @@ div>ul>li>a>p {
 	width: 390px;
 }
 
-/* Item05 ¿À´ÃÀÇ ±âÈ¹Àü*/
-#item05 div div {
+/* Item05 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¹ï¿½ï¿½*/
+#item05 .hashtag div {
 	display: inline-block;
 	border: 1px solid #C6C6C6;
 	border-radius: 14px;
@@ -121,8 +122,14 @@ div>ul>li>a>p {
 	letter-spacing: -2px;
 	line-height: 25px;
 }
+ 
 
 /* Event AD */
+#Event-AD {
+	overflow: hidden;
+}
+
+
 #Event-AD img {
 	width: 100%;
 }
