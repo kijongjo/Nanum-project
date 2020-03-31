@@ -1,0 +1,284 @@
+@charset "UTF-8";
+/*  한 행 전체 공간 설정 row class */
+.row {
+	margin: 50px 0;
+}
+
+.panel-primary>.panel-heading {
+	color: #ffffff;
+	background-color: #9b2121;
+}
+/* header */
+.navbar-header {
+	height: 80px;
+}
+
+.navbar-header>a {
+	overflow: hidden;
+	height: 100%;
+}
+
+.navbar-header>a>img {
+	position: absolute;
+	left: 59px;
+	width: 114px;
+	border-radius: 97px;
+	z-index: 999;
+	bottom: -53px;
+}
+/* side bar */
+.side-nav {
+	width: 260px;
+	margin-top: 30px;
+	padding-left: 40px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	padding-left: 0;
+	font-size: 17px;
+	line-height: 25px;
+	position: relative;
+	top: 10px;
+}
+/* sidebar쪽 목록들 css 설정 */
+.selected {
+	border-left: none;
+	padding-bottom: 5px;
+	font-size: 17px;
+	font-weight: 600;
+}
+
+.selected:hover {
+	border-bottom: 3px solid white;
+}
+/* sidebar쪽 목록들 css 설정 끝 */
+/* contents */
+#page-wrapper {
+	padding-left: 52px;
+	width: auto;
+}
+
+#active p {
+	margin: 0;
+	margin-top: 64px;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+#active h1 {
+	margin: 0;
+	margin-bottom: 60px;
+	font-size: 30px;
+	line-height: 43px;
+	font-weight: 700;
+}
+/* 검색 바 css 조정 */
+#searchBar {
+	width: 300px;
+	margin-top: 15px;
+}
+/* 중간 부분 등록공간 수 현황에 대한 css 설정 */
+#spaceTotal {
+	width: 300px;
+	font-size: 20px;
+}
+/* 멤버비율 판넬 css 조정 */
+#MR-panel {
+	padding-top: 34px;
+}
+
+#MR-panel>.panel-primary {
+	border-color: #898484
+}
+/* 멤버비율 판넬 css 조정 끝*/
+
+/* 멤버비율 텍스트로 표현하기 css설정 */
+#MR-title {
+	font-size: 40px;
+	font-weight: 600;
+	color: white;
+	position: relative;
+	bottom: 2px;
+}
+/* 총인원 수 텍스트로 표현하기 css 설정 */
+.col-md-8>.panel-primary>#MR-total {
+	text-align: center;
+	position: relative;
+	right: 15px;
+	margin-bottom: 31px;
+}
+
+.col-md-8>.panel-primary>#MR-total>strong {
+	display: block;
+	margin: 30px 0;
+	font-size: 30px;
+	color: white;
+	font-weight: 600;
+}
+
+.col-md-8>.panel-primary>#MR-total>span {
+	font-size: 24px;
+	font-weight: 600;
+	color: white;
+}
+/* 총인원 수 텍스트로 표현하기 css 설정 끝 */
+
+/* 멤버(총인원 아님) 수 텍스트로 표현하기 css 설정 */
+.col-md-8>.panel-primary>#MR-family {
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	border-top: 1px solid gray;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-member {
+	display: inline-block;
+	text-align: center;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-member>strong {
+	display: block;
+	margin: 30px 0;
+	font-size: 25px;
+	color: white;
+	font-weight: 600;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-member>span {
+	font-size: 24px;
+	font-weight: 600;
+	color: white;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-member>p {
+	font-size: 15px;
+	font-weight: 600;
+}
+/* 멤버 수 텍스트로 표현하기 css 설정 끝 */
+
+/* 선생님 수 텍스트로 표현하기 css 설정 */
+.col-md-8>.panel-primary>#MR-family>div {
+	margin: 0 48px;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-teacher {
+	display: inline-block;
+	text-align: center;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-teacher>strong {
+	display: block;
+	margin: 30px 0;
+	font-size: 25px;
+	color: white;
+	font-weight: 600;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-teacher>p {
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-teacher>span {
+	font-size: 24px;
+	font-weight: 600;
+	color: white;
+}
+/* 선생님 수 텍스트로 표현하기 css 설정 끝 */
+
+/* 호스트 수 텍스트로 표현하기 css 설정 */
+.col-md-8>.panel-primary>#MR-family>#MR-host {
+	display: inline-block;
+	text-align: center;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-host>strong {
+	display: block;
+	margin: 30px 0;
+	font-size: 25px;
+	color: white;
+	font-weight: 600;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-host>span {
+	font-size: 24px;
+	font-weight: 600;
+	color: white;
+}
+
+.col-md-8>.panel-primary>#MR-family>#MR-host>p {
+	font-size: 15px;
+	font-weight: 600;
+}
+/* 호스트 수 텍스트로 표현하기 css 설정 끝 */
+
+/* 선생님 ,클래스, 공간의 현황을 보여주는 텍스트  css 설정 */
+#CTS-row>.col-lg-12>.panel-primary {
+	border: 0px;
+	background-color: #060606;
+}
+/* month over month 폰트 css 설정 */
+#CTS-row>.col-lg-12>.panel-primary>span {
+	font-size: 40px;
+	font-weight: 600;
+	color: white;
+	position: relative;
+	left: 5px;
+}
+/* 배경 색 지정  */
+#CTS-row>.col-lg-12>.panel-primary>.panel-body {
+	text-align: center;
+	margin-top: 14px;
+}
+
+#CTS-row>.col-lg-12>.panel-primary>.panel-body>ul {
+	list-style: none;
+	width: 80%;
+	/* li가 float이라 overflow 써줌. */
+	overflow: hidden;
+	margin-left: 100px;
+	padding: 0;
+}
+
+#CTS-row>.col-lg-12>.panel-primary>.panel-body>ul:nth-child(2) {
+	/* 두번째 ul 조금 떨어트림 */
+	margin-top: 32px;
+	/* ul간의 경계선 만들기 */
+	border-top: 1px solid white;
+	padding-top: 31px;
+}
+
+#CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li {
+	/* 가로 정렬 */
+	float: left;
+	/* 간격유지 */
+	padding-right: 44px;
+	width: 33%;
+}
+/* title 옆 icon css 설정  */
+#CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>p>span {
+	color: #BDBDBD;
+	margin-right: 3px;
+}
+/*  p에 폰트 디자인 설정하기  */
+#CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>p:nth-child(1) {
+	color: white;
+	font-weight: 400;
+}
+
+#CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>p:nth-child(2) {
+	font-size: 37px;
+	color: white;
+	font-weight: 600;
+}
+
+#CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>span {
+	font-size: 17px;
+}
+/* Icon을 감싸는 span의 css설정 Icon의 색 위치를 조정한다. */
+#CTS-row>.col-lg-12>.panel-primary>.panel-body>ul>li>.CTS-pIcon {
+	position: relative;
+	top: 7px;
+}
+/* 업 방향 */
+/* 선생님 클래스 공간의 현황을 보여주는 텍스트 css 설정 끝 */

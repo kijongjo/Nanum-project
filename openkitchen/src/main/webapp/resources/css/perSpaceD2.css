@@ -1,0 +1,341 @@
+@charset "UTF-8";
+
+/* 왼쪽  sidebar 잡아주기 */
+#lay03>#left01>div {
+	margin-bottom: 60px;
+}
+
+#lay03>#left01 p {
+	font-weight: 200;
+}
+
+#lay03>#left01 h1 {
+	font-size: 30px;
+	font-weight: 900;
+	line-height: 43px;
+}
+
+#lay03>#left01>div:nth-child(2) span {
+	display: block;
+	margin-top: 16px;
+	color: #838383;
+	cursor: pointer;
+	position: relative;
+}
+
+/* 가이드라인 확인하기 옆 Icon css 설정 */
+#lay03>#left01>div:nth-child(2) span::after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	display: inline-block;
+	margin-left: 8px;
+	width: 17px;
+	height: 17px;
+	background-image: url(../img/icon/ico-tooltip.png);
+	background-size: 100%;
+}
+
+/* 리스트 항목 css 설정 */
+#lay03>#left01 a {
+	display: block;
+	margin-bottom: 20px;
+	padding-bottom: 2px;
+	font-size: 17px;
+	line-height: 25px;
+	font-weight: 200;
+}
+
+#left01>div:nth-child(3)>a {
+	width: 85px;
+	position: relative;
+}
+
+#left01>div:nth-child(3)>a::after {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 3px;
+	right: -2px;
+	width: 19px;
+	height: 18px;
+	background-image: url("../img/icon/ico-tab_check.svg");
+	background-position: -19px;
+}
+/* 리스트 항목 css 설정  끝*/
+
+/* 선택시 체크된 모양의 Icon 생성에 관한 css 설정 */
+#lay03>#left01 .On_active {
+	font-weight: 600;
+	border-bottom: 3px solid #8E0032;
+	position: relative;
+}
+
+#lay03>#left01 .On_active::after {
+	content: "";
+	display: inline-block;
+	position: absolute;
+	top: 3px;
+	right: -2px;
+	width: 19px;
+	height: 18px;
+	background-image: url("../img/icon/ico-tab_check.svg");
+	background-position: 0;
+}
+/* 선택시 체크된 모양의 Icon 생성에 관한 css 설정  끝*/
+
+/* 오른쪽 css 설정*/
+#right01 {
+	padding: 45px 0 120px 60px;
+	background-color: #F6F5F5;
+	font-size: 15px;
+	line-height: 22px;
+}
+/* 항목 타이틀 */
+#right01>form>h4 {
+	margin-bottom: 8px;
+	color: #5B5B5B;
+}
+
+#right01>form>h4:nth-child(n+2) {
+	margin-top: 40px;
+}
+
+/* input:text를 감싸는 div 넓이와 색깔을 조정한다. */
+.basic_apply {
+	width: 855px;
+	background-color: white;
+}
+
+#apply02 p {
+	padding-top: 10px;
+	background-color: #F6F5F5;
+	color: #838383;
+}
+/* 프로필 사진 */
+#apply01 p {
+	width: 580px;
+	font-weight: 200;
+	color: #B7B7B7;
+}
+
+
+/* input text 기본 css 설정 */
+#right01 input {
+	border: none;
+	padding: 0 20px;
+	width: 815px;
+	height: 46px;
+}
+/* txtarea 기본 css 설정 */
+#right01 textarea {
+	border: none;
+	outline-color: #8E0032;
+	width: 100%;
+	height: 100%;
+	font: 400 13.3333px Arial;
+	word-break: keep-all;
+	overflow: auto;
+	vertical-align: top;
+	resize: none;
+}
+
+
+
+
+
+#apply02 p, #form2>div:nth-child(2) p {
+	padding-top: 10px;
+	background-color: #F6F5F5;
+	color: #838383;
+}
+/* 승인 보류 돌아가기 버튼을 감싸는 div 설정*/
+#btn_submit {
+	width: 855px;
+	margin-top: 50px;
+}
+
+#btn_submit div {
+	float: right;
+}
+
+#btn_submit input {
+	border-radius: 3px;
+	margin-left: 12px;
+	width: 168px;
+	height: 64px;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 64px;
+}
+
+#btn_submit input:nth-child(1) {
+	color: #2e2e2e;
+	background-color: white;
+		cursor: pointer;
+}
+
+#btn_submit input:nth-child(2) {
+	color: #2e2e2e;
+	background-color: white;
+	cursor: pointer;
+}
+
+#btn_submit input:nth-child(3) {
+	color: white;
+	background-color: #8E0032;
+	cursor: pointer;
+}
+/* 승인 보류 돌아가기 버튼을 감싸는 div 설정 끝 */
+
+#right01 h3 {
+	margin: 40px 0 8px;
+	color: #5B5B5B;
+	font-size: 15px;
+}
+
+#right01 h3 span {
+	margin-left: 5px;
+	font-weight: 400;
+	color: #838383;
+}
+
+
+/* 1과 다른코드 나중에 이것만 합치자 */
+#form2>div:nth-child(2) div {
+	margin-top: 15px;
+}
+/*/////////////////////////////////////////체크박스 모듈//////////////////////////////////// */
+#all-check {
+	border-bottom: 2px solid #e5e5e5;
+	margin: 30px 0 16px;
+	padding-bottom: 16px;
+}
+
+.checkboxSection div {
+	position: relative;
+}
+
+.checkboxSection div.checkboxWrap {
+	display: flex;
+}
+/* 넓이 조정하기 */
+.checkboxSection div#WrapWidth1 {
+	width: 82px;
+}
+
+.checkboxSection div#WrapWidth2 {
+	width: 130px;
+}
+
+.checkboxSection div.checkbox {
+	width: 100%;
+	position: relative;
+	float: left;
+}
+
+.checkboxSection div.checkbox input {
+	width: 60%;
+}
+/* checkBox */
+/* 기본 체크박스 디자인 삭제하기 (라벨을 대신 쓰기 위함) */
+input[type="checkbox"] {
+	display: block;
+	top: -1px;
+	padding: 10;
+	opacity: 0;
+	cursor: pointer;
+	height: 20px;
+	position: relative;
+	z-index: 3;
+}
+/* 체크박스의 위치 지정 요소 */
+input[type="checkbox"]+label {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	z-index: 1;
+}
+/* 체크박스 새로운 디자인 (라벨 이용) */
+input[type="checkbox"]+label:before {
+	content: "";
+	display: block;
+	/* 체크박스 크기조절 */
+	width: 15px;
+	height: 15px;
+	line-height: 18px;
+	margin: 0px 8px 0 0;
+	text-align: center;
+	background: #fff;
+	border: 1px solid #cacece;
+	border-radius: 3px;
+}
+/* 클릭할시 디자인 */
+input[type="checkbox"]:checked+label:before {
+	background-image: url("../img/icon/bg-checkbox.png");
+	/* 클릭할 시 체크박스 모양 디자인 */
+	background-position-x: -17px;
+	background-repeat: no-repeat;
+	background-size: 214%;
+}
+/* 체크박스 txt */
+input[type="checkbox"]+label::after {
+	width: 300px;
+	position: absolute;
+	top: -3px;
+	left: 30px;
+	font-weight: 400;
+	font-size: 16px;
+	color: #838383;
+}
+/* input check박스의 속성에 name값을 주면 해당 name값에 맞는 text가 check 박스 옆에 보이게 된다. */
+
+/* 사업자유형 type1~ type4로 지정 */
+input[name="F-type1"]+label::after {
+	content: "화장실";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="F-type2"]+label::after {
+	content: "환풍기";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="F-type3"]+label::after {
+	content: "전등";
+	font-weight: 600;
+	color: #838383;
+}
+/* 클래스 만들기 */
+input[name="F-type4"]+label::after {
+	content: "주차시설";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="S-type1"]+label::after {
+	content: "소화기";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="S-type2"]+label::after {
+	content: "화재 감지기";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="S-type3"]+label::after {
+	content: "안전 카드";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="S-type4"]+label::after {
+	content: "구급 상자";
+	font-weight: 600;
+	color: #838383;
+}
+/*/////////////////////////////////////////   체크박스 모듈 끝//////////////////////////////////// */
