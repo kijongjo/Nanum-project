@@ -12,6 +12,13 @@ public class UserController {
 		return "/mypage/myInfo/mypageIn";
 	}
 	
+	@RequestMapping(value = {"cookBookD", "cookRefunD"})
+	public String cookIn(@RequestParam("no")String no, Model model) {
+		System.out.println(no);
+		model.addAttribute("no", no);
+		
+		return "/mypage/class/cookIn";
+	}
 	
 	@RequestMapping(value = {"standByClass", "ongoingClass", "completeClass"})
 	public String openClassD(@RequestParam("no")String no, Model model) {
@@ -29,12 +36,32 @@ public class UserController {
 		return "/mypage/class/openSpaceD";
 	}
 	
-	@RequestMapping(value = {"cookBookD", "cookRefunD"})
-	public String cookIn(@RequestParam("no")String no, Model model) {
-		System.out.println(no);
-		model.addAttribute("no", no);
-		
-		return "/mypage/class/cookIn";
+	@RequestMapping(value = {"message"})
+	public String message() {	
+		return "/mypage/myInfo/message";
 	}
 	
+	
+	@RequestMapping(value = {"alarmD"})
+	public String alarmD() {	
+		return "/mypage/myInfo/alarmD";
+	}
+	
+	
+//	@RequestMapping(value = {"standByClass"})
+//	public String standByClass(@RequestParam("no")String no) {
+//		System.out.println(no);
+//		
+//		
+//		return "/mypage/class/standByClass";
+//	}
+//	
+//	@RequestMapping(value = {"ongoingClass"})
+//	public String ongoingClass(@RequestParam("no")String no, Model model) {
+//		System.out.println(no);
+//		model.addAttribute("no", no);
+//		
+//		
+//		return "/mypage/class/openClassD";
+//	}
 }

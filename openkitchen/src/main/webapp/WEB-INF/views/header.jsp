@@ -19,7 +19,7 @@
     </div>
         
     <div>
-        <img src="<c:url value='/resources/img/icon/expansion.png'/>" alt="expansion">
+        <a href="mypageIn"><img src="<c:url value='/resources/img/icon/expansion.png'/>" alt="expansion"></a>
     </div>
    
 </div>
