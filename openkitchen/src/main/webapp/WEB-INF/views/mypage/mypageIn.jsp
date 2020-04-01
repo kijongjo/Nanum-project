@@ -77,13 +77,13 @@
                         <ul class="list">
                             <li><a href="cookBookD?no=1">예약 클래스</a></li>
                             <li><a href="cookRefunD?no=2">취소/환불</a></li>
-                            <li><a href="completeClass?no=3">종료 클래스</a></li>
+                            <li><a href="cookEndD?no=3">종료 클래스</a></li>
                         </ul>
                     </div>
                     <div class="list-wrap">
                         <h2 class="title">클래스 만들기</h2>
                         <ul class="list">
-                            <li><a href="">임시저장 <i class="ico-more_arrow"></i></a></li>
+                            <li><a href="teacherBase?no=1">임시저장 <i class="ico-more_arrow"></i></a></li>
                             <li><a href="standByClass?no=1">대기 클래스 </a></li>
                             <li><a href="ongoingClass?no=2">진행 클래스 </a></li>
                             <li><a href="completeClass?no=3">종료 클래스 </a></li>

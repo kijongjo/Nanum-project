@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<c:url value='/resources/css/Reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/contents.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
@@ -21,7 +21,7 @@
             <ul>
                 <li>
                     <a href="#">
-						<img src="<c:url value='/resources/testimg/class/AK분당-알록달록컬러파스타0.jpg'/>" alt="" />
+						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h3> 이유의계절:봄-레몬파운드 케익</h3>
                         <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
                         <div>
@@ -33,7 +33,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/testimg/class/Pithivier(피티비에)0.jpeg'/>" alt="">
+                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h3> 이유의계절:봄-레몬파운드 케익</h3>
                         <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
                         <div>
@@ -45,7 +45,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/testimg/class/건강간식 도라지양갱0.jpg'/>" alt="">
+                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h3>이유의계절:봄-레몬파운드 케익</h3>
                         <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
                         <div>
@@ -57,7 +57,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/testimg/class/건강간식 도라지양갱0.jpg'/>" alt="">
+                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <img src="../class/향 은은 얼그레이 초코쿠키0.jpg" alt="">
                         <h3>이유의계절:봄-레몬파운드 케익</h3>
                         <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
@@ -75,7 +75,7 @@
 
         <div>
             <a href="#">
-                <img src="<c:url value='/resources/testimg/Class-Enrollment-AD.jpg'/>" alt="">
+                <img src="<c:url value='/resources/img/testimg/testbanner.jpg'/>" alt="" />
             </a>
         </div>
 
@@ -87,7 +87,7 @@
             <ul>
                 <li>
                     <a href="#">
-                		<img src="<c:url value='/resources/testimg/sample01.jpg'/>" alt="">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h4>향 은은 얼그레이 초코쿠키</h4>
                         <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
                         <div>
@@ -100,7 +100,7 @@
                 <!-- 테스트용 복사코드-->
                 <li>
                     <a href="#">
-                		<img src="<c:url value='/resources/testimg/sample02.jpg'/>" alt="">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h4>손이가요 손이가! 해물잡채</h4>
                         <p>한식 클래스</p>
                         <div>
@@ -112,7 +112,7 @@
                 </li>
                 <li>
                     <a href="#">
-                    	<img src="<c:url value='/resources/testimg/sample03.jpg'/>" alt="">
+                    	<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h4>향 은은 얼그레이 초코쿠키</h4>
                         <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
                         <div>
@@ -124,7 +124,7 @@
                 </li>
                 <li>
                     <a href="#">
-                		<img src="<c:url value='/resources/testimg/sample10.jpg'/>" alt="">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h4>향 은은 얼그레이 초코쿠키</h4>
                         <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
                         <div>
@@ -136,7 +136,7 @@
                 </li>
                 <li>
                     <a href="#">
-                		<img src="<c:url value='/resources/testimg/sample10.jpg'/>" alt="">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h4>향 은은 얼그레이 초코쿠키</h4>
                         <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
                         <div>
@@ -148,7 +148,7 @@
                 </li>
                 <li>
                     <a href="#">
-                		<img src="<c:url value='/resources/testimg/sample03.jpg'/>" alt="">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h4>향 은은 얼그레이 초코쿠키</h4>
                         <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
                         <div>
@@ -160,7 +160,7 @@
                 </li>
                 <li>
                     <a href="#">
-                		<img src="<c:url value='/resources/testimg/sample02.jpg'/>" alt="">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h4>향 은은 얼그레이 초코쿠키</h4>
                         <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
                         <div>
@@ -172,7 +172,7 @@
                 </li>
                 <li>
                     <a href="#">
-                		<img src="<c:url value='/resources/testimg/sample01.jpg'/>" alt="">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h4>향 은은 얼그레이 초코쿠키</h4>
                         <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
                         <div>
@@ -191,7 +191,7 @@
 
         <button>
             	더 많은 공간이 궁금하다면?
-            <img src='<c:url value='/resources/testimg/icon/ico-more.png'/>' alt="more">
+            <img src='<c:url value='/resources/img/icon/ico-more.png'/>' alt="more">
         </button>
     </div>
 </body>

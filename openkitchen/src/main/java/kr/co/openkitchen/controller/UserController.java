@@ -12,13 +12,22 @@ public class UserController {
 		return "/mypage/mypageIn";
 	}
 	
-	@RequestMapping(value = {"cookBookD", "cookRefunD"})
+	@RequestMapping(value = {"cookBookD", "cookRefunD", "cookEndD"})
 	public String cookIn(@RequestParam("no")String no, Model model) {
 		System.out.println(no);
 		model.addAttribute("no", no);
 		
 		return "/mypage/class/cookIn";
 	}
+	
+	@RequestMapping(value = {"teacherBase","teacherSpace"})
+	public String teacherBase(@RequestParam("no")String no, Model model) {
+		System.out.println(no);
+		model.addAttribute("no", no);
+		
+		return "/mypage/teacher/teacherDiscription";
+	}
+	
 	
 	@RequestMapping(value = {"standByClass", "ongoingClass", "completeClass"})
 	public String openClassD(@RequestParam("no")String no, Model model) {
