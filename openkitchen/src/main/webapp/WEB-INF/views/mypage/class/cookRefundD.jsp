@@ -5,7 +5,7 @@
 	<ul>
 		<li>
 			<a href="#">
-				<img src="../class/해물솥밥1.jpg" alt="">
+				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
 				<h3>달래쭈꾸미장과 덮밥</h3>
 				<div>
 					<span class="date">2020.04.23(목)</span> 
@@ -17,7 +17,7 @@
 		<!-- 복사코드  -->
 		<li>
 			<a href="#">
-				<img src="../class/해물솥밥1.jpg" alt="">
+				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
 				<h3>달래쭈꾸미장과 덮밥</h3>
 				<div>
 					<span class="date">2020.04.23(목)</span> 
@@ -28,7 +28,7 @@
 		</li>
 		<li>
 			<a href="#">
-				<img src="../class/해물솥밥1.jpg" alt="">
+				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
 				<h3>달래쭈꾸미장과 덮밥</h3>
 				<div>
 					<span class="date">2020.04.23(목)</span> 

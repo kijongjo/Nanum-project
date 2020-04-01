@@ -12,10 +12,9 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/lay03_sideBar.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/contents_board.css'/>">
 
-<style>
-
-</style>
-
+<script>
+	
+</script>
 </head>
 <body>
 <jsp:include page="../../header.jsp" flush="false" />
@@ -26,9 +25,9 @@
 				<h1>요리 배우기</h1>
 			</div>
 			<div class="list">
-				<a href="cookBookD?no=1"><div class="select-On">예약 클래스</div></a>
-				<a href="cookRefunD?no=2"><div>취소 / 환불</div></a>
-				<a href="#"><div>종료 클래스</div></a>
+				<a href="cookBookD?no=1" ><div class="select-On">예약 클래스</div></a>
+				<a href="cookRefunD?no=2" class="active-color"><div>취소 / 환불</div></a>
+				<a href="cookEndD?no=3"><div>종료 클래스</div></a>
 			</div>
 
 		</section>
@@ -42,7 +41,7 @@
 				<jsp:include page="cookRefundD.jsp"></jsp:include>            					
 			</c:when>
 			<c:when test="${no eq 3}">
-				<jsp:include page="notData.jsp"></jsp:include>
+				<jsp:include page="cookEndD.jsp"></jsp:include>
 		                					
 			
 			</c:when>
