@@ -11,15 +11,22 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="<c:url value='/resources/css/index-slide.css'/>">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
+<script src="<c:url value='/resources/js/index-slide.js'/>"></script>
+
+
 </head>
 <body>
 	<jsp:include page="../../header.jsp" flush="false" />
     <div id="content">
-        <div id="new-content">
+        <div id="new-content" class="c-slide">
             <div>
                 <h1>새로운 클래스</h1>
             </div>
-            <ul>
+            <ul class="bxslider">
                 <li>
                     <a href="#">
 						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
@@ -68,7 +75,6 @@
                 <li>
                     <a href="#">
                         <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <img src="../class/향 은은 얼그레이 초코쿠키0.jpg" alt="">
                         <h3>이유의계절:봄-레몬파운드 케익</h3>
                         <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
                         <div>

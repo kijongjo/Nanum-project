@@ -10,7 +10,7 @@
 <body>
 <footer>
 	<div>
-	    <div id="footerLeft_wrap"><img src="../icon/logo2.png" alt=""></div>
+	    <div id="footerLeft_wrap"><img src="<c:url value='/resources/img/icon/logo2.png'/>" alt=""></div>
 	    <div id="footerRight_wrap">
 	        <div>
 	            <ul>
