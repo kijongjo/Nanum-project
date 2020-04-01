@@ -22,49 +22,44 @@
                 <li>
                     <a href="#">
 						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3> 이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+                        <h3>로푸드팜</h3>
+                        <p>NO 우유, 계란, 버터를 사용하지 않은 비건요리 전문 스튜디오입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
+                            <span>베이킹스튜디오</span>
+                            <span class="info-sortation">서울특별시 마포구</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3> 이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
+                        <h3>로푸드팜</h3>
+                        <p>NO 우유, 계란, 버터를 사용하지 않은 비건요리 전문 스튜디오입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
+                            <span>베이킹스튜디오</span>
+                            <span class="info-sortation">서울특별시 마포구</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
+                        <h3>로푸드팜</h3>
+                        <p>NO 우유, 계란, 버터를 사용하지 않은 비건요리 전문 스튜디오입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
+                            <span>베이킹스튜디오</span>
+                            <span class="info-sortation">서울특별시 마포구</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <img src="../class/향 은은 얼그레이 초코쿠키0.jpg" alt="">
-                        <h3>이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
+                        <h3>로푸드팜</h3>
+                        <p>NO 우유, 계란, 버터를 사용하지 않은 비건요리 전문 스튜디오입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
+                            <span>베이킹스튜디오</span>
+                            <span class="info-sortation">서울특별시 마포구</span>
                         </div>
                     </a>
                 </li>
@@ -88,12 +83,12 @@
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>주스앤그로서리 연구소</h3>
+                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>카페</span>
+                            <span>경기도 구리시</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
@@ -101,84 +96,84 @@
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>손이가요 손이가! 해물잡채</h4>
-                        <p>한식 클래스</p>
+                        <h3>주스앤그로서리 연구소</h3>
+                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                    	<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>카페</span>
+                            <span>경기도 구리시</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>주스앤그로서리 연구소</h3>
+                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>카페</span>
+                            <span>경기도 구리시</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>주스앤그로서리 연구소</h3>
+                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>카페</span>
+                            <span>경기도 구리시</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>주스앤그로서리 연구소</h3>
+                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>카페</span>
+                            <span>경기도 구리시</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>주스앤그로서리 연구소</h3>
+                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>카페</span>
+                            <span>경기도 구리시</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>주스앤그로서리 연구소</h3>
+                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>카페</span>
+                            <span>경기도 구리시</span>
+                            <span>수업중</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
+                        <h3>주스앤그로서리 연구소</h3>
+                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
+                        <div>
+                            <span>카페</span>
+                            <span>경기도 구리시</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
