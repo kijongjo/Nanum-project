@@ -26,7 +26,7 @@
                         <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
                             <span>티</span>
-                            <span class="t-info-sortation">경상북도 경주시</span>
+                            <span class="info-sortation">경상북도 경주시</span>
                         </div>
                     </a>
                 </li>
@@ -37,7 +37,7 @@
                         <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
                             <span>티</span>
-                            <span class="t-info-sortation">경상북도 경주시</span>
+                            <span class="info-sortation">경상북도 경주시</span>
                         </div>
                     </a>
                 </li>
@@ -48,7 +48,7 @@
                         <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
                             <span>티</span>
-                            <span class="t-info-sortation">경상북도 경주시</span>
+                            <span class="info-sortation">경상북도 경주시</span>
                         </div>
                     </a>
                 </li>
@@ -59,7 +59,7 @@
                         <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
                             <span>티</span>
-                            <span class="t-info-sortation">경상북도 경주시</span>
+                            <span class="info-sortation">경상북도 경주시</span>
                         </div>
                     </a>
                 </li>
