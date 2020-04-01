@@ -82,7 +82,7 @@
             <div id="btn_submit">
                 <div>
                     <input type="submit" value="임시저장">
-                    <input type="submit" value="다음">
+                    <input type="submit" value="작성완료">
                 </div>
             </div>
         </form>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <form action="" id="makeTeacher01">
 	<h4>프로필 사진</h4>
 	<div class="basic_apply image_upload" id="apply01">
@@ -121,7 +122,7 @@
     <div id="btn_submit">
         <div>
             <input type="submit" value="임시저장">
-            <input type="submit" value="다음">
+ 			<a href="teacherSpace?no=2"><input type="button" value="다음"></a>
         </div>
     </div>
 
