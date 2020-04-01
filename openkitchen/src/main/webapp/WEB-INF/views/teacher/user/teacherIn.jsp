@@ -22,48 +22,44 @@
                 <li>
                     <a href="#">
 						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3> 이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
+                            <span>티</span>
+                            <span class="t-info-sortation">경상북도 경주시</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3> 이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
+                            <span>티</span>
+                            <span class="t-info-sortation">경상북도 경주시</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
+                            <span>티</span>
+                            <span class="t-info-sortation">경상북도 경주시</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
+                            <span>티</span>
+                            <span class="t-info-sortation">경상북도 경주시</span>
                         </div>
                     </a>
                 </li>
@@ -86,12 +82,12 @@
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>티</span>
+                            <span>서울특별시 강동구</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
@@ -99,84 +95,84 @@
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>손이가요 손이가! 해물잡채</h4>
-                        <p>한식 클래스</p>
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                    	<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>티</span>
+                            <span>서울특별시 강동구</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>티</span>
+                            <span>서울특별시 강동구</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>티</span>
+                            <span>서울특별시 강동구</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>티</span>
+                            <span>서울특별시 강동구</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>티</span>
+                            <span>서울특별시 강동구</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>티</span>
+                            <span>서울특별시 강동구</span>
+                            <span>수업중</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
+                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
+                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
+                        <div>
+                            <span>티</span>
+                            <span>서울특별시 강동구</span>
+                            <span>수업중</span>
                         </div>
                     </a>
                 </li>

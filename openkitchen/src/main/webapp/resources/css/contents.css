@@ -10,8 +10,15 @@ span {
 	font-size: 14.5px;
 }
 
+/* 전문가명  */
+.expert-name {
+	color: black;
+	font-size: 18.72px;
+	font-weight: normal;
+}
+
 /* after */
-div>span:nth-child(1)::after, #new-content span:nth-child(2)::after {
+#new-content span:nth-child(1)::after, #new-content span:nth-child(2)::after {
 	content: "";
 	display: inline-block;
 	position: relative;
@@ -20,6 +27,15 @@ div>span:nth-child(1)::after, #new-content span:nth-child(2)::after {
 	margin-right: 5px;
 	height: 12px;
 }
+
+#new-content span.t-info-sortation::after {
+	border: none;
+	display: none;
+}
+
+
+
+
 
 div>span:nth-child(1), div>span:nth-child(2) {
 	padding-right: 5px;

@@ -46,7 +46,7 @@ button >img{
 #all-content > ul > li > a > div > span:nth-child(1)::after{
     content: "";
     position: absolute; 
-    top: 5px; right: 0;
+    top: 1px; right: 0;
     background-color: #8D8D8D;
     width: 1px; height: 14px;
 }
@@ -70,7 +70,7 @@ button >img{
 /* �빑肄� */
 #all-content > ul > li> a > div > span:nth-child(3){
     position: relative; 
-    top: 3px; left: 2px;
+    top: 5px; left: 2px;
     display: inline-block;
     overflow: hidden;
     border: 1px solid rgba(142,0,50,.6);
