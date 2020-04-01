@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/MainSlider.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/index.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/Reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -438,5 +439,6 @@
             <img src='<c:url value='/resources/testimg/icon/ico-more.png'/>' alt="more">
         </button>
     </section>
+    
 </body>
 </html>
