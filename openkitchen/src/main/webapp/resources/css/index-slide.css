@@ -121,6 +121,18 @@
     top:32%
   }
   
+  
+  /* 선생님 슬라이드 버튼 위치 조정  */
+  .t-slide .bx-wrapper .bx-controls-direction a {
+  	top: 42.5%;
+  }
+  
+  /* 공간 슬라이드 버튼 위치 조정  */
+  .s-slide .bx-wrapper .bx-controls-direction a {
+  	top: 40%;
+  }
+  
+  
   /* 컨트롤 버튼 종합 설정 */
   .bx-wrapper .bx-controls-direction a {
     position: absolute;

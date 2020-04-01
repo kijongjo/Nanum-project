@@ -45,31 +45,33 @@ div>span:nth-child(1), div>span:nth-child(2) {
 }
 
 /* new contents */
-#new-content>ul {
+/* #new-content>ul {
 	overflow: hidden;
 	display: flex;
 	margin-top: 25px;
-}
+} */
 
-#new-content>ul>li {
+/* #new-content .bxslider li {
 	padding-right: 15px;
-}
+} */
 
-#new-content>ul>li img {
+#new-content .bxslider img {
 	width: 340px;
 	height: 340px;
+	margin-bottom: 12px;
 }
 
-#new-content>ul>li h2 {
+#new-content .bxslider h2 {
 	font-size: 19px;
 	font-weight: 600;
 }
 
-#new-content>ul>li p {
+#new-content .bxslider p {
 	line-height: 1.45;
 	font-size: 17px;
 	margin-bottom: 5px;
 }
+
 
 /* AD */
 #content>div:nth-child(2) {
