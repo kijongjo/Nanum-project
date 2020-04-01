@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,8 +56,8 @@
 	            </div>
 	        </div>
 	        <div id="sns">
-	            <a href="https://www.facebook.com/publickitchen.korea/"><img src="../icon/facebook.png" alt="facebook"></a>
-	            <a href="https://www.instagram.com/publickitchen/"><img src="../icon/instargram.png" alt="instagram"></a>
+	            <a href="https://www.facebook.com/publickitchen.korea/"><img src="<c:url value='/resources/img/icon/facebook.png'/>" alt="facebook"></a>
+	            <a href="https://www.instagram.com/publickitchen/"><img src="<c:url value='/resources/img/icon/instagram.png'/>" alt="instagram"></a>
 	        </div>
 	    </div>
 	</div>

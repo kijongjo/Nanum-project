@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/resources/css/message.css'/>" >
     <link rel="stylesheet" href="<c:url value='resources/css/Header.css' />">
+    <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 </head>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- strong과 p 태그의 임의의 글 넣어놈 테스트 용이기 때문에 지워서 el 태그 사용해서 가져오면 됨 -->
@@ -186,4 +187,5 @@
         <div id="msgGrayDim">
         </div>
     </div>
+    <jsp:include page="../../footer.jsp" flush="false" />
 </body>

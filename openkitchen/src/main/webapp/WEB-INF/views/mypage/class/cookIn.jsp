@@ -9,11 +9,20 @@
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/lay03_sideBar.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/contents_board.css'/>">
 
 <script>
-	
+	window.onload = function () {
+		var no = ${no}
+		if (no=="1") {
+			var atag = document.getElementsByClassName("active-color");
+			console.log(atag);
+			atag.style.backgroundColor = "blue";
+			
+		}
+	}
 </script>
 </head>
 <body>
@@ -26,7 +35,7 @@
 			</div>
 			<div class="list">
 				<a href="cookBookD?no=1" ><div class="select-On">예약 클래스</div></a>
-				<a href="cookRefunD?no=2" class="active-color"><div>취소 / 환불</div></a>
+				<a href="cookRefunD?no=2" class="active-color">취소 / 환불</a>
 				<a href="cookEndD?no=3"><div>종료 클래스</div></a>
 			</div>
 
@@ -50,7 +59,7 @@
 			
 		</c:choose>	
 		</section>
-
 	</div>
+	<jsp:include page="../../footer.jsp" flush="false" />
 </body>
 </html>
