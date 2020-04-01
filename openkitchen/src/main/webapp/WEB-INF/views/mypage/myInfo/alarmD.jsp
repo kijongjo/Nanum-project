@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/alarmD.css'/>">
 <link rel="stylesheet" href="<c:url value='resources/css/Header.css' />">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 </head>
 <body>
 <jsp:include page="../../header.jsp" />
@@ -138,5 +139,6 @@
       </div>
       <div id="msgGrayDim"></div>
    </div>
+   <jsp:include page="../../footer.jsp" flush="false" />
 </body>
 </html>

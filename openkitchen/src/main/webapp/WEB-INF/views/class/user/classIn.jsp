@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/contents.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -230,5 +231,6 @@
             <img src='<c:url value='/resources/img/icon/ico-more.png'/>' alt="more">
         </button>
     </div>
+    <jsp:include page="../../footer.jsp" flush="false" />
 </body>
 </html>

@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="adminIndex.html">
-                   <img id="logo3" src="<c:url ref='img/icon/logo3.png' />" alt="">
+                   <img id="logo3" src="<c:url value='/resources/img/icon/logo3.png' />" alt="">
                 </a>
             </div>
 

@@ -13,6 +13,7 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/index-slide.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
@@ -483,5 +484,6 @@
             <img src='<c:url value='/resources/img/icon/ico-more.png'/>' alt="more">
         </button>
     </section>
+    <jsp:include page="footer.jsp" flush="false" />
 </body>
 </html>
