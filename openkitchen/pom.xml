@@ -205,6 +205,18 @@
 			<version>1.4</version>
 		</dependency>
 		
+		<!--jSON파일로 변형 시키는 라이브러리   -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+	
 	</dependencies>
 	<build>
 		<plugins>

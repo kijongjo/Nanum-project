@@ -71,7 +71,10 @@ div>ul>li>a>p {
 .slideItem ul li>a>div:nth-child(4) {
 	margin-top: 10px;
 }
-
+#showMoreInfo{
+	border: 0;
+    outline: 0;
+}
 /* sapn after */
 .slideItem>ul>li>a>div>span:nth-child(1), .slideItem>ul>li>a>div>span:nth-child(2)
 	{
