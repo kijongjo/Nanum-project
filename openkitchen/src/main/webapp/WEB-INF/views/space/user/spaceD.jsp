@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="<c:url value='resources/css/Reset.css'/>">
+<link rel="stylesheet" href="<c:url value='resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='resources/css/spaceD.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='resources/css/shareDiv.css'/>">
@@ -21,6 +21,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="<c:url value='resources/js/spaceD.js'/>"></script>
 
+<script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
 <title>Document</title>
 </head>
 

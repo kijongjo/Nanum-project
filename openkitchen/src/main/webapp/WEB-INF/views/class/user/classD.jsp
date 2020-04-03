@@ -24,7 +24,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="<c:url value='resources/js/classD.js'/>"></script>
-
+<script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
 <title>Document</title>
 </head>
 

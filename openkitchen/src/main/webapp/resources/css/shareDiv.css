@@ -20,7 +20,8 @@
 }
   #pop_share:target {
     opacity: 1;
-    z-index: 3;
+    z-index: 100;
+    
 }
 
 /* 팝업창에 대한 css 설정 */
