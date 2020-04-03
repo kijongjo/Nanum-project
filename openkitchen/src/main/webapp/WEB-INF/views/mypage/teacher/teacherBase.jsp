@@ -1,7 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<!-- json 형태로 보내기 -->
+<script>
+  function to_ajax(){
+	  var is_empty=false;
+	  
+	    var queryString = $("form[name=makeTeacher01]").serialize();
+	  $.ajax({
+     type:'get',
+     url:'/test.jsp',
+     data:queryString,
+     dataTye :'json',
+     error:function(xhr,status,error){
+    	 alert(error);
+     },
+     success:function(json){alert(json)},
+	  });
+  }
 
+</script>
 <form action="" id="makeTeacher01">
 	<h4>프로필 사진</h4>
 	<div class="basic_apply image_upload" id="apply01">
