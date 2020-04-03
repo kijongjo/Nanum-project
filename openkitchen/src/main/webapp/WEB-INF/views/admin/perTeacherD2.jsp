@@ -187,7 +187,7 @@
 				</h3>
 				<section class="checkboxSection">
 					<!-- 넓이를 따로 잡아줌 -->
-					<div class="checkboxWrap" id="WrapWidth1">
+					<div class="checkboxWrap" id="WrapWidth2">
 						<div class="checkbox">
 							<!--소화기 S(safety)-type n -->
 							<input type="checkbox" name="S-type1" id=""> <label

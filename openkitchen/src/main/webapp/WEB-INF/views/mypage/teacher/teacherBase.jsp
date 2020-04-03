@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+
 <form action="" id="makeTeacher01">
 	<h4>프로필 사진</h4>
 	<div class="basic_apply image_upload" id="apply01">
@@ -19,9 +20,29 @@
 	</div>
 	
 	<h4>닉네임</h4>
-	<div class="Off-checkBox On-CheckBox">클래스 등록 시 닉네임을 사용합니다</div>
+	
+	
+	
+	
+	
+		<!-- 체크박스 section -->
+				<section class="checkboxSection">
+					<!-- 넓이를 따로 잡아줌 -->
+					<div class="checkboxWrap" id="WrapWidth2">
+						<div class="checkbox">
+							<!--닉네임 사용 함-->
+							<input type="checkbox" name="nickname" id=""> <label
+								for="checkbox"></label>
+						</div>
+					</div>
+				</section>
+				<!-- 체크박스 section 끝 -->
+				
+				
+				
+				
 	<div class="basic_apply" id="apply02">
-	    <input type="text" name="" id="" value="최대 한글 10자, 영문 20자, 숫자 혼용 가능">
+	    <input type="text" name="" id="" placeholder="최대 한글 10자, 영문 20자, 숫자 혼용 가능">
 	    <p>이미 활동중인 닉네임이 있는 선생님만 사용 부탁드리며, 없으실 경우 실명으로 사용하실 것을 권장합니다.</p>
 	</div>
 	
@@ -81,12 +102,31 @@
 	</div>
 	
 	<h4>사업자 유형</h4>
-	<div class="buisness">
-	    <span>개인</span>
-	    <span>일반과세자</span>
-	    <span>면세사업자</span>
-	    <span class="On-CheckBox">간이과세자</span>
-	</div>
+	<section class="checkboxSection">
+					<!-- 넓이를 따로 잡아줌 -->
+					<div class="checkboxWrap" id="WrapWidth2">
+						<div class="checkbox">
+							<!--개인-->
+							<input type="radio" id="type1" name="business"> <label
+								for="radio"></label>
+						</div>
+						<!--일반  -->
+						<div class="checkbox">
+							<input type="radio" id="type2" name="business"> <label
+								for="radio"></label>
+						</div>
+						<!-- 면세 -->
+						<div class="checkbox">
+							<input type="radio" id="type3" name="business"> <label
+								for="radio"></label>
+						</div>
+						<!-- 간이 -->
+						<div class="checkbox">
+							<input type="radio" id="type4" name="business"> <label
+								for="radio"></label>
+						</div>
+					</div>
+				</section>
 	
 	<h4>업체명</h4>
 	<div class="basic_apply" >

@@ -2,11 +2,22 @@
     pageEncoding="UTF-8"%>
         <form action="" id="makeTeacher02">
             <h4>수업공간 대여 여부</h4>
-            <div>
-                <div class="Off-CheckBox">공간대여를 원합니다</div>
-                <div class="Off-CheckBox On-CheckBox">내 공간을 보유하고 있습니다</div>
-                <p>클래스 수업이 가능한 공간이 있을 경우 등록해 주세요.</p>
-            </div>
+          <section class="checkboxSection">
+					<!-- 넓이를 따로 잡아줌 -->
+					<div class="checkboxWrap" id="WrapWidth3">
+						<div class="checkbox">
+							<!--공간대여안함-->
+							<input type="radio" name="rental" id="norental"> <label
+								for="radio"></label>
+						</div>
+						<div class="checkbox">
+							<!--공간대여함-->
+							<input type="radio" name="rental" id="yesrental"> <label
+								for="radio"></label>
+						</div>
+					</div>
+					<p>클래스 수업이 가능한 공간이 있을 경우 등록해 주세요.</p>
+				</section>
 
             <h4>공간 테마</h4>
             <div>
@@ -61,24 +72,70 @@
                 <!-- 주소 api자리입니다 -->
             </div>
 
-            <h3>편의시설 <span>*중복 선택 가능</span></h4>
-                <div id="facility">
-                    <span>화장실</span>
-                    <span>환풍기</span>
-                    <span>전등</span>
-                    <span class="On-CheckBox">주차시설</span>
-                </div>
-                <div>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                </div>
+          <h3>
+					편의시설 <span>*중복 선택 가능</span>
+				</h3>
+				<!-- 체크박스 section  -->
+				<section class="checkboxSection">
+					<!-- 넓이를 따로 잡아줌 -->
+					<div class="checkboxWrap" id="WrapWidth3">
+						<div class="checkbox">
+							<!--화장실  F(facility)-type n-->
+							<input type="checkbox" name="F-type1" id=""> <label
+								for="checkbox"></label>
+						</div>
+						<!--환풍기  -->
+						<div class="checkbox">
+							<input type="checkbox" name="F-type2" id=""> <label
+								for="checkbox"></label>
+						</div>
+						<!-- 전등-->
+						<div class="checkbox">
+							<input type="checkbox" name="F-type3" id=""> <label
+								for="checkbox"></label>
+						</div>
+						<!-- 주차시설 -->
+						<div class="checkbox">
+							<input type="checkbox" name="F-type4" id=""> <label
+								for="checkbox"></label>
+						</div>
+					</div>
+				</section>
+					<!-- 체크박스 section 끝 -->
+					
+				<div>
+					<textarea name="" id="" cols="30" rows="10"></textarea>
+				</div>
                 
-            <h3>안전시설 <span>*중복 선택 가능</span></h4>
-            <div id="facility">
-                <span>화장실</span>
-                <span>환풍기</span>
-                <span>전등</span>
-                <span class="On-CheckBox">주차시설</span>
-            </div>
+            
+				<h3>
+					안전시설 <span>*중복 선택 가능</span>
+				</h3>
+				<section class="checkboxSection">
+					<!-- 넓이를 따로 잡아줌 -->
+					<div class="checkboxWrap" id="WrapWidth3">
+						<div class="checkbox">
+							<!--소화기 S(safety)-type n -->
+							<input type="checkbox" name="S-type1" id=""> <label
+								for="checkbox"></label>
+						</div>
+						<!--화재감지기 -->
+						<div class="checkbox">
+							<input type="checkbox" name="S-type2" id=""> <label
+								for="checkbox"></label>
+						</div>
+						<!-- 안전카드-->
+						<div class="checkbox">
+							<input type="checkbox" name="S-type3" id=""> <label
+								for="checkbox"></label>
+						</div>
+						<!-- 구급사장 -->
+						<div class="checkbox">
+							<input type="checkbox" name="S-type4" id=""> <label
+								for="checkbox"></label>
+						</div>
+					</div>
+				</section>
             <div id="btn_submit">
                 <div>
                     <input type="submit" value="임시저장">
