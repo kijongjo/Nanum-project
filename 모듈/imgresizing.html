@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <img id="preview" src="" width="700" alt="로컬에 있는 이미지가 보여지는 영역">
+    <a id="download" download="" href=""></a>
+    <input type="file" id="getfile" accept="image/*">
+    <script>
+        //file정보를 file 객체에 담음
+        var file = document.querySelector('#getfile');
+
+        file.onchange = function() {
+            var fileList = file.files;
+
+            //읽기 위한 객체 생성
+            var reader = new FileReader();
+            //input에 있는 파일을 읽음
+            reader.readAsDataURL(fileList[0]);
+
+
+            //로드 한 후
+
+            reader.onload = function() {
+                document.querySelector('#preview').src = reader.result;
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
