@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="<c:url value='resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='resources/css/classD.css'/>">
 <link rel="stylesheet"
-	href="<c:url value='ressources/css/shareDiv.css'/>">
+	href="<c:url value='resources/css/shareDiv.css'/>">
 <!-- 폰트 -->
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
@@ -67,7 +67,7 @@
 				<!-- share 링크 -->
 				<div class="share">
 					<!-- a링크를 누르게 되면 공유 기능이 있는 div가 나온다  -->
-					<a href=""></a>
+					<a href="#pop_share"></a>
 				</div>
 			</section>
 		</section>
@@ -201,7 +201,7 @@
 									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
 									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
 									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <!-- div 늘어나는 function -->
-								<!-- 1번째라 매개변수 1을 줌  --> <a href="javascript:growing(0);">더보기</a>
+								<!-- 1번째라 매개변수 1을 줌  --> <a href="javascript:reviewOne(0);">더보기</a>
 							</span>
 						</div>
 
@@ -231,9 +231,36 @@
 							</span>
 						</div>
 					</li>
+					<li>
+						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
+						<div class="reviewInfo">
+							<!-- 회원 이미지가 들어온다. -->
+							<figure>
+
+								<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />"
+									alt="">
+							</figure>
+							<!-- 평가와 이름 적은 날짜가 온다. -->
+							<span class="memberInfo"> <!-- 평가 이모티콘 -->
+								<figure>
+									<img src="<c:url value='resources/img/icon/smileIcon.png' />"
+										alt="">
+								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
+									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
+							</span>
+								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
+									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
+									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
+									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <!-- div 늘어나는 function -->
+								<!-- 1번째라 매개변수 1을 줌  --> <a href="javascript:reviewOne(2);">더보기</a>
+							</span>
+						</div>
+
+
+					</li>
 				</ul>
 				<p>
-					<a href="#">리뷰 펼치기</a>
+					
 				</p>
 			</section>
 
