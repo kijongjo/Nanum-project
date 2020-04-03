@@ -47,7 +47,11 @@
 }
 
 /* //////////////////////////////////left02 CSS 설정////////////////////////////////////////// */
+#left01,#left02,#right01,#right02{
 
+	z-index: 99;
+
+}
 /*  left02>section에 공통적으로 적용되는 css 설정*/
 #left02>section {
 	padding: 40px 0;
@@ -567,6 +571,7 @@
 	background-position-x: 17px;
 	background-position-y: 20px;
 	border-radius: 0 8px 0 0;
+	z-index: 99;
 }
 
 #right02>.selectSchedule>.selectTop>.btn-message::before {

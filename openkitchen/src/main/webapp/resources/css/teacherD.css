@@ -25,12 +25,22 @@
      position: fixed;
      right: 100px;
      bottom: 80px;
+     z-index: 99;
      /*  animation: wishlistClick 2s infinite; */
  }
  /* 이미지와 선생님 소개 간의 간격을 조금 좁힌다. */
  #lay01 > #left02 {
-    margin-top: 1px}
+    margin-top: 1px;
+       
+    }
+    
+    #left01,#left02,#right01{
+
+	z-index: 99;
+
+}
  #left01 {
+ 
      background-color: red;
      /* 이미지가 밖으로 나가더라도 보이도록 설정 <-일단은 이렇게 잡아 놓았는데 slide형식으로 이미지를 보여지도록
          javascript 로직을 추가하거나 jquery api를 사용한다.*/
