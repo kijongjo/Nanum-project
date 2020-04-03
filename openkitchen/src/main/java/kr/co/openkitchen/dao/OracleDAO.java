@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.openkitchen.dto.ClassDTO;
+import kr.co.openkitchen.dto.ManwonClassDTO;
 import lombok.Setter;
 
 @Repository
@@ -21,6 +22,13 @@ public class OracleDAO implements Dao {
 		
 		return ss.selectList("kr.co.openkitchen.class.selectAll");
 	}
+	
+	@Override
+	public List<ManwonClassDTO> selectManwonC() {
+		return ss.selectList("kr.co.openkitchen.class.selectManwonC");
+	}
+	
+	
 	
 	
 	

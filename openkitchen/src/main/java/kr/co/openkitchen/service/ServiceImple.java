@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.dao.Dao;
 import kr.co.openkitchen.dto.ClassDTO;
+import kr.co.openkitchen.dto.ManwonClassDTO;
 import lombok.Setter;
 
 @Service
@@ -21,5 +22,13 @@ public class ServiceImple implements ServiceInter {
 		// TODO Auto-generated method stub
 		return dao.selectAll();
 	}
+
+	@Override
+	public List<ManwonClassDTO> readManwonC() {
+	
+		return dao.selectManwonC();
+	}
+	
+	
 	
 }

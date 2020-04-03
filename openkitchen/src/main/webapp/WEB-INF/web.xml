@@ -11,6 +11,7 @@
 			/WEB-INF/spring/root-context.xml
 			/WEB-INF/spring/appServlet/security-context.xml <!--여기서 파일 한 개 추가 -->
 		</param-value>
+
 	</context-param>
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -18,6 +19,12 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener
 		</listener-class>
 	</listener>
+
+	<context-param>
+		<param-name>globalParam</param-name>
+		<param-value>건강음료,베이킹,이정은,시그니처,얼그레이쿠키,송파,커피</param-value>
+		
+	</context-param>
 
 	<!-- Processes application requests -->
 	<servlet>
@@ -30,7 +37,10 @@
 				/WEB-INF/spring/appServlet/servlet-context.xml
 				/WEB-INF/spring/appServlet/spring-ctx.xml
 			</param-value>
+
 		</init-param>
+
+
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -38,7 +48,9 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<!-- 필터 : 한글처리  -->
+
+
+	<!-- 필터 : 한글처리 -->
 	<!-- post방식으로 처리할때 한글깨지는 현상을 방지하기 위함 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -60,7 +72,7 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<!-- security filter  -->
+	<!-- security filter -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy
@@ -70,21 +82,14 @@
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>
 
 	<!-- 에러 페이지 처리 -->
-	<!-- 배포하기 전에 추가  -->
-	<!-- 
-		<error-page>
-		<error-code>404</error-code>
-		<location>/WEB-INF/views/이미지 경로</location>
-		</error-page> 
-	-->
+	<!-- 배포하기 전에 추가 -->
+	<!-- <error-page> <error-code>404</error-code> <location>/WEB-INF/views/이미지 
+		경로</location> </error-page> -->
 
-	<!-- 
-		<error-page> <error-code>500</error-code> 
-		<location>/WEB-INF/views/이미지 경로</location> 
-		</error-page> 
-	 -->
+	<!-- <error-page> <error-code>500</error-code> <location>/WEB-INF/views/이미지 
+		경로</location> </error-page> -->
 
 </web-app>

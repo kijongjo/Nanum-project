@@ -1,10 +1,18 @@
 package kr.co.openkitchen.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.WebApplicationContext;
 
 import kr.co.openkitchen.service.ServiceInter;
 import lombok.Setter;
@@ -16,9 +24,15 @@ public class MainController {
 	@Setter(onMethod = @__({@Autowired}))
 	ServiceInter si;
 	
+	@Autowired
+	ServletContext sc;
 	
+
 	@RequestMapping(value = { "/", "index" })
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("manwonClass", si.readManwonC());
+		System.out.println(si.readManwonC());
+		
 		return "index";
 	}
 
@@ -37,11 +51,27 @@ public class MainController {
 		return "space/user/spaceIn";
 	}
 	
-	@GetMapping("test")
+	@GetMapping("test") 
 	public String test(Model model) {
-		
 		model.addAttribute("test", si.readAll());
+	
+		String str = sc.getInitParameter("globalParam");
+		
+		
+		String[] test = str.split(",");
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		for (int i = 0; i < test.length; i++) {
+			
+			map.put("popularKey"+i , test[i]);
+		}
+		
+		System.out.println(map);
 		
 		return "test";
 	}
+	
+	
+	
 }
