@@ -4,8 +4,7 @@
 /* 모듈: 특정 태그 클릭 시 div가 늘어나고 줄어드는 기능이다.   */
 /*참고: 늘어나는 div를 overflow로 감싸야 더 보기 기능이 완성됨. */
 
-/*  1이면 펼치기 0이면 줄어들기*/
-var reviewStatus = 1;
+
 
 
 /* 'id또는 태그'를 눌렀을때 기능을 하도록 설정한다. */
@@ -17,22 +16,21 @@ function reviewOne(a) {
 	var selector = $('span.memberInfo:eq(' + a + ')>p');
 	var atxt = $('span.memberInfo:eq(' + a + ')>a');
 	/* 늘어나는 기능 */
-	if (reviewStatus == 1) {
+	if (atxt.text()=="더보기") {
 		/* ('늘어날 div의 id 또는 class').animate({높이:+=기존높이에 추가될 값},속도) */
 		selector.animate({
 			height : '+=200px'
 		}, 500);
-		/* state를 0으로 줘서 한 번 늘어난 후에는 줄어들도록 설정 */
-		reviewStatus = 0;
+		
+		
 		atxt.text("접기");
 		/* 줄어드는 기능 */
-	} else if (reviewStatus == 0) {
+	} else if (atxt.text()=="접기") {
 		/* ('늘어날 div의 id 또는 class').animate({높이:-=기존높이에 줄어들 값},속도) */
 		selector.animate({
 			height : '-=200px'
 		}, 500);
-		/* 줄어들었으니 늘어나도록 설정 */
-		reviewStatus = 1;
+		
 		atxt.text("더보기");
 	}
 }
@@ -42,13 +40,12 @@ function reviewOne(a) {
 
 //취소 환불 정책 펼치기 접기 기능
 
-/*  1이면 펼치기 0이면 줄어들기*/
-var policyStatus = 1;
+
 function refundPolicy() {
           var selector= $('.refundPolicy>div')
           var atxt = $('.refundPolicy>a');
 	/* 늘어나는 기능 */
-	if (policyStatus == 1) {
+	if (atxt.text() == "펼치기") {
 		/* ('늘어날 div의 id 또는 class').animate({높이:+=기존높이에 추가될 값},속도) */
 		selector.animate({
 			height : '+=695px'
@@ -57,7 +54,7 @@ function refundPolicy() {
 		policyStatus = 0;
 		atxt.text("접기");
 		/* 줄어드는 기능 */
-	} else if (policyStatus == 0) {
+	} else if (atxt.text()=="접기") {
 		/* ('늘어날 div의 id 또는 class').animate({높이:-=기존높이에 줄어들 값},속도) */
 		selector.animate({
 			height : '-=695px'

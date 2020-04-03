@@ -159,6 +159,7 @@
 	background: #8E0032;
 }
 
+
 #left02>#classSchedule>.calendarSchedule>.half02>div::-webkit-scrollbar-button:start:decrement,
 	#left02>#classSchedule>.calendarSchedule>.half02>div::-webkit-scrollbar-button:end:increment
 	{
@@ -185,6 +186,28 @@
 }
 
 /* 리뷰 css 설정 하기 */
+/* 스크롤바 설정하기 */
+#left02>.review>ul::-webkit-scrollbar{width: 4px;}
+#left02>.review>ul::-webkit-scrollbar-track
+	{
+	background-color: white;
+}
+#left02>.review>ul::-webkit-scrollbar-thumb
+	{
+	background-color: #8E0032;
+	border-radius: 10px;
+}
+#left02>.review>ul::-webkit-scrollbar-thumb:hover
+	{
+	background: #8E0032;
+}
+#left02>.review>ul::-webkit-scrollbar-button:start:decrement,
+#left02>.review>ul::-webkit-scrollbar-button:end:increment
+	{
+	width: 16px;
+	height: 16px;
+	background: white;
+}
 #left02>.review {
 	/* 최소 높이를 330으로 잡음 */
 	min-height: 330px;
@@ -193,11 +216,14 @@
 #left02>.review>ul {
 	width: 100%;
 	padding-top: 20px;
+	height: 400px;
+	overflow-y: scroll
 }
 
 /* 댓글 하나에 대한 css 설정 */
 #left02>.review>ul>li>.reviewInfo {
 	border-bottom: 1px solid #e5e5e5;
+	margin-top: 12px;
 }
 
 /* 리뷰에서 회원의 이미지를 담을 태그에 대한 css 설정 */
@@ -220,7 +246,7 @@
 /* 회원 평가,이름 날짜가 들어가는 span */
 #left02>.review>ul>li>.reviewInfo>.memberInfo {
 	position: relative;
-	bottom: 29px;
+	bottom: 17px;
 	font-weight: 100;
 }
 
@@ -290,7 +316,7 @@
 
 /* 환불 정책에 대한 css 설정 */
 #left02>.refundPolicy>div {
-	height: 216px;
+	height: 187px;
 	overflow: hidden;
 }
 

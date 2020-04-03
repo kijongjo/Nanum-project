@@ -1,9 +1,11 @@
+@charset "UTF-8";
 /* 공유 팝업창 CSS  */
 
 #pop_share {
     /* 내용이 잘리게 될때 스크롤바가 보이도록 설정한다. */
     overflow: auto;
     position: fixed;
+  
     left: 0;
     top: 0;
     box-sizing: border-box;
@@ -16,12 +18,10 @@
     transition-property: opacity;
     transition-duration: 1s;
 }
-
-#pop_share:target {
+  #pop_share:target {
     opacity: 1;
     z-index: 3;
 }
-
 
 /* 팝업창에 대한 css 설정 */
 
@@ -90,35 +90,35 @@
 }
 
 #pop_content>ul>li>#facebook::before {
-    background-image: url(./img/facebookIcon.png);
+    background-image: url(../img/icon/facebookIcon.png);
 }
 
 #pop_content>ul>li>#twitter::before {
-    background-image: url(./img/twitterIcon.png);
+    background-image: url(../img/icon/twitterIcon.png);
 }
 
 #pop_content>ul>li>#kakaoS::before {
-    background-image: url(./img/kakaoSIcon.png);
+    background-image: url(../img/icon/kakaoSIcon.png);
 }
 
 #pop_content>ul>li>#band::before {
-    background-image: url(./img/bandIcon.png);
+    background-image: url(../img/icon/bandIcon.png);
 }
 
 #pop_content>ul>li>#kakaoT::before {
-    background-image: url(./img/kakaoTIcon.png);
+    background-image: url(../img/icon/kakaoTIcon.png);
 }
 
 #pop_content>ul>li>#line::before {
-    background-image: url(./img/lineIcon.png);
+    background-image: url(../img/icon/lineIcon.png);
 }
 
 #pop_content>ul>li>#mail::before {
-    background-image: url(./img/mailIcon.png);
+    background-image: url(../img/icon/mailIcon.png);
 }
 
 #pop_content>ul>li>#url::before {
-    background-image: url(./img/urlIcon.png);
+    background-image: url(../img/icon/urlIcon.png);
 }
 
 
@@ -131,5 +131,5 @@
     width: 30px;
     height: 30px;
     margin-left: 10px;
-    background: url(./img/btnCloseWhite.png) no-repeat 50%/30px auto;
+    background: url(../img/icon/btnCloseWhite.png) no-repeat 50%/30px auto;
 }
