@@ -11,6 +11,6 @@ $(window).scroll(function(){
 	  $(".selectSchedule").css("position","absolute").css("width","100%").css("top","0");
 		   
 	   }
-	   $(".selectSchedule").stop().animate({top:position-600+"px"},500);	
+	   $(".selectSchedule").stop().animate({top:position-700+"px"},500);	
 	}else{	$(".selectSchedule").css("position","static");}
 })
