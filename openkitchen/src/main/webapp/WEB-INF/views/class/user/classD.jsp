@@ -9,6 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="<c:url value='resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='resources/css/classD.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='resources/css/shareDiv.css'/>">
 <!-- 폰트 -->
@@ -31,6 +33,7 @@
 
 
 <body>
+<jsp:include page="../../header.jsp" flush="false" />
 	<!-- /////////////////////////////////////공유하기 팝업창 시작//////////////////////////////////////////////// -->
 
 	<!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
@@ -437,6 +440,7 @@
 
 		</section>
 	</div>
+	<jsp:include page="../../footer.jsp" flush="false" />
 </body>
 
 </html>

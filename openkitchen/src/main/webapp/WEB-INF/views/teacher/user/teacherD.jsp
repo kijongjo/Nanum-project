@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<c:url value='resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='resources/css/teacherD.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='resources/css/shareDiv.css'/>">
 <!-- 폰트 -->
@@ -27,6 +29,7 @@
 </head>
 
 <body>
+<jsp:include page="../../header.jsp" flush="false" />
     <!-- /////////////////////////////////////공유하기 팝업창 시작//////////////////////////////////////////////// -->
     <!-- fixed로 고정되어 있는 wishlist 버튼이다. 기본값이 fixed였다가 scroll의 y값이 특정 위치에 가게되면
     이 버튼의 position 상태가 변화한다.-->
@@ -269,6 +272,7 @@
         </section>
 
     </div>
+    <jsp:include page="../../footer.jsp" flush="false" />
 </body>
 
 </html>
