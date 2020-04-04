@@ -22,7 +22,9 @@ $(document).ready(function() {
 			adaptiveHeight : true,
 
 			// 슬라이드 속도(숫자가 커질수록 느려짐)
-			speed : 450
+			speed : 450,
+			// a태그 동작을 위한 태그 설정
+			/*touchEnabled : (navigator.maxTouchPoints > 0)*/
 
 		});
 		
@@ -63,6 +65,8 @@ $(document).ready(function() {
 			auto : true,
 			/* 슬라이드 자동 시간 제어 */
 			pause : 4000,
+			// a태그 동작을 위한 터치 설정
+			/*touchEnabled : (navigator.maxTouchPoints > 0) */
 
 		});
 	});

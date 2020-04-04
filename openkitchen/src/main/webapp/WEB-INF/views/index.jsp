@@ -99,6 +99,20 @@ $(document).ready(
 		});
 
 </script>
+<script>
+$(document).ready(function () {
+	var $mcdetail = $("#mcdetail");
+	var $frm = $("#frm");
+	
+	console.log($mcdetail);
+	$mcdetail.on("click", function () {
+		
+		$frm.submit();
+	});
+	
+	
+});
+</script>
 
 <style>
 	.slide-wrapper {
@@ -247,20 +261,26 @@ $(document).ready(
                 <h2>가화만사성, 만(滿)원의클래스</h2>
             </div>
             <ul class="bxslider">
-                <li>
-                    <a href="#">
-                       <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h4>노오븐'쌀'츄러스</h4>
-                        <div>
-                            <span>베이킹</span>
-                            <span>경기도 김포시</span>
-                            <span>3월 1회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong> 10,000
-                        </div>
-                    </a>
-                </li>
+               	<c:forEach var="mc" items="${manwonClass}">
+		                <li id="mcdetail">
+                 		   <form action="classD" id="frm" method="post">
+		                       <input type="hidden" name="cno" value="${mc.cNo}" />
+		                       <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" /> 
+		                       <%-- <a href="classD?cno=${mc.cNo}"> --%>
+			                       <img src="<c:url value='${mc.cMainsumnail}'/>" alt="이미지" id="mcimg">
+			                        <h4>${mc.cName}</h4>
+			                        <div>
+			                            <span>${mc.tExpert}</span>
+			                            <span>${mc.tArea}</span>
+			                            <span>3월 1회 진행</span>
+			                        </div>
+			                        <div class="Price">
+			                            <strong>\</strong> ${mc.cPrice}
+			                        </div>
+		                        <!-- </a> -->
+                    		</form>
+		                </li>
+                </c:forEach>
                 <!-- 테스트용 복사 -->
                 <li>
                     <a href="#">
@@ -303,7 +323,7 @@ $(document).ready(
                             <strong>\</strong> 10,000
                         </div>
                     </a>
-                </li>
+                </li>  
                 <!-- 테스트 복사 끝 -->
             </ul>
             </div>

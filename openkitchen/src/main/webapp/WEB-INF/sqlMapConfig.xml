@@ -15,5 +15,6 @@
   	<typeAliases>
 	    <!-- 별칭 지정 : mapper에서 쿼리할 때 파라미터로 사용하기 위해서 등록  -->
   		<typeAlias type="kr.co.openkitchen.dto.ClassDTO" alias="cdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.ManwonClassDTO" alias="mcdto" />
   	</typeAliases>
   </configuration>

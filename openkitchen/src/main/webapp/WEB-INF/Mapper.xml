@@ -9,5 +9,24 @@
   				   C_REFERENCE, C_PRICE, C_PERSTATUS, C_TYPE, C_HASHTAG, C_REGDATE, C_MINRECRUITPERSON, C_MAXRECRUITPERSON
   			       , T_NO
   			FROM CLASS
-  		</select>	
+  		</select>
+  		
+  		<select id="selectManwonC" resultType="mcdto">
+  			SELECT C_NO, C_NAME, C_MAINSUMNAIL, C_PRICE, T_AREA, T_EXPERT
+			FROM CLASS C, TEACHER T
+			WHERE C.T_NO = T.T_NO AND
+      		C_TYPE = '만원'
+  		</select>
+  		
+  		<select id="selectPopularC" resultType="cdto" parameterType="hashmap">
+  			select C_NO, C_HASHTAG
+  			from class
+  			<!-- <trim prefix="WHERE" prefixOverrides="AND | OR">
+  				<if test="">
+  					OR C_HASHTAG #{popularKey1}
+  				</if>
+			</trim> -->
+			where <!-- C_HASHTAG LIKE '%'||#{popularKey1}||'%' -->
+			REGEXP_LIKE (C_HASHTAG, #{popularKey0}'|'#{popularKey1})
+  		</select>			
   </mapper>
