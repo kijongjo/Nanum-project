@@ -69,6 +69,9 @@ public class MainController {
 		
 		System.out.println(map);
 		
+		model.addAttribute("test1", si.readPopularC(map));
+		
+		
 		return "test";
 	}
 	

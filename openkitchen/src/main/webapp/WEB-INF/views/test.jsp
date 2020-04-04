@@ -18,7 +18,9 @@
 	
 	</c:forEach> --%>
 	
-	<h1>${initParam.globalParam}</h1>
+	<%-- <h1>${initParam.globalParam}</h1> --%>
+	
+	<h1>${test1}</h1>
 
 	
 </body>

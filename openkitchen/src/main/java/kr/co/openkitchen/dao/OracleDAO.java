@@ -1,6 +1,7 @@
 package kr.co.openkitchen.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,14 @@ public class OracleDAO implements Dao {
 	public List<ManwonClassDTO> selectManwonC() {
 		return ss.selectList("kr.co.openkitchen.class.selectManwonC");
 	}
+
+	@Override
+	public List<ClassDTO> selectPopularC(Map<String, String> map) {
+		
+		return ss.selectList("kr.co.openkitchen.class.selectPopularC", map);
+	}
+	
+	
 	
 	
 	
