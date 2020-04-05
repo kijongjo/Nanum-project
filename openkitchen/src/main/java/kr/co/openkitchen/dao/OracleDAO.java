@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
+import kr.co.openkitchen.dto.PopularClassDTO;
 import lombok.Setter;
 
 @Repository
@@ -28,12 +29,21 @@ public class OracleDAO implements Dao {
 	public List<ManwonClassDTO> selectManwonC() {
 		return ss.selectList("kr.co.openkitchen.class.selectManwonC");
 	}
+	
+	
+	@Override
+	public List<ManwonClassDTO> selectOnlyoneC() {
+		
+		return ss.selectList("kr.co.openkitchen.class.selectOnlyOneC");
+	}
+	
 
 	@Override
-	public List<ClassDTO> selectPopularC(Map<String, String> map) {
+	public List<PopularClassDTO> selectPopularC(Map<String, Object> map) {
 		
 		return ss.selectList("kr.co.openkitchen.class.selectPopularC", map);
 	}
+
 	
 	
 	

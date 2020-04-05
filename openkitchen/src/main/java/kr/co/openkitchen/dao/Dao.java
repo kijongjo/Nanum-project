@@ -5,9 +5,11 @@ import java.util.Map;
 
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
+import kr.co.openkitchen.dto.PopularClassDTO;
 
 public interface Dao {
 	public List<ClassDTO> selectAll();
 	public List<ManwonClassDTO> selectManwonC();
-	public List<ClassDTO> selectPopularC(Map<String, String> map);
+	public List<ManwonClassDTO> selectOnlyoneC();
+	public List<PopularClassDTO> selectPopularC(Map<String, Object> map);
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.co.openkitchen.dao.Dao;
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
+import kr.co.openkitchen.dto.PopularClassDTO;
 import lombok.Setter;
 
 @Service
@@ -29,12 +30,20 @@ public class ServiceImple implements ServiceInter {
 	
 		return dao.selectManwonC();
 	}
+	
+	@Override
+	public List<ManwonClassDTO> readOnlyOneC() {
+	
+		return dao.selectOnlyoneC();
+	}
 
 	@Override
-	public List<ClassDTO> readPopularC(Map<String, String> map) {
+	public List<PopularClassDTO> readPopularC(Map<String, Object> map) {
 		
 		return dao.selectPopularC(map);
 	}
+
+	
 	
 	
 	
