@@ -1,15 +1,13 @@
 package kr.co.openkitchen.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ManwonClassDTO {
+public class OnlyOneClassDTO {
 	int cNo;
 	String cName;
 	String cMainsumnail;

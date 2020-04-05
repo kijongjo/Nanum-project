@@ -25,7 +25,7 @@ public class ClassController {
 	@PostMapping("classD")
 	public String classD(@RequestParam("cno") int cno, Model model) {
 		System.out.println(cno);
-
+		
 		return "class/user/classD";
 	}
 

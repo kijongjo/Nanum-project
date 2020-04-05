@@ -11,22 +11,42 @@
   			FROM CLASS
   		</select>
   		
-  		<select id="selectManwonC" resultType="mcdto">
-  			SELECT C_NO, C_NAME, C_MAINSUMNAIL, C_PRICE, T_AREA, T_EXPERT
-			FROM CLASS C, TEACHER T
-			WHERE C.T_NO = T.T_NO AND
-      		C_TYPE = '만원'
+  		<select id="selectDetailOne" parameterType="int">
+  			SELECT C_DETAILSUMNAIL, C_NAME, C_SHORTINTRO, C_HASHTAG, C_PRICE, C_MINRECRUITPERSON, C_MAXRECRUITPERSON, C_LONGINTRO, C_REFERENCE, T_HAVENICKNAME, T_EXPERT, T_EXPERTNAME, L_LEASEDATE, L_LEASETIME,L_PERSTATUS, S_LOC
+		    FROM(SELECT C_DETAILSUMNAIL, C_NAME, C_SHORTINTRO, C_HASHTAG, C_PRICE, C_MINRECRUITPERSON, C_MAXRECRUITPERSON, C_LONGINTRO, C_REFERENCE, T_HAVENICKNAME, T_EXPERT, T_EXPERTNAME, L_LEASEDATE, L_LEASETIME, L_PERSTATUS, S_NO
+		         FROM(SELECT C_DETAILSUMNAIL, C_NAME, C_SHORTINTRO, C_HASHTAG, C_PRICE, C_MINRECRUITPERSON, C_MAXRECRUITPERSON, C_LONGINTRO, C_REFERENCE, T_HAVENICKNAME, T_EXPERT, T_EXPERTNAME, L_NO
+		            FROM(SELECT C_DETAILSUMNAIL, C_NAME, C_SHORTINTRO, C_HASHTAG, C_PRICE, C_MINRECRUITPERSON, C_MAXRECRUITPERSON, C_LONGINTRO, C_REFERENCE, T_NO, L_NO
+		                FROM(select C_DETAILSUMNAIL, C_NAME, C_SHORTINTRO, C_HASHTAG, C_PRICE, C_MINRECRUITPERSON, C_MAXRECRUITPERSON, 
+		                       C_LONGINTRO, C_REFERENCE, REC.REN_NO
+		                    FROM CLASS C, RECRUIT REC 
+		                    WHERE C.C_NO = REC.C_NO AND C.C_NO = 1) A, RENTAL R 
+		                WHERE A.REN_NO = R.REN_NO) B, TEACHER T
+		            WHERE B.T_NO = T.T_NO) C, LEASE L
+		        WHERE C.L_NO(+) = L.L_NO) D, SPACE S
+		    WHERE D.S_NO = S.S_NO
   		</select>
   		
-  		<select id="selectPopularC" resultType="cdto" parameterType="hashmap">
-  			select C_NO, C_HASHTAG
-  			from class
-  			<!-- <trim prefix="WHERE" prefixOverrides="AND | OR">
-  				<if test="">
-  					OR C_HASHTAG #{popularKey1}
-  				</if>
-			</trim> -->
-			where <!-- C_HASHTAG LIKE '%'||#{popularKey1}||'%' -->
-			REGEXP_LIKE (C_HASHTAG, #{popularKey0}'|'#{popularKey1})
+  		<select id="selectManwonC" resultType="mcdto">
+  			SELECT C_NO, C_NAME, C_MAINSUMNAIL, C_PRICE, C_TEMA, T_AREA, T_EXPERT
+			FROM CLASS C, TEACHER T
+			WHERE C.T_NO = T.T_NO AND C_TYPE = '일반'
+  		</select>
+  		
+  		<select id="selectOnlyOneC" resultType="mcdto">
+  			SELECT C_NO, C_NAME, C_MAINSUMNAIL, C_PRICE, C_TEMA, T_AREA, T_EXPERT
+			FROM CLASS C, TEACHER T
+			WHERE C.T_NO = T.T_NO AND C_TYPE = '1명'
+  		</select>
+  		
+  		
+  		<select id="selectPopularC" resultType="pcdto" parameterType="map">
+  			SELECT C_NO, C_NAME, C_MAINSUMNAIL, C_SHORTINTRO, C_TEMA, C_PRICE, T_AREA, T_EXPERT
+			FROM CLASS C, TEACHER T
+			WHERE C.T_NO = T.T_NO AND 
+			REGEXP_LIKE (C_HASHTAG, 
+			<foreach collection="popularList" item="item" separator="||'|'||">
+				#{item}
+			</foreach>
+			)
   		</select>			
   </mapper>

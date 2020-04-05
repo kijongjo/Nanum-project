@@ -1,18 +1,17 @@
 package kr.co.openkitchen.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ManwonClassDTO {
+public class PopularClassDTO {
 	int cNo;
 	String cName;
 	String cMainsumnail;
+	String cShortintro;
 	String cTema;
 	int cPrice;
 	String tArea;
@@ -36,6 +35,12 @@ public class ManwonClassDTO {
 	}
 	public void setcMainsumnail(String cMainsumnail) {
 		this.cMainsumnail = cMainsumnail;
+	}
+	public String getcShortintro() {
+		return cShortintro;
+	}
+	public void setcShortintro(String cShortintro) {
+		this.cShortintro = cShortintro;
 	}
 	public int getcPrice() {
 		return cPrice;
@@ -61,5 +66,5 @@ public class ManwonClassDTO {
 	public void setcTema(String cTema) {
 		this.cTema = cTema;
 	}
-	
+
 }
