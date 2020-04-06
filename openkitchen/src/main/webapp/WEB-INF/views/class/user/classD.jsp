@@ -83,14 +83,7 @@
 			<section class="intro">
 				<h3>클래스 소개</h3>
 				<div class="contents">
-					<span>맛있는 자극이 필요한 이때</span><br> <span>“침샘 자극, 쭈꾸미 볶음”</span><br>
-					<br> <span>*김순이 선생님만의 꿀Tip!</span><br> <span>1)
-						주꾸미 깨끗하게 손질하는 법</span><br> <span>2) 볶음시 물이 생기지 않는 방법</span><br>
-					<span>3) 매콤한 양념 만드는 법</span><br> <br> <span>봄의
-						보양식이라고 불리는 주꾸미는 </span><br> <span>현재는 주업은 요리를 하고 있지 않지만 현재도
-						기회만 되면 집에서 홈파티를 열어</span><br> <span>필수 아미노산을 보충해 주어 건강에 좋은
-						저지방 저칼로리 고단백 음식입니다.</span><br> <br> <span>직접 만들어 손맛이 깃든
-						따스한 집밥</span>
+					<span>${detailClass[0].cLongintro}</span>
 				</div>
 
 			</section>
@@ -99,7 +92,7 @@
 			<section class="reference">
 				<h3>참고사항</h3>
 				<div class="contents">
-					<span>2시간 정도 진행되는 클래스입니다.</span>
+					<span>${detailClass[0].cReference}</span>
 				</div>
 			</section>
 
@@ -115,7 +108,7 @@
 				</section>
 				<!-- 링크를 통해 공간 페이지로 이동하게 된다.
                 링크에는 공간의 주소가 들어간다. -->
-				<a href="classD"><span>서울특별시 서대문구 모래내로</span></a>
+				<a href="classD"><span>${classDetail[0].sLoc}</span></a>
 				<p>상세주소는 클래스 예약 시 수강생들에게만 공개 됩니다.</p>
 			</section>
 
@@ -131,46 +124,48 @@
 						<!-- 스케쥴에 대한 내용이 나온다. -->
 						<div>
 							<ul>
-
+								<c:forEach var="dcdto" items="${detailClass}">
+								
 								<li>
-									<!--정보 --> <span>20.04.04 (토)</span> 오전
+									<span>${dcdto.lLeasedate}</span> ${dcdto.lLeasetime}
+								</li>
+								</c:forEach>
+
+								<!-- <li>
+									정보 <span>20.04.04 (토) </span> 오전
 								</li>
 
 								<li>
-									<!--정보 --> <span>20.04.04 (토) </span> 오전
+									정보 <span>20.04.04 (토) </span> 오전
 								</li>
 
 								<li>
-									<!--정보 --> <span>20.04.04 (토) </span> 오전
+									정보 <span>20.04.04 (토) </span> 오전
 								</li>
 
 								<li>
-									<!--정보 --> <span>20.04.04 (토) </span> 오전
+									정보 <span>20.04.04 (토) </span> 오전
 								</li>
 
 								<li>
-									<!--정보 --> <span>20.04.04 (토) </span> 오전
+									정보 <span>20.04.04 (토) </span> 오전
 								</li>
 
 								<li>
-									<!--정보 --> <span>20.04.04 (토) </span> 오전
+									정보 <span>20.04.04 (토) </span> 오전
 								</li>
 
 								<li>
-									<!--정보 --> <span>20.04.04 (토) </span> 오전
+									정보 <span>20.04.04 (토)</span> 오전
 								</li>
 
 								<li>
-									<!--정보 --> <span>20.04.04 (토)</span> 오전
+									정보 <span>20.04.04 (토) </span> 오전
 								</li>
 
 								<li>
-									<!--정보 --> <span>20.04.04 (토) </span> 오전
-								</li>
-
-								<li>
-									<!--정보 --> <span>20.04.04 (토) </span> 오전
-								</li>
+									정보 <span>20.04.04 (토) </span> 오전
+								</li> -->
 							</ul>
 						</div>
 					</div>
