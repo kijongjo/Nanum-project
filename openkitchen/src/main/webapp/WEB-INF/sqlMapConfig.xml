@@ -18,5 +18,6 @@
   		<typeAlias type="kr.co.openkitchen.dto.ManwonClassDTO" alias="mcdto" />
   		<typeAlias type="kr.co.openkitchen.dto.PopularClassDTO" alias="pcdto" />
   		<typeAlias type="kr.co.openkitchen.dto.DetailClassDTO" alias="dcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailCScheDTO" alias="dcsdto" />
   	</typeAliases>
   </configuration>

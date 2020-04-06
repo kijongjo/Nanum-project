@@ -11,7 +11,7 @@ public class DetailClassDTO {
 	String cDetailsumnail;
 	String cName;
 	String cShortintro;
-	String cHashTag;
+	String cHashtag;
 	int cPrice;
 	int cMinrecruitperson;
 	int cMaxrecruitperson;
@@ -20,12 +20,12 @@ public class DetailClassDTO {
 	String tHavenickname;
 	String tExpert;
 	String tExpertname;
-	String lLeasedate;
-	String lLeasetime;
-	String lPerstatus;
 	int sNo;
 	String sLoc;
 	String sType;
+	String sMainsumnail;
+	String mMainsumnail;
+	
 	
 	// setter, getter
 	public String getcDetailsumnail() {
@@ -46,11 +46,11 @@ public class DetailClassDTO {
 	public void setcShortintro(String cShortintro) {
 		this.cShortintro = cShortintro;
 	}
-	public String getcHashTag() {
-		return cHashTag;
+	public String getcHashtag() {
+		return cHashtag;
 	}
-	public void setcHashTag(String cHashTag) {
-		this.cHashTag = cHashTag;
+	public void setcHashtag(String cHashtag) {
+		this.cHashtag = cHashtag;
 	}
 	public int getcPrice() {
 		return cPrice;
@@ -100,24 +100,6 @@ public class DetailClassDTO {
 	public void settExpertname(String tExpertname) {
 		this.tExpertname = tExpertname;
 	}
-	public String getlLeasedate() {
-		return lLeasedate;
-	}
-	public void setlLeasedate(String lLeasedate) {
-		this.lLeasedate = lLeasedate;
-	}
-	public String getlLeasetime() {
-		return lLeasetime;
-	}
-	public void setlLeasetime(String lLeasetime) {
-		this.lLeasetime = lLeasetime;
-	}
-	public String getlPerstatus() {
-		return lPerstatus;
-	}
-	public void setlPerstatus(String lPerstatus) {
-		this.lPerstatus = lPerstatus;
-	}
 	public int getsNo() {
 		return sNo;
 	}
@@ -137,7 +119,16 @@ public class DetailClassDTO {
 		this.sType = sType;
 	}
 	
-	
-	
-
+	public String getsMainsumnail() {
+		return sMainsumnail;
+	}
+	public void setsMainsumnail(String sMainsumnail) {
+		this.sMainsumnail = sMainsumnail;
+	}
+	public String getmMainsumnail() {
+		return mMainsumnail;
+	}
+	public void setmMainsumnail(String mMainsumnail) {
+		this.mMainsumnail = mMainsumnail;
+	}
 }

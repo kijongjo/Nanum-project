@@ -1,33 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="<c:url value='resources/css/reset.css'/>">
-<link rel="stylesheet" href="<c:url value='resources/css/classD.css'/>">
+<title>Document</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/classD.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
+<link rel="stylesheet" href="<c:url value='resources/css/shareDiv.css'/>">
 <link rel="stylesheet"
-	href="<c:url value='resources/css/shareDiv.css'/>">
+	href="<c:url value='/resources/css/index-slide.css'/>">
+
 <!-- 폰트 -->
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
 	<!--js 파일 불러오기   -->
 	
-
-
-
 <!-- jquery 불러오기 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="<c:url value='resources/js/classD.js'/>"></script>
 <script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
-<title>Document</title>
+
+<!-- detailsumnail slider  -->
+<script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
+<script src="<c:url value='/resources/js/index-slide.js'/>"></script>
+
+<script>
+	$(document).ready(function () {	
+		// 이 페이지로 전달된 el의 값을 jqeury변수에 담아 사용
+		var test = "<c:out value='${detailClass.sType}' />";
+		if(test=="대여") {
+			$(".detailCLoc").css({'pointer-events':'none'});
+			
+		}
+	});
+	
+</script>
+<style>
+
+</style>
+
 </head>
 
 
@@ -64,9 +86,13 @@
 		<section id="left01">
 			<!-- 상세 이미지 section 설정 -->
 			<section class="detailImg">
-				<img
-					src="https://www.public-kitchen.com/upload/lecture/e4460252-a4c4-44d0-a018-a902f33a3d52.jpg"
-					alt="">
+				<ul class="bxslider1">
+					<c:forEach var="item" items="${fn:split(detailClass.cDetailsumnail,',')}">
+						<li>
+							<img src="<c:url value='${item}' />" />
+						</li>
+					</c:forEach>		
+				</ul>
 				<!-- share 링크 -->
 				<div class="share">
 					<!-- a링크를 누르게 되면 공유 기능이 있는 div가 나온다  -->
@@ -83,7 +109,7 @@
 			<section class="intro">
 				<h3>클래스 소개</h3>
 				<div class="contents">
-					<span>${detailClass[0].cLongintro}</span>
+					<span>${detailClass.cLongintro}</span>
 				</div>
 
 			</section>
@@ -92,7 +118,7 @@
 			<section class="reference">
 				<h3>참고사항</h3>
 				<div class="contents">
-					<span>${detailClass[0].cReference}</span>
+					<span>${detailClass.cReference}</span>
 				</div>
 			</section>
 
@@ -103,12 +129,12 @@
 				<!-- 공간에 대한 이미지 -->
 				<section class="detailImg">
 					<img
-						src="https://www.public-kitchen.com/upload/croppieByAdmin/eb4fea3e-f5f4-4e77-83c5-56eff765e616.jpg"
+						src="<c:url value='${detailClass.sMainsumnail}'/>"
 						alt="">
 				</section>
 				<!-- 링크를 통해 공간 페이지로 이동하게 된다.
                 링크에는 공간의 주소가 들어간다. -->
-				<a href="classD"><span>${classDetail[0].sLoc}</span></a>
+				<a href="classD" class="detailCLoc"><span class="locIcon">${detailClass.sLoc}</span></a>
 				<p>상세주소는 클래스 예약 시 수강생들에게만 공개 됩니다.</p>
 			</section>
 
@@ -124,13 +150,22 @@
 						<!-- 스케쥴에 대한 내용이 나온다. -->
 						<div>
 							<ul>
-								<c:forEach var="dcdto" items="${detailClass}">
-								
-								<li>
-									<span>${dcdto.lLeasedate}</span> ${dcdto.lLeasetime}
-								</li>
+								<c:forEach var="dcsdto" items="${detailCSche}">
+									<li>
+										<span><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
+										<c:choose>
+											<c:when test="${dcsdto.lLeasetime eq '오전'}">
+												<span>10:00-14:00</span>
+											</c:when>
+											<c:when test="${dcsdto.lLeasetime eq '오후'}">
+												<span>14:00-18:00</span>
+											</c:when>
+											<c:otherwise>
+												<span>18:00-22:00</span>
+											</c:otherwise>								
+										</c:choose>	
+									</li>
 								</c:forEach>
-
 								<!-- <li>
 									정보 <span>20.04.04 (토) </span> 오전
 								</li>
@@ -165,7 +200,7 @@
 
 								<li>
 									정보 <span>20.04.04 (토) </span> 오전
-								</li> -->
+								</li>  -->
 							</ul>
 						</div>
 					</div>
@@ -292,19 +327,22 @@
 				<!-- 이름과 칭호가 들어간다.(칭호는 선생님만) -->
 				<h2 class="t-title">
 					<!-- 이름이 들어간다.(공간,선생님,클래스) -->
-					<span class="name">이유의계절:봄-레몬파운드케익</span>
+					<span class="name">${detailClass.cName}</span>
 
 				</h2>
 				<!-- 한줄소개(선생님,공간,클래스),해시태그(클래스,공간),경력(선생님),나머지정보(선생님,공간,클래스) -->
 				<div class="cont">
 					<!-- 한줄소개(선생님,공간,클래스) -->
-					<div class="shortIntro">상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해
-						가져가세요:-)</div>
+					<div class="shortIntro">${detailClass.cShortintro}</div>
 
 					<!-- 해쉬태그(공간,클래스)에 대한 정보가 들어온다.  -->
 					<section class="hashTag">
 						<!-- db에서 하나씩 가져오면 태그하나당 링크 하나로 처리한다. 링크를 클릭하면 검색페이지로 넘어간다. -->
-						<a href="">#한식</a> <a href="">#쭈꾸미</a> <a href="">#쭈꾸미가나다라</a>
+						<!-- <a href="">${hashtag}</a> <a href="">#쭈꾸미</a> <a href="">#쭈꾸미가나다라</a> -->						
+						
+						<c:forEach var="hashtag" items="${fn:split(detailClass.cHashtag, ',')}">
+							<a href="#">#${hashtag}</a>
+						</c:forEach>
 					</section>
 				</div>
 			</div>
@@ -322,7 +360,9 @@
 				<!-- 위치(공간,클래스)가 들어간다. -->
 				<li class="area">
 					<!--  위와 동일한 css--> <strong class="otherInfoName">위치</strong> <!-- 위치가 들어간다. -->
-					<span class="otherInfoContents">서울특별시 서대문구 모래내로</span>
+					<!-- 세번째 공백에서 자르기!!!!! 필요  -->
+					<span class="otherInfoContents">${fn:substring(detailClass.sLoc, 0, 14)}...</span>
+					
 
 				</li>
 				<!-- 언제 열리는지에 대한 정보(클래스) -->
@@ -333,7 +373,7 @@
 				<!-- 모집(클래스),인원(공간)에 대한 정보  -->
 				<li class="capacity">
 					<!-- 위와 동일한 css --> <strong class="otherInfoName">모집</strong> <span
-					class="otherInfoContents">최소인원 2명 / 최대인원 4명</span>
+					class="otherInfoContents">최소인원 ${detailClass.cMinrecruitperson}명 / 최대인원 ${detailClass.cMaxrecruitperson}명</span>
 				</li>
 
 			</ul>
@@ -341,13 +381,11 @@
 			<!-- 클래스를 개설한 선생님 디테일 페이지로 가는 링크가 오게 된다. -->
 			<div id="classTeacher">
 				<!-- 선생님 사진 이미지 db에서 꺼내오기! -->
-				<img
-					src="https://www.public-kitchen.com/upload/croppieByAdmin/3d5df044-6fb5-43eb-aca4-55836e6b3857.jpg"
-					alt="">
+				<img src="<c:url value='${detailClass.mMainsumnail}'/>">
 				<!-- 선생님 페이지에서 넘어가는 링크가 들어있다. -->
 				<div id="teacherLink">
-					<a href="teacherD"> <!-- 선생님 이름이 들어갑니다. --> <Strong>김순이</Strong>
-						<!-- 선생님 칭호가 들어갑니다. --> <span>한식 요리 연구가</span>
+					<a href="teacherD"> <!-- 선생님 이름이 들어갑니다. --> <Strong>${detailClass.tHavenickname}</Strong>
+						<!-- 선생님 칭호가 들어갑니다. --> <span>${detailClass.tExpertname}</span>
 					</a>
 				</div>
 			</div>
@@ -369,49 +407,63 @@
 					<!-- 스케쥴표가 전부 펼쳐진상태를 말한다. javascript로 로직처리가 필요하다. -->
 					<div id="scheduleOn">
 						<ul class="timeList">
+							<c:forEach var="dcsdto" items="${detailCSche}">
+							<!-- 날짜를 format 할때 양식의 대소문자를 잘 지켜줘야 된다.  -->
+								<li>
+								<span><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
+								<c:choose>
+									<c:when test="${dcsdto.lLeasetime eq '오전'}">
+										<span>10:00</span>
+									</c:when>
+									<c:when test="${dcsdto.lLeasetime eq '오후'}">
+										<span>14:00</span>
+									</c:when>
+									<c:otherwise>
+										<span>18:00</span>
+									</c:otherwise>								
+								</c:choose>
+								<span>${dcsdto.cMaxrecruitperson-dcsdto.cPerson}명 예약 가능</span>
+								</li>
+							</c:forEach>
+							
 
-							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
 
-							</li>
-
-
-							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+							<!-- <li>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
 
 							</li>
 							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
 
 							</li>
 							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
 
 							</li>
 							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
 
 							</li>
 							<li>
-								<!--정보 --> <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
 
 							</li>
+							<li>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+
+							</li>
+							<li>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+
+							</li>
+							<li>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+
+							</li>
+							<li>
+								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
+
+							</li> -->
 
 						</ul>
 					</div>
@@ -425,7 +477,7 @@
 				<div class="selectBottom">
 					<!-- 해당 클래스,공간에 대한 가격이 보이게 된다. -->
 					<p>
-						<em>₩</em><span>55,000</span>
+						<em>₩</em><span>${detailClass.cPrice}</span>
 					</p>
 					<!-- 클래스 공간의 결제 상세페이지로 넘어가는 버튼이다. -->
 					<button class="btn-payment">신청하기</button>

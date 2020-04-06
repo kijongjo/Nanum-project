@@ -16,17 +16,19 @@ public class ClassController {
 	ServiceInter si;
 
 	// classD view로 가는 프로그램
+//	@GetMapping("classD")
+//	public String classD() {
+//
+//		return "class/user/classD";
+//	}
+
 	@GetMapping("classD")
-	public String classD() {
-
-		return "class/user/classD";
-	}
-
-	@PostMapping("classD")
-	public String classD(@RequestParam("cno") int cno, Model model) {
+	public String classD(@RequestParam("no") int cNo, Model model) {
 		
-		System.out.println(si.readDetailC(cno));
-		model.addAttribute("detailClass", si.readDetailC(cno));
+		model.addAttribute("detailClass", si.readDetailC(cNo));
+		model.addAttribute("detailCSche", si.readDetailCSche(cNo));
+		System.out.println(si.readDetailCSche(cNo));
+		System.out.println(cNo);
 		
 		return "class/user/classD";
 	}
