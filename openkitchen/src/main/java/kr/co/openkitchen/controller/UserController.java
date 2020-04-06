@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/mypage")
 public class UserController {
-	@RequestMapping(value = {"/in"})
+	@RequestMapping(value = {"in"})
 	public String mypage() {
 		return "/mypage/mypageIn";
 	}

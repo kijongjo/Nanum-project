@@ -16,18 +16,19 @@
 	<!-- 비밀번호 암호화 -->
 	<bean id="Encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<bean id="passwordEncoder" class="kr.co.openkitchen.security.CustomPasswordEncoder"/>
-	
+	<!-- 로그아웃 커스텀 빈 -->
+	<bean id="customLogoutHeandler" class="kr.co.openkitchen.security.CustomLogoutHeandler"/>
 	
 	<!-- 정적파일 권한 삭제  -->
   	<security:http pattern="/resources/**" security="none" />
 
-    
-    
+   
 	<!-- 경로 별 권한 설정  -->
 	<security:http auto-config="true">
 		<!-- <security:intercept-url pattern="openkitchen/" access="permitAll"/> -->
 		
 		<security:intercept-url pattern="/*" access="permitAll"/>
+		<security:intercept-url pattern="/logout" access="permitAll"/>
 		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_USER')"/>
 		<security:intercept-url pattern="/**" access="hasRole('ROLE_ADMIN')"/>
 		<security:intercept-url pattern="/mypage/**" access="hasRole('ROLE_ADMIN')"/>
@@ -41,13 +42,17 @@
 				/>
 				
 	<!--커스텀 로그아웃 페이지를 이용해서 로그아웃  -->
-		<security:logout 
-				delete-cookies="JSESSIONID" 
-				invalidate-session="true" 
-				logout-url="/common/customLogout" 
-				logout-success-url="/" />
-				
-		<security:csrf disabled="false"/>
+	<!-- <security:logout
+	logout-url="/logout"
+	invalidate-session="true"
+	delete-cookies="JSESSIONID"
+	logout-success-url="/"
+	/> -->
+	<security:logout delete-cookies="JSESSIONID"
+			invalidate-session="true" 
+			logout-url="/logout" success-handler-ref="customLogoutHeandler" />	
+			
+		<security:csrf disabled="true"/>
  	</security:http>
  
 	

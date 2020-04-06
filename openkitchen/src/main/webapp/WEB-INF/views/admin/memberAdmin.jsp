@@ -11,13 +11,13 @@
     <!-- jquery 쓰기  -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
        <!-- 부트스트랩  -->
-   <script type="text/javascript" src="<c:url value='resources/js/bootstrap/bootstrap.min.js' />"></script>
+   <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/bootstrap.min.js' />"></script>
      <!-- 부트 스트랩 css 첫번째에 두기  -->
-    <link rel="stylesheet" type="text/css" href=" <c:url value='resources/css/bootstrap/bootstrap.min.css'/>" />
+    <link rel="stylesheet" type="text/css" href=" <c:url value='/resources/css/bootstrap/bootstrap.min.css'/>" />
      <!-- layout 뼈대 css 두번째에 두기 -->
-     <link rel="stylesheet" type="text/css" href="<c:url value='resources/css/bootstrap/local.css'/>">
+     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrap/local.css'/>">
     <!-- memberAdmin 페이지 css 세번째에 두기 -->
-    <link rel="stylesheet" type="text/css" href="<c:url value='resources/css/memberAdmin.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/memberAdmin.css'/>">
     <!-- 폰트 가지고오기 -->
     <script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
     <!-- 구글 폰트 사용하기  -->
@@ -54,15 +54,15 @@
                         <h1>회원관리</h1>
                     </li>
                    <li>
-                        <a href="adminIndex">
+                        <a href=<c:url value="/admin/in"/>>
                             <span class="selected"><i class="fa fa-bar-chart-o"></i> 사업그래프</span>
                         </a>
                     </li>
                     <li>
-                    <a href="memberAdmin"><span class="selected"><i class="fa fa-tasks"></i> 회원관리</span>
+                    <a href="<c:url value="/admin/memberAdmin"/>"><span class="selected"><i class="fa fa-tasks"></i> 회원관리</span>
                     </a>
                     </li>
-                    <li><a href="perAdmin"><span class="selected"><i class="fa fa-globe"></i> 상태관리</span></a></li>
+                    <li><a href="<c:url value="/admin/perAdmin"/>"><span class="selected"><i class="fa fa-globe"></i> 상태관리</span></a></li>
                     <!--  <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
                     <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li> -->
                 </ul>
