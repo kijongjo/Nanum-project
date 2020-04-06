@@ -18,7 +18,6 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript"	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
 <script src="<c:url value='/resources/js/index-slide.js'/>"></script>
 
@@ -38,8 +37,6 @@ $(document).ready(function () {
 		$frm.submit();
 		
 	});
-	
-	
 });
 </script>
 <script>
@@ -500,7 +497,7 @@ $(document).ready(function() {
             <ul>
             	<c:forEach var="mc" items="${popularClass}">
 		                <li class="mcdetail">
-                 		   <form action="classD" class="frm" method="post">
+                 		   <a href="classD?no=${mc.cNo}">
 		                       <input type="hidden" name="cno" value="${mc.cNo}" />
 		                       <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" /> 		                    
 		                       <img src="<c:url value='${mc.cMainsumnail}'/>" alt="이미지" id="mcimg">
@@ -514,7 +511,7 @@ $(document).ready(function() {
 		                        <div class="Price">
 		                            <strong>\</strong> ${mc.cPrice}
 		                        </div>		                    
-                    		</form>
+                    		</a>
 		                </li>
                 </c:forEach> 
                <%--  <li>
