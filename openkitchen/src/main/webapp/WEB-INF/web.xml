@@ -9,7 +9,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring/root-context.xml
-			/WEB-INF/spring/appServlet/security-context.xml <!--여기서 파일 한 개 추가 -->
+			/WEB-INF/spring/security-context.xml
 		</param-value>
 
 	</context-param>
