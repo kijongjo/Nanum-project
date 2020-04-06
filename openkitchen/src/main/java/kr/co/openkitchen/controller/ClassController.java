@@ -24,7 +24,9 @@ public class ClassController {
 
 	@PostMapping("classD")
 	public String classD(@RequestParam("cno") int cno, Model model) {
-		System.out.println(cno);
+		
+		System.out.println(si.readDetailC(cno));
+		model.addAttribute("detailClass", si.readDetailC(cno));
 		
 		return "class/user/classD";
 	}
