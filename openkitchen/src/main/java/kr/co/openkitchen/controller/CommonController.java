@@ -47,7 +47,10 @@ public class CommonController {
 	ServletContext sc;
 
 	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
-
+	@RequestMapping("/login")
+	public String loginForm() {
+		return "login/login";
+	}
 	@RequestMapping(value = "/common/customLogin")
 	public void login(String error, String logout, Model model) {
 		if (error != null) {

@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
   <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <!DOCTYPE html>
-<html lang="en">
+<html lang="UTF-8">
                        
                         
                       
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Dark Admin</title>
     <!-- 부트스트랩 css와 js 첫번째에 두기-->
