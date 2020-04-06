@@ -11,17 +11,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Dark Admin</title>
     <!-- 부트스트랩 css와 js 첫번째에 두기-->
-    <link rel="stylesheet" type="text/css" href=" <c:url value='resources/css/bootstrap/bootstrap.min.css'/>" />
+    <link rel="stylesheet" type="text/css" href=" <c:url value='/resources/css/bootstrap/bootstrap.min.css'/>" />
       <!-- layout 뼈대 css  두번째에 두기  -->
-    <link rel="stylesheet" type="text/css" href="<c:url value='resources/css/bootstrap/local.css'/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrap/local.css'/>">
     <!-- adminIndex css  세번째에 두기 -->
-    <link rel="stylesheet" href=" <c:url value='resources/css/adminIndex.css'/>"/>
+    <link rel="stylesheet" href=" <c:url value='/resources/css/adminIndex.css'/>"/>
    
    
     <!-- jquery 불러오기 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
-    <script type="text/javascript" src="<c:url value='resources/js/bootstrap/bootstrap.min.js'/>"></script>
+    <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/bootstrap.min.js'/>"></script>
     
     <!-- 글자종류 link -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
@@ -49,8 +49,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a class="navbar-brand" href="adminIndex">
-                    <img src="<c:url value='resources/img/icon/logo3.png' />" alt="">
+                <a class="navbar-brand" href="<c:url value="/"/>">
+                    <img src="<c:url value='/resources/img/icon/logo3.png' />" alt="">
                    
                 </a>
             </div>
@@ -63,15 +63,15 @@
                         <h1>사업그래프</h1>
                     </li>
                     <li>
-                        <a href="adminIndex">
+                        <a href="<c:url value='/admin/in'/>">
                             <span class="selected"><i class="fa fa-bar-chart-o"></i> 사업그래프</span>
                         </a>
                     </li>
                     <li>
-                    <a href="memberAdmin"><span class="selected"><i class="fa fa-tasks"></i> 회원관리</span>
+                    <a href="<c:url value='/admin/memberAdmin'/>"><span class="selected"><i class="fa fa-tasks"></i> 회원관리</span>
                     </a>
                     </li>
-                    <li><a href="perAdmin"><span class="selected"><i class="fa fa-globe"></i> 상태관리</span></a></li>
+                    <li><a href="<c:url value='/admin/perAdmin'/>"><span class="selected"><i class="fa fa-globe"></i> 상태관리</span></a></li>
                     <!-- <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
                     <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li> -->
                 </ul>

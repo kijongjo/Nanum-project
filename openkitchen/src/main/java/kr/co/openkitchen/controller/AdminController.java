@@ -4,9 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 	//adminIndex 페이지 view 전달 program
-	@RequestMapping("/adminIndex")
+	@RequestMapping("/in")
 	public String adminIndex() {
 		
 			

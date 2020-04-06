@@ -83,6 +83,7 @@ section {
     display: table-cell;
     height: 125px;
     vertical-align: middle;
+    overflow: hidden;
 }
 
 /* 로그인 멘트 출력(~님 안녕하세요.)  */
