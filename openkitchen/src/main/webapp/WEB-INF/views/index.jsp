@@ -26,6 +26,7 @@
 		cursor:pointer;
 	}
 </style>
+<jsp:include page="headerScript.jsp" flush="false" />
 <script>
 $(document).ready(function () {
 	var $mcdetail = $(".mcdetail");

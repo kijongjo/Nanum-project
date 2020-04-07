@@ -17,11 +17,13 @@
 	href="<c:url value='/resources/css/lay03_sideBar.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/makeContents.css'/>">
-	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="<c:url value='/resources/js/teacherDiscription.js'/>"></script>	
-<script>
+<link rel="stylesheet"
 
-</script>
+	href="<c:url value='/resources/css/teacherBase.css'/>">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="<c:url value='/resources/js/teacherDiscription.js'/>"></script>
+<script src="<c:url value='/resources/js/teacherBase.js'/>"></script>		
+
 </head>
 <body>
 	<jsp:include page="../../header.jsp" flush="false" />
@@ -67,5 +69,6 @@
 
 	</div>
 	<jsp:include page="../../footer.jsp" flush="false" />
+	
 </body>
 </html>

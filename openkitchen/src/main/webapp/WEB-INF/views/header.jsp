@@ -22,19 +22,20 @@
     </div>
         
     <div>
-        <a href="<c:url value='/mypage/in'/>"><img src="<c:url value='/resources/img/icon/expansion.png'/>" alt="expansion"></a>
+        <img src="<c:url value='/resources/img/icon/expansion.png'/>" alt="expansion" id="header_user">
     </div>
     <div id="header_nav">
             <ul>
                 <li><a href="#">공공의주방 이야기</a></li>
                 <li><a href="#">공지사항</a></li>
                 <li><a href="#">이벤트</a></li>
-                <li><a href="#">자주하는 질문</a></li>
-                <sec:authorize access="hasRole('ROLE_ADMIN')"><li><a href="<c:url value='/admin/in'/>">관리자 페이지</a></li></sec:authorize>
+                <li><a href="<c:url value="/questions"/>">자주하는 질문</a></li>
             </ul>
             <ul>
                 <sec:authorize access="isAnonymous()"><li><a href="<c:url value='/login'/>">로그인</a></li></sec:authorize>
                 <sec:authorize access="isAuthenticated()"><li><a href="<c:url value='/logout'/>">로그아웃</a></li></sec:authorize>
+                <sec:authorize access="hasRole('ROLE_ADMIN')"><li><a href="<c:url value='/admin/in'/>">관리자 페이지</a></li></sec:authorize>
+                <sec:authorize access="isAuthenticated()"><li><a href="<c:url value='/mypage/in'/>">마이페이지</a></li></sec:authorize>
                 <sec:authorize access="isAnonymous()"><li><a href="#">회원가입</a></li></sec:authorize>
 
 

@@ -52,4 +52,9 @@ public class MainController {
 		return "index";
 	}
 
+	@GetMapping("/questions")
+	public String questions() {
+		return "etc/questions";
+	}
+
 }
