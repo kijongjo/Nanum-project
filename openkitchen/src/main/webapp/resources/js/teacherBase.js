@@ -1,3 +1,4 @@
+
 //임의의 file object영역
         var files = {};
         var previewIndex = 0;
@@ -406,7 +407,7 @@
                     contentType: false,
                     cache: false,
                     timeout: 600000,
-                    url: '/openkitchen' + '/multipartUpload',
+                    url: 'multipartUpload',
                     data: formData,
 
                     success: function(result) {
