@@ -19,5 +19,8 @@
   		<typeAlias type="kr.co.openkitchen.dto.PopularClassDTO" alias="pcdto" />
   		<typeAlias type="kr.co.openkitchen.dto.DetailClassDTO" alias="dcdto" />
   		<typeAlias type="kr.co.openkitchen.dto.DetailCScheDTO" alias="dcsdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.ClassIndexDTO" alias="rdto"/>
+  		<typeAlias type="kr.co.openkitchen.dto.TeacherIndexDTO" alias="tcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.SpaceIndexDTO" alias="spdto" />
   	</typeAliases>
   </configuration>

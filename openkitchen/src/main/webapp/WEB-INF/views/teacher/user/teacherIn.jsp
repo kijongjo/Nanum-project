@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,6 +80,7 @@ $(document).ready(
 </script>
 </head>
 <body>
+<%-- <h4>${list }</h4> --%>
 	<jsp:include page="../../header.jsp" flush="false" />
     <div id="content">
         <div id="new-content" class="t-slide">
@@ -86,50 +88,19 @@ $(document).ready(
                 <h1>새로운 선생님</h1>
             </div>
             <ul class="bxslider">
-                <li>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span class="info-sortation">경상북도 경주시</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span class="info-sortation">경상북도 경주시</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span class="info-sortation">경상북도 경주시</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span class="info-sortation">경상북도 경주시</span>
-                        </div>
-                    </a>
-                </li>
+            	<c:forEach var="NewTeacher" items="${list }">
+	                <li>
+	                    <a href="#">
+							<img src="<c:url value='${NewTeacher.tMainSumnail }'/>" alt="" />
+	                        <h3>${NewTeacher.tHaveNickName } <span class="expert-name">${NewTeacher.tExpertName}</span></h3>
+	                        <p>${NewTeacher.tShortIntro}</p>
+	                        <div>
+	                            <span>${NewTeacher.cTema}</span>
+	                            <span class="info-sortation">${NewTeacher.tArea}</span>
+	                        </div>
+	                    </a>
+	                </li>
+                </c:forEach>
                 
             </ul>
         </div>

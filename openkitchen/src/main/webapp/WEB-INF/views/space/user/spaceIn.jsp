@@ -95,6 +95,7 @@ $(document).ready(
 </script>
 </head>
 <body>
+<%-- <h3>${list }</h3> --%>
 	<jsp:include page="../../header.jsp" flush="false" />
     <div id="content">
         <div id="new-content" class="s-slide">
@@ -102,56 +103,22 @@ $(document).ready(
                 <h1>새로운 공간</h1>
             </div>
             <ul class="bxslider">
-                <li>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>로푸드팜</h3>
-                        <p>NO 우유, 계란, 버터를 사용하지 않은 비건요리 전문 스튜디오입니다.</p>
-                        <div>
-                            <span>베이킹스튜디오</span>
-                            <span class="info-sortation">서울특별시 마포구</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>로푸드팜</h3>
-                        <p>NO 우유, 계란, 버터를 사용하지 않은 비건요리 전문 스튜디오입니다.</p>
-                        <div>
-                            <span>베이킹스튜디오</span>
-                            <span class="info-sortation">서울특별시 마포구</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>로푸드팜</h3>
-                        <p>NO 우유, 계란, 버터를 사용하지 않은 비건요리 전문 스튜디오입니다.</p>
-                        <div>
-                            <span>베이킹스튜디오</span>
-                            <span class="info-sortation">서울특별시 마포구</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>로푸드팜</h3>
-                        <p>NO 우유, 계란, 버터를 사용하지 않은 비건요리 전문 스튜디오입니다.</p>
-                        <div>
-                            <span>베이킹스튜디오</span>
-                            <span class="info-sortation">서울특별시 마포구</span>
-                        </div>
-                    </a>
-                </li>
-                
+            	<c:forEach items="${list }" var="spaceIndex">
+	                <li>
+	                    <a href="#">
+							<img src="<c:url value='${spaceIndex.sMainSumnail }'/>" alt="" />
+	                        <h3>${spaceIndex.sName}</h3>
+	                        <p>${spaceIndex.sShortIntro}</p>
+	                        <div>
+	                            <span>${spaceIndex.sTema}</span>
+	                            <span class="info-sortation">${spaceIndex.sLoc}</span>
+	                        </div>
+	                    </a>
+	                </li>
+                </c:forEach>
             </ul>
         </div>
-
-
-        <div>
+		<div>
             <a href="#">
                 <img src="<c:url value='/resources/img/testimg/testbanner.jpg'/>" alt="" />
             </a>

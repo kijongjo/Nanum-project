@@ -4,13 +4,34 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.co.openkitchenIndex">
-	<select id="recentlyClass" resultType="cdto">
-		SELECT * FROM CLASS
+	<select id="recentlyClass" resultType="rdto">
+		SELECT C_NO, C_NAME, C_SHORTINTRO, C_MAINSUMNAIL, C_TEMA, C_PRICE, T_AREA, T_EXPERT
+		FROM CLASS C, TEACHER T
+		WHERE C.T_NO = T.T_NO AND ROWNUM &lt; 6
 		ORDER BY C_REGDATE DESC
-		LIMIT 1,5
 	</select>
-
-
+	
+	<select id="recentlyTeacher" resultType="tcdto">
+		SELECT T.T_NO, T_MAINSUMNAIL, T_DETAILSUMNAIL, T_HAVENICKNAME, T_EXPERTNAME, T_CAREER, T_SHORTINTRO, T_AREA, T_LONGINTRO, T_REGDATE, T_EXPERT, T_PERSTATUS, C_TEMA
+		FROM CLASS C, TEACHER T
+		WHERE C.T_NO = T.T_NO AND ROWNUM &lt; 6
+		ORDER BY T_REGDATE DESC
+	</select>
+	
+	<select id="recentlySpace" resultType="spdto">
+		SELECT S_MAINSUMNAIL, S_SHORTINTRO, S_NAME, S_TEMA, S_LOC
+		FROM SPACE
+		WHERE ROWNUM &lt; 6
+		ORDER BY S_REGDATE DESC
+	</select>
+	<select id="ContentClass" resultType="rdto">
+		SELECT C_NO, C_NAME, C_SHORTINTRO, C_MAINSUMNAIL, C_TEMA, C_PRICE, T_AREA, T_EXPERT
+			FROM (SELECT ROWNUM NUM, C_NO, C_NAME, C_SHORTINTRO, C_MAINSUMNAIL, C_TEMA, C_PRICE, T_AREA, T_EXPERT
+       			 FROM CLASS C, TEACHER T
+				 WHERE C.T_NO = T.T_NO
+      			 ORDER BY C_REGDATE DESC)
+      	WHERE NUM BETWEEN 6+8 AND 13+8
+	</select>
 
 
 

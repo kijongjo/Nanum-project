@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.dao.Dao;
 import kr.co.openkitchen.dto.ClassDTO;
-import kr.co.openkitchen.dto.DetailCScheDTO;
-import kr.co.openkitchen.dto.DetailClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
 import kr.co.openkitchen.dto.PopularClassDTO;
+import kr.co.openkitchen.dto.SpaceIndexDTO;
+import kr.co.openkitchen.dto.ClassIndexDTO;
+import kr.co.openkitchen.dto.TeacherIndexDTO;
 import lombok.Setter;
 
 @Service
@@ -46,24 +47,24 @@ public class ServiceImple implements ServiceInter {
 	}
 
 	@Override
-	public DetailClassDTO readDetailC(int cNo) {
-		
-		return dao.selectDetailC(cNo);
+	public List<ClassIndexDTO> readFive() {
+		return dao.selectFive();
 	}
 
 	@Override
-	public List<DetailCScheDTO> readDetailCSche(int cNo) {
-		
-		return dao.selectDetailCSche(cNo);
+	public List<TeacherIndexDTO> readFiveT() {
+		return dao.selectFiveT();
 	}
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
+	@Override
+	public List<SpaceIndexDTO> readFiveS() {
+		return dao.selectFiveS();
+	}
+
+	@Override
+	public List<ClassIndexDTO> mainContentC() {
+		System.out.println("서비스");
+		return dao.selectContentC();
+	}
+
 }
