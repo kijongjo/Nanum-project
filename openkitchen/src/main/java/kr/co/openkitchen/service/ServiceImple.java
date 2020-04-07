@@ -89,6 +89,21 @@ public class ServiceImple implements ServiceInter {
 		
 		return dao.selectDetailCSche(cNo);
 	}
+
+	@Override
+	public List<ClassIndexDTO> moreClass(int count) {
+		return dao.moreClass(count);
+	}
+
+	@Override
+	public List<TeacherIndexDTO> moreTeacher(int count) {
+		return dao.moreTeacher(count);
+	}
+
+	@Override
+	public List<SpaceIndexDTO> moreSpace(int count) {
+		return dao.moreSpace(count);
+	}
 	
 	
 

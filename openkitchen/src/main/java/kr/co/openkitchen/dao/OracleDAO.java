@@ -91,4 +91,19 @@ public class OracleDAO implements Dao {
 		return ss.selectList("kr.co.openkitchen.class.selectDetailCSche", cNo);
 	}
 
+	@Override
+	public List<ClassIndexDTO> moreClass(int count) {
+		return ss.selectList("kr.co.openkitchenIndex.MoreClass", count*8);
+	}
+
+	@Override
+	public List<TeacherIndexDTO> moreTeacher(int count) {
+		return ss.selectList("kr.co.openkitchenIndex.MoreTeacher", count*8);
+	}
+
+	@Override
+	public List<SpaceIndexDTO> moreSpace(int count) {
+		return ss.selectList("kr.co.openkitchenIndex.MoreSpace", count*8);
+	}
+
 }

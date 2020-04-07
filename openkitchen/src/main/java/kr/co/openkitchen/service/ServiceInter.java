@@ -26,5 +26,8 @@ public interface ServiceInter {
 	public List<SpaceIndexDTO> mainContentS();
 	public DetailClassDTO readDetailC(int cNo);
 	public List<DetailCScheDTO> readDetailCSche(int cNo);
-
+	public List<ClassIndexDTO> moreClass(int count);
+	public List<TeacherIndexDTO> moreTeacher(int count);
+	public List<SpaceIndexDTO> moreSpace(int count);
+	
 }

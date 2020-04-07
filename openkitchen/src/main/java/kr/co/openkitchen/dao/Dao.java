@@ -25,5 +25,8 @@ public interface Dao {
 	public List<SpaceIndexDTO> selectContentS();
 	public DetailClassDTO selectDetailC(int cNo);
 	public List<DetailCScheDTO> selectDetailCSche(int cNo);
+	public List<ClassIndexDTO> moreClass(int count);
+	public List<TeacherIndexDTO> moreTeacher(int count);
+	public List<SpaceIndexDTO> moreSpace(int count);
 	
 }
