@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,10 +33,9 @@ var rtn = false;
 //html의 특정 태그 요소보다 script 위치가 위에 있을경우 document.ready를 쓴다.
 $(document).ready(
 		function() {
+			console.log("contextPath : " + contextPath);
 			// 버튼 클릭시 특정 function 작용
-			$("#showMoreInfo").on(
-					"click",
-					function() {
+			$("#showMoreInfo").on("click",function() {
 						// ajax 요청
 						$.ajax({
 							// 보낼 요청 값 contextPath를 적어주어야한다.
@@ -44,7 +44,7 @@ $(document).ready(
 							type : 'GET',
 							// 더보기 요청시 몇개 씩 가져올지 결정 하자 .
 							data : {
-								count : 8
+								count : 1
 							},
 							// 요청 성공시 function 작용
 							success : function(data) {
@@ -52,13 +52,18 @@ $(document).ready(
 								var obj = JSON.parse(data);
 								// JSON에 담긴 내용을 console창에서 봄
 								console.log(obj);
+								console.log(obj[0]);
 								console.log(obj.length);
+								if(obj.length < 7){
+									$("#showMoreInfo").attr("display","none");
+									console.log("더이상 보여줄 게 없음");
+								}else{
 								// JSON이 배열 형태로 넘어올경우 넘어오는 데이터마다 HTML 코드를 붙이는 역할
 								obj.forEach(function(item) {
-										console.log(item.cNo);
-										console.log(item.cName);
-										console.log(item.shortIntro);
-										console.log(item.expert);
+										console.log("item : " + item);
+										//console.log(item[0].cName);
+										//console.log(item[0].shortIntro);
+										//console.log(item[0].expert);
 											contents0 = '<c:url value="'
 													+ contextPath + item.cMainsumnail
 													+ '"/>';
@@ -83,6 +88,7 @@ $(document).ready(
 								$("#all-content>ul").append($frag);
 								// 요청 정지
 								return rtn;
+								}
 							},
 							error : function(errorThrown) {
 								alert("통신 실패");
@@ -102,221 +108,56 @@ $(document).ready(
                 <h1>새로운 클래스</h1>
             </div>
             <ul class="bxslider">
-                <li>
-                	<%-- <c:forEach var="class" items="${}"></c:forEach> --%>
-                    <a href="#">
-						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3> 이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h3> 이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h3>이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h3>이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h3>이유의계절:봄-레몬파운드 케익</h3>
-                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 서대문구</span>
-                            <span>4월6회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                
+               	<c:forEach var="classfive" items="${list}">
+	                <li>
+	                    <a href="#">
+							<img src=<c:url value="${classfive.cMainsumnail }"/> alt="" />
+	                        <h3> ${classfive.cName }</h3>
+	                        <p>${classfive.cShortIntro }</p>
+	                        <div>
+	                            <span>${classfive.cTema}</span>
+	                            <span>${classfive.tArea}</span>
+	                            <span>4월6회 진행</span>
+	                        </div>
+	                        <div class="Price">
+	                            <strong>\</strong><fmt:formatNumber value="${classfive.cPrice}" groupingUsed="true" />
+	                        </div>
+	                    </a>
+	                </li>
+                </c:forEach>
             </ul>
         </div>
 
-
+		<!-- 배너 부분 -->
         <div>
             <a href="#">
                 <img src="<c:url value='/resources/img/testimg/testbanner.jpg'/>" alt="">
             </a>
         </div>
 
-
+		<!-- 메인 컨텐츠  -->
         <div id="all-content">
             <div class="itemTitle">
                 <h2>클래스</h2>
             </div>
             <ul>
+           	<c:forEach items="${mainContent }" var="mainC">
                 <li>
                     <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
+                		<img src="<c:url value='${mainC.cMainsumnail }'/>" alt="">
+                        <h4>${mainC.cName }</h4>
+                        <p>${mainC.cShortIntro }</p>
                         <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
+                            <span>${mainC.cTema }</span>
+                            <span>${mainC.tArea }</span>
+                            <span>진행중</span>
                         </div>
                         <div class="Price">
-                            <strong>\</strong>49,800
+                            <strong>\</strong><fmt:formatNumber value="${mainC.cPrice }" groupingUsed="true" />
                         </div>
                     </a>
                 </li>
-                <!-- 테스트용 복사코드-->
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test2.jpg'/>" alt="">
-                        <h4>손이가요 손이가! 해물잡채</h4>
-                        <p>한식 클래스</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                    	<img src="<c:url value='/resources/img/testimg/test3.jpg'/>" alt="">
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test10.jpg'/>" alt="">
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test10.jpg'/>" alt="">
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test3.jpg'/>" alt="">
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test2.jpg'/>" alt="">
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong>49,800
-                        </div>
-                    </a>
-                </li>
-                <!-- 테스트용 복사코드 끝-->
+           	</c:forEach>
             </ul>
         </div>
 
@@ -324,7 +165,7 @@ $(document).ready(
 
 
       <button class="moreInfo" id="showMoreInfo">
-            더 많은 클래스가 궁금하다면?
+            	더 많은 클래스가 궁금하다면?
             <img src='<c:url value='/resources/img/icon/ico-more.png'/>' alt="more">
         </button>
     </div>

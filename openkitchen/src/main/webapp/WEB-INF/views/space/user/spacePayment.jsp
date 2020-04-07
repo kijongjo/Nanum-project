@@ -445,6 +445,7 @@
     </style>
 </head>
 <body>
+	<jsp:include page="../../header.jsp" flush="false" />
     <div id="lay03">
         <section id="left01">
             <section id="apply01">
@@ -578,5 +579,6 @@
             <a href=""><input type="button" value="결제하기" id="payButton" disabled></a>
         </section>
     </div>
+    <jsp:include page="../../footer.jsp" flush="false" />
 </body>
 </html>

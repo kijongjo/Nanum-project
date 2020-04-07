@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.openkitchen.dto.ClassDTO;
-import kr.co.openkitchen.dto.DetailCScheDTO;
-import kr.co.openkitchen.dto.DetailClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
 import kr.co.openkitchen.dto.PopularClassDTO;
+import kr.co.openkitchen.dto.SpaceIndexDTO;
+import kr.co.openkitchen.dto.ClassIndexDTO;
+import kr.co.openkitchen.dto.TeacherIndexDTO;
 import lombok.Setter;
 
 @Repository
@@ -47,29 +48,24 @@ public class OracleDAO implements Dao {
 	}
 
 	@Override
-	public DetailClassDTO selectDetailC(int cNo) {
-		
-		return ss.selectOne("kr.co.openkitchen.class.selectDetailC", cNo);
+	public List<ClassIndexDTO> selectFive() {
+		return ss.selectList("kr.co.openkitchenIndex.recentlyClass");
 	}
 
 	@Override
-	public List<DetailCScheDTO> selectDetailCSche(int cNo) {
-		
-		return ss.selectList("kr.co.openkitchen.class.selectDetailCSche", cNo);
+	public List<TeacherIndexDTO> selectFiveT() {
+		return ss.selectList("kr.co.openkitchenIndex.recentlyTeacher");
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public List<SpaceIndexDTO> selectFiveS() {
+		return ss.selectList("kr.co.openkitchenIndex.recentlySpace");
+	}
+
+	@Override
+	public List<ClassIndexDTO> selectContentC() {
+		System.out.println("다오");
+		return ss.selectList("kr.co.openkitchenIndex.ContentClass");
+	}
+
 }
