@@ -167,41 +167,6 @@
 										</c:choose>	
 									</li>
 								</c:forEach>
-								<!-- <li>
-									정보 <span>20.04.04 (토) </span> 오전
-								</li>
-
-								<li>
-									정보 <span>20.04.04 (토) </span> 오전
-								</li>
-
-								<li>
-									정보 <span>20.04.04 (토) </span> 오전
-								</li>
-
-								<li>
-									정보 <span>20.04.04 (토) </span> 오전
-								</li>
-
-								<li>
-									정보 <span>20.04.04 (토) </span> 오전
-								</li>
-
-								<li>
-									정보 <span>20.04.04 (토) </span> 오전
-								</li>
-
-								<li>
-									정보 <span>20.04.04 (토)</span> 오전
-								</li>
-
-								<li>
-									정보 <span>20.04.04 (토) </span> 오전
-								</li>
-
-								<li>
-									정보 <span>20.04.04 (토) </span> 오전
-								</li>  -->
 							</ul>
 						</div>
 					</div>

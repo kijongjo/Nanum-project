@@ -46,6 +46,7 @@
   		
   		
   		<select id="selectPopularC" resultType="pcdto" parameterType="map">
+  			
   			SELECT C_NO, C_NAME, C_MAINSUMNAIL, C_SHORTINTRO, C_TEMA, C_PRICE, T_AREA, T_EXPERT
 			FROM CLASS C, TEACHER T
 			WHERE C.T_NO = T.T_NO AND 
@@ -53,6 +54,6 @@
 			<foreach collection="popularList" item="item" separator="||'|'||">
 				#{item}
 			</foreach>
-			)
+			) AND ROWNUM &lt;= 8
   		</select>
   </mapper>
