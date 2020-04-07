@@ -4,15 +4,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ServiceImple implements ServiceInter {
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
 
 }

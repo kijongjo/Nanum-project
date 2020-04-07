@@ -11,4 +11,5 @@ public interface CDaoInter {
 	public List<ClassIndexDTO> selectContentC();
 	public DetailClassDTO selectDetailC(int cNo);
 	public List<DetailCScheDTO> selectDetailCSche(int cNo);
+	public List<ClassIndexDTO> moreClass(int count);
 }

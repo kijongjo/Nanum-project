@@ -25,4 +25,8 @@ public class SpaceDAO implements SDaoInter {
 	public List<SpaceIndexDTO> selectContentS() {
 		return ss.selectList("kr.co.openkitchenIndex.ContentSpace");
 	}
+	@Override
+	public List<SpaceIndexDTO> moreSpace(int count) {
+		return ss.selectList("kr.co.openkitchenIndex.MoreSpace", count*8);
+	}
 }

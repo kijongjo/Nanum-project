@@ -24,4 +24,9 @@ public class SpaceService implements SserviceInter {
 		public List<SpaceIndexDTO> mainContentS() {
 			return dao.selectContentS();
 		}
+		
+		@Override
+		public List<SpaceIndexDTO> moreSpace(int count) {
+			return dao.moreSpace(count);
+		}
 }

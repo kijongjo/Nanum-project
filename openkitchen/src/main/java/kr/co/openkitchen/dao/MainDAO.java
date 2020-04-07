@@ -48,4 +48,11 @@ public class MainDAO implements MDaoInter {
 		return ss.selectList("kr.co.openkitchen.class.selectPopularC", map);
 	}
 
+
+
+	
+
+
+
+
 }

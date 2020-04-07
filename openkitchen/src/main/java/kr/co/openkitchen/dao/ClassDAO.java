@@ -39,4 +39,8 @@ public class ClassDAO implements CDaoInter {
 		
 		return ss.selectList("kr.co.openkitchen.class.selectDetailCSche", cNo);
 	}
+	@Override
+	public List<ClassIndexDTO> moreClass(int count) {
+		return ss.selectList("kr.co.openkitchenIndex.MoreClass", count*8);
+	}
 }

@@ -30,7 +30,10 @@ public class TeacherDAO implements TDaoInter {
 		
 		return ss.selectOne("kr.co.openkitchen.teacher.selectDetailT", tNo);
 	}
-	
+	@Override
+	public List<TeacherIndexDTO> moreTeacher(int count) {
+		return ss.selectList("kr.co.openkitchenIndex.MoreTeacher", count*8);
+	}
 	
 	
 	

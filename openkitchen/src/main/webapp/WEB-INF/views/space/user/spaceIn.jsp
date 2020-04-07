@@ -29,61 +29,69 @@ var contents0, contents1, contents2, contents3, contents4, contents5;
 var $frag = $(document.createDocumentFragment());
 //ajax 요청 멈추기위한 변수 설정
 var rtn = false;
+var a = 1;
 //html의 특정 태그 요소보다 script 위치가 위에 있을경우 document.ready를 쓴다.
 $(document).ready(
 		function() {
+			console.log("contextPath : " + contextPath);
 			// 버튼 클릭시 특정 function 작용
-			$("#showMoreInfo").on(
-					"click",
-					function() {
+			$("#showMoreInfo").on("click",function() {
+				a = a+1;
 						// ajax 요청
 						$.ajax({
 							// 보낼 요청 값 contextPath를 적어주어야한다.
-							url : contextPath + '/test',
+							url : contextPath + '/moreS',
 							/* get은 되는데 왜 post는 안됨? 모르겟음 */
 							type : 'GET',
 							// 더보기 요청시 몇개 씩 가져올지 결정 하자 .
 							data : {
-								count : 8
+								count : $("#showMoreInfo").val()
 							},
 							// 요청 성공시 function 작용
 							success : function(data) {
 								// 받아온 JSON 사용하기 위한 변수 선언
 								var obj = JSON.parse(data);
 								// JSON에 담긴 내용을 console창에서 봄
-								console.log(obj);
-								console.log(obj.length);
+								// console.log(obj);
+								// console.log(obj[0]);
+								// console.log(obj.length);
+								if(obj.length < 7){
+									obj.forEach(function(item) {
+										console.log("item : " + item);
+										contents0 = '<c:url value="'+ contextPath + item.sMainSumnail+ '"/>';
+										contents1 = '<a href="#">';
+										contents2 = '<img src="'+contents0+'">';
+										contents3 = '<h4>' + item.sName	+ '</h4>';
+										contents4 = '<p>' + item.sShortIntro+ '</p>';
+										contents5 = '<span>' + item.sTema+ ' | </span>' + '<span>'+ item.sLoc + '</span>'+ '</a>';
+										tag = contents1 + contents2	+ contents3 + contents4	+ contents5;
+										// frag에 먼저 append 함.
+										$frag.append('<li>' + tag+ '</li>')
+									});
+									// 최종적인 값을 append 함.
+									$("#all-content>ul").append($frag);
+									$("#showMoreInfo").css("display","none");
+									//alert("더이상 보여줄 게 없음");
+								}else{
 								// JSON이 배열 형태로 넘어올경우 넘어오는 데이터마다 HTML 코드를 붙이는 역할
-								obj
-										.forEach(function(item) {
-											contents0 = '<c:url value="'
-													+ contextPath + item.img
-													+ '"/>';
-											contents1 = '<a href="#">';
-											contents2 = '<img src="'
-													+contents0+'">';
-											contents3 = '<h4>' + item.name
-													+ '</h4>';
-											contents4 = '<p>' + item.shortIntro
-													+ '</p>';
-											contents5 = '<span>' + item.expert
-													+ '</span>' + '<span>'
-													+ item.area + '</span>'
-													+ '</a>';
-											tag = contents1 + contents2
-													+ contents3 + contents4
-													+ contents5;
-											// frag에 먼저 append 함.
-											$frag
-													.append(
-															'<li>' + tag
-																	+ '</li>')
-													
-										});
+								obj.forEach(function(item) {
+										console.log("item : " + item);
+										contents0 = '<c:url value="'+ contextPath + item.sMainSumnail+ '"/>';
+										contents1 = '<a href="#">';
+										contents2 = '<img src="'+contents0+'">';
+										contents3 = '<h4>' + item.sName	+ '</h4>';
+										contents4 = '<p>' + item.sShortIntro+ '</p>';
+										contents5 = '<span>' + item.sTema+ ' | </span>' + '<span>'+ item.sLoc + '</span>'+ '</a>';
+										tag = contents1 + contents2	+ contents3 + contents4	+ contents5;
+										// frag에 먼저 append 함.
+										$frag.append('<li>' + tag+ '</li>')
+									});
 								// 최종적인 값을 append 함.
 								$("#all-content>ul").append($frag);
+								$("#showMoreInfo").val(a);
 								// 요청 정지
 								return rtn;
+								}
 							},
 							error : function(errorThrown) {
 								alert("통신 실패");
@@ -148,7 +156,7 @@ $(document).ready(
 
 
 
-       <button class="moreInfo" id="showMoreInfo">
+       <button class="moreInfo" id="showMoreInfo" value="1">
             더 많은 클래스가 궁금하다면?
             <img src='<c:url value='/resources/img/icon/ico-more.png'/>' alt="more">
         </button>

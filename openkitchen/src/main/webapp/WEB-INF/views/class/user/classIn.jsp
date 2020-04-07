@@ -30,12 +30,14 @@ var contents0, contents1, contents2, contents3, contents4, contents5;
 var $frag = $(document.createDocumentFragment());
 //ajax 요청 멈추기위한 변수 설정
 var rtn = false;
+var a = 1;
 //html의 특정 태그 요소보다 script 위치가 위에 있을경우 document.ready를 쓴다.
 $(document).ready(
 		function() {
 			console.log("contextPath : " + contextPath);
 			// 버튼 클릭시 특정 function 작용
 			$("#showMoreInfo").on("click",function() {
+				a = a+1;
 						// ajax 요청
 						$.ajax({
 							// 보낼 요청 값 contextPath를 적어주어야한다.
@@ -44,22 +46,48 @@ $(document).ready(
 							type : 'GET',
 							// 더보기 요청시 몇개 씩 가져올지 결정 하자 .
 							data : {
-								count : 1
+								count : $("#showMoreInfo").val()
 							},
 							// 요청 성공시 function 작용
 							success : function(data) {
 								// 받아온 JSON 사용하기 위한 변수 선언
 								var obj = JSON.parse(data);
 								// JSON에 담긴 내용을 console창에서 봄
-								console.log(obj);
-								console.log(obj[0]);
-								console.log(obj.length);
+								// console.log(obj);
+								// console.log(obj[0]);
+								// console.log(obj.length);
 								if(obj.length < 7){
+									obj.forEach(function(item) {
+										console.log("item : " + item);
+											contents0 = '<c:url value="'
+													+ contextPath + item.cMainsumnail
+													+ '"/>';
+											contents1 = '<a href="#">';
+											contents2 = '<img src="'
+													+contents0+'">';
+											contents3 = '<h4>' + item.cName
+													+ '</h4>';
+											contents4 = '<p>' + item.cShortIntro
+													+ '</p>';
+											contents5 = '<span>' + item.cTema
+													+ ' | </span>' + '<span>'
+													+ item.tArea + '</span>'
+													+ '</a>';
+											contents6 = '<div><strong>₩</strong>'+item.cPrice+'</div>';
+											tag = contents1 + contents2
+													+ contents3 + contents4
+													+ contents5 + contents6;
+											// frag에 먼저 append 함.
+											$frag.append('<li>' + tag+ '</li>')
+										});
+									// 최종적인 값을 append 함.
+									$("#all-content>ul").append($frag);
 									$("#showMoreInfo").css("display","none");
-									alert("더이상 보여줄 게 없음");
+									//alert("더이상 보여줄 게 없음");
 								}else{
 								// JSON이 배열 형태로 넘어올경우 넘어오는 데이터마다 HTML 코드를 붙이는 역할
 								obj.forEach(function(item) {
+										
 										console.log("item : " + item);
 										//console.log(item[0].cName);
 										//console.log(item[0].shortIntro);
@@ -72,20 +100,22 @@ $(document).ready(
 													+contents0+'">';
 											contents3 = '<h4>' + item.cName
 													+ '</h4>';
-											contents4 = '<p>' + item.cShortintro
+											contents4 = '<p>' + item.cShortIntro
 													+ '</p>';
 											contents5 = '<span>' + item.cTema
 													+ ' | </span>' + '<span>'
 													+ item.tArea + '</span>'
 													+ '</a>';
+											contents6 = '<div><strong>₩</strong>'+item.cPrice+'</div>';
 											tag = contents1 + contents2
 													+ contents3 + contents4
-													+ contents5;
+													+ contents5 + contents6;
 											// frag에 먼저 append 함.
 											$frag.append('<li>' + tag+ '</li>')
 										});
 								// 최종적인 값을 append 함.
 								$("#all-content>ul").append($frag);
+								$("#showMoreInfo").val(a);
 								// 요청 정지
 								return rtn;
 								}
@@ -143,7 +173,7 @@ $(document).ready(
             <ul>
            	<c:forEach items="${mainContent }" var="mainC">
                 <li>
-                    <a href="#">
+                    <a href="classD?no=${mainC.cNo }">
                 		<img src="<c:url value='${mainC.cMainsumnail }'/>" alt="">
                         <h4>${mainC.cName }</h4>
                         <p>${mainC.cShortIntro }</p>
@@ -164,7 +194,7 @@ $(document).ready(
 
 
 
-      <button class="moreInfo" id="showMoreInfo">
+      <button class="moreInfo" id="showMoreInfo" value="1">
             	더 많은 클래스가 궁금하다면?
             <img src='<c:url value='/resources/img/icon/ico-more.png'/>' alt="more">
         </button>

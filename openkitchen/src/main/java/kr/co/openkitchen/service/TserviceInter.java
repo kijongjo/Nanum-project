@@ -9,4 +9,5 @@ public interface TserviceInter {
 	public List<TeacherIndexDTO> readFiveT();
 	public List<TeacherIndexDTO> mainContentT();
 	public DetailTeacherDTO readDetailT(int tNo);
+	public List<TeacherIndexDTO> moreTeacher(int count);
 }

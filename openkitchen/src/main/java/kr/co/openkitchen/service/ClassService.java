@@ -38,4 +38,9 @@ public class ClassService implements CserviceInter {
 			
 			return dao.selectDetailCSche(cNo);
 		}
+		
+		@Override
+		public List<ClassIndexDTO> moreClass(int count) {
+			return dao.moreClass(count);
+		}
 }

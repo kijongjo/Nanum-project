@@ -18,8 +18,5 @@ public interface MDaoInter {
 	public List<ManwonClassDTO> selectManwonC();
 	public List<ManwonClassDTO> selectOnlyoneC();
 	public List<PopularClassDTO> selectPopularC(Map<String, Object> map);
-	
-	
-	
-	
+
 }

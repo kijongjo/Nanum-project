@@ -33,4 +33,9 @@ public class TeacherSerevice implements TserviceInter {
 			
 			return dao.selectDetailT(tNo);
 		}
+		
+		@Override
+		public List<TeacherIndexDTO> moreTeacher(int count) {
+			return dao.moreTeacher(count);
+		}
 }
