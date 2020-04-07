@@ -25,6 +25,7 @@
 
 <script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
 <title>Document</title>
+<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 
 <body>

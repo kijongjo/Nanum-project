@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
 	<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         /* section{border: 1px solid;} */
         /* 섹션 나누기 */
@@ -443,6 +444,8 @@
     
         
     </style>
+	
+<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 <body>
 <jsp:include page="../../header.jsp" flush="false" />

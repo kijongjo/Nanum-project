@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/lay03_sideBar.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/contents_board.css'/>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <%-- <link rel="stylesheet" href="<c:url value='/resources/css/standByClass.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/ongoingClass.css'/>">
@@ -29,6 +30,7 @@
 	}
 	
 </script>
+<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 <body>
 <jsp:include page="../../header.jsp" flush="false" />

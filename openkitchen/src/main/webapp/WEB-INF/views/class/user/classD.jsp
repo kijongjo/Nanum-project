@@ -50,6 +50,7 @@
 
 </style>
 
+<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 
 

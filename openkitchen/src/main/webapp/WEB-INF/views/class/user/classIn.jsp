@@ -128,7 +128,7 @@ $(document).ready(
 		});
 
 </script>
-
+<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 <body>
 	<jsp:include page="../../header.jsp" flush="false" />

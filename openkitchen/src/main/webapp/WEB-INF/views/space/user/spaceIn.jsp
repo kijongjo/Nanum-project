@@ -101,6 +101,7 @@ $(document).ready(
 		});
 
 </script>
+	<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 <body>
 <%-- <h3>${list }</h3> --%>
