@@ -27,6 +27,7 @@
 	
     <title>Document</title>
   
+<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 
 <body>
