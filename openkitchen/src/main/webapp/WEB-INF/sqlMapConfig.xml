@@ -5,11 +5,19 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
+  <!-- _가 붙은 테이블 컬럼명과 카멜표현식을 사용한 멤버필드를 매핑  -->
+  	<settings>
+  		<setting name="mapUnderscoreToCamelCase" value="true"/>
+  	</settings>
   	<!-- 
   		스프링 설정파일에서 이미 mapper와 db.propertis를 다 써놧기때문에 
   	   	typeAliases(별칭) 지정시에만 사용 -->
   	<typeAliases>
 	    <!-- 별칭 지정 : mapper에서 쿼리할 때 파라미터로 사용하기 위해서 등록  -->
-  		<typeAlias type="" alias="" />
+  		<typeAlias type="kr.co.openkitchen.dto.ClassDTO" alias="cdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.ManwonClassDTO" alias="mcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.PopularClassDTO" alias="pcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailClassDTO" alias="dcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailCScheDTO" alias="dcsdto" />
   	</typeAliases>
   </configuration>

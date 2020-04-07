@@ -59,7 +59,7 @@
             width: 100%;
             /* background-color: blue; */
             float: left;
-            height: 76px;
+            height: 76px;            
         }
         /* 오른쪽 섹션의 이미지 속성 */
         #lay03Msg > #right01Msg a >img{
@@ -107,7 +107,181 @@
             height: 18px;
             font-size: 14px;
         }
+
+        .msgPopup{
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            z-index: -1;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            width: 550px;
+            height: 740px;
+            /* text-align: right; */
+            padding: 40px 35px 114px 35px;
+            box-sizing: border-box;
+            /* background-color: gray; */
+        }
+        .msgPopup:target{
+            opacity: 1;
+            z-index: 3;
+        }
+        .msgPopup:target + #msgGrayDim{
+            opacity: 1;
+            z-index: 2;
+        }
+        .msgPopup:target + #right01Msg{
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+        #msgGrayDim{
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-color: rgba(0,0,0,0.67);
+            opacity: 0;
+            padding: 0px 25px;
+        }
         
+        .msgPopup{
+            text-decoration: none;
+            background-color: white;
+        }
+        .msgPopup> #msgSection{
+            width: 480px;
+            height: 586px;
+            /* background-color: white; */
+        }
+        .msgPopup>a{
+           position: relative;
+           left: 520px;
+           bottom: 40px;
+        }
+        .msgPopup #msg-wrap{
+            width: 520px;
+            height: 586px;
+            margin: 0px -35px 0px -5px;
+            background-color: white;
+            padding-right: 35px;
+            overflow: auto;
+        }
+        .msgPopup #msgSection form{
+            position: relative;
+            bottom: 65px;
+        }
+        .msgPopup #msg-wrap .msgDate-inline{
+            width: 468px;
+            height: 88px;
+            font-size: 16px;
+            text-align: center;
+            padding-bottom: 8px;
+            display: table-cell;
+            vertical-align: middle;
+            /* background-color: red; */
+        }
+        .msgPopup #msg-wrap .msgchatLeft{
+            width: 468px;
+            height: 151px;
+            padding: 0px 25px 0px 84px;
+            margin: 42px 0px 0px;
+            /* background-color: yellow; */
+            word-break: break-all;
+            text-align: left ;
+        }
+        .msgPopup #msg-wrap .msgchatLeft img{
+            position: relative;
+            right: 76px;
+        }
+        .msgPopup #msg-wrap .msgchatLeft .chatL{
+            width: 359px;
+            position: relative;
+            bottom: 70.5px;
+            /* background-color: orange; */
+        }
+        .msgPopup #msg-wrap .chatName{
+            font-size: 18px;
+            height: 24px;
+        }
+        .msgPopup #msg-wrap .chatTime{
+            font-size: 14px;
+            margin-left: 6px;
+            height: 21px;
+        }
+        .msgPopup #msg-wrap .msgchatLeft .chatL-content{
+            font-size: 16px;
+            background-color: #F6F5F5;
+            margin: 12px 0px 0px;
+            padding: 20px 25px;
+            color: #3A3A3A;
+            font-weight: 600;
+            border-radius: 5px;
+        }
+
+        .msgPopup #msgSection #msg-input{
+            position: relative;
+            right: 35px;
+            width: 550px;
+            height: 114px;
+            padding: 20px 40px 40px;
+            /* background-color: #FFFFFF; */
+            /* background-color: black; */
+        }
+
+        .msgPopup #msgSection #msg-input input[type=text]{
+            width: 335px;
+            height: 54px;
+            padding: 0px 14px;
+            background-color: #F6F5F5;
+            border: none;
+            font-size: 18px;
+            border-radius: 5px;
+        }
+        .msgPopup #msgSection #msg-input input[type=text]::placeholder{
+            color: lightslategray
+        }
+
+        .msgPopup #msgSection #msg-input input[type=submit]{
+            width: 125px;
+            height: 54px;
+            color: #FFFFFF;
+            font-size: 18px;
+            background-color: #D9D9D9;
+            padding: 0px 20px;
+            border: none;
+            font-weight: 900;
+            border-radius: 5px;
+        }
+
+        .msgPopup #msg-wrap .msgchatRight{
+            width: 468px;
+            margin: 13px 0px 0px;
+            padding: 0px 7px 0px 21px;
+            /* background-color: skyblue; */
+            text-align: right;
+        }
+        .msgPopup #msg-wrap .msgchatRight .chatR{
+            width: 440px;
+        }
+        .msgPopup #msg-wrap .msgchatRight .chatR .chatR-title{
+            width: 100%;
+            height: 27px;
+            text-align: right;
+        }
+        .msgPopup #msg-wrap .msgchatRight .chatR .chatR-content{
+            /* width: 100%; */
+            font-size: 16px;
+            margin: 12px 0px 0px;
+            padding: 20px 25px;
+            background-color: #838383;
+            color: #FFFFFF;
+            font-weight: 600;
+            display: inline-block;
+            /* text-align: right; */
+            border-radius: 5px;
+        }
     </style>
 </head>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -123,7 +297,7 @@
             <div>
                 <ul>
                     <li>
-                        <a href="#">
+                        <a href="#chat">
                                 <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
                             <div class="list-content">
                                 <div class="al-r">
@@ -135,7 +309,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#chat">
                             <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
                             <div class="list-content">
                                 <div class="al-r">
@@ -147,7 +321,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#chat">
                                 <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
                             <div class="list-content">
                                 <div class="al-r">
@@ -159,7 +333,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#chat">
                                 <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
                             <div class="list-content">
                                 <div class="al-r">
@@ -171,7 +345,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#chat">
                                 <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
                             <div class="list-content">
                                 <div class="al-r">
@@ -183,7 +357,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#chat">
                                 <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
                             <div class="list-content">
                                 <div class="al-r">
@@ -195,7 +369,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#chat">
                                 <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
                             <div class="list-content">
                                 <div class="al-r">
@@ -207,7 +381,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#chat">
                                 <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
                             <div class="list-content">
                                 <div class="al-r">
@@ -221,6 +395,67 @@
                 </ul>
             </div>
         </section>
+        <div class="msgPopup" id="chat">
+            <a href="">
+                <img src="../img/x.png" alt="" style="width: 30px; height: 30px;" >
+            </a>
+            <section id="msgSection">
+                <form action="">
+                    <div id="msg-wrap">
+                        <div class="msgDate-inline">2020년 03월 25일 수요일</div>
+                        <div class="msgchatLeft">
+                            <img src="../img/bandIcon.png" alt="" style="width: 64px; height: 64px;">
+                            <div class="chatL">
+                                <div class="chatL-title">
+                                    <strong class="chatName">이정은(베이커)</strong>
+                                    <span class="chatTime">오후 5:23</span>
+                                </div>
+                                <div class="chatL-content">
+                                    안녕하세요. '상큼달달 딸기 생크림 케이크' 클래스를 진행하는 이정은입니다. 무엇을 도와드릴까요?
+                                </div>
+                            </div>
+                        </div>
+                        <div class="msgchatRight">
+                            <div class="chatR">
+                                <div class="chatR-title">
+                                    <strong class="chatName">CRN</strong>
+                                    <span class="chatTime">오후 5:23</span>
+                                </div>
+                                <div class="chatR-content">안녕하세요 요리를 제가 거의 초심자라고 해도 과언은 아닙니다 .난이도가 어느 정도 인가요 ?</div>
+                            </div>
+                        </div>
+                        <div class="msgDate-inline">2020년 03월 26일 수요일</div>
+                        <div class="msgchatLeft">
+                            <img src="../img/bandIcon.png" alt="" style="width: 64px; height: 64px;">
+                            <div class="chatL">
+                                <div class="chatL-title">
+                                    <strong class="chatName">이정은(베이커)</strong>
+                                    <span class="chatTime">오후 8:23</span>
+                                </div>
+                                <div class="chatL-content">
+                                    초심자도 따라하기 쉬운 난이도 입니다.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="msgchatRight">
+                            <div class="chatR">
+                                <div class="chatR-title">
+                                    <strong class="chatName">CRN</strong>
+                                    <span class="chatTime">오후 9:03</span>
+                                </div>
+                                <div class="chatR-content">네 알겠습니다</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="msg-input">
+                        <input type="text" name="" id="" placeholder="메세지를 입력하세요">
+                        <input type="submit" value="전송">
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div id="msgGrayDim">
+        </div>
     </div>
 </body>
 </html>

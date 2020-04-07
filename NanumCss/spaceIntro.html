@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <style>
+        #lay03spaceRegister2{
+        display: grid;
+        grid-template-columns: 285px 1fr;
+        width: 1200px;
+        margin: 0 auto;
+        }
+        #lay03spaceRegister2 #left01{
+            width: 100%;
+        }
+        #lay03spaceRegister2 #left01>div:nth-child(1){
+            width: 100%;
+            height: 222px;
+            margin-bottom: 60px;
+        }
+        #lay03spaceRegister2 #left01>div>p:nth-child(1){
+            height: 24px;
+            font-size: 16px;
+            /* color: red; */
+        }
+        #lay03spaceRegister2 #left01>div> h1{
+            font-size: 30px;
+            height: 86px;
+        }
+        #lay03spaceRegister2 #left01>div>p:nth-child(3){
+            width: 219px;
+            height: 48px;
+            margin: 24px 0px 0px;
+            font-size: 15px;
+            /* color: blue; */
+        }
+        #lay03spaceRegister2 #left01>div>a:nth-child(4){
+            display: inline-block;
+            height: 24px;
+            font-size: 15px;
+            margin: 16px 0px 0px;
+            color: #838383;
+        }
+        #lay03spaceRegister2 #left01>div:nth-child(2) a{
+            display: block;
+        }
+
+        #lay03spaceRegister2 #left01>div:nth-child(2) .active{
+            color: black;
+            font-size: 17px;
+            margin: 0px 0px 20px;
+            padding: 0px 0px 2px;
+            height: 30px;
+            font-weight: 900;
+            position: relative;
+            z-index : 1;
+        }
+        #lay03spaceRegister2 #left01>div:nth-child(2) .active::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+            width: 85px;
+            border-bottom: 3px solid #8e0032;
+        }
+        #lay03spaceRegister2 #left01>div:nth-child(2) .dim{
+            color: black;
+            font-size: 17px;
+            margin: 0px 0px 20px;
+            padding: 0px 0px 2px;
+            height: 30px;
+        }
+        #lay03spaceRegister2 #left01 .guideLineI>img{
+            width: 15px;
+            height: 15px;
+            margin: -3px 0px 0px 6px;
+            position: relative;
+            top: 2px;
+        }
+        #lay03spaceRegister2 #left01>div:nth-child(2) img{
+            width: 18px;
+            height: 18px;
+            margin: 0px 0px 0px 6px;
+            position: relative;
+            top: 3px;
+        }
+        #lay03spaceRegister2> #right01{
+            background-color: #F6F5F5;
+            margin: -46px 0px -120px;
+            padding: 45px 0px 120px 60px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(1){
+            height: 81px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(1) span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 0px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(1) select{
+            width: 905px;
+            height: 50px;
+            background: white;
+            padding: 0px 20px;
+            font-weight: 900;
+            color: #b7b7b7;
+            font-size: 15px;
+            font-family: 'Roboto','Noto Sans', 'Noto Sans KR', sans-serif;
+            border: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(1) option{
+            font-family: 'Roboto','Noto Sans', 'Noto Sans KR', sans-serif;
+            font-weight: 900;
+            color: #b7b7b7;
+            font-size: 15px;
+            border: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2){
+            height: 123px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2) >span{
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 40px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2) >div{
+            height: 50px;
+            width: 905px;
+            padding: 0px 32px 0px 12px;
+            background: white;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2)>div>span{
+            font-size: 15px;
+            height: 46px;
+            color: #b7b7b7;
+            display: inline-block;
+            padding-top: 15px;
+        }
+        
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2) div>div{
+            width: 736px;
+            height: 46px;
+            position: relative;
+            top: 2px;
+            /* background-color: yellow; */
+            padding: 9px 0px;
+            float: right;
+            text-align: right;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2) div>div button{
+            width: 28px;
+            height: 28px;
+            /* background-color: pink; */
+            padding: 0;
+            border-radius: 14px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2) div>div button:focus{
+            outline: none;
+        }
+        
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2) div>div button img{
+            width: 28px;
+            height: 28px;
+            margin: 0px;
+            border-radius: 14px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2) div>div button,span{
+            /* position: relative;
+            bottom: 25px; */
+            margin: 0px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(2) div>div span{
+            display: inline-block;
+            width: 108px;
+            height: 19px;
+            font-size: 15px;
+            color: #2e2e2e;
+            text-align: center;
+            position: relative;
+            bottom: 8px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(3){
+            height: 120px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(3) span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 0px 0px 8px;
+            font-weight: 900; 
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(3) input[type="text"]{
+            width: 905px;
+            padding: 0px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            height: 50px;
+            font-size: 15px;
+            border: none;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(3) input[type="text"]::placeholder{
+            color: #b7b7b7;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(3) input[type="text"]:focus{
+            outline: none;
+            border: 2px solid #8e0032;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(4){
+            height: 120px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(4) span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 0px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(4) span:nth-child(1)>span{
+            color: #7f7f7f;
+            font-size: 16px;
+            height: 22px;
+            float: right;
+            font-weight: 500;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(4) span:nth-child(1)>span em{
+            font-style: normal;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(4) input[type="text"]{
+            width: 905px;
+            padding: 0px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            height: 50px;
+            font-size: 15px;
+            border: none;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(4) input[type="text"]::placeholder{
+            color: #b7b7b7;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(4) input[type="text"]:focus{
+            outline: none;
+            border: 2px solid #8e0032;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5){
+            height: 81px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5) span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 0px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5) span:nth-child(2){
+            display: inline-block;
+            height: 50px;
+            width: 905px;
+            /* background-color: orange; */
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5) span:nth-child(2) input[type="text"]{
+            height: 50px;
+            width: 905px;
+            padding: 0px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            height: 50px;
+            font-size: 15px;
+            border: none;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5) span:nth-child(2) input[type="text"]::placeholder{
+            color: #b7b7b7;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5) span:nth-child(2) input[type="text"]:focus{
+            outline: none;
+            border: 2px solid #8e0032;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5) span:nth-child(2) img{
+            margin: 0px;
+            width: 20px;
+            height: 20px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5) span:nth-child(2) button{
+            margin: 0px;
+            padding: 0px;
+            width: 20px;
+            height: 20px;
+            float: right;
+            position: relative;
+            bottom: 35px;
+            right: 20px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(5) span:nth-child(2) button:focus{
+            outline: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6){
+            height: 700.5px;
+            margin-top: 80px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6) >span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 40px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div{
+            width: 905px;
+            height: 650.5px;
+            padding: 20px;
+            background-color: white;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div p{
+            color: #b7b7b7;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(2){
+            /* background-color: pink; */
+            width: 427.5px;
+            height: 294.91px;
+            margin-top: 25px;
+            padding-right: 5px;
+            /* display: inline-block; */
+            float: left;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(2)>div:nth-child(1){
+            color: #5b5b5b;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: inline-block;
+            height: 20px;
+            font-weight: 700;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(2)>div:nth-child(2){
+            /* background-color: greenyellow; */
+            width: 100%;
+            height: 266.91px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(2)>div:nth-child(2) label{
+            display: inline-block;
+            width: 420.5px;
+            padding: 239.91px 0px 0px;
+            line-height: normal;
+            /* vertical-align: middle; */
+            cursor: pointer;
+            /* background-color: white; */
+            border: 0.5px dotted black;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(2)>div:nth-child(2) input[type="file"]{
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            border: 0;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(2)>div:nth-child(2) label span{
+            font-size: 19px;
+            color: #838383;
+            width: 106.44px;
+            height: 79px;
+            /* background-color: skyblue; */
+            position: relative;
+            bottom: 120px;
+            left: 150px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(3){
+            /* background-color: pink; */
+            width: 427.5px;
+            height: 450.5px;
+            margin-top: 25px;
+            padding-left: 5px;
+            display: inline-block;
+        }
+
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(3)>div:nth-child(2){
+            /* background-color: greenyellow; */
+            width: 100%;
+            height: 100%;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(3)>div:nth-child(2) label{
+            display: inline-block;
+            width: 420.5px;
+            padding: 400.5px 0px 0px;
+            line-height: normal;
+            vertical-align: middle;
+            cursor: pointer;
+            /* background-color: white; */
+            border: 0.5px dotted black;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(3)>div:nth-child(2) input[type="file"]{
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            border: 0;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(3)>div:nth-child(2) label span{
+            font-size: 19px;
+            color: #838383;
+            width: 106.44px;
+            height: 79px;
+            /* background-color: skyblue; */
+            position: relative;
+            bottom: 210px;
+            left: 150px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(6)>div>div:nth-child(3)>div:nth-child(1){
+            color: #5b5b5b;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: inline-block;
+            height: 20px;
+            font-weight: 700;
+        }
+
+        /* 9장 style */
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(7){
+            /* display: flex; */
+            width: 905px;
+            /* width: 2000px; */
+            height: 257px;
+            /* overflow: hidden; */
+            /* background-color: skyblue; */
+            /* display: block; */
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(7) > span:nth-child(1){
+            display: block;
+            height: 23px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 0px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(7) > span:nth-child(1) small{
+            color: #838383;
+            font-size: 14px;
+            padding-left: 8px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(7)>div{
+            width: 230%;
+            height: 110%;
+            display: block;
+            /* border: 1px solid black; */
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(7)>div>div{
+            height: 195px;
+            width: 195px;
+            display: inline-block;
+            /* background-color: seagreen; */
+        } 
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(7)>div>div input[type="file"]{
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            border: 0;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(7)>div>div label{
+            display: inline-block;
+            width: 195px;
+            height: 195px;
+            /* padding: 400.5px 0px 0px; */
+            cursor: pointer;
+            text-align: center;
+            font-size: 50px;
+            font-weight: 700;
+            color: black;
+            /* background-color: white; */
+            background-color: white;
+            /* border: 0.5px dotted black; */
+        }
+
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(8){
+            width: 905px;
+            height: 410px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(8) span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 40px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(8) textarea{
+            width: 100%;
+            height: 400px;
+            padding: 20px;
+            background: #ffffff;
+            resize: none;
+            border: none;
+            text-align: left;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(8) textarea:focus{
+            border: 2px solid #8e0032;
+            outline: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(8) textarea::placeholder{
+            font-size: 15px;
+            color: lightgray;
+            font-weight: bold;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(9) {
+            height: 180px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(9) span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin: 40px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(9) textarea{
+            width: 100%;
+            height: 140px;
+            padding: 20px;
+            background: #ffffff;
+            resize: none;
+            border: none;
+            text-align: left;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(9) textarea:focus{
+            border: 2px solid #8e0032;
+            outline: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(9) textarea::placeholder{
+            font-size: 15px;
+            color: lightgray;
+            font-weight: bold;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10){
+            height: 236px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin:15px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div{
+            width: 905px;
+            height: 166px;
+            /* background-color: slateblue; */
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div>div{
+            width: 100%;
+            height: 50px;
+            /* background-color: steelblue; */
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div>div input[type="text"]{
+            border: none;
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 0px 20px;
+            height: 50px;
+            width: 735px;
+            font-size: 16px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div>div input[type="button"]{
+            width: 156px;
+            height: 50px;
+            font-size: 16px;
+            background-color: #8e0032;
+            margin-left: 8px;
+            color: white;
+            font-weight: 900;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div>div input:focus{
+            outline: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div> input[type="text"]:nth-child(2){
+            width: 905px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.6);
+            margin: 8px 0px 0px;
+            padding: 0px 20px;
+            border: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div> input[type="text"]:nth-child(2):focus{
+            outline: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div> input[type="text"]:nth-child(3){
+            width: 100%;
+            height: 50px;
+            margin-top: 8px;
+            padding: 0px 20px;
+            background: white;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div> input[type="text"]:nth-child(3):focus{
+            outline: none;
+            border: 2px solid #8e0032;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(10)>div> input[type="text"]:nth-child(3)::placeholder{
+            color: #b7b7b7;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11), #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12){
+            position: relative;
+            height: 80px;
+            /* background-color: yellow; */
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11) >span:nth-child(1), #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12)>span:nth-child(1){
+            display: block;
+            height: 23px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin:10px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11) >span:nth-child(1)>small, #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12)>span:nth-child(1)>small{
+            padding-left: 8px;
+            font-size: 14px;
+            color: #838383;
+            height: 19px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11)>span:nth-child(n+3), #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12)>span:nth-child(n+3){
+            margin-left: 19px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11) input[type="checkbox"], #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12) input[type="checkbox"]{
+            display: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11) input[type="checkbox"] + label, #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12) input[type="checkbox"] + label{
+            display: inline-block;
+            position: relative;
+            padding-left: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            color: #838383;
+            font-weight: 700;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11) input[type="checkbox"] + label::before, #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12) input[type="checkbox"] + label::before{
+            content: '';
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            position: absolute;
+            top: 2px;
+            left: 0;
+            background-color: white;
+            text-align: center;
+            border: 0.5px solid #838383;
+            border-radius: 8px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11) input[type="checkbox"]:checked + label::before, #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12) input[type="checkbox"]:checked + label::before{
+            content: '';
+            font-size: 15px;
+            font-weight: 900;
+            /* color: red; */
+            background-color: #8e0032;
+            text-align: center;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(11) input[type="checkbox"]:checked + label::after, #lay03spaceRegister2> #right01 .inp-wrap:nth-child(12) input[type="checkbox"]:checked + label::after{
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 5px;
+            width: 7px;
+            height: 7px;
+            background-color: white;
+            border-radius: 3.5px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(13){
+            height: 141px;
+            /* background-color: tomato; */
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(13)>span:nth-child(1){
+            display: block;
+            height: 22px;
+            color: #5b5b5b;
+            font-size: 15px;
+            margin:15px 0px 8px;
+            font-weight: 900;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(13) input[type="radio"]{
+            display: none;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(13) input[type="radio"] + label{
+            display: block;
+            position: relative;
+            padding-left: 25px;
+            cursor: pointer;
+            font-size: 15px;
+            color: #838383;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(13) input[type="radio"] + label::before{
+            content: '';
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            position: absolute;
+            top: 2px;
+            left: 0;
+            background-color: white;
+            text-align: center;
+            border: 0.5px solid #838383;
+            border-radius: 8px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(13) input[type="radio"]:checked + label::before{
+            content: '';
+            font-size: 15px;
+            font-weight: 900;
+            /* color: red; */
+            background-color: #8e0032;
+            text-align: center;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(13) input[type="radio"]:checked + label::after{
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 5px;
+            width: 7px;
+            height: 7px;
+            background-color: white;
+            border-radius: 3.5px;
+        }
+        #lay03spaceRegister2> #right01 .inp-wrap:nth-child(13) input[type="radio"]:checked + label{
+            color: black;
+        }
+        #lay03spaceRegister2 #right01 #btn-form-wrap{
+            height: 64px;
+            margin: 100px 0px 0px;
+        }
+        #lay03spaceRegister2 #right01 #btn-form-wrap input[type="submit"]{
+            float: right;
+            font-size: 18px;
+            height: 64px;
+            width: 168px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
+        #lay03spaceRegister2 #right01 #btn-form-wrap input[type="submit"]:nth-child(1){
+            background: #8e0032;
+            color: white;
+            margin-left: 12px;
+        }
+        #lay03spaceRegister2 #right01 #btn-form-wrap input[type="submit"]:nth-child(2){
+            background: white;
+            color: #2e2e2e;
+        }
+
+        /* ////////////////////////////////////////////////////////////////////////////// */
+        /* 썸네일 관련 css */
+        /* /////////////////////////////////////////////////////////////////////////// */
+        #mainThum img {
+            width: 100%;
+            height: 100%;
+        }
+        #mainThum p {
+            text-overflow: ellipsis;
+            display: inline-block;
+            overflow: hidden;
+        }
+        #mainThum .preview-box {
+            width: 100%;
+            height: 100%;
+            /* border: 1px solid; */
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+            bottom: 269px;
+        }
+        #mainThum button{
+            width: 10px;
+            height: 10px;
+            padding: 0px;
+            margin: 0px;
+            font-weight: 900;
+            float: right;
+            position: relative;
+            right: 30px;
+        }
+        #mainThum button:hover{
+            color: #8e0032;
+        }
+
+
+        #detailThum img {
+            width: 100%;
+            height: 100%;
+        }
+        #detailThum p {
+            text-overflow: ellipsis;
+            display: inline-block;
+            overflow: hidden;
+        }
+        #detailThum .preview-box {
+            width: 100%;
+            height: 100%;
+            /* border: 1px solid; */
+            margin: 0px;
+            padding: 0px;
+            position: relative;
+            bottom: 430px;
+        }
+        #detailThum button{
+            width: 10px;
+            height: 10px;
+            padding: 0px;
+            margin: 0px;
+            font-weight: 900;
+            float: right;
+            position: relative;
+            right: 30px;
+        }
+        #detailThum button:hover{
+            color: #8e0032;
+        }
+
+        /* 9장 상세 이미지 style */
+        #input-detail-img{
+            display: inline-block;
+        }
+
+        #input-detail-img img {
+            width: 50%;
+            height: 50%;
+        }
+        #input-detail-img p {
+            text-overflow: ellipsis;
+            /* display: inline-block; */
+            overflow: hidden;
+        }
+        #input-detail-img .preview-box {
+            width: 195px;
+            height: 175px;
+            /* border: 1px solid #b7b7b7; */
+            background-color: white;
+            /* padding: 0px; */
+            text-align: center;
+            margin-left: 20px;
+            /* margin-bottom: 10px; */
+            float: left;
+            /* padding-left: 20px; */
+            padding-top: 15px;
+        }
+        #input-detail-img button{
+            width: 10px;
+            height: 10px;
+            padding: 0px;
+            margin: 0px;
+            font-weight: 900;
+        }
+        .hashTxt{
+            font-size: 15px;
+            padding-left: 10px;
+            color: #b7b7b7;
+            border: 0.5px solid gray;
+            border-radius: 20px;
+            width: 130px;
+        }
+        .hashTxt:focus{
+            outline: none;
+        }
+        .delHash{
+            width: 15px;
+            height: 15px;
+            padding: 0;
+            margin: 0;
+            /* background-color: orange; */
+            position: relative;
+            right: 20px;
+            top: 3px;
+        }
+        .delHash img{
+            width: 15px;
+            height: 15px;
+            padding: 0;
+            margin: 0;
+        }
+        #hashField{
+            margin-top: 30px;
+        }
+
+        #oftenQuestion{
+            width: 905px;
+            height: 63px;
+            /* margin-top: 30px; */
+            padding: 0px 18px;
+            background-color: #5b5b5b;
+            display: inline-block;
+        }
+        #oftenQuestion strong{
+            font-size: 16px;
+            color: white;
+            position: relative;
+            top: 20px;
+            height: 43px;
+            display: block;
+            padding-left: 10px;
+        }
+        #oftenQuestion button{
+            display: block;
+            width: 63px;
+            height: 63px;
+            padding: 0;
+            margin: 0;
+            float: right;   
+            position: relative;
+            /* top: 20px; */
+            right: 10px;
+            bottom: 20px;
+        }
+        .qnaInner{
+            width: 905px;
+            height: 483px;
+            padding: 20px 27px 5px;
+            position: relative;
+            right: 28px;
+            top: 20px;
+            background-color: white;
+        }
+        .qnaInner1{
+            width: 851px;
+            height: 194px;
+        }
+        .qnaInner2{
+            width: 851px;
+            height: 264px;
+            padding:35px 0px;
+        }
+        .qna-title{
+            margin: 0px -7px 20px;
+            font-size: 14px;
+            color: #838383;
+            display: inline-block;
+        }
+        .qna-textarea{
+            width: 851px;
+            height: 132px;
+            background-color: #f6f5f5;
+            margin: -2px 0px 20px;
+            padding: 16px 20px;
+            border: none;
+            font-weight: bold;
+        }   
+        .qna-textarea:focus{
+            outline: none;
+            border: 2px solid #8e0032;
+        }
+        .qna-textarea::placeholder{
+            font-weight: bold;
+            color: #b7b7b7;
+        }
+
+        
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        //임의의 file object영역
+        var files = {};
+        var previewIndex = 0;
+        var imgNum = 0;
+ 
+        // image preview 기능 구현
+        // input = file object[]
+
+        // 메인 썸네일용 이미지 
+        function addPreviewMain(input) {
+            if (input[0].files) {
+                //파일 선택이 여러개였을 시의 대응
+                for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
+                    var file = input[0].files[fileIndex];
+                    if(validation(file.name)) continue;
+                    setPreviewFormMain(file);
+                }
+            } else
+                alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+
+        }
+        
+        // 상세 썸네일용 이미지
+        function addPreviewDetail(input) {
+            if (input[0].files) {
+                //파일 선택이 여러개였을 시의 대응
+                for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
+                    var file = input[0].files[fileIndex];
+                    if(validation(file.name)) continue;
+                    setPreviewFormDetail(file);
+                }
+            } else
+                alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////
+
+        // 상세 이미지 등록 
+        function addPreviewPhoto(input) {
+            if (input[0].files) {
+                //파일 선택이 여러개였을 시의 대응
+                for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
+                    var file = input[0].files[fileIndex];
+                    if(validation(file.name)) continue;
+                    setPreviewFormPhoto(file);
+                }
+            } else
+                alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+        }
+
+        // 메인 썸네일용 이미지 등록 
+        function setPreviewFormMain(file, img){
+            var reader = new FileReader();
+            
+            //div id="preview" 내에 동적코드추가.
+            //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
+            reader.onload = function(img) {
+                // console.log(img);
+                // var imgNum = previewIndex++;
+                $("#mainThum").append(
+                        "<div class=\"preview-box\" value=\"" + imgNum +"\">" +
+                        "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
+                        "<p>" + file.name + "</p>" +
+                        "<button value=\"" + imgNum + "\" onclick=\"deleteMainPreview(this)\">" +
+                        "삭제" + "</button>"
+                        + "</div>"
+                );
+                // resizeHeight();
+                files[imgNum] = file;            
+            };
+            console.log(file.name+"0000000000000000000000000000");
+            reader.readAsDataURL(file);
+        }
+
+        // 상세 썸네일용 이미지 등록 
+        function setPreviewFormDetail(file, img){
+            var reader = new FileReader();
+            
+            //div id="preview" 내에 동적코드추가.
+            //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
+            reader.onload = function(img) {
+                // console.log(img);
+                // var imgNum = previewIndex++;
+                $("#detailThum").append(
+                        "<div class=\"preview-box\" value=\"" + imgNum +"\">" +
+                        "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
+                        "<p>" + file.name + "</p>" +
+                        "<button value=\"" + imgNum + "\" onclick=\"deleteDetailPreview(this)\">" +
+                        "삭제" + "</button>"
+                        + "</div>"
+                );
+                // resizeHeight();
+                files[imgNum] = file; 
+                console.log(files[imgNum]);
+                console.log(imgNum);
+            };
+            console.log(file.name + " 9999999999999999999999");
+            reader.readAsDataURL(file);
+        }
+
+        // 상세 이미지 등록 
+        function setPreviewFormPhoto(file, img){
+            imgNum = previewIndex++;
+            // .length로 변경 함 
+            if($(".thumbnail").length < 9){
+                var reader = new FileReader();
+                
+                //div id="preview" 내에 동적코드추가.
+                //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
+                reader.onload = function(img) {
+                    // console.log(img);
+                    // var imgNum = previewIndex++;
+                    $("#input-detail-img").append(
+                            "<div class=\"preview-box\" value=\"" + imgNum +"\">" +
+                            "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
+                            "<p>" + file.name + "</p>" +
+                            "<button value=\"" + imgNum + "\" onclick=\"deleteDetailPhoto(this)\">" +
+                            "삭제" + "</button>"
+                            + "</div>"
+                    );
+                    // resizeHeight();
+                    files[imgNum] = file;            
+                    console.log(files[imgNum]);
+                    console.log(imgNum);
+                };
+                console.log(file.name);
+                reader.readAsDataURL(file);
+                console.log("썸네일의 길이 : " +   $(".thumbnail").length);
+            }else{
+                alert("9개 이상 금지");
+            }
+        }
+
+        /////////////////////////////////////////////////////////////////
+ 
+        //preview 영역에서 삭제 버튼 클릭시 해당 미리보기이미지 영역 삭제
+        // 메인 썸네일 삭제
+        function deleteMainPreview(obj) {
+            var imgNum = obj.attributes['value'].value;
+            delete files[imgNum];
+            $("#mainThum .preview-box[value=" + imgNum + "]").remove();
+            $("#mainThum label").css('opacity','1');
+        }
+        
+        // 상세 썸네일 삭제
+        function deleteDetailPreview(obj) {
+            var imgNum = obj.attributes['value'].value;
+            delete files[imgNum];
+            $("#detailThum .preview-box[value=" + imgNum + "]").remove();
+            $("#detailThum label").css('opacity','1');
+        }
+
+        // 상세 등록 이미지 삭제 
+        function deleteDetailPhoto(obj) {
+            var imgNum = obj.attributes['value'].value;
+            delete files[imgNum];
+            $("#input-detail-img .preview-box[value=" + imgNum + "]").remove();
+            $("#input-detail-img label").css('opacity','1');
+            imgNum--;
+            console.log(imgNum);
+        }
+
+ 
+        //client-side validation
+        //always server-side validation required
+        // 파일 형식 체크 
+        function validation(fileName) {
+            fileName = fileName + "";
+            var fileNameExtensionIndex = fileName.lastIndexOf('.') + 1;
+            var fileNameExtension = fileName.toLowerCase().substring(
+                    fileNameExtensionIndex, fileName.length);
+            if (!((fileNameExtension === 'jpg') || (fileNameExtension === 'jpeg')
+                    || (fileNameExtension === 'gif') || (fileNameExtension === 'png'))) {
+                alert('jpg, gif, png 확장자만 업로드 가능합니다.');
+                return true;
+            } else {
+                return false;
+            }
+        }
+ 
+        $(document).ready(function() {
+            //submit 등록. 실제로 submit type은 아니다.
+            $('.submit a').on('click',function() {                        
+                var form = $('#uploadForm')[0];
+                var formData = new FormData(form);
+    
+                for (var index = 0; index < Object.keys(files).length; index++) {
+                    //formData 공간에 files라는 이름으로 파일을 추가한다.
+                    //동일명으로 계속 추가할 수 있다.
+                    formData.append('files',files[index]);
+                }
+ 
+                //ajax 통신으로 multipart form을 전송한다.
+                $.ajax({
+                    type : 'POST',
+                    enctype : 'multipart/form-data',
+                    processData : false,
+                    contentType : false,
+                    cache : false,
+                    timeout : 600000,
+                    url : '/imageupload',
+                    dataType : 'JSON',
+                    data : formData,
+                    success : function(result) {
+                        //이 부분을 수정해서 다양한 행동을 할 수 있으며,
+                        //여기서는 데이터를 전송받았다면 순수하게 OK 만을 보내기로 하였다.
+                        //-1 = 잘못된 확장자 업로드, -2 = 용량초과, 그외 = 성공(1)
+                        if (result === -1) {
+                            alert('jpg, gif, png, bmp 확장자만 업로드 가능합니다.');
+                            // 이후 동작 ...
+                        } else if (result === -2) {
+                            alert('파일이 10MB를 초과하였습니다.');
+                            // 이후 동작 ...
+                        } else {
+                            alert('이미지 업로드 성공');
+                            // 이후 동작 ...
+                        }
+                    }
+                    //전송실패에대한 핸들링은 고려하지 않음
+                });
+            });
+
+            // <input type=file> 태그 기능 구현
+            // 메인 썸네일 
+            $('#mainThum input[type=file]').change(function() {
+                $("#mainThum label").css('opacity','0');
+                addPreviewMain($(this)); //preview form 추가하기
+            });
+            // 상세 썸네일
+            $('#detailThum input[type=file]').change(function() {
+                $("#detailThum label").css('opacity','0');
+                addPreviewDetail($(this)); //preview form 추가하기
+            });
+            // 상세 이미지 
+            $('#input-detail-img input[type=file]').change(function() {
+                // $("#input-detail-img label").css('left','200px');
+                addPreviewPhoto($(this)); //preview form 추가하기
+            });
+
+        });
+        
+        ////////////////////////////////////////  추가한 부분 /////////////////////////////////////////////
+        $(function(){
+            // 버튼 눌렀을때 숫자 증감
+            $('#min-btn').click(function(e){
+                e.preventDefault();
+                var stat = $('#howMany').text();
+                var num = parseInt(stat,10);
+                num--;
+                if(num<=0){
+                alert('더이상 줄일수 없습니다.');
+                num =1;
+                }
+                $('#howMany').text(num);
+                console.log($("#howMany").html());
+            })
+            $('#plus-btn').click(function(e){
+                e.preventDefault();
+                var stat = $('#howMany').text();
+                var num = parseInt(stat,10);
+                num++;
+                $('#howMany').text(num);
+                console.log($("#howMany").html());
+            })
+
+            // 글자수 체크 
+            $('.placeEx').keyup(function (e){
+                var content = $(this).val();
+                $('#placeEx-counter').html(content.length+" / 45");    //글자수 실시간 카운팅
+
+                if (content.length > 45){
+                    alert("최대 45자까지 입력 가능합니다.");
+                    $(this).val(content.substring(0, 45));
+                    $('#placeEx-counter').html("45 / 45");   
+                }
+            });
+
+            $('#addHash').click (function () {          
+                if($(".hashTxt").length<3){    
+                    if($('.hashText').val()==''){
+                        alert("태그를 입력해 주세요");
+                    }else{                    
+                        $('#hashField').append (                        
+                            '<input type="text" class="hashTxt" name="txt" readonly="readonly" value=#'+$('.hashText').val()+'><button type="button" class="delHash"><img src="../img/ico_delete.png" alt=""></button>'
+                        ); // end append        
+                        $(".hashText").val('');
+                        $('.delHash').on('click', function () { 
+                            // $(this).prevAll().remove (); // remove the textbox
+                            $(this).prev().remove();
+                            $(this).remove (); // remove the button
+                            console.log($(".hashTxt"));
+                        });
+                    }
+                }else{
+                    $('#hashField').append (                        
+                        '<div style"color:red;">최대 3개까지 등록 가능합니다.</div>'
+                    ); // end append       
+                    
+                    $('#addHash').prop("disabled",true);
+
+                    $('.delHash').on('click', function () { 
+                        // $(this).prevAll().remove (); // remove the textbox
+                        $(this).prev().remove();
+                        $(this).remove (); // remove the button
+                        console.log($(".hashTxt"));
+                        $('#addHash').prop("disabled",false);
+                        $('#hashField div').remove();
+                    });
+                }                 
+                console.log($(".hashTxt"));
+            }); // end click
+            $("#add-question").click(function(){
+                $("#oftenQuestion strong").append(
+                    '<div class="qnaInner">'+
+                        '<div class="qnaInner1"><span class="qna-title">Q. 자주 문의되는 질문을 입력해주세요</span><textarea name="" id="" placeholder="클래스에 사용되는 재료는 국내산인가요?" class="qna-textarea" cols="30" rows="5" maxlength="100"></textarea></div>'+
+                        '<div class="qnaInner2"><span class="qna-title">A. 질문에 대한 답변을 입력해주세요</span><textarea name="" id="" placeholder="네, 롤케이크 클래스에 사용되는 재료의 원산지는 모두 국내산입니다" class="qna-textarea" cols="30" rows="5"></textarea></div>'+
+                    '</div>');
+            });
+        });
+            function setDisplay(){
+                if($("#question").is(":checked")){
+                    $("#oftenQuestion").show();
+                }else{
+                    $("#oftenQuestion").hide();
+                }
+            }
+            ///////////////////////////////////////////////////////////////////////////////////////
+            
+    </script>
+    
+</head>
+<body>
+    <div id="lay03spaceRegister2">
+        <section id="left01">
+            <div>
+                <p>마이페이지</p>
+                <h1>공간<br>등록하기</h1>
+                <p>공간을 등록하기 전에 가이드라인과 <br>운영원칙을 확인해주세요</p>
+                <a href="" >
+                    가이드라인 확인하기
+                    <i class="guideLineI"><img src="../img/ico-tooltip.png" alt=""></i>
+                </a>
+            </div>
+            <div>
+                <a href="" class="dim">기본정보<img src="../img/red-check.png" alt=""></a>
+                <a href="" class="active">공간소개<img src="../img/gray-check.png" alt=""></a>
+                <a href="" class="dim">공유일정<img src="../img/gray-check.png" alt=""></a>
+            </div>
+        </section>
+        <section id="right01">
+            <div>
+                <form action="">
+                <div class="inp-wrap">
+                   <span>공간 테마</span> 
+                   <select name="" id="">
+                       <option value="">선택해주세요</option>
+                       <option value="">요리스튜디오</option>
+                       <option value="">레스토랑</option>
+                       <option value="">베이킹스튜디오</option>
+                       <option value="">카페</option>
+                       <option value="">가정집</option>
+                   </select>
+                </div>
+                <div class="inp-wrap">
+                    <span>수용 가능 인원</span>
+                    <div>
+                        <span>최대</span>
+                        <div>
+                            <button type="button" id="min-btn"><img src="../img/minus.png" alt=""></button>
+                            <span id="howMany">1</span>
+                            <button type="button" id="plus-btn"><img src="../img/plus.png" alt=""></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="inp-wrap">
+                    <span>공간명</span>
+                    <input type="text" name="" id="" placeholder="공간 명을 입력해 주세요">
+                </div>
+                <div class="inp-wrap">
+                    <span>공간 한 줄 설명<span id="placeEx-counter">0 / 45</span>
+                    <input type="text" class="placeEx" name="" id="" placeholder="매력적인 설명을 작성해주세요">
+                </div>
+                <div class="inp-wrap">
+                    <span>해시태그</span>
+                    <span><input type="text" name="" class="hashText" id="" placeholder="#태그를 입력해 주세요" maxlength="6"><button type="button" id="addHash"><img src="../img/ico-file_add.png" alt=""></button></span>
+                    <span id="hashField"></span>
+                </div>
+                <div class="inp-wrap">
+                    <span>커버 이미지</span>
+                    <div>
+                        <p>대표이미지는 공간의 가장 중요한 시각적 요소입니다. <br>좋은 인상을 남길 수 있도록 사진의 퀄리티를 신경써서 업로드해주세요</p>
+                        <div>
+                            <div>
+                                메인 썸네일용 이미지
+                            </div>
+                            <div id="mainThum">
+                                <label for="sumUpload">
+                                    <span>사진 추가하기</span>
+                                    <input type="file" name="" id="sumUpload" accept=".jpg,.jpeg,.png,.gif">
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                상세 썸네일용 이미지
+                            </div> 
+                            <div id="detailThum">
+                                <label for="sumUploadD">
+                                    <span>사진 추가하기</span>
+                                    <input type="file" name="" id="sumUploadD" accept=".jpg,.jpeg,.png,.gif">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="inp-wrap"> 
+                    <span>상세 이미지 등록<small>*최대 9개까지 추가 등록 가능</small></span>
+                    <div id="input-detail-img">
+                        <div>
+                            <label for="detailImg1"><br>+<input type="file" name="" id="detailImg1"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="inp-wrap">
+                    <span>공간 상세 설명</span>
+                    <textarea name="" id="" cols="30" rows="15" placeholder="공간의 특징(분위기, 수용인원, 사용용도 등)이 잘 들어날 수 있도록 상세하게 적어주세요&#13;&#10;&#13;&#10;예시 : 잠실에 위치한 OOO은 베이킹 전문공간입니다. 최대인원 10명이 수업 가능하며 기본주방시설과 2단 데크오븐이 있어 베이킹 전문수업으로 공간 대여 가능합니다. 전체분위기는 화이트톤이며 자세한 문의는 1:1메시지 주시면 공간에 대해 답변 드리겠습니다."></textarea>
+                </div>
+                <div class="inp-wrap">
+                    <span>참고사항</span>
+                    <textarea name="" id="" cols="30" rows="5" placeholder="공간에서 사용가능한 집기 비품 종류에 대해 상세히 입력해 주세요&#13;&#10;&#13;&#10;예시 : 기본주방설비/오븐 2개/ 각종 소품 및 조리도구가 구비되어 있고, 무료 와이파이가 제공됩니다.&#13;&#10;*빔프로젝트 사용은 예약시 미리 말씀해 주세요."></textarea>
+                </div>
+                <div class="inp-wrap">
+                    <span>공간 위치 등록</span>
+                    <div>
+                        <div>
+                            <input type="text" name="" id="" placeholder="우편번호" readonly="readonly">
+                            <input type="button" value="우편번호찾기">
+                        </div>
+                        <input type="text" name="" id="" readonly="readonly">
+                        <input type="text" name="" id="" placeholder="상세주소를 입력해주세요.">
+                    </div>
+                </div>
+                <div class="inp-wrap">
+                    <span>편의시설 <small>*중복 선택 가능</small></span>
+                    <span>
+                        <input type="checkbox" name="" id="comfort1"><label for="comfort1">화장실</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" name="" id="comfort2"><label for="comfort2">환풍기</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" name="" id="comfort3"><label for="comfort3">전등</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" name="" id="comfort4"><label for="comfort4">주차가능</label>
+                    </span>
+                </div>
+                <div class="inp-wrap">
+                    <span>안전시설 <small>*중복 선택 가능</small></span>
+                    <span>
+                        <input type="checkbox" name="" id="safety1"><label for="safety1">소화기</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" name="" id="safety2"><label for="safety2">화재감지기</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" name="" id="safety3"><label for="safety3">안전카드</label>
+                    </span>
+                    <span>
+                        <input type="checkbox" name="" id="safety4"><label for="safety4">구급상자</label>
+                    </span>
+                </div>
+                <div class="inp-wrap"> 
+                    <span>자주 묻는 질문</span>
+                    <span>
+                        <input type="radio" name="formal" id="question" onchange="setDisplay()"><label for="question" >자주 묻는 질문을 등록합니다.</label>
+                    </span>
+                    <span>
+                        <input type="radio" name="formal" id="NoQuestion"  onchange="setDisplay()"><label for="NoQuestion">자주 묻는 질문을 등록하지 않습니다.</label>
+                    </span>
+                </div>
+                <!-- 수정한 부분  -->
+                <div id="oftenQuestion" style="display: none;">
+                        <strong>질문<button type="button" id="add-question"><img src="" alt=""></button></strong>
+                </div>
+                <!-- //////////////////////////////////////////////////////////// -->
+
+                <div id="btn-form-wrap">
+                    <input type="submit" value="다음">
+                    <input type="submit" value="임시저장">
+                </div>
+            </form>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

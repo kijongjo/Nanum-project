@@ -1,5 +1,5 @@
 #content {
-	margin: 100px auto 0;
+	margin: 20px auto 0;
 	padding: 0 20px;
 	width: 1240px;
 }
@@ -10,8 +10,15 @@ span {
 	font-size: 14.5px;
 }
 
+/* 전문가명  */
+.expert-name {
+	color: black;
+	font-size: 18.72px;
+	font-weight: normal;
+}
+
 /* after */
-div>span:nth-child(1)::after, #new-content span:nth-child(2)::after {
+#new-content span:nth-child(1)::after, #new-content span:nth-child(2)::after {
 	content: "";
 	display: inline-block;
 	position: relative;
@@ -19,6 +26,11 @@ div>span:nth-child(1)::after, #new-content span:nth-child(2)::after {
 	border: 1px solid #e4e4e4;
 	margin-right: 5px;
 	height: 12px;
+}
+
+#new-content span.info-sortation::after {
+	border: none;
+	display: none;
 }
 
 div>span:nth-child(1), div>span:nth-child(2) {
@@ -33,37 +45,40 @@ div>span:nth-child(1), div>span:nth-child(2) {
 }
 
 /* new contents */
-#new-content>ul {
+/* #new-content>ul {
 	overflow: hidden;
 	display: flex;
 	margin-top: 25px;
-}
+} */
 
-#new-content>ul>li {
+/* #new-content .bxslider li {
 	padding-right: 15px;
-}
+} */
 
-#new-content>ul>li img {
+#new-content .bxslider img {
 	width: 340px;
 	height: 340px;
+	margin-bottom: 12px;
 }
 
-#new-content>ul>li h2 {
+#new-content .bxslider h2 {
 	font-size: 19px;
 	font-weight: 600;
 }
 
-#new-content>ul>li p {
+#new-content .bxslider p {
 	line-height: 1.45;
 	font-size: 17px;
 	margin-bottom: 5px;
 }
 
+
 /* AD */
 #content>div:nth-child(2) {
 	margin-top: 70px;
-	width: 1230px;
+	
 }
+
 
 #content>div:nth-child(2) img {
 	width: 100%;

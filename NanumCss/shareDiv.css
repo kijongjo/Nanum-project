@@ -1,8 +1,9 @@
+/* 공유 팝업창 CSS  */
+
 #pop_share {
     /* 내용이 잘리게 될때 스크롤바가 보이도록 설정한다. */
     overflow: auto;
     position: fixed;
-    z-index: 99;
     left: 0;
     top: 0;
     box-sizing: border-box;
@@ -11,6 +12,14 @@
     padding: 81px 25px 0;
     /* 반투명 설정 */
     background: rgba(0, 0, 0, 0.67);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+}
+
+#pop_share:target {
+    opacity: 1;
+    z-index: 3;
 }
 
 

@@ -5,7 +5,7 @@
 	
 	
 	<!-- mybatis 설정 스키마  -->
-	<!-- <bean id="dataSource"
+	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver"></property>
@@ -13,25 +13,25 @@
 			value="jdbc:oracle:thin:@orcl.cnjo6tor1umt.ap-northeast-2.rds.amazonaws.com:1521:orcl"></property>
 		<property name="username" value="scott"></property>
 		<property name="password" value="tigertiger"></property>
-	</bean>  -->
+	</bean> 
 	
 	<!-- sqlsessionFactory 객체 생성 -->
-	<!-- <bean id="factory"
+	<bean id="factory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		"MYBATIS 설정 파일 경로"
+		<!-- "MYBATIS 설정 파일 경로" -->
 		<property name="configLocation"
-			value="/WEB-INF/mybatis 설정 파일 경로"></property>
-		mapper 파일경로
+			value="/WEB-INF/sqlMapConfig.xml"></property>
+		<!-- mapper 파일경로 -->
 		<property name="mapperLocations"
-			value="/WEB-INF/mapper 파일경로"></property>
-	</bean> -->
+			value="/WEB-INF/mapper/*.xml" ></property>
+	</bean> 
 
 	<!-- sqlsession 객체 생성 -->
-	<!-- <bean id="sqlSession"
+	<bean id="sqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="factory"></constructor-arg>
-	</bean> -->
+	</bean> 
 
 	
 </beans>
