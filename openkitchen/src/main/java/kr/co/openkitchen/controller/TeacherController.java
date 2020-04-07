@@ -38,10 +38,10 @@ public class TeacherController {
 	// 선생님 등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "multipartUpload", method = RequestMethod.POST)
 	public String multipartUpload(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
-		
-		
-		String tDetailsumnail = ""; 
+		//파일 저장되는 경로 
 		String filePath;
+		//상세 썸네일
+		String tDetailsumnail = ""; 		
 		//선생님 번호 얻어오기 
         int tNo=dto.gettNo();
         //사진 끝번호 
@@ -51,10 +51,11 @@ public class TeacherController {
 		dto.setProCeo(dto.getProName());
 		
 		
-		// form data에 저장된 name들을 뽑아낸다.
+		//form data에 저장된 name들을 뽑아낸다.
 		Iterator<String> it = request.getFileNames();
 		Map<String, TeacherRegistDTO> map = new HashMap<String, TeacherRegistDTO>();
 		
+		//넘어온 파일들의 정체를 밝히는 while문 
 		while (it.hasNext()) {
 			String fileName = it.next();
 			System.out.println("fileName:     "+fileName);
