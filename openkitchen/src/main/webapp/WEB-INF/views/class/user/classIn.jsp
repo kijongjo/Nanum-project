@@ -39,7 +39,7 @@ $(document).ready(
 						// ajax 요청
 						$.ajax({
 							// 보낼 요청 값 contextPath를 적어주어야한다.
-							url : contextPath + '/test1',
+							url : contextPath + '/moreC',
 							/* get은 되는데 왜 post는 안됨? 모르겟음 */
 							type : 'GET',
 							// 더보기 요청시 몇개 씩 가져올지 결정 하자 .
@@ -55,8 +55,8 @@ $(document).ready(
 								console.log(obj[0]);
 								console.log(obj.length);
 								if(obj.length < 7){
-									$("#showMoreInfo").attr("display","none");
-									console.log("더이상 보여줄 게 없음");
+									$("#showMoreInfo").css("display","none");
+									alert("더이상 보여줄 게 없음");
 								}else{
 								// JSON이 배열 형태로 넘어올경우 넘어오는 데이터마다 HTML 코드를 붙이는 역할
 								obj.forEach(function(item) {
