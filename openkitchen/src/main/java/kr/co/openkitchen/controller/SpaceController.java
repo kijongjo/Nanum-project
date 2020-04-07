@@ -18,13 +18,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.service.ServiceInter;
+import kr.co.openkitchen.service.SserviceInter;
 import lombok.Setter;
 
 @Controller
 public class SpaceController {
 	
 	@Setter(onMethod = @__({ @Autowired }))
-	ServiceInter si;
+	SserviceInter si;
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")

@@ -118,7 +118,7 @@ $(document).ready(
             <ul class="bxslider">
             	<c:forEach var="NewTeacher" items="${list }">
 	                <li>
-	                    <a href="#">
+	                    <a href="teacherD?no=${NewTeacher.tNo}">
 							<img src="<c:url value='${NewTeacher.tMainSumnail }'/>" alt="" />
 	                        <h3>${NewTeacher.tHaveNickName } <span class="expert-name">${NewTeacher.tExpertName}</span></h3>
 	                        <p>${NewTeacher.tShortIntro}</p>
@@ -145,7 +145,7 @@ $(document).ready(
             <ul>
                 <c:forEach items="${mainContent }" var="mainT">
                 <li>
-                    <a href="#">
+                    <a href="teacherD?no=${mainT.tNo}">
                 		<img src="<c:url value='${mainT.tMainSumnail }'/>" alt="" />
                         <h3>${mainT.tHaveNickName } <span class="expert-name">${mainT.tExpertName }</span></h3>
                         <p>${mainT.tShortIntro }</p>

@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -21,12 +21,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.openkitchen.dto.ClassIndexDTO;
 import kr.co.openkitchen.service.ServiceInter;
+
+import kr.co.openkitchen.service.CserviceInter;
+
 import lombok.Setter;
 
 @Controller
 public class ClassController {
 	@Setter(onMethod = @__({ @Autowired }))
-	ServiceInter si;
+	CserviceInter si;
 
 	@GetMapping("classD")
 	public String classD(@RequestParam("no") int cNo, Model model) {

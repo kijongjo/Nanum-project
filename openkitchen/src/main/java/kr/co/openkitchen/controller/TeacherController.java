@@ -17,22 +17,28 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.openkitchen.dto.TeacherIndexDTO;
-import kr.co.openkitchen.service.ServiceInter;
+import kr.co.openkitchen.service.TserviceInter;
 import lombok.Setter;
 
 @Controller
+@RequestMapping("mypage")
 public class TeacherController {
 	
 	@Setter(onMethod = @__({ @Autowired }))
-	ServiceInter si;
+	TserviceInter si;
+	
 	
 	
 	// teacherD view로 가는 프로그램
 	@RequestMapping("teacherD")
-	public String teacherD() {
+	public String teacherD(@RequestParam("no")int tNo, Model model) {
+		System.out.println(tNo);
+		model.addAttribute("detailTeacher", si.readDetailT(tNo));
+		System.out.println(si.readDetailT(tNo));
 		return "teacher/user/teacherD";
 	}
 	
+
 	@GetMapping("teacherIn")
 	public String teacherIn(Model model) {
 		model.addAttribute("list",si.readFiveT());
@@ -40,6 +46,7 @@ public class TeacherController {
 		return "teacher/user/teacherIn";
 	}
 	
+
 	@RequestMapping(value = "/moreT", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String moreT(@RequestParam("count") int count) {
@@ -67,4 +74,5 @@ public class TeacherController {
 //		변환된 list를 return함
 		return str;
 	}
+
 }
