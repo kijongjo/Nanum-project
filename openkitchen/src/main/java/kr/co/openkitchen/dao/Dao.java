@@ -19,4 +19,6 @@ public interface Dao {
 	public List<TeacherIndexDTO> selectFiveT();
 	public List<SpaceIndexDTO> selectFiveS();
 	public List<ClassIndexDTO> selectContentC();
+	public List<TeacherIndexDTO> selectContentT();
+	public List<SpaceIndexDTO> selectContentS();
 }

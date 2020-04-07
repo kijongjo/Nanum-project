@@ -118,103 +118,19 @@ $(document).ready(
             </div>
             <ul>
                 <li>
+                <c:forEach items="${mainContent }" var="mainT">
                     <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
+                		<img src="<c:url value='${mainT.tMainSumnail }'/>" alt="" />
+                        <h3>이재윤 <span class="expert-name">${mainT.tExpertName }</span></h3>
+                        <p>${mainT.tMainSumnail }</p>
                         <div>
-                            <span>티</span>
+                            <span>${mainT.tExpert }</span>
                             <span>서울특별시 강동구</span>
                             <span>수업중</span>
                         </div>
                     </a>
                 </li>
-                <!-- 테스트용 복사코드-->
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span>서울특별시 강동구</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span>서울특별시 강동구</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span>서울특별시 강동구</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span>서울특별시 강동구</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span>서울특별시 강동구</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span>서울특별시 강동구</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">한식디저트전문가</span></h3>
-                        <p>앙금플라워와 퓨전한식디저트 전문가입니다.</p>
-                        <div>
-                            <span>티</span>
-                            <span>서울특별시 강동구</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <!-- 테스트용 복사코드 끝-->
+               </c:forEach>
             </ul>
         </div>
         <button class="moreInfo" id="showMoreInfo">

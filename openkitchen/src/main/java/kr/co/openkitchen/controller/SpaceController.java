@@ -24,6 +24,7 @@ public class SpaceController {
 	@GetMapping("spaceIn")
 	public String spaceIn(Model model) {
 		model.addAttribute("list",si.readFiveS());
+		model.addAttribute("mainContent",si.mainContentS());
 		return "space/user/spaceIn";
 	}
 }

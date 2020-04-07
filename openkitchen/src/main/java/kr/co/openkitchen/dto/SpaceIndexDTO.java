@@ -8,6 +8,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class SpaceIndexDTO {
+	int sNo;
 	String sMainSumnail;
 	String sShortIntro;
 	String sName;
@@ -15,6 +16,13 @@ public class SpaceIndexDTO {
 	String sLoc;
 	String sRegdate;
 	
+	
+	public int getsNo() {
+		return sNo;
+	}
+	public void setsNo(int sNo) {
+		this.sNo = sNo;
+	}
 	
 	public String getsRegdate() {
 		return sRegdate;
@@ -52,4 +60,5 @@ public class SpaceIndexDTO {
 	public void setsLoc(String sLoc) {
 		this.sLoc = sLoc;
 	}
+	
 }

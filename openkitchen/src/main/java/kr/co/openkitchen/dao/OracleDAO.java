@@ -64,8 +64,17 @@ public class OracleDAO implements Dao {
 
 	@Override
 	public List<ClassIndexDTO> selectContentC() {
-		System.out.println("다오");
 		return ss.selectList("kr.co.openkitchenIndex.ContentClass");
+	}
+
+	@Override
+	public List<TeacherIndexDTO> selectContentT() {
+		return ss.selectList("kr.co.openkitchenIndex.ContentTeacher");
+	}
+	
+	@Override
+	public List<SpaceIndexDTO> selectContentS() {
+		return ss.selectList("kr.co.openkitchenIndex.ContentSpace");
 	}
 
 }

@@ -63,8 +63,17 @@ public class ServiceImple implements ServiceInter {
 
 	@Override
 	public List<ClassIndexDTO> mainContentC() {
-		System.out.println("서비스");
 		return dao.selectContentC();
+	}
+
+	@Override
+	public List<TeacherIndexDTO> mainContentT() {
+		return dao.selectContentT();
+	}
+
+	@Override
+	public List<SpaceIndexDTO> mainContentS() {
+		return dao.selectContentS();
 	}
 
 }
