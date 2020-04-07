@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +69,7 @@
         <section id="left01">
             <!-- 상세 이미지 section 설정 -->
             <section class="detailImg">
-                <img src="https://www.public-kitchen.com/upload/teacher/ad519291-3a29-4f8c-9832-6245472a189a.jpg" alt="">
+                <img src="<c:url value='${detailTeacher.tDetailsumnail}'/>" alt="">
                 <!-- share 링크 -->
                 <div class="share">
                     <!-- a링크를 누르게 되면 공유 기능이 있는 div가 나온다  -->
@@ -86,7 +87,8 @@
             <!-- 선생님 등록시 입력한 자기소개 형태 그대로 들어간다. 아래의 id="career" section을 참고하기 -->
             <section class="intro">
                 <h3>선생님 소개</h3>
-                <div class="contents"><span>프렌치, 이탈리안을 기본 베이스로 커리어를 쌓아 왔지만</span><br><span>무언가 항상 빠지는 것 같은 느낌이 들었습니다.</span><br><br><span>그러다 어느 날 아시안 요리를 접하게 되면서 '아 내가 원하던 맛은 이런거였어'를</span><span>느낀 이후로 동서양을 넘나 들며 향신료와 맛의 밸런스를 잡는 법을 알게 되었습니다.</span><br><br><span>서양 요리의 텍스쳐(질감)를 잡는 테크닉과 아시안 요리의 향신료와 맛의 밸런스를 잡는</span><br><span>법을 접목 시켜 '이 것(요리원리)' 만 알면 누구나 요리를 쉽게 할 수 있다라는 것을</span><br><span>보여 드리기 위해 공공의 주방에 같이 합류 하게 되었습니다.</span><br><br><span>현재는 주업은 요리를 하고 있지 않지만 현재도 기회만 되면 집에서 홈파티를 열어</span><br><span>사람들을 초대 해서 요리를 해 드리고 있으며 고등학교 때부터 15년간 쌓아 온 내공을</span><br><span>선보여 드리겠습니다.</span>
+                <div class="contents">
+                	<span>${detailTeacher.tLongintro}</span>
                 </div>
 
             </section>
@@ -208,15 +210,15 @@
                 <!-- 이름과 칭호가 들어간다.(칭호는 선생님만) -->
                 <h2 class="t-title">
                     <!-- 이름이 들어간다.(공간,선생님,클래스) -->
-                    <span class="name">김지호</span>
+                    <span class="name">${detailTeacher.tHavenickname}</span>
                     <!-- 선생님 칭호가 들어간다.(선생님만) -->
-                    <span id="category">세계 요리 전문가</span>
+                    <span id="category">${detailTeacher.tExpertname}</span>
                 </h2>
                 <!-- 한줄소개(선생님,공간,클래스),해시태그(클래스,공간),경력(선생님),나머지정보(선생님,공간,클래스) -->
                 <div class="cont">
                     <!-- 한줄소개(선생님,공간,클래스) -->
                     <div class="shortIntro">
-                        이것만 알면 요리가 쉬워진다! 그 팁을 알려드려요
+                        <span>${detailTeacher.tShortintro}</span>
                     </div>
 
                     <!-- 경력정보(선생님만) -->
@@ -235,7 +237,8 @@
                     -경력6
                        이러한 형식으로 쓰도록 만들고 저장할때도 형태를 유지한채로 저장되도록 만든다. 
                     -->
-                    <section id="career">(전)<br> - 하얏트 리젠시 레이크 타호, 네바다 미국 <br> - 그랜드 인터컨티넨탈 서울<br> - 시카고 피자 수퍼바이져<br> - 도우룸 바이 스와니예 수셰프<br> - 현대 백화점 문화 센터 쿠킹 클래스<br> - 라퀴진 쿠킹 클래스<br> - 플레이팅 컴퍼니 - 메뉴 개발<br> - 요리 대회 수상 경력<br> - 팝업 레스토랑<br> - 그 외 다수 강의
+                    <section id="career">
+                    	<span>${detailTeacher.tCareer }</span>
                     </section>
                 </div>
             </div>
@@ -245,16 +248,10 @@
                 <li id="theme">
                     <!-- 테마,위치,인원,활동지역이라는 이름이 들어간다. -->
                     <strong class="otherInfoName">테마</strong>
-                    <!-- 테마,위치,인원,활동지역의 내용이 들어가게 된다. 
-                    만약 주어진 너비를 넘어가게 되면 ...으로 표시한다.-->
-                    <span class="otherInfoContents">파스타</span>
-                    <span class="otherInfoContents">반찬</span>
-                    <span class="otherInfoContents">세계요리</span>
-                    <span class="otherInfoContents">중식</span>
-                    <span class="otherInfoContents">한식</span>
-                    <span class="otherInfoContents">손님</span>
-                    <span class="otherInfoContents">파스타</span>
-                    <span class="otherInfoContents">베이킹</span>
+                    <!-- 테마,위치,인원,활동지역의 내용이 들어가게 된다. 만약 주어진 너비를 넘어가게 되면 ...으로 표시한다.-->
+                    <c:forEach var="expert" items="${fn:split(detailTeacher.tExpert, ',')}">
+	                    <span class="otherInfoContents">${expert}</span>                
+                    </c:forEach>
                 </li>
 
                 <!-- 활동지역(선생님만)이 들어간다. -->
@@ -263,8 +260,7 @@
                     <strong class="otherInfoName">지역</strong>
                     <!-- 선생님 활동 지역에 대한 정보를 가지고 오자 어느 지역인지 어느 구인지 따로 DB에 저장 되어 있어 
                         SPAN을 나누었음 -->
-                    <span class="otherInfoContents">서울특별시</span>
-                    <span class="otherInfoContents">관악구</span>
+                    <span class="otherInfoContents">${detailTeacher.tArea}</span>
                 </li>
 
 

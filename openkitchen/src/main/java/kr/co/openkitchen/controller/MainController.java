@@ -9,10 +9,9 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.openkitchen.service.ServiceInter;
+import kr.co.openkitchen.service.MserviceInter;
 import lombok.Setter;
 
 @Controller
@@ -20,7 +19,7 @@ public class MainController {
 
 	// ServiceImple를 사용하기 위한 자동 의존 주입
 	@Setter(onMethod = @__({ @Autowired }))
-	ServiceInter si;
+	MserviceInter si;
 
 	@Autowired
 	ServletContext sc;
@@ -52,33 +51,10 @@ public class MainController {
 
 		return "index";
 	}
+
 	@GetMapping("/questions")
 	public String questions() {
 		return "etc/questions";
 	}
-//	@GetMapping("/classIn")
-//	public String classIn() {
-//		return "/class/user/classIn";
-//	}
-//
-//	@GetMapping("teacherIn")
-//	public String teacherIn() {
-//		return "/teacher/user/teacherIn";
-//	}
-//
-//	@GetMapping("paymentC")
-//	public String classPay() {
-//		return "class/user/classPayment";
-//	}
-//	@GetMapping("paymentS")
-//	public String spacePay() {
-//		return "space/user/spacePayment";
-//	}
-
-//	@GetMapping("test")
-//	public String test(Model model) {
-//
-//		return "test";
-//	}
 
 }

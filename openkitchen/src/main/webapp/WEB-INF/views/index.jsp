@@ -134,41 +134,29 @@ $(document).ready(function() {
 	<div id="main-slider">
 		<ul class="bxslider1">
 			<li><img
-				src="<c:url value='/resources/img/testimg/test1.jpg'/>"
+				src="<c:url value='/resources/img/mainbanner/title1.jpg'/>"
 				alt="slide01"></li>
 			<li><img
-				src="<c:url value='/resources/img/testimg/test2.jpg'/>"
+				src="<c:url value='/resources/img/mainbanner/title2.jpg'/>"
 				alt="slide02"></li>
 			<li><img
-				src="<c:url value='/resources/img/testimg/test3.jpg'/>"
+				src="<c:url value='/resources/img/mainbanner/title3.jpg'/>"
 				alt="slide03"></li>
 			<li><img
-				src="<c:url value='/resources/img/testimg/test4.jpg'/>"
+				src="<c:url value='/resources/img/mainbanner/title4.jpg'/>"
 				alt="slide04"></li>
 			<li><img
-				src="<c:url value='/resources/img/testimg/test5.jpg'/>"
+				src="<c:url value='/resources/img/mainbanner/title5.jpg'/>"
 				alt="slide05"></li>
 			<li><img
-				src="<c:url value='/resources/img/testimg/test6.jpg'/>"
+				src="<c:url value='/resources/img/mainbanner/title6.jpg'/>"
 				alt="slide06"></li>
 			<li><img
-				src="<c:url value='/resources/img/testimg/test7.jpg'/>"
+				src="<c:url value='/resources/img/mainbanner/title7.jpg'/>"
 				alt="slide07"></li>
 			<li><img
-				src="<c:url value='/resources/img/testimg/test8.jpg'/>"
+				src="<c:url value='/resources/img/mainbanner/title8.jpg'/>"
 				alt="slide08"></li>
-			<li><img
-				src="<c:url value='/resources/img/testimg/test9.jpg'/>"
-				alt="slide09"></li>
-			<li><img
-				src="<c:url value='/resources/img/testimg/test10.jpg'/>"
-				alt="slide10"></li>
-			<li><img
-				src="<c:url value='/resources/img/testimg/test11.jpg'/>"
-				alt="slide11"></li>
-			<li><img
-				src="<c:url value='/resources/img/testimg/test12.jpg'/>"
-				alt="slide12"></li>
 		</ul>
 	</div>
 
