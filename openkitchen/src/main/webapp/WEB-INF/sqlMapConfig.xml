@@ -22,5 +22,6 @@
   		<typeAlias type="kr.co.openkitchen.dto.ClassIndexDTO" alias="rdto"/>
   		<typeAlias type="kr.co.openkitchen.dto.TeacherIndexDTO" alias="tcdto" />
   		<typeAlias type="kr.co.openkitchen.dto.SpaceIndexDTO" alias="spdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailTeacherDTO" alias="dtdto" />
   	</typeAliases>
   </configuration>

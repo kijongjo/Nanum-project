@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kr.co.openkitchen.dto.TeacherRegistDTO;
 import kr.co.openkitchen.service.RegistServiceInter;
 import kr.co.openkitchen.service.ServiceInter;
+import kr.co.openkitchen.service.TserviceInter;
 import lombok.Setter;
 
 @Controller
@@ -24,14 +26,17 @@ import lombok.Setter;
 public class TeacherController {
 	
 	@Setter(onMethod = @__({ @Autowired }))
-	ServiceInter si;
+	TserviceInter si;
 	
 	@Setter(onMethod = @__({ @Autowired }))
 	RegistServiceInter regService;
 	
 	// teacherD view로 가는 프로그램
 	@RequestMapping("teacherD")
-	public String teacherD() {
+	public String teacherD(@RequestParam("no")int tNo, Model model) {
+		System.out.println(tNo);
+		model.addAttribute("detailTeacher", si.readDetailT(tNo));
+		System.out.println(si.readDetailT(tNo));
 		return "teacher/user/teacherD";
 	}
 	
@@ -103,14 +108,11 @@ public class TeacherController {
 		return "mypage/teacher/teacherBase";
 	}
 
-	
-	
-	
-	
 	@GetMapping("teacherIn")
 	public String teacherIn(Model model) {
 		model.addAttribute("list",si.readFiveT());
 		model.addAttribute("mainContent",si.mainContentT());
 		return "teacher/user/teacherIn";
 	}
+	
 }
