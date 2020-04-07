@@ -54,5 +54,5 @@
 				#{item}
 			</foreach>
 			)
-  		</select>			
+  		</select>
   </mapper>

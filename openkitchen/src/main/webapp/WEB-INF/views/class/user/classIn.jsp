@@ -39,7 +39,7 @@ $(document).ready(
 						// ajax 요청
 						$.ajax({
 							// 보낼 요청 값 contextPath를 적어주어야한다.
-							url : contextPath + '/test',
+							url : contextPath + '/test1',
 							/* get은 되는데 왜 post는 안됨? 모르겟음 */
 							type : 'GET',
 							// 더보기 요청시 몇개 씩 가져올지 결정 하자 .
@@ -54,31 +54,30 @@ $(document).ready(
 								console.log(obj);
 								console.log(obj.length);
 								// JSON이 배열 형태로 넘어올경우 넘어오는 데이터마다 HTML 코드를 붙이는 역할
-								obj
-										.forEach(function(item) {
+								obj.forEach(function(item) {
+										console.log(item.cNo);
+										console.log(item.cName);
+										console.log(item.shortIntro);
+										console.log(item.expert);
 											contents0 = '<c:url value="'
-													+ contextPath + item.img
+													+ contextPath + item.cMainsumnail
 													+ '"/>';
 											contents1 = '<a href="#">';
 											contents2 = '<img src="'
 													+contents0+'">';
-											contents3 = '<h4>' + item.name
+											contents3 = '<h4>' + item.cName
 													+ '</h4>';
-											contents4 = '<p>' + item.shortIntro
+											contents4 = '<p>' + item.cShortintro
 													+ '</p>';
-											contents5 = '<span>' + item.expert
-													+ '</span>' + '<span>'
-													+ item.area + '</span>'
+											contents5 = '<span>' + item.cTema
+													+ ' | </span>' + '<span>'
+													+ item.tArea + '</span>'
 													+ '</a>';
 											tag = contents1 + contents2
 													+ contents3 + contents4
 													+ contents5;
 											// frag에 먼저 append 함.
-											$frag
-													.append(
-															'<li>' + tag
-																	+ '</li>')
-													
+											$frag.append('<li>' + tag+ '</li>')
 										});
 								// 최종적인 값을 append 함.
 								$("#all-content>ul").append($frag);
@@ -104,6 +103,7 @@ $(document).ready(
             </div>
             <ul class="bxslider">
                 <li>
+                	<%-- <c:forEach var="class" items="${}"></c:forEach> --%>
                     <a href="#">
 						<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
                         <h3> 이유의계절:봄-레몬파운드 케익</h3>
@@ -122,6 +122,21 @@ $(document).ready(
                     <a href="#">
                         <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
                         <h3> 이유의계절:봄-레몬파운드 케익</h3>
+                        <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
+                        <div>
+                            <span>베이킹</span>
+                            <span>서울특별시 서대문구</span>
+                            <span>4월6회 진행</span>
+                        </div>
+                        <div class="Price">
+                            <strong>\</strong>49,800
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
+                        <h3>이유의계절:봄-레몬파운드 케익</h3>
                         <p>상큼함이 입안 가득! 레몬파운드 케익 6개를 예쁘게 포장해가져가세요 :-)</p>
                         <div>
                             <span>베이킹</span>

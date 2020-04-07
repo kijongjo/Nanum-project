@@ -24,7 +24,7 @@
 			value="/WEB-INF/sqlMapConfig.xml"></property>
 		<!-- mapper 파일경로 -->
 		<property name="mapperLocations"
-			value="/WEB-INF/Mapper.xml"></property>
+			value="/WEB-INF/mapper/*.xml" ></property>
 	</bean> 
 
 	<!-- sqlsession 객체 생성 -->

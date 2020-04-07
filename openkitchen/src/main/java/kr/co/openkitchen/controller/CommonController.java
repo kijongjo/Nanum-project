@@ -41,7 +41,7 @@ public class CommonController {
 	User user;
 
 	BCryptPasswordEncoder pe;
-//Bcrypt  패스워드 암호화에 특화된 Password Hashing function
+	//Bcrypt  패스워드 암호화에 특화된 Password Hashing function
 	
 	// 데이터를 가져올 service
 	@Setter(onMethod = @__({ @Autowired }))
@@ -71,10 +71,10 @@ public class CommonController {
 	}
 
 //	더보기 요청에 대한 program 
-	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	@RequestMapping(value = "/test1", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String init(@RequestParam int count) {
-
+		
 		System.out.println("더보기 시 보여질 갯수:" + count);
 		// List를 JSON으로 변환시켜 보낸다. db에서 데이터를 가지고 오게 되면 list도 가지고 온 list로 초기화시켜준다.
 		
@@ -137,10 +137,11 @@ public class CommonController {
 //		 list.add(dto7);
 
 		String popularInit = sc.getInitParameter("globalParam");
+		System.out.println("popularInit : " + popularInit);
 		String[] popularKey = popularInit.split(",");
 
 		List<String> popularList = new ArrayList<String>();
-
+		System.out.println("popularKey.length : " + popularKey.length);
 		for (int i = 0; i < popularKey.length; i++) {
 			popularList.add(popularKey[i]);
 		}
@@ -150,14 +151,16 @@ public class CommonController {
 		map.put("popularList", popularList);
 		
 		List<PopularClassDTO> list = si.readPopularC(map);
-		
+		System.out.println("map : " + map);
+		System.out.println(list);
 //		 json으로 변환 시키기 위한 로직.
 		// ajax에는 map이나 list 형식이 없어서 string 으로 변환해준다.
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			str = mapper.writeValueAsString(list);
-			System.out.println(str);
+			System.out.println();
+			System.out.println("str : " + str);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,5 +173,9 @@ public class CommonController {
 		}
 //		변환된 list를 return함
 		return str;
+	}
+	@RequestMapping
+	public String classIndex() {
+		return "";
 	}
 }
