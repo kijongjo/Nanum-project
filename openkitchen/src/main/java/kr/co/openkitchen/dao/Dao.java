@@ -8,6 +8,8 @@ import kr.co.openkitchen.dto.ManwonClassDTO;
 import kr.co.openkitchen.dto.PopularClassDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.dto.ClassIndexDTO;
+import kr.co.openkitchen.dto.DetailCScheDTO;
+import kr.co.openkitchen.dto.DetailClassDTO;
 import kr.co.openkitchen.dto.TeacherIndexDTO;
 
 public interface Dao {
@@ -21,4 +23,7 @@ public interface Dao {
 	public List<ClassIndexDTO> selectContentC();
 	public List<TeacherIndexDTO> selectContentT();
 	public List<SpaceIndexDTO> selectContentS();
+	public DetailClassDTO selectDetailC(int cNo);
+	public List<DetailCScheDTO> selectDetailCSche(int cNo);
+	
 }

@@ -12,6 +12,8 @@ import kr.co.openkitchen.dto.ManwonClassDTO;
 import kr.co.openkitchen.dto.PopularClassDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.dto.ClassIndexDTO;
+import kr.co.openkitchen.dto.DetailCScheDTO;
+import kr.co.openkitchen.dto.DetailClassDTO;
 import kr.co.openkitchen.dto.TeacherIndexDTO;
 import lombok.Setter;
 
@@ -75,5 +77,19 @@ public class ServiceImple implements ServiceInter {
 	public List<SpaceIndexDTO> mainContentS() {
 		return dao.selectContentS();
 	}
+	
+	@Override
+	public DetailClassDTO readDetailC(int cNo) {
+		
+		return dao.selectDetailC(cNo);
+	}
+
+	@Override
+	public List<DetailCScheDTO> readDetailCSche(int cNo) {
+		
+		return dao.selectDetailCSche(cNo);
+	}
+	
+	
 
 }

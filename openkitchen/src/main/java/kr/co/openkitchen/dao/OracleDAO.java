@@ -12,6 +12,8 @@ import kr.co.openkitchen.dto.ManwonClassDTO;
 import kr.co.openkitchen.dto.PopularClassDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.dto.ClassIndexDTO;
+import kr.co.openkitchen.dto.DetailCScheDTO;
+import kr.co.openkitchen.dto.DetailClassDTO;
 import kr.co.openkitchen.dto.TeacherIndexDTO;
 import lombok.Setter;
 
@@ -75,6 +77,18 @@ public class OracleDAO implements Dao {
 	@Override
 	public List<SpaceIndexDTO> selectContentS() {
 		return ss.selectList("kr.co.openkitchenIndex.ContentSpace");
+	}
+	
+	@Override
+	public DetailClassDTO selectDetailC(int cNo) {
+		
+		return ss.selectOne("kr.co.openkitchen.class.selectDetailC", cNo);
+	}
+
+	@Override
+	public List<DetailCScheDTO> selectDetailCSche(int cNo) {
+		
+		return ss.selectList("kr.co.openkitchen.class.selectDetailCSche", cNo);
 	}
 
 }

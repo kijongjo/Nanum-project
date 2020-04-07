@@ -71,7 +71,7 @@ public class CommonController {
 	}
 
 //	더보기 요청에 대한 program 
-	@RequestMapping(value = "/test1", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String init(@RequestParam int count) {
 		
