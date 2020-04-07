@@ -52,7 +52,10 @@ public class MainController {
 
 		return "index";
 	}
-
+	@GetMapping("/questions")
+	public String questions() {
+		return "etc/questions";
+	}
 //	@GetMapping("/classIn")
 //	public String classIn() {
 //		return "/class/user/classIn";
