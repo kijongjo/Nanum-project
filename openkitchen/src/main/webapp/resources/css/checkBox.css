@@ -56,7 +56,7 @@ input[type="checkbox"] + label:before {
 }
 /* 클릭할시 디자인 */
 input[type="checkbox"]:checked + label:before {
-    background-image: url("../icon/bg-checkbox.png");
+    background-image: url("../img/icon/bg-checkbox.png");
     background-position-x: -21px;
     background-repeat: no-repeat;
     background-size: 214%;
