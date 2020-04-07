@@ -29,7 +29,7 @@
                 <li><a href="#">공공의주방 이야기</a></li>
                 <li><a href="#">공지사항</a></li>
                 <li><a href="#">이벤트</a></li>
-                <li><a href="#">자주하는 질문</a></li>
+                <li><a href="<c:url value="/questions"/>">자주하는 질문</a></li>
                 <sec:authorize access="hasRole('ROLE_ADMIN')"><li><a href="<c:url value='/admin/in'/>">관리자 페이지</a></li></sec:authorize>
             </ul>
             <ul>
