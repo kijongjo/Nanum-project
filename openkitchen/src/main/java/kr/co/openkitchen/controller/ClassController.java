@@ -5,7 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.openkitchen.service.ServiceInter;
 import lombok.Setter;
@@ -35,6 +38,11 @@ public class ClassController {
 	}
 	
 
-	
+	@RequestMapping(value = "/moreC", method = RequestMethod.GET, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String moreC(@RequestParam("count") int count) {
+		System.out.println("count 테스트 : " + count);
+		return "";
+	}
 
 }

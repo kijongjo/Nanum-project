@@ -104,9 +104,7 @@ $(document).ready(
                 
             </ul>
         </div>
-
-
-        <div>
+		<div>
             <a href="#">
                 <img src="<c:url value='/resources/img/testimg/testbanner.jpg'/>" alt="" />
             </a>
@@ -117,15 +115,15 @@ $(document).ready(
                 <h2>선생님</h2>
             </div>
             <ul>
-                <li>
                 <c:forEach items="${mainContent }" var="mainT">
+                <li>
                     <a href="#">
                 		<img src="<c:url value='${mainT.tMainSumnail }'/>" alt="" />
-                        <h3>이재윤 <span class="expert-name">${mainT.tExpertName }</span></h3>
-                        <p>${mainT.tMainSumnail }</p>
+                        <h3>${mainT.tHaveNickName } <span class="expert-name">${mainT.tExpertName }</span></h3>
+                        <p>${mainT.tShortIntro }</p>
                         <div>
-                            <span>${mainT.tExpert }</span>
-                            <span>서울특별시 강동구</span>
+                            <span>${mainT.cTema }</span>
+                            <span>${mainT.tArea }</span>
                             <span>수업중</span>
                         </div>
                     </a>
