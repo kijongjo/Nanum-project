@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +18,8 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/index-slide.css'/>">
 
 <!-- jquery 불러오기 -->
 <script
@@ -24,6 +27,10 @@
 	<script src="<c:url value='resources/js/spaceD.js'/>"></script>
 
 <script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
+<script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
+<script src="<c:url value='/resources/js/index-slide.js'/>"></script>
+
+
 <title>Document</title>
 </head>
 
@@ -63,9 +70,12 @@
 		<section id="left01">
 			<!-- 상세 이미지 section 설정 -->
 			<section class="detailImg">
-				<img
-					src="https://www.public-kitchen.com/upload/place/0691c6d6-2e5f-458b-b686-b66e29eb2c60.jpg"
-					alt="">
+				<ul class="bxslider1">
+					<c:forEach var="item" items="${fn:split(detailSpace.sDetailsumnail, ',')}">
+						<li><img src="<c:url value='${item}'/>" alt="" /></li>					
+					</c:forEach>
+				</ul>
+				
 				<!-- share 링크 -->
 				<div class="share">
 					<!-- a링크를 누르게 되면 공유 기능이 있는 div가 나온다  -->
@@ -82,10 +92,7 @@
 			<section class="intro">
 				<h3>공간 소개</h3>
 				<div class="contents">
-					<span>합정역에서 도보 3분거리에 있는 채식요리 전문 스튜디오입니다.</span><br> <span>최대
-						8명까지 수용가능하며</span><br> <span></span><br> <span>편안한 분위기
-						속에서 건강한 음식을 만들고 맛볼 수 있는 공간입니다.</span><br> <br> <span>저녁시간에는
-						각종 모임, 클래스 등으로 대여 가능합니다. </span>
+					${detailSpace.sLongintro}
 				</div>
 				<a href="">더보기</a>
 			</section>
@@ -94,8 +101,7 @@
 			<section class="reference">
 				<h3>참고사항</h3>
 				<div class="contents">
-					<span>우녹스 오븐 1대, 전자레인지 1대</span>
-
+					<span>${detailSpace.sReference}</span>
 				</div>
 
 			</section>
@@ -111,10 +117,7 @@
 				</section>
 				<!-- 링크를 통해 공간 페이지로 이동하게 된다.
                 링크에는 공간의 주소가 들어간다. -->
-
-				<span>서울특별시 용산구 회나무로13나길</span>
-
-
+				<span>${detailSpace.sLoc}</span>
 			</section>
 
 			<!-- 클래스 공간 선생님의 리뷰에 대한 정보가 들어온다 -->
@@ -212,8 +215,7 @@
 			<section id="convenient">
 				<h3>편의시설</h3>
 				<!-- db에서 편의시설에 대한 정보를 가지고 온다. -->
-				<span>화장실, 환풍기, 전등, 주차가능(주차는 총 3대가 가능하며 주차 필요 여부를 미리 알려주셔야 이용
-					가능합니다. (3대를 초과하는 경우 인근 공영 주차장을 이용하셔야 합니다) )</span>
+				<span>${detailSpace.sConvenient}</span>
 			</section>
 
 
@@ -221,7 +223,7 @@
 			<section id="safety">
 				<h3>안전시설</h3>
 				<!-- 안전 시설에 대한 정보를 db에서 가지고 온다. -->
-				<span> 소화기,구급상자 </span>
+				<span>${detailSpace.sSafety}</span>
 
 			</section>
 
@@ -235,18 +237,20 @@
 				<!-- 이름과 칭호가 들어간다.(칭호는 선생님만) -->
 				<h2 class="t-title">
 					<!-- 이름이 들어간다.(공간,선생님,클래스) -->
-					<span class="name">빛앤들공방</span>
+					<span class="name">${detailSpace.sName}</span>
 
 				</h2>
 				<!-- 한줄소개(선생님,공간,클래스),해시태그(클래스,공간),경력(선생님),나머지정보(선생님,공간,클래스) -->
 				<div class="cont">
 					<!-- 한줄소개(선생님,공간,클래스) -->
-					<div class="shortIntro">떡과 한식디저트 마카롱을 한꺼번에 만날수있는공간</div>
+					<div class="shortIntro">${detailSpace.sShortintro}</div>
 
 					<!-- 해쉬태그(공간,클래스)에 대한 정보가 들어온다.  -->
 					<section class="hashTag">
 						<!-- db에서 하나씩 가져오면 태그하나당 링크 하나로 처리한다. 링크를 클릭하면 검색페이지로 넘어간다. -->
-						<a href="">#쿠킹스튜디오</a> <a href="">#이태원</a> <a href="">#모임공간</a>
+						<c:forEach var="hashtag" items="${fn:split(detailSpace.sHashtag, ',')}">
+							<a href="">#${hashtag}</a>					
+						</c:forEach>
 					</section>
 				</div>
 			</div>
@@ -257,21 +261,21 @@
 					<!-- 테마,위치,인원,활동지역이라는 이름이 들어간다. --> <strong class="otherInfoName">테마</strong>
 					<!-- 테마,위치,인원,활동지역의 내용이 들어가게 된다. 
                     만약 주어진 너비를 넘어가게 되면 ...으로 표시한다.--> <span
-					class="otherInfoContents">베이킹스튜디오</span>
+					class="otherInfoContents">${detailSpace.sTema}</span>
 
 				</li>
 
 				<!-- 위치(공간,클래스)가 들어간다. -->
 				<li class="area">
 					<!--  위와 동일한 css--> <strong class="otherInfoName">위치</strong> <!-- 위치가 들어간다. -->
-					<span class="otherInfoContents">서울특별시 서대문구 모래내로</span>
+					<span class="otherInfoContents">${detailSpace.sLoc}</span>
 
 				</li>
 
 				<!-- 모집(클래스),인원(공간)에 대한 정보  -->
 				<li class="capacity">
 					<!-- 위와 동일한 css --> <strong class="otherInfoName">인원</strong> <span
-					class="otherInfoContents">4명</span>
+					class="otherInfoContents">${detailSpace.sCapacity}명</span>
 				</li>
 
 			</ul>

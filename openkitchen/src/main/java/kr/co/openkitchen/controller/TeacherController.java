@@ -21,7 +21,6 @@ import kr.co.openkitchen.service.TserviceInter;
 import lombok.Setter;
 
 @Controller
-@RequestMapping("mypage")
 public class TeacherController {
 	
 	@Setter(onMethod = @__({ @Autowired }))

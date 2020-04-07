@@ -29,7 +29,11 @@ public class SpaceController {
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
-	public String classD() {
+	public String classD(@RequestParam("no")int sNo, Model model) {
+		
+		model.addAttribute("detailSpace", si.readDetailS(sNo));
+		System.out.println(si.readDetailS(sNo));
+		
 		return "space/user/spaceD";
 	}
 	
