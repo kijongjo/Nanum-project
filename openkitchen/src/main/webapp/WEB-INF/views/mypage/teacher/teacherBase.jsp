@@ -205,5 +205,8 @@
 				href="teacherSpace?no=2"><input type="button" value="다음"></a>
 		</div>
 	</div>
+ 
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
 
 </form>

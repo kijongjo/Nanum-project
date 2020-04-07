@@ -20,6 +20,7 @@ import kr.co.openkitchen.service.ServiceInter;
 import lombok.Setter;
 
 @Controller
+@RequestMapping("mypage")
 public class TeacherController {
 	
 	@Setter(onMethod = @__({ @Autowired }))
@@ -35,16 +36,16 @@ public class TeacherController {
 	}
 	
 	// 선생님 등록시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "/multipartUpload", method = RequestMethod.POST)
+	@RequestMapping(value = "multipartUpload", method = RequestMethod.POST)
 	public String multipartUpload(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
 	       
 		// form data에 저장된 name들을 뽑아낸다.
 		Iterator<String> it = request.getFileNames();
-		String tDetailsumnail = "";
+		String tDetailsumnail = ""; 
 		String filePath;
 		Map<String, TeacherRegistDTO> map = new HashMap<String, TeacherRegistDTO>();
 		
-         
+
 		int count = 1;
 		while (it.hasNext()) {
 			String fileName = it.next();
@@ -74,7 +75,7 @@ public class TeacherController {
 	   }
 		map.put("dto", dto);
 		regService.insertDTO(map);
-		return "teacher/user/test";
+		return "mypage/teacher/teacherBase";
 	}
 
 	
