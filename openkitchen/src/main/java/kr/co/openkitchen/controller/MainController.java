@@ -53,20 +53,24 @@ public class MainController {
 		return "index";
 	}
 
-	@GetMapping("/classIn")
-	public String classIn() {
-		return "/class/user/classIn";
-	}
-
-	@GetMapping("teacherIn")
-	public String teacherIn() {
-		return "/teacher/user/teacherIn";
-	}
-
-	@GetMapping("spaceIn")
-	public String spaceIn() {
-		return "space/user/spaceIn";
-	}
+//	@GetMapping("/classIn")
+//	public String classIn() {
+//		return "/class/user/classIn";
+//	}
+//
+//	@GetMapping("teacherIn")
+//	public String teacherIn() {
+//		return "/teacher/user/teacherIn";
+//	}
+//
+//	@GetMapping("paymentC")
+//	public String classPay() {
+//		return "class/user/classPayment";
+//	}
+//	@GetMapping("paymentS")
+//	public String spacePay() {
+//		return "space/user/spacePayment";
+//	}
 
 //	@GetMapping("test")
 //	public String test(Model model) {
