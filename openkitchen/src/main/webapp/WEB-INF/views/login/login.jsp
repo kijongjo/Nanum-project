@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/sns-login.css'/>">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         body{
             line-height: 1.3;
@@ -91,6 +92,7 @@
         
         
         </style>
+	<jsp:include page="../headerScript.jsp" flush="false" />
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="false" />

@@ -24,6 +24,7 @@
 <script src="<c:url value='/resources/js/teacherDiscription.js'/>"></script>
 <script src="<c:url value='/resources/js/teacherBase.js'/>"></script>		
 
+	<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 <body>
 	<jsp:include page="../../header.jsp" flush="false" />

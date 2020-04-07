@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/sns-login.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/checkBox.css'/>">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Document</title>
-
+	
 <style>
     section{
         margin: 0 auto;
@@ -72,6 +73,8 @@
         font-size: 18px;
     }
 </style>
+
+	<jsp:include page="../headerScript.jsp" flush="false" />
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="false" />

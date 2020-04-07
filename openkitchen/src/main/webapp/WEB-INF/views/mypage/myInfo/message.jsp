@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/message.css'/>" >
     <link rel="stylesheet" href="<c:url value='resources/css/Header.css' />">
     <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<jsp:include page="../../headerScript.jsp" />
 </head>
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <!-- strong과 p 태그의 임의의 글 넣어놈 테스트 용이기 때문에 지워서 el 태그 사용해서 가져오면 됨 -->
