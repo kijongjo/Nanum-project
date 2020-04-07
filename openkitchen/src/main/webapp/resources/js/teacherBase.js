@@ -386,9 +386,11 @@
             formData.append("proAccountIng",proAccounting[0]);
             formData.append("proRegImg",regImg[0]);
             formData.append("tPerstatus","임시");
-            if(proType !="undefined")
-            formData.append("proType",proType);
-          
+            if(proType !="undefined"){
+            formData.append("proType",parseInt(proType));
+            }
+            // !!! 회원번호 다른 페이지에서 이쪽 페이지로 올때  넘겨받아야함
+            formData.append("mNo",1000);
          
             /* 하나씩 꺼내서 보낸다. */
             $.each(form,function(index){

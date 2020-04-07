@@ -88,7 +88,7 @@ public class RegistTeacherImple implements RegistServiceInter {
 			 return "MS";
 	
 		} else {
-			resourceName = "/resources/img/teacherImg/"+"T" + tNo + "-DS-0" + count;
+			resourceName = "/resources/img/teacherImg/T" + tNo + "-DS-0" + count;
                   
 		}
       System.out.println("makeDS" + resourceName);

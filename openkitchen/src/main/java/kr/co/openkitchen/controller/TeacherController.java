@@ -46,8 +46,9 @@ public class TeacherController {
         int tNo=dto.gettNo();
         //사진 끝번호 
 		int count = 1;
-		
-		//proceo가 proname이랑 같음.약간 이상해서 수동으로 일단 넣어주겟음 
+		int mNo=dto.getmNo();
+		System.out.println("회원 번호 넘어왔니?"+mNo);
+		//!!!proceo가 proname이랑 같음.약간 이상해서 수동으로 일단 넣어주겟음 
 		dto.setProCeo(dto.getProName());
 		
 		

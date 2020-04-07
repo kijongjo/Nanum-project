@@ -28,6 +28,8 @@ public class TeacherRegistDTO {
 	private String proName;
 	private String proAccounting;
 	private String proRegimg;
+	private int mNo;
+	
 
 	public int gettNo() {
 		return tNo;
@@ -187,6 +189,14 @@ public class TeacherRegistDTO {
 
 	public void setProRegimg(String proRegimg) {
 		this.proRegimg = proRegimg;
+	}
+
+	public int getmNo() {
+		return mNo;
+	}
+
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 
 }
