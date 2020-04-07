@@ -20,4 +20,6 @@ public interface ServiceInter {
 	public List<TeacherIndexDTO> readFiveT();
 	public List<SpaceIndexDTO> readFiveS();
 	public List<ClassIndexDTO> mainContentC();
+	public List<TeacherIndexDTO> mainContentT();
+	public List<SpaceIndexDTO> mainContentS();
 }

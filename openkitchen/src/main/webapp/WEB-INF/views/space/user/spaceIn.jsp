@@ -123,13 +123,13 @@ $(document).ready(
                 <img src="<c:url value='/resources/img/testimg/testbanner.jpg'/>" alt="" />
             </a>
         </div>
-
-
-        <div id="all-content">
+		<div id="all-content">
             <div class="itemTitle">
                 <h2>공간</h2>
             </div>
+            <h6>${mainContent }</h6>
             <ul>
+            <c:forEach items="${mainContent }" var="mainS">
                 <li>
                     <a href="#">
                 		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
@@ -142,92 +142,7 @@ $(document).ready(
                         </div>
                     </a>
                 </li>
-                <!-- 테스트용 복사코드-->
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>주스앤그로서리 연구소</h3>
-                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
-                        <div>
-                            <span>카페</span>
-                            <span>경기도 구리시</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>주스앤그로서리 연구소</h3>
-                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
-                        <div>
-                            <span>카페</span>
-                            <span>경기도 구리시</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>주스앤그로서리 연구소</h3>
-                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
-                        <div>
-                            <span>카페</span>
-                            <span>경기도 구리시</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>주스앤그로서리 연구소</h3>
-                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
-                        <div>
-                            <span>카페</span>
-                            <span>경기도 구리시</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>주스앤그로서리 연구소</h3>
-                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
-                        <div>
-                            <span>카페</span>
-                            <span>경기도 구리시</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>주스앤그로서리 연구소</h3>
-                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
-                        <div>
-                            <span>카페</span>
-                            <span>경기도 구리시</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                		<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="" />
-                        <h3>주스앤그로서리 연구소</h3>
-                        <p>휴식과 힐링이 공존하는 쿠킹클래스 공간</p>
-                        <div>
-                            <span>카페</span>
-                            <span>경기도 구리시</span>
-                            <span>수업중</span>
-                        </div>
-                    </a>
-                </li>
-                <!-- 테스트용 복사코드 끝-->
+            </c:forEach>    
             </ul>
         </div>
 

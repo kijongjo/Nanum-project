@@ -25,6 +25,7 @@ public class TeacherController {
 	@GetMapping("teacherIn")
 	public String teacherIn(Model model) {
 		model.addAttribute("list",si.readFiveT());
+		model.addAttribute("mainContent",si.mainContentT());
 		return "teacher/user/teacherIn";
 	}
 }
