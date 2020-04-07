@@ -8,6 +8,8 @@ import kr.co.openkitchen.dto.ManwonClassDTO;
 import kr.co.openkitchen.dto.PopularClassDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.dto.ClassIndexDTO;
+import kr.co.openkitchen.dto.DetailCScheDTO;
+import kr.co.openkitchen.dto.DetailClassDTO;
 import kr.co.openkitchen.dto.TeacherIndexDTO;
 
 public interface ServiceInter {
@@ -22,4 +24,7 @@ public interface ServiceInter {
 	public List<ClassIndexDTO> mainContentC();
 	public List<TeacherIndexDTO> mainContentT();
 	public List<SpaceIndexDTO> mainContentS();
+	public DetailClassDTO readDetailC(int cNo);
+	public List<DetailCScheDTO> readDetailCSche(int cNo);
+
 }
