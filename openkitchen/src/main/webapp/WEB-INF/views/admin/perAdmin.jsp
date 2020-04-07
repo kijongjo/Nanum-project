@@ -11,13 +11,13 @@
     <!-- jquery 사용 cdn -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- bootstrap js파일 -->
- <script type="text/javascript" src="<c:url value='resources/js/bootstrap/bootstrap.min.js' />"></script>
+ <script type="text/javascript" src="<c:url value='/resources/js/bootstrap/bootstrap.min.js' />"></script>
  <!-- 부트스트랩 css 설정 -->
-    <link rel="stylesheet" type="text/css" href=" <c:url value='resources/css/bootstrap/bootstrap.min.css'/>" />
+    <link rel="stylesheet" type="text/css" href=" <c:url value='/resources/css/bootstrap/bootstrap.min.css'/>" />
      <!--layout css 설정  -->
-     <link rel="stylesheet" type="text/css" href="<c:url value='resources/css/bootstrap/local.css'/>">
+     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/bootstrap/local.css'/>">
      <!-- 페이지 css 적용 -->
-     <link rel="stylesheet" type="text/css" href="<c:url value='resources/css/perAdmin.css'/>">
+     <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/perAdmin.css'/>">
 <!-- 폰트와 icon 적용 -->
     <script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+HK&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
                 </button>
                 <!-- 로고파일 -->
                 <a class="navbar-brand" href="adminIndex.html">
-                   <img id="logo3" src="<c:url value='resources/img/icon/logo3.png' />" alt="">
+                   <img id="logo3" src="<c:url value='/resources/img/icon/logo3.png' />" alt="">
                 </a>
             </div>
 
@@ -55,15 +55,15 @@
                         <h1>상태관리</h1>
                     </li>
                    <li>
-                        <a href="adminIndex">
+                        <a href="<c:url value="/admin/in"/>">
                             <span class="selected"><i class="fa fa-bar-chart-o"></i> 사업그래프</span>
                         </a>
                     </li>
                     <li>
-                    <a href="memberAdmin"><span class="selected"><i class="fa fa-tasks"></i> 회원관리</span>
+                    <a href="<c:url value="/admin/memberAdmin"/>"><span class="selected"><i class="fa fa-tasks"></i> 회원관리</span>
                     </a>
                     </li>
-                    <li><a href="perAdmin"><span class="selected"><i class="fa fa-globe"></i> 상태관리</span></a></li>
+                    <li><a href="<c:url value="/admin/perAdmin"/>"><span class="selected"><i class="fa fa-globe"></i> 상태관리</span></a></li>
                     <!--   <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
                     <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i> Bootstrap Grid</a></li> -->
                 </ul>

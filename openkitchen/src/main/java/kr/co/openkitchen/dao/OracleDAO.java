@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.openkitchen.dto.ClassDTO;
+import kr.co.openkitchen.dto.DetailCScheDTO;
+import kr.co.openkitchen.dto.DetailClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
 import kr.co.openkitchen.dto.PopularClassDTO;
 import lombok.Setter;
@@ -44,6 +46,20 @@ public class OracleDAO implements Dao {
 		return ss.selectList("kr.co.openkitchen.class.selectPopularC", map);
 	}
 
+	@Override
+	public DetailClassDTO selectDetailC(int cNo) {
+		
+		return ss.selectOne("kr.co.openkitchen.class.selectDetailC", cNo);
+	}
+
+	@Override
+	public List<DetailCScheDTO> selectDetailCSche(int cNo) {
+		
+		return ss.selectList("kr.co.openkitchen.class.selectDetailCSche", cNo);
+	}
+	
+	
+	
 	
 	
 	

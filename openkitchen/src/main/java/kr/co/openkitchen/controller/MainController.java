@@ -53,7 +53,7 @@ public class MainController {
 		return "index";
 	}
 
-	@GetMapping("classIn")
+	@GetMapping("/classIn")
 	public String classIn() {
 		return "/class/user/classIn";
 	}

@@ -10,11 +10,11 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
 
-<link rel="stylesheet" href="<c:url value='resources/css/reset.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>" />
 <link rel="stylesheet"
-	href="<c:url value='resources/css/perTeacherD2.css'/>" />
+	href="<c:url value='/resources/css/perTeacherD2.css'/>" />
 <link rel="stylesheet"
-	href="<c:url value='resources/css/nonAllow.css'/>" />
+	href="<c:url value='/resources/css/nonAllow.css'/>" />
 </head>
 <body>
 

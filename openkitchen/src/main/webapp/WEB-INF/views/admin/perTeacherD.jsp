@@ -10,9 +10,9 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
 
-<link rel="stylesheet" href="<c:url value='resources/css/reset.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>" />
 <link rel="stylesheet"
-	href="<c:url value='resources/css/perTeacherD.css'/>" />
+	href="<c:url value='/resources/css/perTeacherD.css'/>" />
 </head>
 <body>
 	<!-- 레이아웃 3번째 type left01 right01 Section으로 이루어짐. -->

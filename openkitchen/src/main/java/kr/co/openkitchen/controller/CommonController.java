@@ -6,15 +6,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +30,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kr.co.openkitchen.dao.Dao;
 import kr.co.openkitchen.dto.PopularClassDTO;
-import kr.co.openkitchen.dto.dtoTest;
 import kr.co.openkitchen.service.ServiceInter;
 import lombok.Setter;
 
@@ -47,19 +51,23 @@ public class CommonController {
 	ServletContext sc;
 
 	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
-
-	@RequestMapping(value = "/common/customLogin")
-	public void login(String error, String logout, Model model) {
-		if (error != null) {
-			model.addAttribute("error", "로그인 중 에러 발생");
-		} else if (logout != null) {
-			model.addAttribute("logout", "logout");
-		}
+	@RequestMapping("/login")
+	public String loginForm() {
+		return "login/login";
 	}
-
-	@RequestMapping(value = "/common/customLogout")
-	public void logoutGet() {
-		logger.info("커스텀 로그아웃");
+//	@RequestMapping(value = "/common/customLogin")
+//	public void login(String error, String logout, Model model) {
+//		if (error != null) {
+//			model.addAttribute("error", "로그인 중 에러 발생");
+//		} else if (logout != null) {
+//			model.addAttribute("logout", "logout
+//		}
+//	}
+//
+	@GetMapping(value = "/logoutHidden")
+	public String logout(HttpServletRequest req, HttpServletResponse resp) {
+		return "login/logoutHidden";
+	
 	}
 
 //	더보기 요청에 대한 program 
