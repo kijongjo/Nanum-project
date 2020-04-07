@@ -26,7 +26,7 @@
 		cursor:pointer;
 	}
 </style>
-<script>
+<!-- <script>
 $(document).ready(function () {
 	var $mcdetail = $(".mcdetail");
 	var $frm = $(".frm");
@@ -38,7 +38,7 @@ $(document).ready(function () {
 		
 	});
 });
-</script>
+</script> -->
 <script>
 /*!! 문제점: js파일로 따로 빼버리면 img주소에 contextPath 주소를 넣을 때 오류가 발생함. 아직 해결 못했음.  */
 //이미지를 불러와 주소를 입력할 때 contextPath(project명)을 붙여줘야한다. 그 contextPath를 불러오는 기능
@@ -267,7 +267,7 @@ $(document).ready(function() {
             <ul class="bxslider">
                	<c:forEach var="mc" items="${manwonClass}">
 		                <li class="mcdetail">
-                 		   <form action="classD" class="frm" method="post">
+                 		   <!-- <form action="classD" class="frm" method="post"> -->
 		                       <input type="hidden" name="cno" value="${mc.cNo}" />
 		                       <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" /> 
 			                       <img src="<c:url value='${mc.cMainsumnail}'/>" alt="이미지" id="mcimg">
@@ -280,7 +280,7 @@ $(document).ready(function() {
 			                        <div class="Price">
 			                            <strong>\</strong> ${mc.cPrice}
 			                        </div>
-                    		</form>
+                    		<!-- </form> -->
 		                </li>
                 </c:forEach>
                 <!-- 테스트용 복사 -->
@@ -340,7 +340,7 @@ $(document).ready(function() {
             <ul class="bxslider">
             	<c:forEach var="ooc" items="${OnlyOneClass}">
 		                <li class="mcdetail">
-                 		   <form action="classD" class="frm" method="post">
+                 		   <!-- <form action="classD" class="frm" method="post"> -->
 		                       <input type="hidden" name="cno" value="${ooc.cNo}" />
 		                       <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" /> 
 			                       <img src="<c:url value='${ooc.cMainsumnail}'/>" alt="이미지" id="mcimg">
@@ -353,7 +353,7 @@ $(document).ready(function() {
 			                        <div class="Price">
 			                            <strong>\</strong> ${ooc.cPrice}
 			                        </div>
-                    		</form>
+                    		<!-- </form> -->
 		                </li>
                 </c:forEach>
                 <%-- <li>

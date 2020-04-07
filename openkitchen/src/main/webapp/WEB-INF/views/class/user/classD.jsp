@@ -41,7 +41,6 @@
 		var test = "<c:out value='${detailClass.sType}' />";
 		if(test=="대여") {
 			$(".detailCLoc").css({'pointer-events':'none'});
-			
 		}
 	});
 	
@@ -144,7 +143,8 @@
 				<p>클래스 신청은 우측에 신청하기 버튼을 눌러주세요</p>
 				<!-- 클래스 공간에 들어가는 달력 요소 -->
 				<div class="calendarSchedule">
-					<div class="half01">캘린더 api가 들어오는 자리</div>
+					<div class="half01">캘린더 api가 들어오는 자리
+					</div>
 					<div class="half02">
 						<h3>일정별 수업시간</h3>
 						<!-- 스케쥴에 대한 내용이 나온다. -->
@@ -422,7 +422,14 @@
 										<span>18:00</span>
 									</c:otherwise>								
 								</c:choose>
-								<span>${dcsdto.cMaxrecruitperson-dcsdto.cPerson}명 예약 가능</span>
+								<c:choose>
+									<c:when test="${dcsdto.cMaxrecruitperson eq dcsdto.cPerson}">
+										<span class="endC">마감</span>									
+									</c:when>
+									<c:otherwise>							
+										<span>${dcsdto.cMaxrecruitperson-dcsdto.cPerson}명 예약 가능</span>
+									</c:otherwise>
+								</c:choose>
 								</li>
 							</c:forEach>
 							
