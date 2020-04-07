@@ -19,24 +19,36 @@ public class RegistTeacherImple implements RegistServiceInter {
 	ServletContext servletContext;
 	// 이미지를 받아서 이름을 줌.
 	@Override
-	public String acceptImg(String fileName,int count) {
+	public String acceptImg(String fileName,int count,int tNo) {
 		
 		String filePath;
 		String resourceName;
-		String resourcesPath = servletContext.getRealPath("/resources/img/teacherimg");
-		System.out.println(resourcesPath);
+		String resourcesPath ;
+		
 		if (fileName.equals("DS-TYPE1")) {
-			resourceName = "T" + 999 + "-DS-0" + count;
-			
+			resourceName = "T" + tNo + "-DS-0" + count;
+			resourcesPath = servletContext.getRealPath("/resources/img/teacherimg");
+			filePath = resourcesPath + "/" + resourceName + ".jpg";
+			System.out.println("filePath  :  "+filePath);
 		} else if (fileName.equals("MS")) {
-			resourceName = "T" + 999 + "-MS-01";
-
-		} else {
-			resourceName = "T" + 999 + "-DS-0" + count;
-			
+			resourceName = "T" + tNo + "-MS-01";
+			resourcesPath = servletContext.getRealPath("/resources/img/teacherimg");
+			filePath = resourcesPath + "/" + resourceName + ".jpg";
+			System.out.println("filePath  :  "+filePath);
+		} else if(fileName.equals("proRegImg")) {
+			resourceName =  tNo + "reg.jpg";
+			resourcesPath = servletContext.getRealPath("/resources/img/regimg");
+			filePath = resourcesPath + "/" + resourceName + ".jpg";
+			System.out.println("filePath  :  "+filePath);
+		} else if(fileName.equals("proAccountIng")) {
+			resourceName =  tNo + "bank.jpg";
+			resourcesPath = servletContext.getRealPath("/resources/img/bankimg");
+			filePath = resourcesPath + "/" + resourceName + ".jpg";
+			System.out.println("filePath  :  "+filePath);
+		}else {
+			return "";
 		}
 
-		filePath = resourcesPath + "/" + resourceName + ".jpg";
 
 		return filePath;
 
@@ -66,17 +78,17 @@ public class RegistTeacherImple implements RegistServiceInter {
 	}// makeFile end
 
 	@Override
-	public String makeDS(String fileName,int count) {
+	public String makeDS(String fileName,int count,int tNo) {
 		System.out.println(fileName);
 		String resourceName;
 		if (fileName.equals("DS-TYPE1")) {
-			resourceName ="/resources/img/teacherImg/"+"T" + 999 + "-DS-0" + count;
+			resourceName ="/resources/img/teacherImg/T" + tNo + "-DS-0" + count;
 			
 		} else if (fileName.equals("MS")) {
 			 return "MS";
 	
 		} else {
-			resourceName = "/resources/img/teacherImg/"+"T" + 999 + "-DS-0" + count;
+			resourceName = "/resources/img/teacherImg/"+"T" + tNo + "-DS-0" + count;
                   
 		}
       System.out.println("makeDS" + resourceName);
@@ -84,9 +96,9 @@ public class RegistTeacherImple implements RegistServiceInter {
 	}
 
 	@Override
-	public String makeMS(String fileName) {
+	public String makeMS(String fileName,int tNo) {
 		// TODO Auto-generated method stub
-		return "./resources/img/teacherImg/T-"+999+"-MS-01";
+		return "/resources/img/teacherImg/T"+tNo+"-MS-01";
 	}
 	
 	
@@ -99,6 +111,22 @@ public <T> void insertDTO(Map<String, T> map) {
 	  System.out.println(dto.toString());
 	
 	
+}
+
+@Override
+public String makeBK(String fileName,int tNo) {
+	System.out.println("하이0");
+	String resourceName="";
+	if(fileName.equals("proRegImg")) {
+		System.out.println("하이1");
+		resourceName="/resources/img/regimg/"+tNo+"reg.jpg";
+		
+	}else {
+		System.out.println("하이2");
+		 resourceName="/resources/img/bankimg/"+tNo+"bank.jpg";
+		  
+	}
+	return resourceName ;
 }
 
 }

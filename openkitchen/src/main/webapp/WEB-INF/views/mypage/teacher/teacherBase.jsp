@@ -157,7 +157,7 @@
 
 	<h4>은행/증권사 선택</h4>
 	<div class="basic_apply">
-	  <select name="proAccount" id="">
+	  <select name="proBank" id="">
 	  
 	   <option value="선택">선택</option>
 	   <option value="국민">국민</option>
