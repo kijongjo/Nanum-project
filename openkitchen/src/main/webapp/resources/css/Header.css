@@ -82,6 +82,7 @@
     cursor:pointer;
 }
 div#header_nav {
+	display:none;
 	position: absolute;
 	top: 69px;
 	right: 25px;
