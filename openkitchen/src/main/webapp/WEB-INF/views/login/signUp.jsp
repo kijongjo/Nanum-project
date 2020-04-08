@@ -81,19 +81,19 @@
     <div>
     <section id="sign_up">
         <h2>회원가입</h2>
-        <form action="#">
+        <form action="<c:url value="siginSuccess"/>" method="post">
             <div><!-- 아이디 -->
-                <input type="text" name="" id="">
+                <input type="text" name="mEmail" id="">
             </div>
             <div><!-- 비밀번호 -->
-                <input type="text" name="" id="">
+                <input type="text" name="mPwd" id="">
             </div>
             <div><!-- 비밀번호 확인 -->
-                <input type="text" name="" id="">
+                <input type="text" name="confirm" id="">
             </div>
             <div><!-- 이름 -->
                 <p>이름</p>
-                <input type="text" name="" id="">
+                <input type="text" name="mName" id="">
             </div>
             <div class="checkBox" id="all-check"><!-- 전체동의 checkbox -->
                 <input type="checkbox" name="all_agreement" id="" class="checkBox">
