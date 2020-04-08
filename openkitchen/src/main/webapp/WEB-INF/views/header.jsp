@@ -1029,7 +1029,7 @@
       
 <div id="header">
     <div>
-        <a href="<c:url value='/index'/>"><img src="<c:url value='/resources/img/icon/logo.png'/>" alt="" /> </a>
+        <a href="<c:url value='/index'/>"><img src="<c:url value='/resources/img/icon/teamLogo77.jpg'/>" alt="" /> </a>
     </div>
     <h3><a href="<c:url value='/classIn'/>">클래스</a></h3>
     
@@ -1037,8 +1037,7 @@
     <h3><a href="<c:url value='/spaceIn'/>">공간</a></h3>
     <div id="serch">
         <img src="<c:url value='/resources/img/icon/serch.png'/>" alt="serch">
-        <input type="text" name="" id="" value="">
-        <span>나와 맞는 공간을 찾아볼까?</span>
+        <input type="text" name="" id="" value="" placeholder="나와 맞는 공간을 찾아볼까?" />
     </div>
     
     <div>
