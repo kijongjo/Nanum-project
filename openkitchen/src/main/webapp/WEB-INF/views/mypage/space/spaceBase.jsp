@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,7 +96,7 @@
         #lay03spaceRegister1 #right01>div {
             background-color: #f6f5f5;
             width: 965px;
-            margin: -46px 0px -120px;
+            /* margin: -46px 0px -120px; */
             padding: 45px 0px 120px 60px;
         }
         #lay03spaceRegister1 #right01 .inp-wrp:nth-child(1){
@@ -322,7 +323,8 @@
             height: 50px;
             padding: 0px 20px;
             border: none;
-            font-weight: bold;
+            font-weight: 900;
+            font-family: 'Roboto','Noto Sans', 'Noto Sans KR', sans-serif;
             color: gray;
         }
         #lay03spaceRegister1 #right01 .inp-wrp:nth-child(6) select:focus{
@@ -331,7 +333,7 @@
         #lay03spaceRegister1 #right01 .inp-wrp:nth-child(6) option{
             color: gray;
             font-family: 'Roboto','Noto Sans', 'Noto Sans KR', sans-serif;
-            font-weight: 400;
+            font-weight: 700;
         }
         #lay03spaceRegister1 #right01 .inp-wrp:nth-child(7){
             height: 80px;
@@ -401,15 +403,77 @@
             margin: 30px 0px 8px;
         }
         #lay03spaceRegister1 #right01 .inp-wrp:nth-child(9) input[type="file"]{
-            display: none;
+            position:absolute;
+            width: 1px; 
+            height: 1px; 
+            padding: 0; 
+            margin: -1px; 
+            overflow: hidden; 
+            border: 0;
         }
-
+        #lay03spaceRegister1 #right01 .inp-wrp:nth-child(9) label{
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 3px;
+            height: 50px;
+            width: 905px;
+            padding: 0px 30px 0px 20px;
+            background-color: white;
+        }
+        #lay03spaceRegister1 #right01 .inp-wrp:nth-child(9) label span{
+            font-weight: bold;
+            font-size: 15px;
+            position: relative;
+            top: 13px;
+            color: #b7b7b7;
+        }
+        #lay03spaceRegister1 #right01 #btn-form-wrap{
+            height: 64px;
+            margin: 100px 0px 0px;
+        }
+        #lay03spaceRegister1 #right01 #btn-form-wrap input[type="submit"]{
+            float: right;
+            font-size: 18px;
+            height: 64px;
+            width: 168px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+        }
+        #lay03spaceRegister1 #right01 #btn-form-wrap input[type="submit"]:nth-child(1){
+            background: #8e0032;
+            color: white;
+            margin-left: 12px;
+        }
+        #lay03spaceRegister1 #right01 #btn-form-wrap input[type="submit"]:nth-child(2){
+            background: white;
+            color: #2e2e2e;
+        }
 
     </style>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript">
-       
+        function fileName(){
+            var fileValue = $("#bankBook").val().split("\\");
+            var fileName = fileValue[fileValue.length-1]; // 파일명
+            console.log(fileValue);
+            console.log(fileName);
+            $("#bankBookImg").html(fileName);
+        }
+        $(function(){
+            $('.introduce').keyup(function (e){
+                var content = $(this).val();
+                $('#introduce-counting').html(content.length+" / 1500");    //글자수 실시간 카운팅
+
+                if (content.length > 1500){
+                    alert("최대 1500자까지 입력 가능합니다.");
+                    $(this).val(content.substring(0, 1500));
+                    $('#introduce-counting').html("1500 / 1500");   
+                }
+            });
+        });
+
     </script>
     
 </head>
@@ -449,8 +513,8 @@
                     </span>
                 </div>
                 <div class="inp-wrp">
-                    <span>자기소개<span>0/1500</span></span>
-                    <textarea name="" id="" cols="30" rows="18" maxlength="1500" placeholder="공공의주방은 수강생, 선생님, 호스트와의 관계를 기반으로 만들어졌습니다. 호스트가 어떤 사람인지 친절하게 알려주세요&#13;&#10;예시 : 반갑습니다. 저는 잠실에서 쿠킹스튜디오, OOO라는 공간을 운영하고 있습니다. 평소 요리를 너무 좋아하고 가끔 수업도 합니다. 평소 이 공간은 요리수업이 진행되는 곳으로 보다 다양한 선생님들의 수업이 진행되면 좋을 것 같아 공간을 공유합니다."></textarea>
+                    <span>자기소개<span id="introduce-counting">0/1500</span></span>
+                    <textarea name="" class="introduce" id="" cols="30" rows="18" maxlength="1500" placeholder="공공의주방은 수강생, 선생님, 호스트와의 관계를 기반으로 만들어졌습니다. 호스트가 어떤 사람인지 친절하게 알려주세요&#13;&#10;예시 : 반갑습니다. 저는 잠실에서 쿠킹스튜디오, OOO라는 공간을 운영하고 있습니다. 평소 요리를 너무 좋아하고 가끔 수업도 합니다. 평소 이 공간은 요리수업이 진행되는 곳으로 보다 다양한 선생님들의 수업이 진행되면 좋을 것 같아 공간을 공유합니다."></textarea>
                 </div>
                 <div class="inp-wrp">
                     <span>사업자 유형</span>
@@ -508,14 +572,14 @@
                 </div>
                 <div class="inp-wrp">
                     <span>통장 사본 첨부</span>
-                    <input type="file" name="bankBook" id="" placeholder="이미지를 첨부해주세요"><label for="bankBook"><span></span></label>
+                    <input type="file" name="" id="bankBook" placeholder="이미지를 첨부해주세요" onchange="fileName()"><label for="bankBook"><span id="bankBookImg">사진 첨부 하기(클릭)</span></label>
                 </div>
 
                 <div id="btn-form-wrap">
                     <input type="submit" value="다음">
                     <input type="submit" value="임시저장">
                 </div>
-            </form>
+            </form> 
             </div>
         </section>
     </div>

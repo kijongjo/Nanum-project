@@ -79,5 +79,13 @@ public class ClassController {
 //		변환된 list를 return함
 		return str;
 	}
+//	@GetMapping("spaceBase")
+//	public String spaceBase() {
+//		return "mypage/space/spaceBase";
+//	}
+//	@GetMapping("spaceIntro")
+//	public String spaceIntro() {
+//		return "mypage/space/spaceIntro";
+//	}
 
 }
