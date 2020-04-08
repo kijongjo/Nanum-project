@@ -95,7 +95,7 @@
                                         <div id="detailThum">
                                             <label for="S-DS-TYPE1">
                                     <span>사진 추가하기</span>
-                                    <input type="file" name="" id="DS-TYPE1" accept=".jpg,.jpeg,.png,.gif" multiple>
+                                    <input type="file" name="" id="S-DS-TYPE1" accept=".jpg,.jpeg,.png,.gif" multiple>
                                 </label>
                                         </div>
                                     </div>
