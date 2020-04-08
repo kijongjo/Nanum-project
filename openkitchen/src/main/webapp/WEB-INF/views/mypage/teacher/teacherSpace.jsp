@@ -9,7 +9,7 @@
 					<div class="checkboxWrap" id="WrapWidth3">
 						<div class="checkbox">
 							<!--공간대여안함-->
-							<input type="radio" name="rental" id="norental"> <label
+							<input type="radio" name="rental" id="norental" checked="checked"> <label
 								for="radio"></label>
 						</div>
 						<div class="checkbox">
@@ -189,4 +189,7 @@
                             </div>
                         </form>
                     </div>
-                    </div>
+                    <!--  -->
+                    <a href="in">
+                    <input type="button" value="다음" id="btn-norental" /></a></div>
+                   

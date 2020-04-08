@@ -1,8 +1,12 @@
-/*중복되는 css 제거하자 */
-
-#teacherSpace input select{
-outline-color: #8E0032 !important ;
+/* js 임대하기 기능을 위한 최소 높이 css 설정 */
+#right01 {
+	min-height: 478px;
 }
+/*중복되는 css 제거하자 */
+#teacherSpace input select {
+	outline-color: #8E0032 !important;
+}
+
 #teacherSpace .inp-wrap:nth-child(1) {
 	height: 81px;
 }
@@ -420,23 +424,29 @@ outline-color: #8E0032 !important ;
 }
 /* 9장 style */
 #teacherSpace .inp-wrap:nth-child(7) {
-	
 	width: 905px;
-	
 	height: 257px;
-	
 	overflow-x: auto;
 	overflow-y: hidden;
 }
 /* 스크롤바 설정 */
-#teacherSpace .inp-wrap:nth-child(7)::-webkit-scrollbar {width: 4px;
-height:12px;}
-#teacherSpace .inp-wrap:nth-child(7)::-webkit-scrollbar-track{background-color: white;}
-#teacherSpace .inp-wrap:nth-child(7)::-webkit-scrollbar-thumb{background-color: #8E0032;
-	border-radius: 10px;}
-#teacherSpace .inp-wrap:nth-child(7)::-webkit-scrollbar-thumb:hover{background: #8E0032;}
+#teacherSpace .inp-wrap:nth-child(7)::-webkit-scrollbar {
+	width: 4px;
+	height: 12px;
+}
 
+#teacherSpace .inp-wrap:nth-child(7)::-webkit-scrollbar-track {
+	background-color: white;
+}
 
+#teacherSpace .inp-wrap:nth-child(7)::-webkit-scrollbar-thumb {
+	background-color: #8E0032;
+	border-radius: 10px;
+}
+
+#teacherSpace .inp-wrap:nth-child(7)::-webkit-scrollbar-thumb:hover {
+	background: #8E0032;
+}
 
 #teacherSpace .inp-wrap:nth-child(7)>span:nth-child(1) {
 	display: block;
@@ -923,33 +933,31 @@ height:12px;}
 /* 9장 상세 이미지 style */
 #teacherSpace #input-detail-img {
 	display: inline-block;
+	overflow: hidden;
 }
 
 #teacherSpace #input-detail-img img {
-	    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
- #teacherSpace #input-detail-img p {
+#teacherSpace #input-detail-img p {
 	text-overflow: ellipsis;
-	 display: inline-block; 
+	display: inline-block;
 	overflow: hidden;
 }
 
 #teacherSpace #input-detail-img .preview-box {
 	width: 195px;
 	height: 175px;
-	
 	background-color: white;
-	
 	text-align: center;
 	margin-left: 20px;
-	
 	float: left;
-	
 	padding-top: 15px;
-	    position: relative;
-    bottom: 48px;
+	position: relative;
+	bottom: 48px;
+	margin-top: 25px;
 }
 
 #teacherSpace #input-detail-img button {
@@ -958,24 +966,24 @@ height:12px;}
 	padding: 0px;
 	margin: 0px;
 	font-weight: 900;
-    padding-left: 10px;
-    vertical-align: top;
-    /* padding-bottom: 63px; */
-    position: relative;
-    bottom: 4px;
+	padding-left: 10px;
+	vertical-align: top;
+	/* padding-bottom: 63px; */
+	position: relative;
+	bottom: 4px;
 }
 
 #teacherSpace .hashTxt {
 	width: 130px !important;
 	height: 30px !important;
 	margin-right: 7px !important;
-	padding:1px 0 0 28px !important;
+	padding: 1px 0 0 28px !important;
 	border: 1px solid #bbb !important;
 	border-radius: 17px !important;
 	font-size: 19px !important;
 	line-height: 32px !important;
 	color: #2e2e2e !important;
-    margin-top:9px;
+	margin-top: 9px;
 }
 
 #teacherSpace .hashTxt:focus {
@@ -1093,24 +1101,46 @@ height:12px;}
 	right: 20px;
 }
 /* 공간등록상에서의 체크박스 고치기 */
-#teacherSpace .checkboxSection{
+#teacherSpace .checkboxSection {
 	min-height: 169px;
 }
 
 #teacherSpace .checkboxSection div#WrapWidth3 {
-    width: 266px;}
-#teacherSpace>h4{
-	display: block;
-    height: 22px;
-    color: #5b5b5b;
-    font-size: 15px;
-    margin: 0px 0px 8px;
-    font-weight: 900;
-}    
-#teacherSpace .checkboxSection p{
-	    width: 843px;
-    border-bottom: 1px solid black;
-    padding-bottom: 34px;
-	
+	width: 266px;
 }
-    
+
+#teacherSpace>h4 {
+	display: block;
+	height: 22px;
+	color: #5b5b5b;
+	font-size: 15px;
+	margin: 0px 0px 8px;
+	font-weight: 900;
+}
+
+#teacherSpace .checkboxSection p {
+	width: 843px;
+	border-bottom: 1px solid black;
+	padding-bottom: 34px;
+}
+
+#teacherSpace #uploadForm {
+	height: 1px;
+	overflow: hidden;
+}
+
+/* 다음 버튼  */
+#teacherSpace #btn-norental {
+	border-radius: 3px;
+	
+	width: 168px;
+	height: 64px;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 64px;
+	color: white;
+	background-color: #8E0032;
+	margin-top: 153px;
+	margin-right: 107px;
+	float: right;
+}
