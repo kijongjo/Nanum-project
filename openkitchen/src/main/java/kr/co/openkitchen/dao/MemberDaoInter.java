@@ -7,7 +7,7 @@ import kr.co.openkitchen.dto.MemberDTO;
 public interface MemberDaoInter {
 	public ArrayList<MemberDTO> selectAll();
 	public MemberDTO selectOne();
-	public void insertOne();
+	public void insertOne(String mEmail, String mPwd, String mName);
 	public void modify();
 	public void delete();
 	
