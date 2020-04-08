@@ -513,6 +513,42 @@
                             '</div>');
                     });
 
+                    //렌탈 하겠다고할시 form이 나오도록 설정한다.
+                    $("#yesrental").on("click",function(){
+                    	
+                    	$("#uploadForm").animate({
+                    		height:'3074px'
+                    		
+                    	},2000),
+                    	
+                    	$("#btn-norental").css({
+                    		width:'0px',
+                    		height:'0px',
+                    	    margin:'0'
+                    		
+                    	})
+                    	
+                    })//yesrental end
+                    
+                    $("#norental").on("click",function(){
+                    	$("#uploadForm").animate({
+                    		height:'1px'
+                    		
+                    	},1000),
+                    	
+                    	$("#btn-norental").css({
+                    		width:'168px',
+                    		height:'64px',
+                            margin: '153px 107px 0 0'
+                    	   
+                    		
+                    	})
+                    	
+                    })
+                    
+                    
+                    
+                    
                 }); //document.ready(function) end
 
                
