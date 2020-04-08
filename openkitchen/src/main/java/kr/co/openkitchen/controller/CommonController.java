@@ -47,24 +47,9 @@ public class CommonController {
 	ServletContext sc;
 
 	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
-	@RequestMapping("/login")
-	public String loginForm() {
-		return "login/login";
-	}
-//	@RequestMapping(value = "/common/customLogin")
-//	public void login(String error, String logout, Model model) {
-//		if (error != null) {
-//			model.addAttribute("error", "로그인 중 에러 발생");
-//		} else if (logout != null) {
-//			model.addAttribute("logout", "logout
-//		}
-//	}
-//
-	@GetMapping(value = "/logoutHidden")
-	public String logout(HttpServletRequest req, HttpServletResponse resp) {
-		return "login/logoutHidden";
+
 	
-	}
+	
 
 //	더보기 요청에 대한 program 
 	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/text; charset=utf8")
