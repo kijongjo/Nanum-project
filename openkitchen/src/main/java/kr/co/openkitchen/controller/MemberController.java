@@ -38,7 +38,7 @@ public class MemberController {
 		map.put("mPwd", mPwd);
 		map.put("mName", mName);
 		
-		ms.signUp();
+		ms.signUp(mEmail, mPwd, mName);
 		
 		
 		

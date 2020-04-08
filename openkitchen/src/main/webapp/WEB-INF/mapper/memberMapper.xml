@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="kr.co.openkitchen.dto.MemberDTO">
+<mapper namespace="kr.co.openkitchen.dto.MemberDTO" >
 	<insert id="signUpInsert" >
 		INSERT INTO member (
 			M_EMAIL,
@@ -11,8 +11,8 @@
 			M_NAME
 			)
 		VALUES (
-			#{mEmail},
-			#{mPwd},
+			#{m_Email},
+			#{m_Pwd},
 			#{m_Name}
 			)
 	</insert>

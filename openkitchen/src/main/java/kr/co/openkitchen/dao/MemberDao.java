@@ -28,9 +28,12 @@ public class MemberDao implements MemberDaoInter{
 	}
 
 	@Override
-	public void insertOne() {
-		ss.insert("kr.co.openkitchen.dto.MemberDTO.signUpInsert");
-		
+	public void insertOne(String mEmail, String mPwd, String mName) {
+		MemberDTO dto = new MemberDTO();
+		dto.setM_Email(mEmail);
+		dto.setM_Pwd(mPwd);
+		dto.setM_Name(mName);
+		ss.insert("kr.co.openkitchen.dto.MemberDTO.signUpInsert",dto);
 	}
 
 	@Override
