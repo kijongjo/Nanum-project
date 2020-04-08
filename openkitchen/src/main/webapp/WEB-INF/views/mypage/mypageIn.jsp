@@ -85,7 +85,7 @@
                     <div class="list-wrap">
                         <h2 class="title">클래스 만들기</h2>
                         <ul class="list">
-                            <li><a href="teacherBase?no=1">임시저장 <i class="ico-more_arrow"></i></a></li>
+                            <li><a href="teacherBase?no=1">신청하기 <i class="ico-more_arrow"></i></a></li>
                             <li><a href="standByClass?no=1">대기 클래스 </a></li>
                             <li><a href="ongoingClass?no=2">진행 클래스 </a></li>
                             <li><a href="completeClass?no=3">종료 클래스 </a></li>
@@ -94,7 +94,7 @@
                     <div class="list-wrap">
                         <h2 class="title">공간 공유하기</h2>
                         <ul class="list">
-                            <li><a href="">임시저장 <i class="ico-more_arrow"></i></a></li>
+                            <li><a href="">신청하기 <i class="ico-more_arrow"></i></a></li>
                             <li><a href="standBySpace?no=1">대기 공간 </a></li>
                             <li><a href="ongoingSpace?no=2">진행 공간 </a></li>
                             <li><a href="completeSpace?no=3">종료 공간 </a></li>  

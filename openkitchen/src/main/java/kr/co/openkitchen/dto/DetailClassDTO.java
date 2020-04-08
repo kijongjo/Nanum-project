@@ -17,6 +17,7 @@ public class DetailClassDTO {
 	int cMaxrecruitperson;
 	String cLongintro;
 	String cReference;
+	int tNo;
 	String tHavenickname;
 	String tExpert;
 	String tExpertname;
@@ -131,4 +132,13 @@ public class DetailClassDTO {
 	public void setmMainsumnail(String mMainsumnail) {
 		this.mMainsumnail = mMainsumnail;
 	}
+	public int gettNo() {
+		return tNo;
+	}
+	public void settNo(int tNo) {
+		this.tNo = tNo;
+	}
+	
+	
+	
 }
