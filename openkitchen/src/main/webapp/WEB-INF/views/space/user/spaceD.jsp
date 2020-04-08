@@ -21,6 +21,9 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/index-slide.css'/>">
 
+<!-- 달력 플러그인 css  -->
+<link rel="stylesheet" href="<c:url value='/resources/css/datepicker.min.css'/>" type="text/css">
+
 <!-- jquery 불러오기 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -30,9 +33,20 @@
 <script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
 <script src="<c:url value='/resources/js/index-slide.js'/>"></script>
 
+<!-- 달력 플러그인  -->
+<script src="<c:url value='/resources/js/datepicker.min.js'/>"></script>
+<script src="<c:url value='/resources/js/datepicker.en.js'/>"></script>
 
 <title>Document</title>
 <jsp:include page="../../headerScript.jsp" flush="false" />
+
+<style>
+	.datepicker {
+		width: 100%;
+	}
+</style>
+
+
 </head>
 
 <body>
@@ -298,13 +312,15 @@
 					<p>원하시는 일정을 선택해 주세요.</p>
 					<!-- 시간 선택(클래스,공간)에 관한 ul이다. db 대여 entity에서 정보를 가지고 와서 li에 반복적으로 추가해주자!  -->
 
-					<div id="scheduleOn">달력 api가 들어옵니다.</div>
+					<div id="scheduleOn">
+						<div class="datepicker-here" data-language="en"></div>
+					</div>
 
 				</div>
 				<!-- 이걸 누르면 scheduleOn이 접힌다.접히게 되면 아이콘이 거꾸로 돌아간다. transform속성을 사용하자. -->
-				<p>
+				<!-- <p>
 					<a href="javascript:selectBody()">일정 접기 </a>
-				</p>
+				</p> -->
 				<!-- 신청하기 버튼이 있는 기능에 bottom이라고 지정했다. -->
 				<div class="selectBottom">
 					<!-- 해당 클래스,공간에 대한 가격이 보이게 된다. -->

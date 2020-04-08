@@ -37,7 +37,7 @@ public class ClassController {
 		model.addAttribute("detailClass", si.readDetailC(cNo));
 		model.addAttribute("detailCSche", si.readDetailCSche(cNo));
 		System.out.println(si.readDetailCSche(cNo));
-		System.out.println(cNo);
+		
 		
 		return "class/user/classD";
 	}

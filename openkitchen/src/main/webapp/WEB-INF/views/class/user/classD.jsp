@@ -16,8 +16,9 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link rel="stylesheet" href="<c:url value='resources/css/shareDiv.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/index-slide.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/index-slide.css'/>">
+<!-- 달력 플러그인 css  -->
+<link rel="stylesheet" href="<c:url value='/resources/css/datepicker.min.css'/>" type="text/css">
 
 <!-- 폰트 -->
 <link
@@ -26,10 +27,12 @@
 	<!--js 파일 불러오기   -->
 	
 <!-- jquery 불러오기 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="<c:url value='resources/js/classD.js'/>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="<c:url value='resources/js/classD.js'/>"></script>
 <script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
+<!-- 달력 플러그인 js  -->
+<script src="<c:url value='/resources/js/datepicker.min.js'/>"></script>
+<script src="<c:url value='/resources/js/datepicker.en.js'/>"></script>
 
 <!-- detailsumnail slider  -->
 <script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
@@ -47,7 +50,10 @@
 	
 </script>
 <style>
-
+	.datepicker {
+		width: 100%;
+		height: 448px;
+	}
 </style>
 
 <jsp:include page="../../headerScript.jsp" flush="false" />
@@ -135,7 +141,7 @@
 				</section>
 				<!-- 링크를 통해 공간 페이지로 이동하게 된다.
                 링크에는 공간의 주소가 들어간다. -->
-				<a href="classD" class="detailCLoc"><span class="locIcon">${detailClass.sLoc}</span></a>
+				<a href="spaceD?no=${detailClass.sNo}" class="detailCLoc"><span class="locIcon">${detailClass.sLoc}</span></a>
 				<p>상세주소는 클래스 예약 시 수강생들에게만 공개 됩니다.</p>
 			</section>
 
@@ -145,7 +151,8 @@
 				<p>클래스 신청은 우측에 신청하기 버튼을 눌러주세요</p>
 				<!-- 클래스 공간에 들어가는 달력 요소 -->
 				<div class="calendarSchedule">
-					<div class="half01">캘린더 api가 들어오는 자리
+					<div class="half01">
+						<div class="datepicker-here" data-language="en"></div>
 					</div>
 					<div class="half02">
 						<h3>일정별 수업시간</h3>
@@ -351,7 +358,7 @@
 				<img src="<c:url value='${detailClass.mMainsumnail}'/>">
 				<!-- 선생님 페이지에서 넘어가는 링크가 들어있다. -->
 				<div id="teacherLink">
-					<a href="teacherD"> <!-- 선생님 이름이 들어갑니다. --> <Strong>${detailClass.tHavenickname}</Strong>
+					<a href="teacherD?no=${detailClass.tNo}"> <!-- 선생님 이름이 들어갑니다. --> <Strong>${detailClass.tHavenickname}</Strong>
 						<!-- 선생님 칭호가 들어갑니다. --> <span>${detailClass.tExpertname}</span>
 					</a>
 				</div>

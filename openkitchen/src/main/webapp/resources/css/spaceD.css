@@ -581,10 +581,16 @@
 /* selectBody 부분에 대한 css 설정 */
 
 #right02>.selectSchedule>.selectBody {
-    border: 1px solid rgba(0, 0, 0, .1);
+    /* border: 1px solid rgba(0, 0, 0, .1);
     position: relative;
     padding: 20px 0 20px 25px;
     height: 340px;
+	overflow: hidden; */
+	
+	border: 1px solid rgba(0, 0, 0, .1);
+    position: relative;
+    padding: 20px 20px 20px 25px;
+    height: 380px;
 	overflow: hidden;
 }
 
@@ -606,8 +612,8 @@
 /* 시간을 선택하는 ul을 감싸는 div에 관한 css 설정 */
 
 #right02>.selectSchedule>.selectBody>#scheduleOn {
-    height: 420px;
-    overflow-y: scroll;
+    /* height: 420px; */
+    /* overflow-y: scroll; */
 }
 
 
