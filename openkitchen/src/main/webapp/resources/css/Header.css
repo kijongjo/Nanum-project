@@ -5,14 +5,13 @@
 }
 #header > div:nth-child(1){
 	float:left;
-	height: 80px;
+	/* height: 80px; */
 	position: relative;
 	bottom: 20px;
 	right: 90px;
 }
-#header > div:nth-child(5),div:nth-child(6),div:nth-child(7){
+#header  div:nth-child(5),div:nth-child(6),div:nth-child(7){
 	float: left;
-	height: 40px;
 }
 #header > h3{
     float: left;
@@ -36,7 +35,7 @@
 
 /* serch */
 #header > div:nth-child(5){
-    margin-left:350px;
+    margin-left:300px;
     width: 285px; 
     border-bottom: 2px solid #B7B7B7;
 }
