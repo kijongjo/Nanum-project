@@ -25,7 +25,7 @@
      
          
       
-                        <form action="registTeacher" id="uploadForm" enctype="multipart/form-data" method="post">
+                        <form action="in" id="uploadForm" enctype="multipart/form-data" method="post">
 
                             <!-- 공간 테마 선택란 -->
                             <div class="inp-wrap">

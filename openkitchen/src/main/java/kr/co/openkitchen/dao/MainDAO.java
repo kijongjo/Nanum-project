@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.openkitchen.dto.BestClassDTO;
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ClassIndexDTO;
 import kr.co.openkitchen.dto.DetailCScheDTO;
@@ -47,6 +48,14 @@ public class MainDAO implements MDaoInter {
 		
 		return ss.selectList("kr.co.openkitchen.class.selectPopularC", map);
 	}
+
+	@Override
+	public List<BestClassDTO> selectBestC(Map<String, Object> map) {
+		
+		return ss.selectList("kr.co.openkitchen.class.selectBestC", map);
+	}
+	
+	
 
 
 

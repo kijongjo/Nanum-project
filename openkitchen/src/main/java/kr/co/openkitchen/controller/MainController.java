@@ -46,6 +46,7 @@ public class MainController {
 
 		map.put("popularList", popularList);
 
+		model.addAttribute("bestClass", si.readBestC(map));
 		model.addAttribute("manwonClass", si.readManwonC());
 		model.addAttribute("OnlyOneClass", si.readOnlyOneC());		
 		model.addAttribute("popularClass", si.readPopularC(map));
