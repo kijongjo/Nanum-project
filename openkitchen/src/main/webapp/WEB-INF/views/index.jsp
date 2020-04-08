@@ -164,7 +164,7 @@ $(document).ready(function() {
 	<section>
 		<div id="item01">
 			<div class="itemTitle">
-				<h2>남택수님,</h2>
+				<!-- <h2>남택수님,</h2> -->
 				<h2>어떤 클래스를 찾으시나요?</h2>
 			</div>
 			<ul>
@@ -423,7 +423,7 @@ $(document).ready(function() {
             <ul class="bxslider">
                 <li>
                     <a href="#">
-                    	<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
+                    	<img src="<c:url value='/resources/img/mainbanner/subtitle1.jpg'/>" alt="">
                         <h4>집밥처럼 든든한 금손들의 도시락</h4>
                         <p>좋아하는 메뉴로 도시락을 채워봅시다! 곰손도 금손처럼 만들 수 있어요</p>
                         <div class="hashtag">
@@ -436,7 +436,7 @@ $(document).ready(function() {
                 </li>
                 <li>
                     <a href="#">
-                    <img src="<c:url value='/resources/img/testimg/test2.jpg'/>" alt="">
+                    <img src="<c:url value='/resources/img/mainbanner/subtitle2.jpg'/>" alt="">
                         <h4>디저트 배는 따로 있잖아요?</h4>
                         <p>배가 불러도 디저트는 꼭 드시는 분들은 주목하세요</p>
                         <div class="hashtag">
@@ -449,7 +449,7 @@ $(document).ready(function() {
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test3.jpg'/>" alt="">
+                        <img src="<c:url value='/resources/img/mainbanner/subtitle3.jpg'/>" alt="">
                         <h4>지금 꼭 먹어야 할 제철요리</h4>
                         <p>재료의 풍미를 끌어 올려주는 특별한 레시피로 제철요리를 맘껏 즐겨봅시다</p>
                         <div class="hashtag">
@@ -462,14 +462,14 @@ $(document).ready(function() {
                 </li>
                 <li>
                     <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test4.jpg'/>" alt="">
-                        <h4>지금 꼭 먹어야 할 제철요리</h4>
-                        <p>재료의 풍미를 끌어 올려주는 특별한 레시피로 제철요리를 맘껏 즐겨봅시다</p>
+                        <img src="<c:url value='/resources/img/mainbanner/subtitle4.jpg'/>" alt="">
+                        <h4>식탁 위 단비같은 집밥 메뉴</h4>
+                        <p>오늘 저녁은 뭐 먹지? 국, 밑반찬부터 일품요리 간식가지 알차게 준비했어</p>
                         <div class="hashtag">
-                            <div>#지금이가장</div>
-                            <div>#맛있는메뉴</div>
-                            <div>#이달의재료는</div>
-                            <div>#딸기입니다</div>
+                            <div>#배달음식에</div>
+                            <div>#질리셨다면</div>
+                            <div>#반찬고민끝</div>
+                            <div>#요리초보자</div>
                         </div>
                     </a>
                 </li>
