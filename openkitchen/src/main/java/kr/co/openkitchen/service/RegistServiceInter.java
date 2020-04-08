@@ -17,5 +17,5 @@ public interface RegistServiceInter {
 	//generic type으로 줘서 teacherDTO,spaceDTO,classDTO
 	public <T> void insertDTO(Map<String, T> map);
 	public String makeBK(String fileName,int tNo);
-
+    
 }

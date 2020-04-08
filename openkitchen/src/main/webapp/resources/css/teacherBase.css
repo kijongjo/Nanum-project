@@ -1,4 +1,8 @@
-
+#right01 input{
+	outline-color: #8E0032 ;
+	
+	
+}
 .inp-wrap {
 	height: 723.5px;
 }
@@ -141,6 +145,10 @@
     outline-color: #8E0032;
 	
 }
+/* form 태그 아래 사진 올리기에 대한  */
+ #uploadForm>#apply01{
+	height: 688px;
+}
 /* 임시저장 */
 #btn_submit a input:nth-child(1){
     color: white;
@@ -255,6 +263,7 @@
 #uploadForm {
 	position: relative;
 	right: 30px;
+	bottom: 35px;
 }
 /*닉네임사용?  */
 #tHavenickname{width: 100% !important;

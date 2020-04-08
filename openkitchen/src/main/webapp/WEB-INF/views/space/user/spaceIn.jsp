@@ -114,7 +114,7 @@ $(document).ready(
             <ul class="bxslider">
             	<c:forEach items="${list }" var="spaceIndex">
 	                <li>
-	                    <a href="#">
+	                    <a href="spaceD?no=${spaceIndex.sNo}">
 							<img src="<c:url value='${spaceIndex.sMainSumnail }'/>" alt="" />
 	                        <h3>${spaceIndex.sName}</h3>
 	                        <p>${spaceIndex.sShortIntro}</p>
@@ -139,7 +139,7 @@ $(document).ready(
             <ul>
             <c:forEach items="${mainContent }" var="mainS">
                 <li>
-                    <a href="#">
+                    <a href="spaceD?no=${mainS.sNo}">
                 		<img src="<c:url value='${mainS.sMainSumnail }'/>" alt="" />
                         <h3>${mainS.sName }</h3>
                         <p>${mainS.sShortIntro }</p>
