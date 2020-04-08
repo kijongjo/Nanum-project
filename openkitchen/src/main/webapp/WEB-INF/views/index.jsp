@@ -10,7 +10,7 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/MainSlider.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/index.css'/>">
-<link rel="stylesheet"
+<link rel="stylesheet" 
 	href="<c:url value='/resources/css/index-slide.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">

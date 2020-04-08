@@ -53,7 +53,7 @@
        			 FROM CLASS C, TEACHER T
 				 WHERE C.T_NO = T.T_NO
       			 ORDER BY C_REGDATE DESC)
-      	WHERE NUM BETWEEN 6 + ${count} AND 13 +${count}
+      	WHERE NUM BETWEEN 6 + #{count} AND 13 +#{count}
     </select>
     <select id="MoreTeacher" resultType="tcdto" parameterType="int">
 		SELECT T_NO, T_MAINSUMNAIL, T_DETAILSUMNAIL, T_HAVENICKNAME, T_EXPERTNAME, T_CAREER, T_SHORTINTRO, T_AREA, T_LONGINTRO, T_REGDATE, T_EXPERT, T_PERSTATUS, C_TEMA
@@ -61,13 +61,13 @@
 				FROM CLASS C, TEACHER T
 				WHERE C.T_NO = T.T_NO
 				ORDER BY T_REGDATE DESC)
-      	WHERE NUM BETWEEN 6 + ${count} AND 13 +${count}
+      	WHERE NUM BETWEEN 6 + #{count} AND 13 +#{count}
     </select>
     <select id="MoreSpace" resultType="spdto" parameterType="int">
 		SELECT S_NO, S_MAINSUMNAIL, S_SHORTINTRO, S_NAME, S_TEMA, S_LOC
 			FROM(SELECT ROWNUM NUM, S_NO, S_MAINSUMNAIL, S_SHORTINTRO, S_NAME, S_TEMA, S_LOC
 				FROM SPACE
 				ORDER BY S_REGDATE DESC)
-      	WHERE NUM BETWEEN 6 + ${count} AND 13 +${count}
+      	WHERE NUM BETWEEN 6 + #{count} AND 13 +#{count}
     </select>
 </mapper>
