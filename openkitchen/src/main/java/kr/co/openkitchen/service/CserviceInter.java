@@ -12,4 +12,5 @@ public interface CserviceInter {
 	public DetailClassDTO readDetailC(int cNo);
 	public List<DetailCScheDTO> readDetailCSche(int cNo);
 	public List<ClassIndexDTO> moreClass(int count);
+	
 }

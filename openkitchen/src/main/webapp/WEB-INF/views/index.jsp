@@ -191,19 +191,24 @@ $(document).ready(function() {
 					<h2>베스트 클래스</h2>
 				</div>
 				<ul class="bxslider">
-					<li><a href="#"> <img
-							src="<c:url value='/resources/img/testimg/test1.jpg'/>"
-							alt="">
-							<h4>자타공인밥도둑, 매콤꽃게무침</h4>
-							<div>
-								<span>한식</span> <span>경기도 용인시</span> <span>3월~5월</span>
-							</div>
-							<div class="Price">
-								<strong>\</strong> 46,200
-							</div>
-					</a></li>
+				<c:forEach var="bcdto" items="${bestClass}">		
+					<li>
+						<a href="#"> 
+						<img src="<c:url value='${bcdto.cMainsumnail}'/>" alt="">
+								<h4>${bcdto.cName}</h4>
+								<div>
+									<span>${bcdto.cTema}</span> 
+									<span>${bcdto.tArea}</span> 
+									<span>3월~5월</span>
+								</div>
+								<div class="Price">
+									<strong>\</strong> ${bcdto.cPrice}
+								</div>
+						</a>
+					</li>
+				</c:forEach>	
 					<!-- 테스트용 복사 -->
-					<li><a href="#"> <img
+					<%-- <li><a href="#"> <img
 							src="<c:url value='/resources/img/testimg/test2.jpg'/>"
 							alt="">
 							<h4>자타공인밥도둑, 매콤꽃게무침</h4>
@@ -241,7 +246,7 @@ $(document).ready(function() {
 	                            <strong>\</strong> 10,000
 	                        </div>
 	                    </a>
-	                </li>
+	                </li> --%>
 	                <!-- 테스트 복사 끝 -->
 	            </ul>
             </div>

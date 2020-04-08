@@ -56,4 +56,18 @@
 			</foreach>
 			) AND ROWNUM &lt;= 8
   		</select>
+  		
+  		<select id="selectBestC" resultType="bcdto" parameterType="map" >
+  			SELECT C.C_NO, C_NAME, C_MAINSUMNAIL, C_SHORTINTRO, C_TEMA, C_PRICE, T_AREA, T_EXPERT, REC_PERSTATUS, COUNT(REC_PERSTATUS) CNT
+			FROM CLASS C, TEACHER T, RECRUIT R
+			WHERE C.T_NO = T.T_NO AND C.C_NO = R.C_NO AND
+			R.REC_PERSTATUS = '종료' AND
+			REGEXP_LIKE (C_HASHTAG, 
+			<foreach collection="popularList" item="item" separator="||'|'||">
+				#{item}
+			</foreach>
+			)
+			GROUP BY C.C_NO, C_NAME, C_MAINSUMNAIL, C_SHORTINTRO, C_TEMA, C_PRICE, T_AREA, T_EXPERT, REC_PERSTATUS
+			ORDER BY CNT DESC
+  		</select>
   </mapper>

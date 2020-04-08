@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.dao.MDaoInter;
+import kr.co.openkitchen.dto.BestClassDTO;
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
 import kr.co.openkitchen.dto.PopularClassDTO;
@@ -41,4 +42,12 @@ public class MainService implements MserviceInter{
 			
 			return dao.selectPopularC(map);
 		}
+
+		@Override
+		public List<BestClassDTO> readBestC(Map<String, Object> map) {
+		
+			return dao.selectBestC(map);
+		}
+		
+		
 }
