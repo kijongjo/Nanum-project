@@ -4,8 +4,7 @@
 
 
 <form id="uploadForm" enctype="multipart/form-data" method="post">
-	<!--회원번호를 받아서 넘기고 난 후 선생님 번호를 생성해 저장함.  -->
-	<input type="hidden" name="mNo" value="999" />
+	
 
 	<h4>프로필 사진</h4>
 	<div class="basic_apply image_upload" id="apply01">
@@ -28,8 +27,8 @@
 				<div>
 					<div>상세 썸네일용 이미지</div>
 					<div id="detailThum">
-						<label for="DS-TYPE1"> <span>사진 추가하기</span> <input
-							type="file" name="" id="DS-TYPE1" accept=".jpg,.jpeg,.png,.gif"
+						<label for="S-DS-TYPE1"> <span>사진 추가하기</span> <input
+							type="file" name="" id="S-DS-TYPE1" accept=".jpg,.jpeg,.png,.gif"
 							multiple>
 						</label>
 					</div>
@@ -207,6 +206,8 @@
 	</div>
  
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+  <!--회원번호를 받아서 넘기고 난 후 선생님 번호를 생성해 저장함.  -->
+	<input type="hidden" name="mNo" value="999" />
 
 
 </form>

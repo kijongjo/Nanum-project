@@ -121,7 +121,6 @@ public class UserController {
 		//!!!proceo가 proname이랑 같음.약간 이상해서 수동으로 일단 넣어주겟음 
 		dto.setProCeo(dto.getProName());
 		
-		
 		//form data에 저장된 name들을 뽑아낸다.
 		Iterator<String> it = request.getFileNames();
 		Map<String, TeacherRegistDTO> map = new HashMap<String, TeacherRegistDTO>();
@@ -129,7 +128,9 @@ public class UserController {
 		//넘어온 파일들의 정체를 밝히는 while문 
 		while (it.hasNext()) {
 			String fileName = it.next();
+			
 			System.out.println("fileName:     "+fileName);
+			
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
@@ -158,6 +159,7 @@ public class UserController {
 				dto.setProAccounting(regService.makeBK(fileName, tNo));
 			}
 		} // while end
+		
 		if (tDetailsumnail.length() != 0)
 			// 문자열의 마지막 콤마 지우기
 			tDetailsumnail = tDetailsumnail.substring(0, tDetailsumnail.length() - 1);
@@ -172,9 +174,13 @@ public class UserController {
 		
 		return "mypage/teacher/teacherBase";
 	}
-
-
-
+  
+     @RequestMapping(value="registTeacher",method=RequestMethod.POST)
+       public String registTeacher() {
+    	   //등록하는 Service 실행하기 
+    	   
+    	   return "mypage/in";
+       }
 
 
 
