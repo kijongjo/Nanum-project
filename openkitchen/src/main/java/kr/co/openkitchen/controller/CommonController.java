@@ -101,4 +101,10 @@ public class CommonController {
 	public String classIndex() {
 		return "";
 	}
+	
+	@RequestMapping("/searchIn")
+	public String serarchIn() {
+		
+		return "searchIn";
+	}
 }
