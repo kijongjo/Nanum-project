@@ -1,0 +1,63 @@
+/* ---------------------- 메인 광고 슬라이드 ---------------------------  */
+
+
+
+
+.sliderContainer {
+	position: relative;
+	margin: 0 auto;
+	width: 1440px;
+	height: 720px;
+	overflow: hidden;
+}
+
+.sliderContainer img {
+	width: 1440px;
+	height: 720px;
+}
+
+.sliderContainer .slider {
+  width: 100%;
+}
+
+.sliderContainer .slick-dots {
+  bottom: -30px;
+}
+
+.sliderContainer .progressBarContainer {
+  position: absolute;
+  bottom: 30px;
+  width:100%;
+  display: flex;
+  
+}
+
+.sliderContainer .progressBarContainer div {
+  display: block;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+  margin-right: 1%;
+  float: left;
+  color: white;
+}
+
+.sliderContainer .progressBarContainer div:first-child {
+  margin-left: 1%;
+}
+
+/* 슬라이드 상태바 색 기본값  */
+.sliderContainer .progressBarContainer div span.progressBar {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: block;
+}
+
+/* 슬라이드 상태바 색 변경값  */
+.sliderContainer .progressBarContainer div span.progressBar .inProgress {
+  background-color: #8E0032;
+  margin: 0;
+  width: 0;
+  height: 4px;
+}

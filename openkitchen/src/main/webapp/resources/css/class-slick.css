@@ -1,0 +1,72 @@
+/* ---------------------- 메인 광고 슬라이드 ---------------------------  */
+.sliderContainer {
+	position: relative;
+	height: 100%;
+}
+
+.sliderContainer img {
+	width: 100%;
+	height: 100%;
+}
+
+.sliderContainer .slider {
+  width: 100%;
+}
+
+.sliderContainer .slick-dots {
+  bottom: -30px;
+}
+
+.sliderContainer .progressBarContainer {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;  
+  display:flex;
+}
+
+.sliderContainer .progressBarContainer div {
+  display: block;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+  margin-right: 2%;
+  float: left;
+  color: white;
+}
+
+.sliderContainer .progressBarContainer div:first-child {
+  margin-left: 2%;	
+}
+
+/* 슬라이드 상태바 색 기본값  */
+.sliderContainer .progressBarContainer div span.progressBar {
+  width: 100%;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: block;
+  	
+}
+
+/* 슬라이드 상태바 색 변경값  */
+.sliderContainer .progressBarContainer div span.progressBar .inProgress {
+  background-color: #8E0032;
+  margin: 0;
+  width: 0;
+  height: 4px;
+  
+}
+
+#left01 .sliderContainer .share {
+	position: absolute;
+	z-index: 1;
+	top: 15px;
+	right: 24px;
+}
+
+#left01 .sliderContainer .share a {
+	background-image: url("<c:url value='resources/img/icon/shareIcon.png' />");
+	background-size: cover;
+	width: 27px;
+	height: 30px;
+	display: block;
+}
