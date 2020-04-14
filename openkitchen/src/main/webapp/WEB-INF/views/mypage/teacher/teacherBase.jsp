@@ -200,8 +200,7 @@
 	<!-- submit -->
 	<div id="btn_submit">
 		<div>
-			<input type="button" value="임시저장" id="go"> <a
-				href="teacherSpace?no=2"><input type="button" value="다음"></a>
+			<input type="button" value="임시저장" id="go"> <input type="button" value="다음" id="nextGo">
 		</div>
 	</div>
  

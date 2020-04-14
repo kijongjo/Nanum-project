@@ -6,12 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/MainSlider.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/index.css'/>">
 <link rel="stylesheet" 
 	href="<c:url value='/resources/css/index-slide.css'/>">
+
+
+<%-- <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>"> --%>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
+	rel="stylesheet">
+
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/main-slick.css'/>">
@@ -21,6 +29,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/slick.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/slick-theme.css'/>">
 <!-- jquery 추가  -->
+
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- slick 슬라이더 js 추가  -->
 <script src="<c:url value='/resources/js/slick.js'/>"></script>

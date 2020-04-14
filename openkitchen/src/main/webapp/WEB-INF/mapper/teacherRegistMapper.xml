@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.openkitchen.teacherRegist">
+	<update id="insertDTO" parameterType="trdto">
+		MERGE INTO TEACHER T
+		USING DUAL
+		ON (T.T_NO = ${tNo})
+
+		WHEN MATCHED THEN
+		UPDATE SET
+		T_PERSTATUS = '임시',
+		T_MAINSUMNAIL=#{tMainsumnail , jdbcType=VARCHAR},
+		T_DETAILSUMNAIL=#{tDetailsumnail , jdbcType=VARCHAR},
+		T_HAVENICKNAME=#{tHavenickname , jdbcType=VARCHAR},
+		T_EXPERTNAME=#{tExpertname , jdbcType=VARCHAR},
+		T_CAREER=#{tCareer ,jdbcType=CLOB},
+		T_SHORTINTRO=#{tshortIntro , jdbcType=VARCHAR},
+		T_AREA=#{tArea , jdbcType=VARCHAR},
+		T_LONGINTRO=#{tLongintro ,jdbcType=CLOB},
+		T_REGDATE=TO_DATE(SYSDATE,'YY/MM/DD'),
+		T_EXPERT=#{tExpert , jdbcType=VARCHAR}
+
+		WHEN NOT MATCHED THEN
+
+		INSERT(
+		T_NO,
+		T_PERSTATUS,
+		T_MAINSUMNAIL,
+		T_DETAILSUMNAIL,
+		T_HAVENICKNAME,
+		T_EXPERTNAME,
+		T_CAREER,
+		T_SHORTINTRO,
+		T_AREA,
+		T_LONGINTRO,
+		T_REGDATE,
+		T_EXPERT
+		)
+		VALUES(
+		#{tNo,jdbcType=NUMERIC},
+		'임시',
+		#{tMainsumnail , jdbcType=VARCHAR},
+		#{tDetailsumnail ,jdbcType=VARCHAR},
+		#{tHavenickname , jdbcType=VARCHAR},
+		#{tExpertname ,jdbcType=VARCHAR},
+		#{tCareer , jdbcType=CLOB},
+		#{tshortIntro ,jdbcType=VARCHAR},
+		#{tArea , jdbcType=VARCHAR},
+		#{tLongintro ,jdbcType=CLOB},TO_DATE(SYSDATE,'YY/MM/DD'),
+		#{tExpert ,jdbcType=VARCHAR}
+		)
+	</update>
+	
+	<update id="insertDtoP" parameterType="trdto">
+	   <selectKey keyProperty="proNo" resultType="int" order="BEFORE">
+	      SELECT PROVIDER_SEQ1.NEXTVAL FROM DUAL
+	   </selectKey>
+		MERGE INTO PROVIDER P
+		USING DUAL 
+		ON (P.M_NO = ${mNo})
+                                     
+		WHEN MATCHED THEN
+		
+		UPDATE SET
+		
+		PRO_TYPE=#{proType , jdbcType=NUMERIC},
+		PRO_CEO=#{proCeo , jdbcType=VARCHAR},
+		PRO_BANK=#{proBank , jdbcType=VARCHAR},
+		PRO_ACCOUNT=#{proAccount , jdbcType=VARCHAR},
+		PRO_NAME=#{proName ,jdbcType=NUMERIC},
+		PRO_ACCOUNTING=#{proAccounting , jdbcType=VARCHAR},
+		PRO_REGIMG=#{proRegimg , jdbcType=VARCHAR}
+		
+		
+		
+
+		WHEN NOT MATCHED THEN
+
+		INSERT(
+		PRO_NO,
+		PRO_TYPE,
+		PRO_CEO,
+		PRO_BANK,
+		PRO_ACCOUNT,
+		PRO_NAME,
+		PRO_ACCOUNTING,
+		PRO_REGIMG,
+		M_NO
+		)
+		
+		VALUES(
+		#{proNo,jdbcType=NUMERIC},
+		#{proType , jdbcType=NUMERIC},
+		#{proCeo , jdbcType=VARCHAR},
+		#{proBank , jdbcType=VARCHAR},
+		#{proAccount , jdbcType=VARCHAR},
+		#{proName ,jdbcType=NUMERIC},
+		#{proAccounting , jdbcType=VARCHAR},
+		#{proRegimg , jdbcType=VARCHAR},
+		#{mNo ,jdbcType=NUMERIC}
+		)
+	</update>
+
+</mapper>
