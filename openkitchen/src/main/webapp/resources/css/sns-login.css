@@ -37,7 +37,7 @@
   left: 75px;
   width: 10px;
   height: 17px;
-  background-image: url("../icon/facebook_Color.png");
+  background-image: url("../img/icon/facebook_Color.png");
   background-size: 100%;
 }
 #sns_login > div:nth-child(2) a::before {
@@ -47,7 +47,7 @@
   left: 75px;
   width: 13px;
   height: 18px;
-  background-image: url("../icon/naver_Color.png");
+  background-image: url("../img/icon/naver_Color.png");
   background-size: 100%;
   background-repeat: no-repeat;
 }
@@ -58,7 +58,7 @@
   left: 75px;
   width: 13px;
   height: 18px;
-  background-image: url("../icon/kakao_Color.png");
+  background-image: url("../img/icon/kakao_Color.png");
   background-size: 100%;
   background-repeat: no-repeat;
 }

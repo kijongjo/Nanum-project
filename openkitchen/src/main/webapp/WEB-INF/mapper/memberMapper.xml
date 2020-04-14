@@ -4,16 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.co.openkitchen.dto.MemberDTO" >
-	<insert id="signUpInsert" >
+	<insert id="signUpInsert" parameterType="mbdto" >
 		INSERT INTO member (
+			M_NO,
 			M_EMAIL,
 			M_PWD,
 			M_NAME
 			)
 		VALUES (
-			#{m_Email},
-			#{m_Pwd},
-			#{m_Name}
+			31,
+			#{mEmail},
+			#{mPwd},
+			#{mName}
 			)
 	</insert>
 </mapper>

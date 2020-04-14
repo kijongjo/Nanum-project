@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* container */
-      #content {
+      #search_content {
         width: 1200px;
         height: 747px;
         margin: 0px 40px;
@@ -8,18 +8,18 @@
         margin-left: 350px;
       }
       /* 검색창 부분(#search_wrap 부분)과 타이틀 선택 부분(#tab_title 부분)을 감싸는 영역 */
-      #sch_header {
+       #search_content #sch_header {
         width: 1200px;
         height: 191px;
       }
       /* 검색창 부분 */
-      #search_wrap {
+      #search_content #search_wrap {
         width: 1200px;
         height: 45px;
         position: relative;
         border-bottom: 3px solid #bfbfbf;
       }
-      #search_wrap #keyword_sch {
+      #search_content #search_wrap #keyword_sch {
         width: 100%;
         height: 44px;
         padding: 4px 0px 0px;
@@ -27,21 +27,21 @@
         font-size: 25px;
       }
       /* placeholder에 들어가는 글자색 */
-      input::placeholder {
+      #search_content input::placeholder {
         color: #bfbfbf;
       }
       /* 검색창 클릭 시 파란 테두리 안 생기게 */
-      input[type="search"]:focus {
+      #search_content input[type="search"]:focus {
         outline: none;
       }
       /* 검색 아이콘 클릭 시 파란 테두리 안 생기게 */
-      button:focus {
+      #search_content button:focus {
         outline: none;
       }
 
       /* 검색창 옆 이미지 버튼  */
 
-      #search_wrap button {
+      #search_content #search_wrap button {
         margin: 0;
         position: absolute;
         top: 0;
@@ -54,14 +54,14 @@
       }
       /* 전체, 클래스, 선생님, 공간 타이틀 선택 부분 */
 
-      #tab_title {
+      #search_content #tab_title {
         width: 1200px;
         height: 29px;
         margin: 20px 0px 0px;
       }
       /* 타이틀 : 전체 */
 
-      a:nth-of-type(1) {
+      #search_content a:nth-of-type(1) {
         width: 35.91px;
         height: 29px;
         color: #bfbfbf;
@@ -70,7 +70,7 @@
       }
       /* 타이틀 : 클래스 */
 
-      a:nth-of-type(2) {
+      #search_content a:nth-of-type(2) {
         width: 53.86px;
         height: 29px;
         color: #bfbfbf;
@@ -79,7 +79,7 @@
       }
       /* 타이틀 : 선생님 */
 
-      a:nth-of-type(3) {
+      #search_content a:nth-of-type(3) {
         width: 53.86px;
         height: 29px;
         color: #bfbfbf;
@@ -88,7 +88,7 @@
       }
       /* 타이틀 : 공간 */
 
-      a:nth-of-type(4) {
+      #search_content a:nth-of-type(4) {
         width: 53.86px;
         height: 29px;
         color: #bfbfbf;
@@ -97,7 +97,7 @@
       }
       /* 총 0개의 검색결과 멘트 출력 부분 */
 
-      h2 {
+      #search_content h2 {
         width: 350px;
         height: 37px;
         color: #000000;
@@ -106,14 +106,14 @@
       }
       /* 카테고리 선택, 검색결과 출력 부분을 감싸는 영역 */
 
-      #result > div {
+      #search_content #result > div {
         float: none;
         margin-top: -15px;
         text-align: right;
       }
       /* 테마 선택 부분 */
 
-      #theme {
+      #search_content #theme {
         width: 50px;
         height: 32px;
         margin: 0px 0px 0px 7px;
@@ -121,7 +121,7 @@
       }
       /* 지역 선택 부분 */
 
-      #area {
+      #search_content #area {
         width: 50px;
         height: 32px;
         margin: 0px 0px 0px 7px;
@@ -129,7 +129,7 @@
       }
       /* 월별 선택 부분 */
 
-      #month {
+      #search_content #month {
         width: 50px;
         height: 32px;
         margin: 0px 0px 0px 7px;
@@ -137,7 +137,7 @@
       }
       /* 검색된 내역이 없다는 멘트 출력 부분 */
 
-      p {
+      #search_content p {
         width: 1200px;
         height: 26px;
         color: #838383;

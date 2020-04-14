@@ -9,10 +9,11 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
     <link rel="stylesheet" href="<c:url value='/resources/css/sns-login.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="<c:url value='/resources/js/kakaoSDK.js'/>"></script>
     <style>
         body{
             line-height: 1.3;
@@ -93,37 +94,51 @@
         
         </style>
         
+
    <jsp:include page="../headerScript.jsp" flush="false" />
+
+	<script>
+		Kakao.init('b7c27e5233f91858ef4568cb4dae2a2e');
+		 // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+		
+		/*  Kakao.Auth.setAccessToken(ACCESS_TOKEN);
+		console.log(Kakao.Auth.setAccessToken(ACCESS_TOKEN)); */
+		
+		
+		
+	</script>
+
 </head>
 <body>
    <jsp:include page="../header.jsp" flush="false" />
     <div id="loginBox">
         <h2>로그인</h2>
         <form action="" method="post">
-           <table>
-               <tr>
-                   <td><input type="text" name="email" id="eMail" value=""></td>
-               </tr>
-               
-               <tr>
-                   <td><input type="password" name="memberPassword" id="" value=""></td>
-               </tr>
-               <tr>
-                   <td id="login_submit"><input type="submit" value="로그인"></td>
-               </tr>
-           </table>
-           <div> 
-               <span><a href="#">이메일 찾기</a></span>
-               <span><a href="#">비밀번호 찾기</a></span>
-               <span><a href="signUp">회원가입</a></span>
-           </div>
-         <div>${access}</div>
-           <div id="sns_login">
-               <div><a href="#">페이스북으로 로그인하기</a></div>
-               <div><a href="#">네이버로 로그인하기</a></div>
-               <div><a href="#">카카오로 로그인하기</a></div>
-           </div>
-           <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+	        <table>
+	            <tr>
+	                <td><input type="text" name="email" id="eMail" value=""></td>
+	            </tr>
+	            
+	            <tr>
+	                <td><input type="password" name="memberPassword" id="" value=""></td>
+	            </tr>
+	            <tr>
+	                <td id="login_submit"><input type="submit" value="로그인"></td>
+	            </tr>
+	        </table>
+	        <div> 
+	            <span><a href="#">이메일 찾기</a></span>
+	            <span><a href="#">비밀번호 찾기</a></span>
+	            <span><a href="signUp">회원가입</a></span>
+	        </div>
+			<div>${access}</div>
+	        <div id="sns_login">
+	            <div><a href="#">페이스북으로 로그인하기</a></div>
+	            <div><a href="#">네이버로 로그인하기</a></div>
+	            <div id="kakao-login-btn"><a href="#">카카오로 로그인하기</a></div>
+	        </div>
+	        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
         </form>
     </div>
    <jsp:include page="../footer.jsp" flush="false" />

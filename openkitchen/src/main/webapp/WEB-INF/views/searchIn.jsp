@@ -105,7 +105,7 @@
 
   <body>
   <%@ include file="/WEB-INF/views/header.jsp" %>
-    <div id="content">
+    <div id="search_content">
       <section id="sch_header">
         <div id="search_wrap">
           <input
