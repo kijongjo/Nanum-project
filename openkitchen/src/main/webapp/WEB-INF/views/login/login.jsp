@@ -94,7 +94,11 @@
         
         </style>
         
+
 	<jsp:include page="../headerScript.jsp" flush="false" />
+
+
+
 	<script>
 		Kakao.init('b7c27e5233f91858ef4568cb4dae2a2e');
 		 // SDK 초기화 여부를 판단합니다.
@@ -106,9 +110,10 @@
 		
 		
 	</script>
+
 </head>
 <body>
-	<jsp:include page="../header.jsp" flush="false" />
+   <jsp:include page="../header.jsp" flush="false" />
     <div id="loginBox">
         <h2>로그인</h2>
         <form action="" method="post">
@@ -138,6 +143,6 @@
 	        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
         </form>
     </div>
-	<jsp:include page="../footer.jsp" flush="false" />
+   <jsp:include page="../footer.jsp" flush="false" />
 </body>
 </html>
