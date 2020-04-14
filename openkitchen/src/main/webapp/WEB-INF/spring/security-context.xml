@@ -39,15 +39,12 @@
 				/>
 				
 	<!--커스텀 로그아웃 페이지를 이용해서 로그아웃  -->
-	<!-- <security:logout
-	logout-url="/logout"
-	invalidate-session="true"
-	delete-cookies="JSESSIONID"
-	logout-success-url="/"
-	/> -->
-	<security:logout delete-cookies="JSESSIONID"
+	
+	
+	
+	<!-- <security:logout delete-cookies="JSESSIONID"
 			invalidate-session="true" 
-			logout-url="/logout" success-handler-ref="customLogoutHeandler" />	
+			logout-url="/logout" success-handler-ref="customLogoutHeandler" />	 -->
 			
 		<security:csrf disabled="true"/>
  	</security:http>
