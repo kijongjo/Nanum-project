@@ -6,7 +6,7 @@
       
 <div id="header">
     <div>
-        <a href="<c:url value='/index'/>"><img src="<c:url value='/resources/img/icon/logo.png'/>" alt="" /> </a>
+        <a href="<c:url value='/index'/>"><img src="<c:url value='/resources/img/icon/teamLogo77.jpg'/>" alt="" /> </a>
     </div>
     <h3><a href="<c:url value='/classIn'/>">클래스</a></h3>
     
