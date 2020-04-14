@@ -44,7 +44,8 @@
         font-size: 15px;
     }
     /* input:text */
-    #sign_up input[type="text"]{
+    #sign_up input[type="text"],
+    #sign_up input[type="password"]{
         margin-top: 8px;
         height: 50px;
         background-color: #f6f5f5;
@@ -86,10 +87,10 @@
                 <input type="text" name="mEmail" id="">
             </div>
             <div><!-- 비밀번호 -->
-                <input type="text" name="mPwd" id="">
+                <input type="password" name="mPwd" id="">
             </div>
             <div><!-- 비밀번호 확인 -->
-                <input type="text" name="confirm" id="">
+                <input type="password" name="confirm" id="">
             </div>
             <div><!-- 이름 -->
                 <p>이름</p>
