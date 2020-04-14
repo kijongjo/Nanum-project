@@ -1,8 +1,6 @@
 package kr.co.openkitchen.controller;
 
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +42,7 @@ public class UserController {
 	public String teacherBase(@RequestParam("no")String no, Model model) {
 		System.out.println(no);
 		model.addAttribute("no", no);
-		
+	
 		return "/mypage/teacher/teacherDiscription";
 	}
 	
@@ -107,24 +105,31 @@ public class UserController {
 
 	// 선생님 등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "multipartUpload", method = RequestMethod.POST)
-	public String multipartUpload(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
+	public String multipartUpload(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) { 
+		
+		
+		
 		//파일 저장되는 경로 
 		String filePath;
 		//상세 썸네일
 		String tDetailsumnail = ""; 		
-		//선생님 번호 얻어오기 
-        int tNo=dto.gettNo();
+		
+       
         //사진 끝번호 
 		int count = 1;
 		int mNo=dto.getmNo();
 		System.out.println("회원 번호 넘어왔니?"+mNo);
+		
+		//tNo가 mNo임
+        int tNo=dto.getmNo();
+        dto.settNo(tNo);
+        
 		//!!!proceo가 proname이랑 같음.약간 이상해서 수동으로 일단 넣어주겟음 
 		dto.setProCeo(dto.getProName());
 		
 		//form data에 저장된 name들을 뽑아낸다.
-		Iterator<String> it = request.getFileNames();
-		Map<String, TeacherRegistDTO> map = new HashMap<String, TeacherRegistDTO>();
 		
+		Iterator<String> it = request.getFileNames();
 		//넘어온 파일들의 정체를 밝히는 while문 
 		while (it.hasNext()) {
 			String fileName = it.next();
@@ -168,13 +173,17 @@ public class UserController {
 		dto.settDetailsumnail(tDetailsumnail);
 	   }
 		
+		
 	   //코드 재사용을 높이기위해 map으로 넘긴다.
-		map.put("dto", dto);
-		regService.insertDTO(map);
+		regService.insertDTO(dto);
 		
 		return "mypage/teacher/teacherBase";
 	}
   
+	
+	
+	
+	
      @RequestMapping(value="registTeacher",method=RequestMethod.POST)
        public String registTeacher() {
     	   //등록하는 Service 실행하기 

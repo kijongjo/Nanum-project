@@ -20,7 +20,7 @@ public class TeacherRegistDTO {
 	private String tRegdate;
 	private String tExpert;
 	private String tPerstatus;
-	private String proNo;
+	private int proNo;
 	private int proType;
 	private String proCeo;
 	private String proBank;
@@ -29,6 +29,7 @@ public class TeacherRegistDTO {
 	private String proAccounting;
 	private String proRegimg;
 	private int mNo;
+	
 	
 
 	public int gettNo() {
@@ -127,11 +128,11 @@ public class TeacherRegistDTO {
 		this.tPerstatus = tPerstatus;
 	}
 
-	public String getProNo() {
+	public int getProNo() {
 		return proNo;
 	}
 
-	public void setProNo(String proNo) {
+	public void setProNo(int proNo) {
 		this.proNo = proNo;
 	}
 

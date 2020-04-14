@@ -1,8 +1,6 @@
 package kr.co.openkitchen.service;
 
 
-import java.util.Map;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public interface RegistServiceInter {
@@ -15,7 +13,7 @@ public interface RegistServiceInter {
 	public String makeDS(String fileName,int count,int tNo);
 	public String makeMS(String fileName,int tNo);
 	//generic type으로 줘서 teacherDTO,spaceDTO,classDTO
-	public <T> void insertDTO(Map<String, T> map);
+	public <T> void insertDTO(T dto);
 	public String makeBK(String fileName,int tNo);
     
 }

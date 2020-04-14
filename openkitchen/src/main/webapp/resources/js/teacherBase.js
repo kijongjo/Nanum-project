@@ -386,10 +386,11 @@
             formData.append("proAccountIng",proAccounting[0]);
             formData.append("proRegImg",regImg[0]);
             formData.append("tPerstatus","임시");
-            if(proType !="undefined"){
+            if(!isNaN(proType)){
             formData.append("proType",parseInt(proType));
-            }
-            // !!! 회원번호 다른 페이지에서 이쪽 페이지로 올때  넘겨받아야함
+           
+            }else{formData.append("proType",0);}
+            // !!! 회원번호 다른 페이지에서 이쪽 페이지로 올때 넘겨받아야함
             formData.append("mNo",1000);
          
             /* 하나씩 꺼내서 보낸다. */
@@ -455,6 +456,34 @@
                                 // 이후 동작 ...
                             }
                         }
+                        // 전송실패에대한 핸들링은 고려하지 않음
+                }); // ajax end
+            	}else if(alreadySubmit == "yes"){
+            		 alert("같은 내용을 두번 보낼 수 없습니다.");
+            		
+            	}// aleadySubmit "yes" end
+            	
+            }); // o n click end
+            // 임시 저장을 클릭하게 되면 ajax를 통해 서버로 보내짐
+            $('#nextGo').on('click', function() {
+            	if(alreadySubmit =="no"){
+            	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
+            	appendForm(formData);
+               
+                $.ajax({
+                    type: 'POST',
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    timeout: 600000,
+                    url: 'multipartUpload',
+                    data: formData,
+
+                    success: function(result) {
+                    	$(location).attr('href',"teacherSpace?no=2");
+                        }//success function
+                
                         // 전송실패에대한 핸들링은 고려하지 않음
                 }); // ajax end
             	}else if(alreadySubmit == "yes"){
