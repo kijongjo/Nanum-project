@@ -14,33 +14,29 @@
 <link rel="stylesheet" 
 	href="<c:url value='/resources/css/index-slide.css'/>">
 
+
 <%-- <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>"> --%>
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
-<script src="<c:url value='/resources/js/index-slide.js'/>"></script>
 
-<style>
-	.mcdetail {
-		cursor:pointer;
-	}
-</style>
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/main-slick.css'/>">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+
+<!-- slick 슬라이더 css 추가  -->
+<link rel="stylesheet" href="<c:url value='/resources/css/slick.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/slick-theme.css'/>">
+<!-- jquery 추가  -->
+
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- slick 슬라이더 js 추가  -->
+<script src="<c:url value='/resources/js/slick.js'/>"></script>
+<script src="<c:url value='/resources/js/main-slick.js'/>"></script>
+
 <jsp:include page="headerScript.jsp" flush="false" />
-<script>
-$(document).ready(function () {
-	var $mcdetail = $(".mcdetail");
-	var $frm = $(".frm");
-	
-	/* 동적으로 생성된 태그에 이벤트 발생하기 위한 방법  */
-	$(document).on("click", ".mcdetail",function () {
-		
-		$frm.submit();
-		
-	});
-});
-</script>
+
 <script>
 /*!! 문제점: js파일로 따로 빼버리면 img주소에 contextPath 주소를 넣을 때 오류가 발생함. 아직 해결 못했음.  */
 //이미지를 불러와 주소를 입력할 때 contextPath(project명)을 붙여줘야한다. 그 contextPath를 불러오는 기능
@@ -118,12 +114,56 @@ $(document).ready(function() {
 		});
 
 </script>
-
-
+<script>
+	
+	
+</script>
+	
 <style>
-	.slide-wrapper {
-		position: relative;
+	/* 이전 컨트롤 버튼 */
+	.slick-next {
+	  right: -28px;
+	  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 	} 
+    .slick-prev {
+		left: -28px; 
+		transform: rotate(180deg);
+		box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.5);
+	}
+	
+	/* 다음 컨트롤 버튼 */
+	
+	button.slick-arrow {
+		position: absolute;
+		top: 15%;
+		text-indent: -9999px;
+		z-index: 9999;
+		width: 51px;
+		height: 51px;
+		border-radius: 50%;
+		background: #fff url("<c:url value='/resources/img/icon/ico-paging_arrow.png'/>") no-repeat 55% 50%/auto 15px;
+	} 
+	
+	.slick-prev.slick-arrow.slick-disabled {
+		display: none !important;
+	}
+	
+	.slick-next.slick-arrow.slick-disabled {
+		display: none;
+	}
+
+	
+	.slick-slide {
+		width: 340px;
+		margin-right: 15px;
+		margin-bottom: 20px;
+		
+		
+	}
+
+
+
+	
 </style>
 </head>
 <body>
@@ -132,34 +172,63 @@ $(document).ready(function() {
 
 
 	<!-- Main -->
-	<div id="main-slider">
-		<ul class="bxslider1">
-			<li><img
+
+	<div class="sliderContainer">
+		<div class="slider single-item">
+			<div><img
 				src="<c:url value='/resources/img/mainbanner/title1.jpg'/>"
-				alt="slide01"></li>
-			<li><img
+				alt="slide01"></div>
+			<div><img
 				src="<c:url value='/resources/img/mainbanner/title2.jpg'/>"
-				alt="slide02"></li>
-			<li><img
+				alt="slide02"></div>
+			<div><img
 				src="<c:url value='/resources/img/mainbanner/title3.jpg'/>"
-				alt="slide03"></li>
-			<li><img
+				alt="slide03"></div>
+			<div><img
 				src="<c:url value='/resources/img/mainbanner/title4.jpg'/>"
-				alt="slide04"></li>
-			<li><img
+				alt="slide04"></div>
+			<div><img
 				src="<c:url value='/resources/img/mainbanner/title5.jpg'/>"
-				alt="slide05"></li>
-			<li><img
+				alt="slide05"></div>
+				<div><img
 				src="<c:url value='/resources/img/mainbanner/title6.jpg'/>"
-				alt="slide06"></li>
-			<li><img
+				alt="slide06"></div>
+				  <div><img
 				src="<c:url value='/resources/img/mainbanner/title7.jpg'/>"
-				alt="slide07"></li>
-			<li><img
+				alt="slide07"></div>
+				  <div><img
 				src="<c:url value='/resources/img/mainbanner/title8.jpg'/>"
-				alt="slide08"></li>
-		</ul>
+				alt="slide08"></div>
+		</div>
+		<div class="progressBarContainer">
+		    <div>
+		      <span data-slick-index="0" class="progressBar"></span>
+		    </div>
+		    <div>
+		      <span data-slick-index="1" class="progressBar"></span>
+		    </div>
+		    <div>
+		      <span data-slick-index="2" class="progressBar"></span>
+		    </div>
+		    <div>
+		      <span data-slick-index="3" class="progressBar"></span>
+		    </div>
+		    <div>
+		      <span data-slick-index="4" class="progressBar"></span>
+		    </div>
+		    <div>
+		      <span data-slick-index="5" class="progressBar"></span>
+		    </div>
+		    <div>
+		      <span data-slick-index="6" class="progressBar"></span>
+		    </div>
+		    <div>
+		      <span data-slick-index="7" class="progressBar"></span>
+		    </div>
+ 	 	</div>
 	</div>
+
+	
 
 
 	<section>
@@ -191,10 +260,10 @@ $(document).ready(function() {
 				<div class="itemTitle">
 					<h2>베스트 클래스</h2>
 				</div>
-				<ul class="bxslider">
+				<ul class="slider1">
 				<c:forEach var="bcdto" items="${bestClass}">		
 					<li>
-						<a href="#"> 
+						<a href="classD?no=${bcdto.cNo}"> 
 						<img src="<c:url value='${bcdto.cMainsumnail}'/>" alt="">
 								<h4>${bcdto.cName}</h4>
 								<div>
@@ -208,47 +277,7 @@ $(document).ready(function() {
 						</a>
 					</li>
 				</c:forEach>	
-					<!-- 테스트용 복사 -->
-					<%-- <li><a href="#"> <img
-							src="<c:url value='/resources/img/testimg/test2.jpg'/>"
-							alt="">
-							<h4>자타공인밥도둑, 매콤꽃게무침</h4>
-							<div>
-								<span>한식</span> <span>경기도 용인시</span> <span>3월~5월</span>
-							</div>
-							<div class="Price">
-								<strong>\</strong> 46,200
-							</div>
-					</a></li>
-					<li><a href="#"> <img
-							src="<c:url value='/resources/img/testimg/test3.jpg'/>"
-							alt="">
-							<h4>노오븐'쌀'츄러스</h4>
-	                        <div>
-	                            <span>베이킹</span>
-	                            <span>경기도 김포시</span>
-	                            <span>3월 1회 진행</span>
-	                        </div>
-	                        <div class="Price">
-	                            <strong>\</strong> 10,000
-	                        </div>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="#">
-	                        <img src="<c:url value='/resources/img/testimg/test4.jpg'/>" alt="">
-	                        <h4>노오븐'쌀'츄러스</h4>
-	                        <div>
-	                            <span>베이킹</span>
-	                            <span>경기도 김포시</span>
-	                            <span>3월 1회 진행</span>
-	                        </div>
-	                        <div class="Price">
-	                            <strong>\</strong> 10,000
-	                        </div>
-	                    </a>
-	                </li> --%>
-	                <!-- 테스트 복사 끝 -->
+				
 	            </ul>
             </div>
         </div>
@@ -259,12 +288,10 @@ $(document).ready(function() {
             <div class="itemTitle">
                 <h2>가화만사성, 만(滿)원의클래스</h2>
             </div>
-            <ul class="bxslider">
+            <ul class="slider1">
                	<c:forEach var="mc" items="${manwonClass}">
 		                <li class="mcdetail">
-                 		   <form action="classD" class="frm" method="post">
-		                       <input type="hidden" name="cno" value="${mc.cNo}" />
-		                       <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" /> 
+                 		   <a href="classD?no=${mc.cNo}">
 			                       <img src="<c:url value='${mc.cMainsumnail}'/>" alt="이미지" id="mcimg">
 			                        <h4>${mc.cName}</h4>
 			                        <div>
@@ -275,53 +302,10 @@ $(document).ready(function() {
 			                        <div class="Price">
 			                            <strong>\</strong> ${mc.cPrice}
 			                        </div>
-                    		</form>
+                    	</a>
 		                </li>
                 </c:forEach>
-                <!-- 테스트용 복사 -->
-                <%-- <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test2.jpg'/>" alt="">
-                        <h4>노오븐'쌀'츄러스</h4>
-                        <div>
-                            <span>베이킹</span>
-                            <span>경기도 김포시</span>
-                            <span>3월 1회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong> 10,000
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test3.jpg'/>" alt="">
-                        <h4>노오븐'쌀'츄러스</h4>
-                        <div>
-                            <span>베이킹</span>
-                            <span>경기도 김포시</span>
-                            <span>3월 1회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong> 10,000
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test4.jpg'/>" alt="">
-                        <h4>노오븐'쌀'츄러스</h4>
-                        <div>
-                            <span>베이킹</span>
-                            <span>경기도 김포시</span>
-                            <span>3월 1회 진행</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong> 10,000
-                        </div>
-                    </a>
-                </li>   --%>
-                <!-- 테스트 복사 끝 -->
+               
             </ul>
             </div>
         </div>
@@ -332,12 +316,10 @@ $(document).ready(function() {
             <div class="itemTitle">
                 <h2>단 1명이라도 열리는, 동시모집</h2>
             </div>
-            <ul class="bxslider">
+            <ul class="slider1">
             	<c:forEach var="ooc" items="${OnlyOneClass}">
 		                <li class="mcdetail">
-                 		   <form action="classD" class="frm" method="post">
-		                       <input type="hidden" name="cno" value="${ooc.cNo}" />
-		                       <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" /> 
+                 		    <a href="classD?no=${ooc.cNo}">
 			                       <img src="<c:url value='${ooc.cMainsumnail}'/>" alt="이미지" id="mcimg">
 			                        <h4>${ooc.cName}</h4>
 			                        <div>
@@ -348,67 +330,10 @@ $(document).ready(function() {
 			                        <div class="Price">
 			                            <strong>\</strong> ${ooc.cPrice}
 			                        </div>
-                    		</form>
+                    		</a>
 		                </li>
                 </c:forEach>
-                <%-- <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h4>불타는 금요일에 쿡맥하자!</h4>
-                        <div>
-                            <span>세계요리</span>
-                            <span>경기도 안양시</span>
-                            <span>3월~4월</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong> 49,500
-                        </div>
-                    </a>
-                </li>
-                <!-- 테스트용 복사 -->
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test2.jpg'/>" alt="">
-                        <h4>불타는 금요일에 쿡맥하자!</h4>
-                        <div>
-                            <span>세계요리</span>
-                            <span>경기도 안양시</span>
-                            <span>3월~4월</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong> 49,500
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test3.jpg'/>" alt="">
-                        <h4>불타는 금요일에 쿡맥하자!</h4>
-                        <div>
-                            <span>세계요리</span>
-                            <span>경기도 안양시</span>
-                            <span>3월~4월</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong> 49,500
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <img src="<c:url value='/resources/img/testimg/test4.jpg'/>" alt="">
-                        <h4>불타는 금요일에 쿡맥하자!</h4>
-                        <div>
-                            <span>세계요리</span>
-                            <span>경기도 안양시</span>
-                            <span>3월~4월</span>
-                        </div>
-                        <div class="Price">
-                            <strong>\</strong> 49,500
-                        </div>
-                    </a>
-                </li> --%>
-                <!-- 테스트용 복사 끝 -->
+               
             </ul>
             </div>
         </div>
@@ -426,7 +351,7 @@ $(document).ready(function() {
             <div class="itemTitle">
                 <h2>오늘의 기획전</h2>
             </div>
-            <ul class="bxslider">
+            <ul class="slider1">
                 <li>
                     <a href="#">
                     	<img src="<c:url value='/resources/img/mainbanner/subtitle1.jpg'/>" alt="">
@@ -492,9 +417,7 @@ $(document).ready(function() {
             <ul>
             	<c:forEach var="mc" items="${popularClass}">
 		                <li class="mcdetail">
-                 		   <a href="classD?no=${mc.cNo}">
-		                       <input type="hidden" name="cno" value="${mc.cNo}" />
-		                       <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" /> 		                    
+                 		   <a href="classD?no=${mc.cNo}"> 		                    
 		                       <img src="<c:url value='${mc.cMainsumnail}'/>" alt="이미지" id="mcimg">
 		                        <h4>${mc.cName}</h4>
 		                        <p>${mc.cShortintro}</p>
@@ -509,19 +432,7 @@ $(document).ready(function() {
                     		</a>
 		                </li>
                 </c:forEach> 
-               <%--  <li>
-                    <a href="#">
-                    	<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="">
-                        <h4>향 은은 얼그레이 초코쿠키</h4>
-                        <p>얼그레이 초코 쿠키 만들기와 모카포트를 이요한 커피 내리기 과정이 진행됩니다.</p>
-                        <div>
-                            <span>베이킹</span>
-                            <span>서울특별시 송파구</span>
-                            <span>앵콜</span>
-                        </div>
-                    </a>
-                </li> --%>
-                <!-- 테스트용 복사코드-->
+            
             </ul>
         </div>
 

@@ -18,7 +18,7 @@ public class CustomLogoutHeandler extends SimpleUrlLogoutSuccessHandler {
 		if (authentication != null) {
 		}
 
-		setDefaultTargetUrl("/");
+		/* setDefaultTargetUrl("/"); */
 		super.onLogoutSuccess(request, response, authentication);
 
 	}

@@ -6,7 +6,7 @@
       
 <div id="header">
     <div>
-        <a href="<c:url value='/index'/>"><img src="<c:url value='/resources/img/icon/logo.png'/>" alt="" /> </a>
+        <a href="<c:url value='/index'/>"><img src="<c:url value='/resources/img/icon/teamLogo77.jpg'/>" alt="" /> </a>
     </div>
     <h3><a href="<c:url value='/classIn'/>">클래스</a></h3>
     
@@ -33,7 +33,10 @@
             </ul>
             <ul>
                 <sec:authorize access="isAnonymous()"><li><a href="<c:url value='/login'/>">로그인</a></li></sec:authorize>
-                <sec:authorize access="isAuthenticated()"><li><a href="<c:url value='/logout'/>">로그아웃</a></li></sec:authorize>
+                <%-- <sec:authorize access="isAuthenticated()">
+                	<li id="logoutBtn"><a href="<c:url value='/logout'/>">로그아웃</a></li >
+                	</sec:authorize> --%>
+                	<li id="logoutBtn">로그아웃</li >
                 <sec:authorize access="hasRole('ROLE_ADMIN')"><li><a href="<c:url value='/admin/in'/>">관리자 페이지</a></li></sec:authorize>
                 <sec:authorize access="isAuthenticated()"><li><a href="<c:url value='/mypage/in'/>">마이페이지</a></li></sec:authorize>
                 <sec:authorize access="isAnonymous()"><li><a href="<c:url value="/signUp"/>">회원가입</a></li></sec:authorize>
