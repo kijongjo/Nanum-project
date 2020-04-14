@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/checkBox.css'/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>Document</title>
-	
+   
 <style>
     section{
         margin: 0 auto;
@@ -75,22 +75,23 @@
     }
 </style>
 
-	<jsp:include page="../headerScript.jsp" flush="false" />
+   <jsp:include page="../headerScript.jsp" flush="false" />
 </head>
 <body>
-	<jsp:include page="../header.jsp" flush="false" />
+   <jsp:include page="../header.jsp" flush="false" />
     <div>
     <section id="sign_up">
         <h2>회원가입</h2>
         <form action="<c:url value="siginSuccess"/>" method="post">
             <div><!-- 아이디 -->
-                <input type="text" name="mEmail" id="">
+                <input type="text" name="mEmail" id="" placeholder="아이디">
             </div>
             <div><!-- 비밀번호 -->
-                <input type="password" name="mPwd" id="">
+
+                <input type="password" name="mPwd" id="" placeholder="비밀번호">
             </div>
             <div><!-- 비밀번호 확인 -->
-                <input type="password" name="confirm" id="">
+                <input type="password" name="confirm" id="" placeholder="비밀번호 확인">
             </div>
             <div><!-- 이름 -->
                 <p>이름</p>
@@ -359,7 +360,7 @@
 ① 회사는 회원과 판매자 상호간 또는 회원과 제3자 사이의 불만처리 및 분쟁조정을 하기 위하여 고객센터를 운영 합니다. 회원은 상품 또는 판매자에 관한 불만, 클레임, 이의제기, 의견제시를 초기화면의 [고객센터]에 할 수 있으며, 소비자분쟁조정위원회, 전자거래분쟁조정위원회에 피해구제신청을 대행해 줄 것을 고객센터에 요청할 수 있습니다.
 ② 회사는 고객센터를 통하여 회원으로부터 제기되는 불만, 클레임, 이의제기, 의견이 정당하다고 판단되는 경우 이를 신속하게 처리하며, 3영업일 이내에 그 진행경과를 알리고 10영업일 이내에 조사결과와 처리방안을 통보합니다. 
 ③ 회원이 소비자분쟁조정위원회, 전자거래분쟁조정위원회에 피해구제신청를 대행해 줄 것을 고객센터에 요청한 경우 회사는 3영업일 이내에 소비자분쟁조정위원회, 전자거래분쟁조정위원회에 피해구제신청를 하고 이를 소비자에게 통보합니다.
-④ 소비자분쟁조정위원회, 전자거래분쟁조정위원회, 공정거래위원회, 도지사, 시장, 구청장이 요청하는 경우 판매자의 상호, 대표자의 성명, 주소전화번호e-mail주소를 제공하여 분쟁의 해결에 협조합니다.
+④ 소비자분쟁조정위원회, 전자거래분쟁조정위원회, 공정거래위원회, 도지사, 시장, 구청장이 요청하는 경우 판매자의 상호, 대표자의 성명, 주소 전화번호 e-mail주소를 제공하여 분쟁의 해결에 협조합니다.
 
 
 제21조 (회원관리)
