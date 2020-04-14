@@ -33,10 +33,10 @@
             </ul>
             <ul>
                 <sec:authorize access="isAnonymous()"><li><a href="<c:url value='/login'/>">로그인</a></li></sec:authorize>
-                <%-- <sec:authorize access="isAuthenticated()">
+                <sec:authorize access="isAuthenticated()">
                 	<li id="logoutBtn"><a href="<c:url value='/logout'/>">로그아웃</a></li >
-                	</sec:authorize> --%>
-                	<li id="logoutBtn">로그아웃</li >
+                	</sec:authorize>
+                	<!-- <li id="logoutBtn">로그아웃</li > -->
                 <sec:authorize access="hasRole('ROLE_ADMIN')"><li><a href="<c:url value='/admin/in'/>">관리자 페이지</a></li></sec:authorize>
                 <sec:authorize access="isAuthenticated()"><li><a href="<c:url value='/mypage/in'/>">마이페이지</a></li></sec:authorize>
                 <sec:authorize access="isAnonymous()"><li><a href="<c:url value="/signUp"/>">회원가입</a></li></sec:authorize>
