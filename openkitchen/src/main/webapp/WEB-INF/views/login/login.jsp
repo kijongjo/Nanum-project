@@ -89,41 +89,43 @@
 
         
         
-        
+       
         
         </style>
-	<jsp:include page="../headerScript.jsp" flush="false" />
+        
+   <jsp:include page="../headerScript.jsp" flush="false" />
 </head>
 <body>
-	<jsp:include page="../header.jsp" flush="false" />
+   <jsp:include page="../header.jsp" flush="false" />
     <div id="loginBox">
         <h2>로그인</h2>
         <form action="" method="post">
-	        <table>
-	            <tr>
-	                <td><input type="text" name="email" id="eMail" value=""></td>
-	            </tr>
-	            <tr>
-	                <td><input type="text" name="memberPassword" id="" value=""></td>
-	            </tr>
-	            <tr>
-	                <td id="login_submit"><input type="submit" value="로그인"></td>
-	            </tr>
-	        </table>
-	        <div> 
-	            <span><a href="#">이메일 찾기</a></span>
-	            <span><a href="#">비밀번호 찾기</a></span>
-	            <span><a href="signUp">회원가입</a></span>
-	        </div>
-			<div>${access}</div>
-	        <div id="sns_login">
-	            <div><a href="#">페이스북으로 로그인하기</a></div>
-	            <div><a href="#">네이버로 로그인하기</a></div>
-	            <div><a href="#">카카오로 로그인하기</a></div>
-	        </div>
-	        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+           <table>
+               <tr>
+                   <td><input type="text" name="email" id="eMail" value=""></td>
+               </tr>
+               
+               <tr>
+                   <td><input type="password" name="memberPassword" id="" value=""></td>
+               </tr>
+               <tr>
+                   <td id="login_submit"><input type="submit" value="로그인"></td>
+               </tr>
+           </table>
+           <div> 
+               <span><a href="#">이메일 찾기</a></span>
+               <span><a href="#">비밀번호 찾기</a></span>
+               <span><a href="signUp">회원가입</a></span>
+           </div>
+         <div>${access}</div>
+           <div id="sns_login">
+               <div><a href="#">페이스북으로 로그인하기</a></div>
+               <div><a href="#">네이버로 로그인하기</a></div>
+               <div><a href="#">카카오로 로그인하기</a></div>
+           </div>
+           <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
         </form>
     </div>
-	<jsp:include page="../footer.jsp" flush="false" />
+   <jsp:include page="../footer.jsp" flush="false" />
 </body>
 </html>
