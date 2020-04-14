@@ -1,4 +1,4 @@
- #lay03spaceRegister2{
+     	#lay03spaceRegister2{
         display: grid;
         grid-template-columns: 285px 1fr;
         width: 1200px;
@@ -81,7 +81,7 @@
         }
         #lay03spaceRegister2> #right01{
             background-color: #F6F5F5;
-            /* margin: -46px 0px -120px; */
+            margin: -46px 0px -120px;
             padding: 45px 0px 120px 60px;
         }
         #lay03spaceRegister2> #right01 .inp-wrap:nth-child(1){
@@ -911,6 +911,7 @@
             height: 43px;
             display: block;
             padding-left: 10px;
+            background-color: #5b5b5b;
         }
         #oftenQuestion button{
             display: block;
@@ -921,8 +922,11 @@
             float: right;   
             position: relative;
             /* top: 20px; */
+            background-color: #5b5b5b;
             right: 10px;
             bottom: 20px;
+            font-size: 45px;
+            color: white;
         }
         .qnaInner{
             width: 905px;
@@ -956,6 +960,7 @@
             padding: 16px 20px;
             border: none;
             font-weight: bold;
+            resize: none;
         }   
         .qna-textarea:focus{
             outline: none;
