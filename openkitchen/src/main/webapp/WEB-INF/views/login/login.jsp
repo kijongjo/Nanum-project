@@ -95,7 +95,9 @@
         </style>
         
 
-   <jsp:include page="../headerScript.jsp" flush="false" />
+	<jsp:include page="../headerScript.jsp" flush="false" />
+
+
 
 	<script>
 		Kakao.init('b7c27e5233f91858ef4568cb4dae2a2e');

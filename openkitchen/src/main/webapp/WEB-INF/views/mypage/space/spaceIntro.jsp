@@ -16,58 +16,111 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <jsp:include page="../../headerScript.jsp" flush="false" />
     <script type="text/javascript">
-        //임의의 file object영역
-        var files = {};
-        var previewIndex = 0;
-        var imgNum = 0;
- 
-        // image preview 기능 구현
-        // input = file object[]
+  //임의의 file object영역
+    var files = {};
+    var previewIndex = 0;
+    var imgNum = 0;
 
-        // 메인 썸네일용 이미지 
-        function addPreviewMain(input) {
-            if (input[0].files) {
-                //파일 선택이 여러개였을 시의 대응
-                for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
-                    var file = input[0].files[fileIndex];
-                    if(validation(file.name)) continue;
-                    setPreviewFormMain(file);
-                }
-            } else
-                alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+    // image preview 기능 구현
+    // input = file object[]
 
-        }
+    // 메인 썸네일용 이미지 
+    function addPreviewMain(input) {
+        if (input[0].files) {
+            //파일 선택이 여러개였을 시의 대응
+            for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
+                var file = input[0].files[fileIndex];
+                if(validation(file.name)) continue;
+                setPreviewFormMain(file);
+            }
+        } else
+            alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+
+    }
+    
+    // 상세 썸네일용 이미지
+    function addPreviewDetail(input) {
+        if (input[0].files) {
+            //파일 선택이 여러개였을 시의 대응
+            for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
+                var file = input[0].files[fileIndex];
+                if(validation(file.name)) continue;
+                setPreviewFormDetail(file);
+            }
+        } else
+            alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////
+
+    // 상세 이미지 등록 
+    function addPreviewPhoto(input) {
+        if (input[0].files) {
+            //파일 선택이 여러개였을 시의 대응
+            for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
+                var file = input[0].files[fileIndex];
+                if(validation(file.name)) continue;
+                setPreviewFormPhoto(file);
+            }
+        } else
+            alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
+    }
+
+    // 메인 썸네일용 이미지 등록 
+    function setPreviewFormMain(file, img){
+        var reader = new FileReader();
         
-        // 상세 썸네일용 이미지
-        function addPreviewDetail(input) {
-            if (input[0].files) {
-                //파일 선택이 여러개였을 시의 대응
-                for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
-                    var file = input[0].files[fileIndex];
-                    if(validation(file.name)) continue;
-                    setPreviewFormDetail(file);
-                }
-            } else
-                alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
-        }
+        //div id="preview" 내에 동적코드추가.
+        //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
+        reader.onload = function(img) {
+            // console.log(img);
+            // var imgNum = previewIndex++;
+            $("#mainThum").append(
+                    "<div class=\"preview-box\" value=\"" + imgNum +"\">" +
+                    "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
+                    "<p>" + file.name + "</p>" +
+                    "<button value=\"" + imgNum + "\" onclick=\"deleteMainPreview(this)\">" +
+                    "삭제" + "</button>"
+                    + "</div>"
+            );
+            // resizeHeight();
+            files[imgNum] = file;            
+        };
+        console.log(file.name+"0000000000000000000000000000");
+        reader.readAsDataURL(file);
+    }
 
-        //////////////////////////////////////////////////////////////////////////////////
+    // 상세 썸네일용 이미지 등록 
+    function setPreviewFormDetail(file, img){
+        var reader = new FileReader();
+        
+        //div id="preview" 내에 동적코드추가.
+        //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
+        reader.onload = function(img) {
+            // console.log(img);
+            // var imgNum = previewIndex++;
+            $("#detailThum").append(
+                    "<div class=\"preview-box\" value=\"" + imgNum +"\">" +
+                    "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
+                    "<p>" + file.name + "</p>" +
+                    "<button value=\"" + imgNum + "\" onclick=\"deleteDetailPreview(this)\">" +
+                    "삭제" + "</button>"
+                    + "</div>"
+            );
+            // resizeHeight();
+            files[imgNum] = file; 
+            console.log(files[imgNum]);
+            console.log(imgNum);
+        };
+        console.log(file.name + " 9999999999999999999999");
+        reader.readAsDataURL(file);
+    }
 
-        // 상세 이미지 등록 
-        function addPreviewPhoto(input) {
-            if (input[0].files) {
-                //파일 선택이 여러개였을 시의 대응
-                for (var fileIndex = 0; fileIndex < input[0].files.length; fileIndex++) {
-                    var file = input[0].files[fileIndex];
-                    if(validation(file.name)) continue;
-                    setPreviewFormPhoto(file);
-                }
-            } else
-                alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지 않았다.
-        }
-
-        // 메인 썸네일용 이미지 등록 
-        function setPreviewFormMain(file, img){
+    // 상세 이미지 등록 
+    function setPreviewFormPhoto(file, img){
+        imgNum = previewIndex++;
+        // .length로 변경 함 
+        if($(".thumbnail").length < 9){
             var reader = new FileReader();
             
             //div id="preview" 내에 동적코드추가.
@@ -75,273 +128,224 @@
             reader.onload = function(img) {
                 // console.log(img);
                 // var imgNum = previewIndex++;
-                $("#mainThum").append(
+                $("#input-detail-img").append(
                         "<div class=\"preview-box\" value=\"" + imgNum +"\">" +
                         "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
                         "<p>" + file.name + "</p>" +
-                        "<button value=\"" + imgNum + "\" onclick=\"deleteMainPreview(this)\">" +
+                        "<button value=\"" + imgNum + "\" onclick=\"deleteDetailPhoto(this)\">" +
                         "삭제" + "</button>"
                         + "</div>"
                 );
                 // resizeHeight();
                 files[imgNum] = file;            
-            };
-            console.log(file.name+"0000000000000000000000000000");
-            reader.readAsDataURL(file);
-        }
-
-        // 상세 썸네일용 이미지 등록 
-        function setPreviewFormDetail(file, img){
-            var reader = new FileReader();
-            
-            //div id="preview" 내에 동적코드추가.
-            //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
-            reader.onload = function(img) {
-                // console.log(img);
-                // var imgNum = previewIndex++;
-                $("#detailThum").append(
-                        "<div class=\"preview-box\" value=\"" + imgNum +"\">" +
-                        "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
-                        "<p>" + file.name + "</p>" +
-                        "<button value=\"" + imgNum + "\" onclick=\"deleteDetailPreview(this)\">" +
-                        "삭제" + "</button>"
-                        + "</div>"
-                );
-                // resizeHeight();
-                files[imgNum] = file; 
                 console.log(files[imgNum]);
                 console.log(imgNum);
             };
-            console.log(file.name + " 9999999999999999999999");
+            console.log(file.name);
             reader.readAsDataURL(file);
+            console.log("썸네일의 길이 : " +   $(".thumbnail").length);
+        }else{
+            alert("9개 이상 금지");
         }
+    }
 
-        // 상세 이미지 등록 
-        function setPreviewFormPhoto(file, img){
-            imgNum = previewIndex++;
-            // .length로 변경 함 
-            if($(".thumbnail").length < 9){
-                var reader = new FileReader();
-                
-                //div id="preview" 내에 동적코드추가.
-                //이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
-                reader.onload = function(img) {
-                    // console.log(img);
-                    // var imgNum = previewIndex++;
-                    $("#input-detail-img").append(
-                            "<div class=\"preview-box\" value=\"" + imgNum +"\">" +
-                            "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
-                            "<p>" + file.name + "</p>" +
-                            "<button value=\"" + imgNum + "\" onclick=\"deleteDetailPhoto(this)\">" +
-                            "삭제" + "</button>"
-                            + "</div>"
-                    );
-                    // resizeHeight();
-                    files[imgNum] = file;            
-                    console.log(files[imgNum]);
-                    console.log(imgNum);
-                };
-                console.log(file.name);
-                reader.readAsDataURL(file);
-                console.log("썸네일의 길이 : " +   $(".thumbnail").length);
-            }else{
-                alert("9개 이상 금지");
-            }
-        }
+    /////////////////////////////////////////////////////////////////
 
-        /////////////////////////////////////////////////////////////////
- 
-        //preview 영역에서 삭제 버튼 클릭시 해당 미리보기이미지 영역 삭제
-        // 메인 썸네일 삭제
-        function deleteMainPreview(obj) {
-            var imgNum = obj.attributes['value'].value;
-            delete files[imgNum];
-            $("#mainThum .preview-box[value=" + imgNum + "]").remove();
-            $("#mainThum label").css('opacity','1');
-        }
-        
-        // 상세 썸네일 삭제
-        function deleteDetailPreview(obj) {
-            var imgNum = obj.attributes['value'].value;
-            delete files[imgNum];
-            $("#detailThum .preview-box[value=" + imgNum + "]").remove();
-            $("#detailThum label").css('opacity','1');
-        }
-
-        // 상세 등록 이미지 삭제 
-        function deleteDetailPhoto(obj) {
-            var imgNum = obj.attributes['value'].value;
-            delete files[imgNum];
-            $("#input-detail-img .preview-box[value=" + imgNum + "]").remove();
-            $("#input-detail-img label").css('opacity','1');
-            imgNum--;
-            console.log(imgNum);
-        }
-
- 
-        //client-side validation
-        //always server-side validation required
-        // 파일 형식 체크 
-        function validation(fileName) {
-            fileName = fileName + "";
-            var fileNameExtensionIndex = fileName.lastIndexOf('.') + 1;
-            var fileNameExtension = fileName.toLowerCase().substring(
-                    fileNameExtensionIndex, fileName.length);
-            if (!((fileNameExtension === 'jpg') || (fileNameExtension === 'jpeg')
-                    || (fileNameExtension === 'gif') || (fileNameExtension === 'png'))) {
-                alert('jpg, gif, png 확장자만 업로드 가능합니다.');
-                return true;
-            } else {
-                return false;
-            }
-        }
- 
-        $(document).ready(function() {
-            //submit 등록. 실제로 submit type은 아니다.
-            $('.submit a').on('click',function() {                        
-                var form = $('#uploadForm')[0];
-                var formData = new FormData(form);
+    //preview 영역에서 삭제 버튼 클릭시 해당 미리보기이미지 영역 삭제
+    // 메인 썸네일 삭제
+    function deleteMainPreview(obj) {
+        var imgNum = obj.attributes['value'].value;
+        delete files[imgNum];
+        $("#mainThum .preview-box[value=" + imgNum + "]").remove();
+        $("#mainThum label").css('opacity','1');
+    }
     
-                for (var index = 0; index < Object.keys(files).length; index++) {
-                    //formData 공간에 files라는 이름으로 파일을 추가한다.
-                    //동일명으로 계속 추가할 수 있다.
-                    formData.append('files',files[index]);
-                }
- 
-                //ajax 통신으로 multipart form을 전송한다.
-                $.ajax({
-                    type : 'POST',
-                    enctype : 'multipart/form-data',
-                    processData : false,
-                    contentType : false,
-                    cache : false,
-                    timeout : 600000,
-                    url : '/imageupload',
-                    dataType : 'JSON',
-                    data : formData,
-                    success : function(result) {
-                        //이 부분을 수정해서 다양한 행동을 할 수 있으며,
-                        //여기서는 데이터를 전송받았다면 순수하게 OK 만을 보내기로 하였다.
-                        //-1 = 잘못된 확장자 업로드, -2 = 용량초과, 그외 = 성공(1)
-                        if (result === -1) {
-                            alert('jpg, gif, png, bmp 확장자만 업로드 가능합니다.');
-                            // 이후 동작 ...
-                        } else if (result === -2) {
-                            alert('파일이 10MB를 초과하였습니다.');
-                            // 이후 동작 ...
-                        } else {
-                            alert('이미지 업로드 성공');
-                            // 이후 동작 ...
-                        }
+    // 상세 썸네일 삭제
+    function deleteDetailPreview(obj) {
+        var imgNum = obj.attributes['value'].value;
+        delete files[imgNum];
+        $("#detailThum .preview-box[value=" + imgNum + "]").remove();
+        $("#detailThum label").css('opacity','1');
+    }
+
+    // 상세 등록 이미지 삭제 
+    function deleteDetailPhoto(obj) {
+        var imgNum = obj.attributes['value'].value;
+        delete files[imgNum];
+        $("#input-detail-img .preview-box[value=" + imgNum + "]").remove();
+        $("#input-detail-img label").css('opacity','1');
+        imgNum--;
+        console.log(imgNum);
+    }
+
+
+    //client-side validation
+    //always server-side validation required
+    // 파일 형식 체크 
+    function validation(fileName) {
+        fileName = fileName + "";
+        var fileNameExtensionIndex = fileName.lastIndexOf('.') + 1;
+        var fileNameExtension = fileName.toLowerCase().substring(
+                fileNameExtensionIndex, fileName.length);
+        if (!((fileNameExtension === 'jpg') || (fileNameExtension === 'jpeg')
+                || (fileNameExtension === 'gif') || (fileNameExtension === 'png'))) {
+            alert('jpg, gif, png 확장자만 업로드 가능합니다.');
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $(document).ready(function() {
+        //submit 등록. 실제로 submit type은 아니다.
+        $('.submit a').on('click',function() {                        
+            var form = $('#uploadForm')[0];
+            var formData = new FormData(form);
+
+            for (var index = 0; index < Object.keys(files).length; index++) {
+                //formData 공간에 files라는 이름으로 파일을 추가한다.
+                //동일명으로 계속 추가할 수 있다.
+                formData.append('files',files[index]);
+            }
+
+            //ajax 통신으로 multipart form을 전송한다.
+            $.ajax({
+                type : 'POST',
+                enctype : 'multipart/form-data',
+                processData : false,
+                contentType : false,
+                cache : false,
+                timeout : 600000,
+                url : '/imageupload',
+                dataType : 'JSON',
+                data : formData,
+                success : function(result) {
+                    //이 부분을 수정해서 다양한 행동을 할 수 있으며,
+                    //여기서는 데이터를 전송받았다면 순수하게 OK 만을 보내기로 하였다.
+                    //-1 = 잘못된 확장자 업로드, -2 = 용량초과, 그외 = 성공(1)
+                    if (result === -1) {
+                        alert('jpg, gif, png, bmp 확장자만 업로드 가능합니다.');
+                        // 이후 동작 ...
+                    } else if (result === -2) {
+                        alert('파일이 10MB를 초과하였습니다.');
+                        // 이후 동작 ...
+                    } else {
+                        alert('이미지 업로드 성공');
+                        // 이후 동작 ...
                     }
-                    //전송실패에대한 핸들링은 고려하지 않음
-                });
+                }
+                //전송실패에대한 핸들링은 고려하지 않음
             });
-
-            // <input type=file> 태그 기능 구현
-            // 메인 썸네일 
-            $('#mainThum input[type=file]').change(function() {
-                $("#mainThum label").css('opacity','0');
-                addPreviewMain($(this)); //preview form 추가하기
-            });
-            // 상세 썸네일
-            $('#detailThum input[type=file]').change(function() {
-                $("#detailThum label").css('opacity','0');
-                addPreviewDetail($(this)); //preview form 추가하기
-            });
-            // 상세 이미지 
-            $('#input-detail-img input[type=file]').change(function() {
-                // $("#input-detail-img label").css('left','200px');
-                addPreviewPhoto($(this)); //preview form 추가하기
-            });
-
         });
-        
-        ////////////////////////////////////////  추가한 부분 /////////////////////////////////////////////
-        $(function(){
-            // 버튼 눌렀을때 숫자 증감
-            $('#min-btn').click(function(e){
-                e.preventDefault();
-                var stat = $('#howMany').text();
-                var num = parseInt(stat,10);
-                num--;
-                if(num<=0){
-                alert('더이상 줄일수 없습니다.');
-                num =1;
-                }
-                $('#howMany').text(num);
-                console.log($("#howMany").html());
-            })
-            $('#plus-btn').click(function(e){
-                e.preventDefault();
-                var stat = $('#howMany').text();
-                var num = parseInt(stat,10);
-                num++;
-                $('#howMany').text(num);
-                console.log($("#howMany").html());
-            })
 
-            // 글자수 체크 
-            $('.placeEx').keyup(function (e){
-                var content = $(this).val();
-                $('#placeEx-counter').html(content.length+" / 45");    //글자수 실시간 카운팅
+        // <input type=file> 태그 기능 구현
+        // 메인 썸네일 
+        $('#mainThum input[type=file]').change(function() {
+            $("#mainThum label").css('opacity','0');
+            addPreviewMain($(this)); //preview form 추가하기
+        });
+        // 상세 썸네일
+        $('#detailThum input[type=file]').change(function() {
+            $("#detailThum label").css('opacity','0');
+            addPreviewDetail($(this)); //preview form 추가하기
+        });
+        // 상세 이미지 
+        $('#input-detail-img input[type=file]').change(function() {
+            // $("#input-detail-img label").css('left','200px');
+            addPreviewPhoto($(this)); //preview form 추가하기
+        });
 
-                if (content.length > 45){
-                    alert("최대 45자까지 입력 가능합니다.");
-                    $(this).val(content.substring(0, 45));
-                    $('#placeEx-counter').html("45 / 45");   
-                }
-            });
+    });
+    
+    ////////////////////////////////////////  추가한 부분 /////////////////////////////////////////////
+    $(function(){
+        // 버튼 눌렀을때 숫자 증감
+        $('#min-btn').click(function(e){
+            e.preventDefault();
+            var stat = $('#howMany').text();
+            var num = parseInt(stat,10);
+            num--;
+            if(num<=0){
+            alert('더이상 줄일수 없습니다.');
+            num =1;
+            }
+            $('#howMany').text(num);
+            console.log($("#howMany").html());
+        })
+        $('#plus-btn').click(function(e){
+            e.preventDefault();
+            var stat = $('#howMany').text();
+            var num = parseInt(stat,10);
+            num++;
+            $('#howMany').text(num);
+            console.log($("#howMany").html());
+        })
 
-            $('#addHash').click (function () {          
-                if($(".hashTxt").length<3){    
-                    if($('.hashText').val()==''){
-                        alert("태그를 입력해 주세요");
-                    }else{                    
-                        $('#hashField').append (                        
-                            '<input type="text" class="hashTxt" name="txt" readonly="readonly" value=#'+$('.hashText').val()+'><button type="button" class="delHash"><img src="../img/ico_delete.png" alt=""></button>'
-                        ); // end append        
-                        $(".hashText").val('');
-                        $('.delHash').on('click', function () { 
-                            // $(this).prevAll().remove (); // remove the textbox
-                            $(this).prev().remove();
-                            $(this).remove (); // remove the button
-                            console.log($(".hashTxt"));
-                        });
-                    }
-                }else{
+        // 글자수 체크 
+        $('.placeEx').keyup(function (e){
+            var content = $(this).val();
+            $('#placeEx-counter').html(content.length+" / 45");    //글자수 실시간 카운팅
+
+            if (content.length > 45){
+                alert("최대 45자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 45));
+                $('#placeEx-counter').html("45 / 45");   
+            }
+        });
+
+        $('#addHash').click (function () {          
+            if($(".hashTxt").length<3){    
+                if($('.hashText').val()==''){
+                    alert("태그를 입력해 주세요");
+                }else{                    
                     $('#hashField').append (                        
-                        '<div style"color:red;">최대 3개까지 등록 가능합니다.</div>'
-                    ); // end append       
-                    
-                    $('#addHash').prop("disabled",true);
-
+                        '<input type="text" class="hashTxt" name="txt" readonly="readonly" value=#'+$('.hashText').val()+'><button type="button" class="delHash"><img src="../img/ico_delete.png" alt=""></button>'
+                    ); // end append        
+                    $(".hashText").val('');
                     $('.delHash').on('click', function () { 
                         // $(this).prevAll().remove (); // remove the textbox
                         $(this).prev().remove();
                         $(this).remove (); // remove the button
                         console.log($(".hashTxt"));
-                        $('#addHash').prop("disabled",false);
-                        $('#hashField div').remove();
                     });
-                }                 
-                console.log($(".hashTxt"));
-            }); // end click
-            $("#add-question").click(function(){
-                $("#oftenQuestion strong").append(
-                    '<div class="qnaInner">'+
-                        '<div class="qnaInner1"><span class="qna-title">Q. 자주 문의되는 질문을 입력해주세요</span><textarea name="" id="" placeholder="클래스에 사용되는 재료는 국내산인가요?" class="qna-textarea" cols="30" rows="5" maxlength="100"></textarea></div>'+
-                        '<div class="qnaInner2"><span class="qna-title">A. 질문에 대한 답변을 입력해주세요</span><textarea name="" id="" placeholder="네, 롤케이크 클래스에 사용되는 재료의 원산지는 모두 국내산입니다" class="qna-textarea" cols="30" rows="5"></textarea></div>'+
-                    '</div>');
-            });
-        });
-            function setDisplay(){
-                if($("#question").is(":checked")){
-                    $("#oftenQuestion").show();
-                }else{
-                    $("#oftenQuestion").hide();
                 }
+            }else{
+                $('#hashField').append (                        
+                    '<div style"color:red;">최대 3개까지 등록 가능합니다.</div>'
+                ); // end append       
+                
+                $('#addHash').prop("disabled",true);
+
+                $('.delHash').on('click', function () { 
+                    // $(this).prevAll().remove (); // remove the textbox
+                    $(this).prev().remove();
+                    $(this).remove (); // remove the button
+                    console.log($(".hashTxt"));
+                    $('#addHash').prop("disabled",false);
+                    $('#hashField div').remove();
+                });
+            }                 
+            console.log($(".hashTxt"));
+        }); // end click
+        $("#add-question").click(function(){
+            $("#oftenQuestion strong").append(
+                '<div class="qnaInner">'+
+                    '<div class="qnaInner1"><span class="qna-title">Q. 자주 문의되는 질문을 입력해주세요</span><textarea name="" id="" placeholder="클래스에 사용되는 재료는 국내산인가요?" class="qna-textarea" cols="30" rows="5" maxlength="100"></textarea></div>'+
+                    '<div class="qnaInner2"><span class="qna-title">A. 질문에 대한 답변을 입력해주세요</span><textarea name="" id="" placeholder="네, 롤케이크 클래스에 사용되는 재료의 원산지는 모두 국내산입니다" class="qna-textarea" cols="30" rows="5"></textarea></div>'+
+                '</div>'
+            );
+            $("#add-question").css("display","none");
+        });
+    });
+        function setDisplay(){
+            if($("#question").is(":checked")){
+                $("#oftenQuestion").show();
+            }else{
+                $("#oftenQuestion").hide();
             }
+        }
+        ///////////////////////////////////////////////////////////////////////////////////////
+        
             ///////////////////////////////////////////////////////////////////////////////////////
             
     </script>

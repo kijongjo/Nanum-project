@@ -87,7 +87,6 @@
                 <input type="text" name="mEmail" id="" placeholder="아이디">
             </div>
             <div><!-- 비밀번호 -->
-
                 <input type="password" name="mPwd" id="" placeholder="비밀번호">
             </div>
             <div><!-- 비밀번호 확인 -->
