@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- script를 이용해 li에 Name을 줄 수 있는 모듈입니다. -->
+<!-- Form 안에서 지정된 요소에 Name을 줘서 백단으로 보내고싶을때 사용합니다. -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #Specialty ul {
+            display: grid;
+            grid-template-columns: repeat(8, 95px);
+            grid-gap: 10px;
+            list-style: none;
+        }
+        
+        #Specialty ul li {
+            border-radius: 40px;
+            height: 41px;
+            text-align: center;
+            line-height: 41px;
+            color: #b7b7b7;
+            background-color: white;
+        }
+        
+        #Specialty ul .On-Specialty {
+            color: white;
+            background-color: #8E0032;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="Specialty">
+        <ul>
+            <li>커피</li>
+            <li>음료</li>
+            <li>티</li>
+            <li>피자</li>
+            <li>파스타</li>
+            <li>베이킹</li>
+            <li>디저트</li>
+            <li>도시락</li>
+            <li>샌드위치</li>
+            <li>반찬</li>
+            <li>웰빙</li>
+            <li>오가닉</li>
+            <li>발효</li>
+            <li>약선</li>
+            <li>세계요리</li>
+            <li>중식</li>
+            <li>일식</li>
+            <li>퓨전</li>
+            <li>한식</li>
+            <li>손님초대</li>
+            <li>데코레이션</li>
+            <li>스타일링</li>
+            <li>설명회</li>
+        </ul>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        /* 전문분야 주기. name 지정 비지정으로 결정함 */
+        $("#Specialty>ul>li").click(function() {
+                var indexNo = $(this).index();
+                //이름이 있으면 이름을 지움
+                if ($(this).is('[name]')) {
+                    $(this).removeAttr("name");
+                    $(this).css({
+                        'background-color': '#FFFFFF',
+                        'color': '#b7b7b7'
+                    });
+                    //이름이 없으면 이름을 부여함
+                } else {
+                    $(this).attr({
+                        name: "tExpertList"
+                    });
+                    $(this).css({
+                        'background-color': '#8E0032',
+                        'color': '#FFFFFF'
+                    });
+
+                } // else end
+            }) // click end
+    </script>
+</body>
+
+</html>
