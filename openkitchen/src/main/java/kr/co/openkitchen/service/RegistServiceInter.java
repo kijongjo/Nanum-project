@@ -14,6 +14,23 @@ public interface RegistServiceInter {
 	public String makeMS(String fileName,int tNo);
 	//generic type으로 줘서 teacherDTO,spaceDTO,classDTO
 	public <T> void insertDTO(T dto);
-	public String makeBK(String fileName,int tNo);
+	public default String makeBK(String fileName,int no) {
+		String resourceName = "";
+		if (fileName.equals("proRegImg")) {
+		
+			resourceName = "/resources/img/regimg/" + no + "reg.jpg";
+
+		} else {
+		
+			resourceName = "/resources/img/bankimg/" + no + "bank.jpg";
+
+		}
+		return resourceName;
+		
+	};
+	public default <T> void applyDTO(T dto) {
+        //각자 imple에서  dao를 이용해 기능 구현
+		
+	};
     
 }

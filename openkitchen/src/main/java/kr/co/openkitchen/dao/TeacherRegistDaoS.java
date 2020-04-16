@@ -8,20 +8,18 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.Setter;
 
 @Repository
-public class TeacherRegistDAO implements RegisterDaoInter {
-
+public class TeacherRegistDaoS implements RegisterDaoInter {
 	@Setter(onMethod = @__({ @Autowired }))
 	SqlSession ss;
-
-    @Transactional
+ 
+	@Transactional
 	@Override
 	public <T> void insertDTO(T dto) {
-		
-    	System.out.println(dto.toString());
-		ss.insert("kr.co.openkitchen.teacherRegist.insertDTO", dto);
-	    ss.insert("kr.co.openkitchen.teacherRegist.insertDtoP",dto);	
-	 }
-    
-	
+		System.out.println("dao의insertDTO :    "+dto.toString());
 
+		ss.insert("kr.co.openkitchen.teacherRegist.insertDtoH", dto);
+		ss.insert("kr.co.openkitchen.teacherRegist.insertDtoS", dto);
+
+	}
+	 
 }
