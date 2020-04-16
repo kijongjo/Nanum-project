@@ -172,7 +172,7 @@
 	   <option value="광주">광주</option>
 	   <option value="대구">대구</option>
 	   <option value="부산">부산</option>
-	   <option value="새마을금고">새마을금고</option>
+	   <option value="새마을금고">새마을  금고</option>
 	  </select>
 	</div>
 
@@ -200,14 +200,13 @@
 	<!-- submit -->
 	<div id="btn_submit">
 		<div>
-			<input type="button" value="임시저장" id="go"> <a
-				href="teacherSpace?no=2"><input type="button" value="다음"></a>
+			<input type="button" value="임시저장" id="go"> <input type="submit" value="다음" id="nextGo">
 		</div>
 	</div>
  
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
   <!--회원번호를 받아서 넘기고 난 후 선생님 번호를 생성해 저장함.  -->
-	<input type="hidden" name="mNo" value="999" />
+	<!-- <input type="hidden" name="mNo" value="999" /> -->
 
 
 </form>

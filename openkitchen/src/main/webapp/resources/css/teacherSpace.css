@@ -425,7 +425,7 @@
 /* 9장 style */
 #teacherSpace .inp-wrap:nth-child(7) {
 	width: 905px;
-	height: 257px;
+	height: 273px;
 	overflow-x: auto;
 	overflow-y: hidden;
 }
@@ -821,10 +821,10 @@
 
 #teacherSpace #btn-form-wrap {
 	height: 64px;
-	margin: 100px 0px 0px;
+	margin: 252px 0px 0px;
 }
 
-#teacherSpace #btn-form-wrap input[type="submit"] {
+#teacherSpace #btn-form-wrap #complete  {
 	float: right;
 	font-size: 18px;
 	height: 64px;
@@ -834,13 +834,13 @@
 	cursor: pointer;
 }
 
-#teacherSpace #btn-form-wrap input[type="submit"]:nth-child(1) {
+#teacherSpace #btn-form-wrap #complete {
 	background: #8e0032;
 	color: white;
 	margin-left: 12px;
 }
 
-#teacherSpace #btn-form-wrap input[type="submit"]:nth-child(2) {
+#teacherSpace #btn-form-wrap input[type="button"]:nth-child(2) {
 	background: white;
 	color: #2e2e2e;
 }
@@ -1006,6 +1006,9 @@
 	height: 15px;
 	padding: 0;
 	margin: 0;
+	position: relative;
+    bottom: 2px;
+	
 }
 
 #hashField {
@@ -1040,6 +1043,7 @@
 	position: relative;
 	right: 10px;
 	bottom: 20px;
+	border-radius: 51px
 }
 
 #teacherSpace .qnaInner {
@@ -1050,6 +1054,7 @@
 	right: 28px;
 	top: 20px;
 	background-color: white;
+	border-bottom: 1px solid #dad0d0;
 }
 
 #teacherSpace .qnaInner1 {
@@ -1068,6 +1073,7 @@
 	font-size: 14px;
 	color: #838383;
 	display: inline-block;
+	
 }
 
 #teacherSpace .qna-textarea {

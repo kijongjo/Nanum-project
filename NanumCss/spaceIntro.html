@@ -920,6 +920,7 @@
             height: 43px;
             display: block;
             padding-left: 10px;
+            background-color: #5b5b5b;
         }
         #oftenQuestion button{
             display: block;
@@ -930,8 +931,11 @@
             float: right;   
             position: relative;
             /* top: 20px; */
+            background-color: #5b5b5b;
             right: 10px;
             bottom: 20px;
+            font-size: 45px;
+            color: white;
         }
         .qnaInner{
             width: 905px;
@@ -965,6 +969,7 @@
             padding: 16px 20px;
             border: none;
             font-weight: bold;
+            resize: none;
         }   
         .qna-textarea:focus{
             outline: none;
@@ -1296,7 +1301,9 @@
                     '<div class="qnaInner">'+
                         '<div class="qnaInner1"><span class="qna-title">Q. 자주 문의되는 질문을 입력해주세요</span><textarea name="" id="" placeholder="클래스에 사용되는 재료는 국내산인가요?" class="qna-textarea" cols="30" rows="5" maxlength="100"></textarea></div>'+
                         '<div class="qnaInner2"><span class="qna-title">A. 질문에 대한 답변을 입력해주세요</span><textarea name="" id="" placeholder="네, 롤케이크 클래스에 사용되는 재료의 원산지는 모두 국내산입니다" class="qna-textarea" cols="30" rows="5"></textarea></div>'+
-                    '</div>');
+                    '</div>'
+                );
+                $("#add-question").css("display","none");
             });
         });
             function setDisplay(){
@@ -1464,7 +1471,7 @@
                 </div>
                 <!-- 수정한 부분  -->
                 <div id="oftenQuestion" style="display: none;">
-                        <strong>질문<button type="button" id="add-question"><img src="" alt=""></button></strong>
+                        <strong>질문<button type="button" id="add-question">+</button></strong>
                 </div>
                 <!-- //////////////////////////////////////////////////////////// -->
 

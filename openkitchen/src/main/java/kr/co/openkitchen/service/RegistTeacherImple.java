@@ -2,53 +2,60 @@ package kr.co.openkitchen.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.openkitchen.dto.TeacherRegistDTO;
+import kr.co.openkitchen.dao.RegisterDaoInter;
+import lombok.Setter;
 
 //선생님 등록에 대한 service 
+
 @Service
 public class RegistTeacherImple implements RegistServiceInter {
 	@Autowired
 	ServletContext servletContext;
+
+	@Resource(name="teacherRegistDAO")
+	RegisterDaoInter dao;
+
 	// 이미지를 받아서 이름을 줌.
 	@Override
-	public String acceptImg(String fileName,int count,int tNo) {
-		
+	public String acceptImg(String fileName, int count, int tNo) {
+
 		String filePath;
 		String resourceName;
-		String resourcesPath ;
-		
+		String resourcesPath;
+
 		if (fileName.equals("DS-TYPE1")) {
 			resourceName = "T" + tNo + "-DS-0" + count;
 			resourcesPath = servletContext.getRealPath("/resources/img/teacherimg");
 			filePath = resourcesPath + "/" + resourceName + ".jpg";
-			System.out.println("filePath  :  "+filePath);
+			System.out.println("filePath  :  " + filePath);
 		} else if (fileName.equals("MS")) {
 			resourceName = "T" + tNo + "-MS-01";
 			resourcesPath = servletContext.getRealPath("/resources/img/teacherimg");
 			filePath = resourcesPath + "/" + resourceName + ".jpg";
-			System.out.println("filePath  :  "+filePath);
-		} else if(fileName.equals("proRegImg")) {
-			resourceName =  tNo + "reg.jpg";
+			System.out.println("filePath  :  " + filePath);
+		} else if (fileName.equals("proRegImg")) {
+			resourceName = tNo + "reg.jpg";
 			resourcesPath = servletContext.getRealPath("/resources/img/regimg");
 			filePath = resourcesPath + "/" + resourceName + ".jpg";
-			System.out.println("filePath  :  "+filePath);
-		} else if(fileName.equals("proAccountIng")) {
-			resourceName =  tNo + "bank.jpg";
+			System.out.println("filePath  :  " + filePath);
+		} else if (fileName.equals("proAccountIng")) {
+			resourceName = tNo + "bank.jpg";
 			resourcesPath = servletContext.getRealPath("/resources/img/bankimg");
 			filePath = resourcesPath + "/" + resourceName + ".jpg";
-			System.out.println("filePath  :  "+filePath);
-		}else {
+			System.out.println("filePath  :  " + filePath);
+		} else {
 			return "";
 		}
-
 
 		return filePath;
 
@@ -57,7 +64,7 @@ public class RegistTeacherImple implements RegistServiceInter {
 	@Override
 	public void makeFile(String filePath, MultipartFile mFile) {
 		// File 경로를 넣어주고 변형시킨 파일을 경로에 넣어준다.
-
+       System.out.println("경로"+filePath);
 		File file = new File(filePath);
 		if (mFile.getSize() != 0) {
 			if (!file.exists()) {
@@ -78,55 +85,43 @@ public class RegistTeacherImple implements RegistServiceInter {
 	}// makeFile end
 
 	@Override
-	public String makeDS(String fileName,int count,int tNo) {
+	public String makeDS(String fileName, int count, int tNo) {
 		System.out.println(fileName);
 		String resourceName;
 		if (fileName.equals("DS-TYPE1")) {
-			resourceName ="/resources/img/teacherImg/T" + tNo + "-DS-0" + count;
-			
+			resourceName = "/resources/img/teacherImg/T" + tNo + "-DS-0" + count;
+
 		} else if (fileName.equals("MS")) {
-			 return "MS";
-	
+			return "MS";
+
 		} else {
 			resourceName = "/resources/img/teacherImg/T" + tNo + "-DS-0" + count;
-                  
+
 		}
-      System.out.println("makeDS" + resourceName);
+		System.out.println("makeDS" + resourceName);
 		return resourceName;
 	}
 
 	@Override
-	public String makeMS(String fileName,int tNo) {
+	public String makeMS(String fileName, int tNo) {
 		// TODO Auto-generated method stub
-		return "/resources/img/teacherImg/T"+tNo+"-MS-01";
+		return "/resources/img/teacherImg/T" + tNo + "-MS-01";
 	}
-	
-	
 
-@Override
-public <T> void insertDTO(Map<String, T> map) {
-
-	  T dto=map.get("dto");
-	  
-	  System.out.println(dto.toString());
 	
-	
-}
-
-@Override
-public String makeBK(String fileName,int tNo) {
-	System.out.println("하이0");
-	String resourceName="";
-	if(fileName.equals("proRegImg")) {
-		System.out.println("하이1");
-		resourceName="/resources/img/regimg/"+tNo+"reg.jpg";
+	@Override
+	public <T> void insertDTO(T dto) {
 		
-	}else {
-		System.out.println("하이2");
-		 resourceName="/resources/img/bankimg/"+tNo+"bank.jpg";
-		  
+		System.out.println(dto.toString());
+		dao.insertDTO(dto);
 	}
-	return resourceName ;
-}
+
+	 @Override
+	public <T> void applyDTO(T dto) {
+		dao.insertDTO(dto);
+	}
+   
+
+
 
 }
