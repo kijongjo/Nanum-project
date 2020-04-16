@@ -234,7 +234,7 @@ $(document).ready(function() {
 	<section>
 		<div id="item01">
 			<div class="itemTitle">
-				<!-- <h2>남택수님,</h2> -->
+				<h2>${memberDTO.mName}</h2>
 				<h2>어떤 클래스를 찾으시나요?</h2>
 			</div>
 			<ul>

@@ -4,6 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="kr.co.openkitchen.dto.MemberDTO" >
+	<select id="selectUserData" resultType="mbdto">
+		select *
+		from member
+		where M_EMAIL = #{mEmail}
+		
+	</select>
+	
+	
+	
+	
 	<insert id="signUpInsert" parameterType="mbdto" >
 		INSERT INTO member (
 			M_NO,

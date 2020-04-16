@@ -15,6 +15,7 @@ public class MemberDao implements MemberDaoInter{
 	@Setter(onMethod=@__({@Autowired}))
 	SqlSession ss;
 	
+	
 	@Override
 	public ArrayList<MemberDTO> selectAll() {
 		
@@ -45,6 +46,15 @@ public class MemberDao implements MemberDaoInter{
 	@Override
 	public void delete() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public MemberDTO selectUserData(String mEmail) {
+		MemberDTO dto = new MemberDTO();
+		dto.setmEmail(mEmail);
+		
+		return ss.selectOne("kr.co.openkitchen.dto.MemberDTO.selectUserData",mEmail);
 		
 	}
 
