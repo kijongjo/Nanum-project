@@ -53,7 +53,7 @@
 								src="<c:url value='/resources/img/icon/ico-people-num.png'/>"
 								alt="">
 						</button>
-						<span id="howMany">1</span>
+						<span id="capacity" name="capacity">1</span>
 						<button type="button" id="plus-btn">
 							<img
 								src="<c:url value='/resources/img/icon/ico-people-num.png'/>"
@@ -74,7 +74,7 @@
 					type="text" name="sShortintro" id="" placeholder="매력적인 설명을 작성해주세요">
 			</div>
 			<div class="inp-wrap">
-				<span>해시태그</span> <span><input type="text" name="sHashtag"
+				<span>해시태그</span> <span><input type="text" name=""
 					class="hashText" id="" placeholder="#태그를 입력해 주세요" maxlength="6">
 				<button type="button" id="addHash">
 						<img src="<c:url value='/resources/img/icon/ico-file_add.png'/>"
@@ -149,50 +149,44 @@
 
 			<!-- 편의 시설 안전시설 선택란 -->
 			<div class="inp-wrap">
-				<span>편의시설 <small>*중복 선택 가능</small></span> <span> <input
-					type="checkbox" name="" id="comfort1"><label for="comfort1">화장실</label>
-				</span> <span> <input type="checkbox" name="" id="comfort2"><label
-					for="comfort2">환풍기</label>
-				</span> <span> <input type="checkbox" name="" id="comfort3"><label
-					for="comfort3">전등</label>
-				</span> <span> <input type="checkbox" name="" id="comfort4"><label
-					for="comfort4">주차가능</label>
-				</span>
+				<span>편의시설
+				<small>*중복 선택 가능</small></span> 
+				<span> <input type="checkbox" class="convenient" id="comfort1" value="화장실"><label for="comfort1">화장실</label></span> 
+				<span> <input type="checkbox" class="convenient" id="comfort2" value="환풍기"><label for="comfort2">환풍기</label></span> 
+				<span> <input type="checkbox" class="convenient" id="comfort3" value="전등"><label for="comfort3">전등</label></span>
+				<span> <input type="checkbox" class="convenient" id="comfort4" value="주차가능"><label for="comfort4">주차가능</label></span>
 			</div>
+			
 			<div class="inp-wrap">
-				<span>안전시설 <small>*중복 선택 가능</small></span> <span> <input
-					type="checkbox" name="sConvenient" id="safety1"><label for="safety1">소화기</label>
-				</span> <span> <input type="checkbox" name="sConvenient" id="safety2"><label
-					for="safety2">화재감지기</label>
-				</span> <span> <input type="checkbox" name="sConvenient" id="safety3"><label
-					for="safety3">안전카드</label>
-				</span> <span> <input type="checkbox" name="sConvenient" id="safety4"><label
-					for="safety4">구급상자</label>
-				</span>
+				<span>안전시설 <small>*중복 선택 가능</small></span> 
+				<span> <input type="checkbox" class="safety" id="safety1" value="소화기"><label for="safety1">소화기</label></span>
+				<span> <input type="checkbox" class="safety" id="safety2" value="화재감지기"><label for="safety2">화재감지기</label></span>
+				<span> <input type="checkbox" class="safety" id="safety3" value="안전카드"><label for="safety3">안전카드</label></span> 
+				<span> <input type="checkbox" class="safety" id="safety4" value="구급상자"><label for="safety4">구급상자</label></span>
 			</div>
 			<!-- 편의 시설 안전시설 선택란 끝-->
 
 			<!-- 자주 묻는 질문 선택란 -->
 			<div class="inp-wrap">
 				<span>자주 묻는 질문</span> <span> <input type="radio"
-					name="formal" id="question"><label for="question">자주
+					name="formal" id="question"  onchange="setDisplay()"><label for="question">자주
 						묻는 질문을 등록합니다.</label>
 				</span> <span> <input type="radio" name="formal" id="NoQuestion"><label
-					for="NoQuestion">자주 묻는 질문을 등록하지 않습니다.</label>
+					for="NoQuestion" onchange="setDisplay()">자주 묻는 질문을 등록하지 않습니다.</label>
 				</span>
 			</div>
          
 			<div id="oftenQuestion" style="display: none;">
 				<strong>질문
 					<button type="button" id="add-question">
-						<img src="" alt="">
+						+
 					</button>
 				</strong>
 			</div>
 			<!-- 자주 묻는 질문 선택란 끝 -->
 
 			<div id="btn-form-wrap">
-				<input type="submit" value="다음"> <input type="button"
+				<input type="button" value="다음" id="complete"> <input type="button"
 					value="임시저장" id="go">
 			</div>
 		</form>

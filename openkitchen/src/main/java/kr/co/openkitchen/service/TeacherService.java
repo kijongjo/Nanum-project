@@ -11,7 +11,7 @@ import kr.co.openkitchen.dto.TeacherIndexDTO;
 import lombok.Setter;
 
 @Service
-public class TeacherSerevice implements TserviceInter {
+public class TeacherService implements TserviceInter {
 	// Dao의 구현객체인 OracleDAO를 사용하기 위한 자동 의존 주입
 		@Setter(onMethod = @__({@Autowired}))
 		TDaoInter dao;

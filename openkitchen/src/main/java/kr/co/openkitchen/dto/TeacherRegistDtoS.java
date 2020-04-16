@@ -17,7 +17,7 @@ String sTema;
 int sCapacity;
 String sName;
 String sShortintro;
-String sMainsumanil;
+String sMainsumnail;
 String sDetailsumnail;
 String sReference;
 String sLoc;
@@ -76,11 +76,11 @@ public String getsShortintro() {
 public void setsShortintro(String sShortintro) {
 	this.sShortintro = sShortintro;
 }
-public String getsMainsumanil() {
-	return sMainsumanil;
+public String getsMainsumnail() {
+	return sMainsumnail;
 }
-public void setsMainsumanil(String sMainsumanil) {
-	this.sMainsumanil = sMainsumanil;
+public void setsMainsumnail(String sMainsumanil) {
+	this.sMainsumnail = sMainsumanil;
 }
 public String getsDetailsumnail() {
 	return sDetailsumnail;

@@ -332,8 +332,9 @@
                 canvas.getContext('2d').drawImage(img, 0, 0, width, height);
 
                 // canvas의 dataurl를 blob(file)화 하는 과정
-                var dataURI = canvas.toDataURL("image/jpeg"); // png => jpg
+                var dataURI = canvas.toDataURL("image/jpeg"); // png => jpg//
 																// 등으로 변환 가능
+																
 
                 // !!!!!byteType과 mimeType으로 변환하기 . 개념이 조금 복잡해서 공부가 필요함
                 var byteString = atob(dataURI.split(',')[1]);
@@ -375,17 +376,22 @@
         
         /* form 가공해서 formdata에 붙여주는 함수 */
         function appendForm(formData){
-        	 // form을 json들의 배열 조합으로 바꿈
+        	// form을 json들의 배열 조합으로 바꿈
             var form = $('#uploadForm').serializeArray();
             // !!!일단 파일은 serialization이 안되서 사업자사진, 통장 사진은 일일이 보내주기로 함. 나중에 blob에
 			// 넣어도 될듯
             var proAccounting=$('input[name="proAccounting"]')[0].files;
             var regImg=$('input[name="proRegimg"]')[0].files;
             var proType=$('input[name="business"]:checked').val();
-             
+            // undefined 상태값
+            if(proAccounting[0] !=undefined)
             formData.append("proAccountIng",proAccounting[0]);
+            
+            if(regImg[0] != undefined)
             formData.append("proRegImg",regImg[0]);
-            formData.append("tPerstatus","임시");
+            
+            
+            
             if(!isNaN(proType)){
             formData.append("proType",parseInt(proType));
            
@@ -415,7 +421,7 @@
             /* 끝자리 , 자른 후에 넣어준다. */
             formData.append("tExpert",tExpert.slice(0,-1));
             }
-        }
+        }// appendForm 끝
         
         
         /* window 실행시 시작됨 */
@@ -430,7 +436,7 @@
             	if(alreadySubmit =="no"){
             	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
             	appendForm(formData);
-               
+            	formData.append("tPerstatus","임시")
                 $.ajax({
                     type: 'POST',
                     enctype: 'multipart/form-data',
@@ -462,14 +468,31 @@
             		 alert("같은 내용을 두번 보낼 수 없습니다.");
             		
             	}// aleadySubmit "yes" end
-            	
+            	formData=new FormData();
             }); // o n click end
             // 임시 저장을 클릭하게 되면 ajax를 통해 서버로 보내짐
+            
             $('#nextGo').on('click', function() {
             	if(alreadySubmit =="no"){
             	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
             	appendForm(formData);
-               
+            	formData.append("tPerstatus","신청")
+            	// form에 전부 들어가 있는지 확인한다.
+            	var formsize=0;
+            	
+            	for (var value of formData.values()) {
+            		   console.log("formData.values"+value); 
+            		   formsize++;
+            		               		}
+            	console.log(formsize);
+            	// 16가지 요소가 전부 들어있지 않으면 다음 단계로 못넘기도록 설정한다.
+            	if(formsize <19 ||formData.get('proType')==0 ){
+            		alert("신청서를 마저 작성해 주세요");
+            		formData= new FormData();
+            		formsize=0;
+            	
+            	}else{
+            	
                 $.ajax({
                     type: 'POST',
                     enctype: 'multipart/form-data',
@@ -482,15 +505,15 @@
 
                     success: function(result) {
                     	$(location).attr('href',"teacherSpace?no=2");
-                        }//success function
+                        }// success function
                 
                         // 전송실패에대한 핸들링은 고려하지 않음
                 }); // ajax end
-            	}else if(alreadySubmit == "yes"){
-            		 alert("같은 내용을 두번 보낼 수 없습니다.");
-            		
-            	}// aleadySubmit "yes" end
-            	
+            	}// null값 없는지 체크 end
+            	 }else if(alreadySubmit == "yes"){
+            		 alert("같은 내용을 두번 보낼 수 없습니다."); 		
+            	 }// aleadySubmit "yes" end
+            	formData= new FormData();
             }); // o n click end
 
 

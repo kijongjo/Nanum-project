@@ -505,7 +505,7 @@
                 </div>
                 <!-- 수정한 부분  -->
                 <div id="oftenQuestion" style="display: none;">
-                        <strong>질문<button type="button" id="add-question"><img src="" alt=""></button></strong>
+                        <strong>질문<button type="button" id="add-question">+</button></strong>
                 </div>
                 <!-- //////////////////////////////////////////////////////////// -->
 

@@ -11,7 +11,7 @@
 
 		WHEN MATCHED THEN
 		UPDATE SET
-		T_PERSTATUS = '임시',
+		
 		T_MAINSUMNAIL=#{tMainsumnail , jdbcType=VARCHAR},
 		T_DETAILSUMNAIL=#{tDetailsumnail , jdbcType=VARCHAR},
 		T_HAVENICKNAME=#{tHavenickname , jdbcType=VARCHAR},
@@ -21,8 +21,9 @@
 		T_AREA=#{tArea , jdbcType=VARCHAR},
 		T_LONGINTRO=#{tLongintro ,jdbcType=CLOB},
 		T_REGDATE=TO_DATE(SYSDATE,'YY/MM/DD'),
-		T_EXPERT=#{tExpert , jdbcType=VARCHAR}
-
+		T_EXPERT=#{tExpert , jdbcType=VARCHAR},
+        T_PERSTATUS = #{tPerstatus,jdbcType=VARCHAR}
+		
 		WHEN NOT MATCHED THEN
 
 		INSERT(
@@ -41,7 +42,7 @@
 		)
 		VALUES(
 		#{tNo,jdbcType=NUMERIC},
-		'임시',
+		#{tPerstatus,jdbcType=VARCHAR},
 		#{tMainsumnail , jdbcType=VARCHAR},
 		#{tDetailsumnail ,jdbcType=VARCHAR},
 		#{tHavenickname , jdbcType=VARCHAR},
@@ -103,5 +104,104 @@
 		#{mNo ,jdbcType=NUMERIC}
 		)
 	</update>
+	
+	<update id="insertDtoH" parameterType="trsdto">
 
+		MERGE INTO HOST H
+		USING (
+		  SELECT M_GENDER
+		  FROM MEMBERINFO 
+		  WHERE M_NO= #{hNo}
+		) M
+		ON (H.H_NO = ${hNo})
+                                     
+		WHEN MATCHED THEN
+		
+		UPDATE SET
+		
+		H.H_GENDER=M.M_GENDER
+		
+	
+		WHEN NOT MATCHED THEN
+
+		INSERT(
+		H_NO,
+		H_GENDER
+		)
+		
+		VALUES(
+		#{hNo},M.M_GENDER
+        )
+	</update>
+	
+    <update id="insertDtoS" parameterType="trsdto">
+      <selectKey keyProperty="sNo" resultType="int" order="BEFORE">
+	      SELECT SPACE_SEQ.NEXTVAL FROM DUAL
+	   </selectKey>
+		MERGE INTO SPACE S
+		USING ( SELECT M_NAME
+		         FROM MEMBERINFO 
+		         WHERE M_NO= #{hNo}) M
+		ON (S.H_NO = ${hNo})
+
+		WHEN MATCHED THEN
+		UPDATE SET
+		S_PERSTATUS=#{sPerstatus,jdbcType=VARCHAR},
+		S_MAINSUMNAIL=#{sMainsumnail , jdbcType=VARCHAR},
+		S_DETAILSUMNAIL=#{sDetailsumnail , jdbcType=VARCHAR},
+		S_HASHTAG=#{sHashtag , jdbcType=VARCHAR},
+		S_CONVENIENT=#{sConvenient ,jdbcType=VARCHAR},
+		S_SAFETY=#{sSafety , jdbcType=VARCHAR},
+		S_LOC=#{sLoc , jdbcType=VARCHAR},
+		S_LONGINTRO=#{sLongintro ,jdbcType=CLOB},
+		S_REGDATE=TO_DATE(SYSDATE,'YY/MM/DD'),
+		S_REFERENCE=#{sReference , jdbcType=CLOB},
+		S_SHORTINTRO=#{sShortintro,jdbcType=VARCHAR},
+		S_NAME=M.M_NAME,
+		S_CAPACITY=#{sCapacity, jdbcType=NUMERIC},
+		S_TEMA=#{sTema ,jdbcType=VARCHAR}
+	
+		WHEN NOT MATCHED THEN
+		INSERT (
+		
+		S_PERSTATUS, 
+		S_TYPE,
+		S_MAINSUMNAIL,
+		S_DETAILSUMNAIL,
+		S_HASHTAG,
+		S_CONVENIENT,
+		S_SAFETY,
+		S_LOC,
+		S_LONGINTRO,
+		S_REGDATE,
+		S_REFERENCE,
+		S_SHORTINTRO,
+		S_CAPACITY,
+		S_TEMA,
+		S_NO,
+		S_NAME,
+		H_NO
+		)
+		
+		VALUES(
+		#{sPerstatus,jdbcType=VARCHAR},
+		'자가',
+		#{sMainsumnail , jdbcType=VARCHAR},
+		#{sDetailsumnail , jdbcType=VARCHAR},
+		#{sHashtag , jdbcType=VARCHAR},
+		#{sConvenient ,jdbcType=VARCHAR},
+		#{sSafety , jdbcType=VARCHAR},
+		#{sLoc , jdbcType=VARCHAR},
+		#{sLongintro ,jdbcType=CLOB},
+		TO_DATE(SYSDATE,'YY/MM/DD'),
+		#{sReference , jdbcType=CLOB},
+		#{sShortintro,jdbcType=VARCHAR},
+		#{sCapacity, jdbcType=NUMERIC},
+		#{sTema ,jdbcType=VARCHAR},
+		#{sNo, jdbcType=NUMERIC},
+		M.M_NAME,
+		#{hNo,jdbcType=NUMERIC}
+		)
+	</update>
+	
 </mapper>

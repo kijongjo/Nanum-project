@@ -3,24 +3,26 @@ package kr.co.openkitchen.service;
 import java.io.File;
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.openkitchen.dao.RegisterDaoInter;
-import kr.co.openkitchen.dto.TeacherRegistDTO;
 import lombok.Setter;
 
 //선생님 등록에 대한 service 
+
 @Service
 public class RegistTeacherImple implements RegistServiceInter {
 	@Autowired
 	ServletContext servletContext;
 
-	@Setter(onMethod = @__({ @Autowired }))
+	@Resource(name="teacherRegistDAO")
 	RegisterDaoInter dao;
 
 	// 이미지를 받아서 이름을 줌.
@@ -62,7 +64,7 @@ public class RegistTeacherImple implements RegistServiceInter {
 	@Override
 	public void makeFile(String filePath, MultipartFile mFile) {
 		// File 경로를 넣어주고 변형시킨 파일을 경로에 넣어준다.
-
+       System.out.println("경로"+filePath);
 		File file = new File(filePath);
 		if (mFile.getSize() != 0) {
 			if (!file.exists()) {
@@ -114,21 +116,11 @@ public class RegistTeacherImple implements RegistServiceInter {
 		dao.insertDTO(dto);
 	}
 
-	@Override
-	public String makeBK(String fileName, int tNo) {
-		System.out.println("하이0");
-		String resourceName = "";
-		if (fileName.equals("proRegImg")) {
-			System.out.println("하이1");
-			resourceName = "/resources/img/regimg/" + tNo + "reg.jpg";
-
-		} else {
-			System.out.println("하이2");
-			resourceName = "/resources/img/bankimg/" + tNo + "bank.jpg";
-
-		}
-		return resourceName;
-	}// makeBK END
+	 @Override
+	public <T> void applyDTO(T dto) {
+		dao.insertDTO(dto);
+	}
+   
 
 
 
