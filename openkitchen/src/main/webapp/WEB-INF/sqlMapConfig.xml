@@ -26,6 +26,6 @@
   		<typeAlias type="kr.co.openkitchen.dto.MemberDTO" alias="mbdto" />
   		<typeAlias type="kr.co.openkitchen.dto.DetailSpaceDTO" alias="dsdto" />
   		<typeAlias type="kr.co.openkitchen.dto.BestClassDTO" alias="bcdto" />
-
+		
   	</typeAliases>
   </configuration>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.dao.MemberDaoInter;
+import kr.co.openkitchen.dto.MemberDTO;
 import lombok.Setter;
 
 @Service
@@ -17,5 +18,10 @@ public class MemberServiceImple implements MemberServiceInter{
 	public void signUp(String mEmail, String mPwd, String mName) {
 		dao.insertOne(mEmail, mPwd, mName);
 	}
+	
 
+	@Override
+	public MemberDTO selectUserData(String mEmail) {
+		return dao.selectUserData(mEmail);
+	}
 }

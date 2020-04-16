@@ -1,17 +1,23 @@
 package kr.co.openkitchen.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.service.MserviceInter;
 import lombok.Setter;
 
@@ -26,7 +32,19 @@ public class MainController {
 	ServletContext sc;
 
 	@RequestMapping(value = { "/", "index" })
-	public String home(Model model) {
+	public String home(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		//세션의 유저 값 가져오기
+		if(session==null) {
+			return "index";
+					
+		}else {
+		
+		System.out.println("session?:"+session.getAttribute("openkitchen"));
+			MemberDTO memberdto = (MemberDTO)session.getAttribute("openkitchen");
+			System.out.println(memberdto.getmName());
+//			System.out.println(memberdto.toString());
+		
 		
 	
 
@@ -52,6 +70,7 @@ public class MainController {
 		model.addAttribute("popularClass", si.readPopularC(map));
 
 		return "index";
+		}
 	}
 
 	@GetMapping("/questions")

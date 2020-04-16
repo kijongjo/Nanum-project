@@ -33,7 +33,7 @@
 	<!--로그인 페이지 설정 -->
 		<security:form-login 
 				login-page="/login" 
-				authentication-success-forward-url="/"
+				authentication-success-forward-url="/loginOk"
 				username-parameter="email"
 				password-parameter="memberPassword"
 				/>
