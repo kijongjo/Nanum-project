@@ -50,6 +50,50 @@
 			$(".detailCLoc").css({'pointer-events':'none'});
 		
 		}
+		
+		var schNo = new Array();
+		var bgC = 0;
+		var cnt = 0;
+		var classSch = $(".classSch");
+		classSch.on("click", function () {
+			cnt++;
+			console.log(cnt);
+			if(cnt == 1) {
+				schNo[0] = $(this).val();
+				$(this).css("backgroundColor", "#8E0032");
+				$(this).children("span").css("color", "white");
+			} else if (cnt == 2) {
+				schNo[1] = $(this).val();
+				   if(schNo[0]==schNo[1]) {
+					$(this).css("backgroundColor", "white");
+					$(this).children("span").css("color", "#959595");
+					cnt = 0;
+				   } else if(schNo[0]!=schNo[1]) {
+					   schNo[0] = $(this).val();
+					   classSch.css("backgroundColor", "white");
+					   classSch.children("span").css("color", "#959595")
+					   $(this).css("backgroundColor", "#8E0032");
+					   $(this).children("span").css("color", "white");
+					   cnt = 1;
+				   }
+			}
+			
+			console.log(schNo);
+			
+			
+		});
+
+		var btnPayment = $(".btn-payment");
+		btnPayment.on("click", function () {
+			if(schNo == 0) {
+				alert("클래스 일정을 선택해 주세요.");	
+			} else {
+				$(location).attr("href", "classPayment?no="+schNo);
+			}
+		});
+		
+		
+		
 	});
 	
 </script>
@@ -396,7 +440,7 @@
 						<ul class="timeList">
 							<c:forEach var="dcsdto" items="${detailCSche}">
 							<!-- 날짜를 format 할때 양식의 대소문자를 잘 지켜줘야 된다.  -->
-								<li>
+								<li class="classSch" value="${dcsdto.recNo}" >
 								<span><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
 								<c:choose>
 									<c:when test="${dcsdto.lLeasetime eq '오전'}">
@@ -417,48 +461,9 @@
 										<span>${dcsdto.cMaxrecruitperson-dcsdto.cPerson}명 예약 가능</span>
 									</c:otherwise>
 								</c:choose>
+								<%-- <input type="hidden" name="recNo" value="${dcsdto.recNo}" /> --%>
 								</li>
 							</c:forEach>
-							
-
-
-							<!-- <li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li> -->
-
 						</ul>
 					</div>
 

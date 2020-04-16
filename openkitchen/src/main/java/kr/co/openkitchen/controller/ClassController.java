@@ -87,5 +87,12 @@ public class ClassController {
 //	public String spaceIntro() {
 //		return "mypage/space/spaceIntro";
 //	}
+	
+	@GetMapping("classPayment")
+	public String classPayment() {
+		
+		
+		return "class/user/classPayment";
+	}
 
 }

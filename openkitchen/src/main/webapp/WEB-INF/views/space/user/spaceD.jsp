@@ -109,7 +109,7 @@
 				<div class="contents">
 					${detailSpace.sLongintro}
 				</div>
-				<a href="">더보기</a>
+				<!-- <a href="">더보기</a> -->
 			</section>
 			<!-- 클래스 참고사항,공간 참고사항에 들어간다.  -->
 			<!-- 클래스,공간 등록시 입력한 참고사항 데이터 형태 그대로 들어간다. 아래의 id="career" section을 참고하기  -->

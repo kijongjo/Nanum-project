@@ -70,4 +70,13 @@
 			GROUP BY C.C_NO, C_NAME, C_MAINSUMNAIL, C_SHORTINTRO, C_TEMA, C_PRICE, T_AREA, T_EXPERT, REC_PERSTATUS
 			ORDER BY CNT DESC
   		</select>
+  		
+  		<select id="selectPaymentC" resultType="" parameterType="int">
+  			SELECT C.C_NAME, C.C_PRICE, L.L_LEASEDATE, L.L_LEASETIME, T.T_HAVENICKNAME, T.T_EXPERTNAME, S.S_LOC
+			FROM CLASS C, RECRUIT REC, RENTAL REN, TEACHER T, LEASE L, SPACE S
+			WHERE C.C_NO = REC.C_NO AND REC.REN_NO = REN.REN_NO AND
+			      REN.T_NO = T.T_NO AND REN.L_NO = L.L_NO AND L.S_NO = S.S_NO
+			      AND REC.REC_NO = #{no}
+  		</select>
+  		
   </mapper>
