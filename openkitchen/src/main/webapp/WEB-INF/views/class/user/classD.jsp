@@ -67,6 +67,7 @@
 				   if(schNo[0]==schNo[1]) {
 					$(this).css("backgroundColor", "white");
 					$(this).children("span").css("color", "#959595");
+					schNo[0]=0;
 					cnt = 0;
 				   } else if(schNo[0]!=schNo[1]) {
 					   schNo[0] = $(this).val();
@@ -76,16 +77,12 @@
 					   $(this).children("span").css("color", "white");
 					   cnt = 1;
 				   }
-			}
-			
-			console.log(schNo);
-			
-			
+			}			
 		});
 
 		var btnPayment = $(".btn-payment");
 		btnPayment.on("click", function () {
-			if(schNo == 0) {
+			if(schNo[0] == 0) {
 				alert("클래스 일정을 선택해 주세요.");	
 			} else {
 				$(location).attr("href", "classPayment?no="+schNo[0]);
@@ -101,6 +98,12 @@
 	.datepicker {
 		width: 100%;
 		height: 448px;
+	}
+	
+	.endC {
+		color:#dfdfdf;
+		border-color:#dfdfdf;
+		
 	}
 		
 </style>
@@ -399,7 +402,13 @@
 				<!-- 언제 열리는지에 대한 정보(클래스) -->
 				<li id="classDate">
 					<!-- 위와 동일한 css --> <strong class="otherInfoName">일시</strong> <span
-					class="otherInfoContents">03월30일(월),04월20일(월)</span>
+					class="otherInfoContents">
+						<c:forEach var="dcsdto" items="${detailCSche}">
+							<fmt:formatDate var="item" value="${dcsdto.lLeasedate}" pattern="MM월dd일(E)"/>
+							${item},				
+						</c:forEach>
+							
+					</span> 
 				</li>
 				<!-- 모집(클래스),인원(공간)에 대한 정보  -->
 				<li class="capacity">
@@ -465,7 +474,6 @@
 										<span>${dcsdto.cMaxrecruitperson-dcsdto.cPerson}명 예약 가능</span>
 									</c:otherwise>
 								</c:choose>
-								<%-- <input type="hidden" name="recNo" value="${dcsdto.recNo}" /> --%>
 								</li>
 							</c:forEach>
 						</ul>

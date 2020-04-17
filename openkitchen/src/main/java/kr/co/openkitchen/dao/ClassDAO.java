@@ -1,6 +1,7 @@
 package kr.co.openkitchen.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,9 @@ public class ClassDAO implements CDaoInter {
 	}
 
 	@Override
-	public List<DetailCScheDTO> selectDetailCSche(int cNo) {
+	public List<DetailCScheDTO> selectDetailCSche(Map<String, String> map) {
 		
-		return ss.selectList("kr.co.openkitchen.class.selectDetailCSche", cNo);
+		return ss.selectList("kr.co.openkitchen.class.selectDetailCSche", map);
 	}
 	@Override
 	public List<ClassIndexDTO> moreClass(int count) {
