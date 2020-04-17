@@ -81,7 +81,7 @@
         }
         #lay03spaceRegister2> #right01{
             background-color: #F6F5F5;
-            margin: -46px 0px -120px;
+            /* margin: -46px 0px 0px; */
             padding: 45px 0px 120px 60px;
         }
         #lay03spaceRegister2> #right01 .inp-wrap:nth-child(1){

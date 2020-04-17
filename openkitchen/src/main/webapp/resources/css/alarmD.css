@@ -242,12 +242,12 @@
 
 .msgPopup:target {
    opacity: 1;
-   z-index: 3;
+   z-index: 5;
 }
 
 .msgPopup:target+#msgGrayDim {
    opacity: 1;
-   z-index: 2;
+   z-index: 3;
 }
 
 .msgPopup:target+#right01Msg {

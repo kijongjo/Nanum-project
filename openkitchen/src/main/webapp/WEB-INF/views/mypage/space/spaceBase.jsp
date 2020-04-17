@@ -492,7 +492,8 @@
             </div>
             <div>
                 <a href="" class="active">기본정보<img src="../img/red-check.png" alt=""></a>
-                <a href="" class="dim">공간소개<img src="../img/gray-check.png" alt=""></a>
+                <!-- 임시방편으로 a태그에 넣은거임  -->
+                <a href="spaceIntro" class="dim">공간소개<img src="../img/gray-check.png" alt=""></a>
                 <a href="" class="dim">공유일정<img src="../img/gray-check.png" alt=""></a>
             </div>
         </section>
