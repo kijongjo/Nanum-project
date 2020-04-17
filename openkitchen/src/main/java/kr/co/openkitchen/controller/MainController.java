@@ -33,16 +33,10 @@ public class MainController {
 
 	@RequestMapping(value = { "/", "index" })
 	public String home(Model model,HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		//세션의 유저 값 가져오기
-		if(session==null) {
-			return "index";
-					
-		}else {
 		
-		System.out.println("session?:"+session.getAttribute("openkitchen"));
-			MemberDTO memberdto = (MemberDTO)session.getAttribute("openkitchen");
-			System.out.println(memberdto.getmName());
+		//세션의 유저 값 가져오기
+		
+		
 //			System.out.println(memberdto.toString());
 		
 		
@@ -68,9 +62,21 @@ public class MainController {
 		model.addAttribute("manwonClass", si.readManwonC());
 		model.addAttribute("OnlyOneClass", si.readOnlyOneC());		
 		model.addAttribute("popularClass", si.readPopularC(map));
-
-		return "index";
+		
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			System.out.println("session?:"+session.getAttribute("openkitchen"));
+			System.out.println(session);
+			if(session.getAttribute("openkitchen") != null) {
+				System.out.println("담긴세션:"+session.getAttribute("openkitchen"));
+				MemberDTO memberdto = (MemberDTO)session.getAttribute("openkitchen");
+				System.out.println(memberdto.getmName());
+			}
+		
 		}
+					
+		return "index";
+		
 	}
 
 	@GetMapping("/questions")
