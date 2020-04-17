@@ -1,7 +1,7 @@
-/* 선생님 등록시 공통적으로 적용되는 CSS 설정입니다. */
+/* 클래스 등록시 공통적으로 적용되는 CSS 설정입니다. */
 
 
-/* 리스트 선택시 선택시 */
+/* 리스트 선택시 */
  #lay03 > #left01 .On_active{
      font-weight: 600;
      border-bottom: 3px solid #8E0032;
@@ -24,15 +24,18 @@
     font-size: 15px;
     line-height: 22px;
     border-radius: 9px;
+	min-height: 478px;
+
  }
  
  /* class select */
 .selectBox{
 	border : 3px solid #8E0032;
 	border-radius: 5px;
+	background-color:white;
 }
  
- /* 항목 타이틀 */
+ /* 항목 타이틀 프로필부분이면 맨윗부분에 프로필이라고 쓰는 것처럼 FORM 안에 들어있는 글씨  */
 #right01 > form > h4{
     margin-bottom: 8px;
     color: #5B5B5B;
@@ -40,10 +43,12 @@
 #right01 > form > h4:nth-child(n+2){
     margin-top: 40px;
 }
+/* 텍스트 입력창 CSS 설정 */
 .basic_apply{
     width: 907px;
     background-color: white;
 }
+/* 닉네임 입력할때 아래에 도움말 css 설정 */
 #apply02 p,
 #makeSpace02 > #guide p{
     padding-top:  10px;
@@ -51,23 +56,19 @@
     color: #838383;
 }
 
-/* 프로필 사진 */
-#apply01 p{
-    width: 580px;
-    font-weight: 200;
-    color: #B7B7B7;
-}
-/* input txt */
+
+/*텍스트 입력창 뿐만 아니라 다른 입력창도  css 설정함 */
 #right01 input{
     border: none;
     padding: 0 20px;
     width: 815px; height: 46px;
     
 }
+/* 텍스트창 넓이 100으로 잡아줘야 클릭시 생기는 테두리가 흰색 배경과 딱 맞음 */
 #right01 input[type="text"]{
 	width:100%;
 }
-/* txt area */
+/* txt area css 설정 */
 #right01 textarea{
     border: none;
     outline-color: #8E0032;
@@ -78,83 +79,30 @@
     vertical-align: top;
     resize: none; 
 }
+/* 주요활동 */
 #txtarea01{
     height: 120px;
 }
+/*주요활동 바로 아래 자기 소개 */
 #txtarea02{
     height: 360px;
 }
 
 
-/* 체크박스 */
-#right01 .Off-CheckBox,
-.buisness span,
-#facility span{
-    margin-right: 10px;
-    position: relative;
-    padding-left: 24px;
-    width: 300px;
-    font-weight: 400;
-    color: #838383;
-    cursor: pointer;
-}
-#right01 .Off-CheckBox::before,
-.buisness span::before,
-#facility span::before{
-    content: "";
-    position: absolute; left: 0px; top: 2px;
-    width: 16px ; height: 16px;
-    background-image: url("../img/icon/bg-checkbox.png");
-    background-size: 40px;
-}
-#right01 div.On-CheckBox,
-.buisness span.On-CheckBox,
-#facility span.On-CheckBox{
-    font-weight: 600;
-    color: black;
-}
-.On-CheckBox::before,
-.buisness span,
-#facility span{
-    border: none;
-    background-position: 17px;
-}
-#apply02 p,
-#makeTeacher01 > div:nth-child(2) p{
-    padding-top: 10px;
-    background-color: #F6F5F5;
-    color: #838383;
-}
-
-/* ㅡ,.ㅡ 전문분야 */
+/*전문분야 제목 css 설정*/
 #right01 h3{
     margin: 40px 0 8px;
     color: #5B5B5B;
     font-size: 15px;
 }
+/* *문장 css 설정 */
 #right01 h3 span{
     margin-left: 5px;
     font-weight: 400;
     color: #838383;
 }
-#Specialty ul{
-    display: grid;
-    grid-template-columns: repeat(8, 95px);
-    grid-gap: 10px;
-}
-#Specialty ul li{
-    border-radius: 40px;
-    height: 41px;
-    text-align: center;
-    line-height: 41px;
-    color: #b7b7b7;
-    background-color: white;
-}
-/* - _ - 전분분야 선택시 */
-#Specialty ul .On-Specialty{
-    color: white;
-    background-color: #8E0032;
-}
+
+
 
 #btn_submit{
     width: 855px;
@@ -180,51 +128,8 @@
     color: white;
     background-color: #8E0032;
 }
-/* makeSpace02 */
-#makeSpace02 > div:nth-child(2) div{
-    margin-top: 15px;
-}
 
 
-#space_textarea textarea{
-    width: 815px;
-    padding: 20px;
-    height: 360px;
-}
-
-
-
-/* 헤쉬태그 */
-#hashtag{
-	position: relative;
-}
-#hashtag::after{
-	content:"";
-	position: absolute;
-	top:12px;
-	width:20px; height:20px;
-	background-image: url("../icon/ico-file_add.png");
-	background-size: 100%;
-	
-}
-#hashtagTxt span{
-	display:inline-block;
-	border:1px solid;
-	border-radius: 8px;
-	margin:8px 7px 0 0;
-	padding: 15px 32px;
-	color: #707070;
-}
-#facility{
-	margin: 10px;
-}
-
-/* 공간등록 form 위치 css 설정 */
-#makeTeacher02{
-	position: relative;
-    right: 27px;
-	
-}
 /*/////////////////////////////////////////체크박스 기본 모듈//////////////////////////////////// */
 #all-check {
 	border-bottom: 2px solid #e5e5e5;
@@ -249,6 +154,7 @@
 }
 .checkboxSection div#WrapWidth3 {
 	width: 200px;
+
 	
 }
 /* 기본 체크박스 디자인 삭제하기 (라벨을 대신 쓰기 위함) */
@@ -398,15 +304,20 @@ input[id="type4"]+label::after {
 	font-weight: 600;
 	color: #838383;
 }
-/* 사업자유형 type1~ type4로 지정 */
-input[id="norental"]+label::after {
-	content: "내 공간을 보유하고 있습니다.";
+/*클래스 유형 */
+input[id="ordinary"]+label::after {
+	content: "일반 클래스";
 	font-weight: 600;
 	color: #838383;
 }
 
-input[id="yesrental"]+label::after {
-	content: "공간 대여를 원합니다.";
+input[id="manwon"]+label::after {
+	content: "만원의 행복 클래스";
+	font-weight: 600;
+	color: #838383;
+}
+input[id="onlyOne"]+label::after {
+	content: "단 한명 클래스";
 	font-weight: 600;
 	color: #838383;
 }
@@ -461,3 +372,52 @@ input[name="S-type4"]+label::after {
 
 
 /*/////////////////////////////////////////   radio 모듈 끝//////////////////////////////////// */
+
+/* border에 존재하는 list목록 css 설정 */
+#contents_border img{
+    width: 100%; height: 185px;
+}
+#contents_border h3{
+    margin: 14px 0 3px;
+}
+#contents_border .Price{
+    margin-bottom: 8px;
+}
+#contents_border > ul{
+    width: 965px;
+    min-height: 487px;
+    overflow: hidden;
+}
+#contents_border > ul > li{
+    margin: 0 10px 20px 0;
+    width: 294px; height: 340px;
+    overflow: hidden;
+    float: left;
+    padding: 3px;
+}
+#contents_border>ul>li>a{
+ display:block;
+ 
+	
+}
+/* 아이콘 설정 */
+#contents_border>ul>li>.iconDiv{
+	display: inline-block;
+    font-size: 104px;
+    position: relative;
+    color: #ffffff;
+    bottom: 274px;
+    background: rgba(0, 0, 0, 0.67);
+    width: 100%;
+    height: 328px;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 74px;
+    opacity:0;
+    z-index:-1;
+}
+
+div > #right02 #contents_border{
+	text-align: start;
+}
+

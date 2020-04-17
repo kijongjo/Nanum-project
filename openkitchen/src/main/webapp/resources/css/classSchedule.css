@@ -1,0 +1,238 @@
+
+#right01 input{
+	outline-color: #8E0032 ;
+	
+}
+
+.inp-wrap>span:nth-child(1) {
+	height: 22px;
+	color: #5b5b5b;
+	font-size: 15px;
+	margin: 7px 0px 8px;
+	font-weight: 900;
+}
+
+.inp-wrap>div {
+	width: 905px;
+	height: 650.5px;
+	padding: 20px;
+	background-color: white;
+}
+
+.inp-wrap>div p {
+	color: #b7b7b7;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+
+#classSchedule #uploadForm{
+	position: relative;
+    right: 29px;
+    bottom: 60px;
+}
+
+
+
+
+
+
+
+#classSchedule .inp-wrap:nth-child(1) {
+	height: 700.5px;
+	
+}
+
+#classSchedule .inp-wrap:nth-child(1)>span:nth-child(1) {
+	display: block;
+	height: 22px;
+	color: #5b5b5b;
+	font-size: 15px;
+	margin: 40px 0px 8px;
+	font-weight: 900;
+}
+
+#classSchedule .inp-wrap:nth-child(1)>div {
+	width: 905px;
+	height: 650.5px;
+	padding: 20px;
+	background-color: white;
+}
+
+#classSchedule .inp-wrap:nth-child(1)>div p {
+	color: #b7b7b7;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#classSchedule .inp-wrap:nth-child(1)>div>div:nth-child(2) {
+	/* background-color: pink; */
+	width: 427.5px;
+	height: 294.91px;
+	margin-top: 25px;
+	padding-right: 5px;
+	/* display: inline-block; */
+	float: left;
+}
+
+#classSchedule .inp-wrap:nth-child(1)>div>div:nth-child(2)>div:nth-child(1)
+	{
+	color: #5b5b5b;
+	margin-bottom: 8px;
+	font-size: 14px;
+	display: inline-block;
+	height: 20px;
+	font-weight: 700;
+}
+
+#classSchedule .inp-wrap:nth-child(1)>div>div:nth-child(2)>div:nth-child(2)
+	{
+	/* background-color: greenyellow; */
+	width: 100%;
+	height: 266.91px;
+}
+
+
+
+#classSchedule .inp-wrap:nth-child(1)>div>div:nth-child(3) {
+	/* background-color: pink; */
+	width: 427.5px;
+	height: 450.5px;
+	margin-top: 25px;
+	padding-left: 5px;
+	display: inline-block;
+}
+#classSchedule .inp-wrap:nth-child(1)>div>div:nth-child(3)>div:nth-child(2)
+	{
+	/* background-color: greenyellow; */
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+#classSchedule .inp-wrap:nth-child(1)>div>div:nth-child(3)>div:nth-child(1)
+	{
+	color: #5b5b5b;
+	margin-bottom: 8px;
+	font-size: 14px;
+	display: inline-block;
+	height: 20px;
+	font-weight: 700;
+}
+
+#classSchedule .inp-wrap:nth-child(2) {
+	margin-top:63px;
+	
+}
+
+#classSchedule .inp-wrap:nth-child(2)>.timeLine {
+	height:143px;
+	    margin-bottom: 58px;
+	
+}
+ #classSchedule .inp-wrap:nth-child(2)>.timeLine>ul{ 
+   margin-left: 26px;
+ }
+#classSchedule .inp-wrap:nth-child(2)>.timeLine>ul>li {
+border-radius: 40px;
+    height: 41px;
+    text-align: center;
+    line-height: 41px;
+    color: #b7b7b7;
+    background-color: white;
+    border: 1px solid #b7b7b7;
+    display: inline-block;
+    width: 32.33333%;
+    padding: 0 4px;
+    margin: 0;
+    margin-top:23px
+}
+#classSchedule .inp-wrap:nth-child(2)>span:nth-child(1) {
+	display: block;
+	height: 22px;
+	color: #5b5b5b;
+	font-size: 15px;
+	margin: 40px 0px 8px;
+	font-weight: 900;
+}
+
+#classSchedule #btn-form-wrap {
+	height: 64px;
+	margin: 164px 0px 0px;
+	background-color: #F6F5F5;
+}
+
+#classSchedule #btn-form-wrap #complete  {
+	float: right;
+	font-size: 18px;
+	height: 64px;
+	width: 168px;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+}
+
+#classSchedule #btn-form-wrap #complete {
+	background: #8e0032;
+	color: white;
+	margin-left: 12px;
+}
+
+#classSchedule #btn-form-wrap input[type="button"]:nth-child(2) {
+	background: white;
+	color: #2e2e2e;
+}
+/* 임시저장 버튼 */
+#classSchedule #btn-form-wrap>#go {
+	float: right;
+	font-size: 18px;
+	height: 64px;
+	width: 168px;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+	background: white;
+	color: #2e2e2e;
+}
+
+
+
+
+
+#classSchedule .oftenQuestion {
+	width: 905px;
+	height: 63px;
+	padding: 0px 18px;
+	background-color: #5b5b5b;
+	display: inline-block;
+}
+
+ #classSchedule .oftenQuestion>strong {
+	font-size: 16px;
+	color: white;
+	position: relative;
+	top: 20px;
+	height: 43px;
+	display: block;
+	padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+#classSchedule>h4 {
+	display: block;
+	height: 22px;
+	color: #5b5b5b;
+	font-size: 15px;
+	margin: 0px 0px 8px;
+	font-weight: 900;
+}
+
