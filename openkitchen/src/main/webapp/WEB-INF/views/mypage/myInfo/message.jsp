@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/resources/css/message.css'/>" >
-    <link rel="stylesheet" href="<c:url value='resources/css/Header.css' />">
+    <link rel="stylesheet" href="<c:url value='/resources/css/Header.css' />">
     <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <jsp:include page="../../headerScript.jsp" />
@@ -30,97 +30,97 @@
                 <ul>
                     <li>
                         <a href="#chat">
-                                <img src="<c:url value='/resources/img/icon/x.png' />" alt="">
+                                <img src="<c:url value='/resources/img/profileimg/10pro.jpg' />" alt="">
                             <div class="list-content">
                                 <div class="al-r">
-                                    <span class="MsgTime">20.03.25</span>
+                                    <span class="MsgTime">20.01.25</span>
                                 </div>
-                                <strong class="list-title">커피에 진심을 담다aaaaaaaaaaaaaaaaaaaaad</strong>
+                                <strong class="list-title">커피에 진심을 담다</strong>
                                 <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다</p>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#chat">
-                            <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                            <img src="<c:url value='/resources/img/profileimg/11pro.jpg' />" alt="">
                             <div class="list-content">
                                 <div class="al-r">
-                                    <span class="MsgTime">20.03.25</span>
+                                    <span class="MsgTime">20.01.28</span>
                                 </div>
-                                <strong class="list-title">커피에 진심을 담다</strong>
-                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                <strong class="list-title">피자 교실</strong>
+                                <p>어떤 피자 인가요?</p>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#chat">
-                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                                <img src="<c:url value='/resources/img/profileimg/12pro.jpg' />" alt="">
                             <div class="list-content">
                                 <div class="al-r">
-                                    <span class="MsgTime">20.03.25</span>
+                                    <span class="MsgTime">20.01.29</span>
                                 </div>
-                                <strong class="list-title">커피에 진심을 담다</strong>
-                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                <strong class="list-title">카페인 가득 커피 교실</strong>
+                                <p>커피만 배우나요?</p>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#chat">
-                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                                <img src="<c:url value='/resources/img/profileimg/13pro.jpg' />" alt="">
                             <div class="list-content">
                                 <div class="al-r">
-                                    <span class="MsgTime">20.03.25</span>
+                                    <span class="MsgTime">20.02.05</span>
                                 </div>
-                                <strong class="list-title">커피에 진심을 담다</strong>
-                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                <strong class="list-title">샌드위치가 땡기는 하루</strong>
+                                <p>샌드위치의 종류를 몇개나 만들 예정인가요 ?</p>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#chat">
-                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                                <img src="<c:url value='/resources/img/profileimg/14pro.jpg' />" alt="">
                             <div class="list-content">
                                 <div class="al-r">
-                                    <span class="MsgTime">20.03.25</span>
+                                    <span class="MsgTime">20.02.11</span>
                                 </div>
-                                <strong class="list-title">커피에 진심을 담다</strong>
-                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                <strong class="list-title">햄버거를 집에서 만들수 있는 클래스</strong>
+                                <p>안녕하세요 여쭤볼게 있습니다</p>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#chat">
-                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                                <img src="<c:url value='/resources/img/profileimg/15pro.jpg' />" alt="">
                             <div class="list-content">
                                 <div class="al-r">
-                                    <span class="MsgTime">20.03.25</span>
+                                    <span class="MsgTime">20.02.15</span>
                                 </div>
-                                <strong class="list-title">커피에 진심을 담다</strong>
-                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                <strong class="list-title">바리스타의 한걸음</strong>
+                                <p>자격증이 있어야 들을수 있나요?</p>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#chat">
-                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                                <img src="<c:url value='/resources/img/profileimg/16pro.jpg' />" alt="">
                             <div class="list-content">
                                 <div class="al-r">
-                                    <span class="MsgTime">20.03.25</span>
+                                    <span class="MsgTime">20.02.17</span>
                                 </div>
                                 <strong class="list-title">커피에 진심을 담다</strong>
-                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다</p>
                             </div>
                         </a>
                     </li>
                     <li>
                         <a href="#chat">
-                                <img src="http://post.phinf.naver.net/20160613_5/1465791563486TpftG_JPEG/IoaAUaalMmiwQvjSqSBLV3vru3Fs.jpg" alt="">
+                                <img src="<c:url value='/resources/img/profileimg/17pro.jpg' />" alt="">
                             <div class="list-content">
                                 <div class="al-r">
-                                    <span class="MsgTime">20.03.25</span>
+                                    <span class="MsgTime">20.02.19</span>
                                 </div>
                                 <strong class="list-title">커피에 진심을 담다</strong>
-                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다asdasdasdasdasdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                <p>안녕하세요 일반인이지만 개인적으로 따로 빌릴수 있을까요 ? 요리 선생님은 아닙니다</p>
                             </div>
                         </a>
                     </li>
@@ -136,7 +136,7 @@
                     <div id="msg-wrap">
                         <div class="msgDate-inline">2020년 03월 25일 수요일</div>
                         <div class="msgchatLeft">
-                            <img src="<c:url value='/resources/img/icon/x.png' />" alt="" style="width: 64px; height: 64px;">
+                            <img src="<c:url value='/resources/img/profileimg/10pro.jpg' />" alt="" style="width: 64px; height: 64px;">
                             <div class="chatL">
                                 <div class="chatL-title">
                                     <strong class="chatName">이정은(베이커)</strong>
@@ -158,7 +158,7 @@
                         </div>
                         <div class="msgDate-inline">2020년 03월 26일 수요일</div>
                         <div class="msgchatLeft">
-                            <img src="<c:url value='/resources/img/icon/x.png' />" alt="" style="width: 64px; height: 64px;">
+                            <img src="<c:url value='/resources/img/profileimg/10pro.jpg' />" alt="" style="width: 64px; height: 64px;">
                             <div class="chatL">
                                 <div class="chatL-title">
                                     <strong class="chatName">이정은(베이커)</strong>

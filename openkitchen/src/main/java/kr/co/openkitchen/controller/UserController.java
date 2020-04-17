@@ -415,7 +415,15 @@ public class UserController {
     	   
     	   return "mypage/in";
        }
-
+     // 테스트용 /////////////////////////////////////////////////
+     @RequestMapping(value = "spaceBase", method=RequestMethod.GET)
+     	public String spaceBase() {
+    	 return "mypage/space/spaceBase";
+     }
+     @RequestMapping(value = "spaceIntro", method=RequestMethod.GET)
+  		public String spaceIntro() {
+    	 return "mypage/space/spaceIntro";
+     }
 
 
 }
