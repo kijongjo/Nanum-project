@@ -29,7 +29,7 @@
 			WHERE C.C_NO = REC.C_NO AND REC.REC_NO = E.REC_NO(+) AND
 			      REC.REN_NO = REN.REN_NO AND REN.L_NO = L.L_NO AND C.C_NO = #{cNo}
 			GROUP BY C_MAXRECRUITPERSON, L_LEASEDATE, L_LEASETIME, L_PERSTATUS, C.C_NO, REC.REC_NO
-			ORDER BY L_LEASEDATE DESC     
+			<!-- ORDER BY L_LEASEDATE DESC -->     
   		</select>
   		
   		<select id="selectManwonC" resultType="mcdto">
@@ -71,8 +71,9 @@
 			ORDER BY CNT DESC
   		</select>
   		
-  		<select id="selectPaymentC" resultType="" parameterType="int">
-  			SELECT C.C_NAME, C.C_PRICE, L.L_LEASEDATE, L.L_LEASETIME, T.T_HAVENICKNAME, T.T_EXPERTNAME, S.S_LOC
+  		<select id="selectPaymentC" resultType="pmcdto" parameterType="int">
+  			SELECT C.C_NAME, C.C_PRICE, C.C_DETAILSUMNAIL, L.L_LEASEDATE, L.L_LEASETIME, T.T_HAVENICKNAME, 
+  			       T.T_EXPERTNAME, S.S_LOC
 			FROM CLASS C, RECRUIT REC, RENTAL REN, TEACHER T, LEASE L, SPACE S
 			WHERE C.C_NO = REC.C_NO AND REC.REN_NO = REN.REN_NO AND
 			      REN.T_NO = T.T_NO AND REN.L_NO = L.L_NO AND L.S_NO = S.S_NO

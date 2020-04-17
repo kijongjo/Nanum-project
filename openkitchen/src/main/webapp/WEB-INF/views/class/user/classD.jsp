@@ -88,7 +88,7 @@
 			if(schNo == 0) {
 				alert("클래스 일정을 선택해 주세요.");	
 			} else {
-				$(location).attr("href", "classPayment?no="+schNo);
+				$(location).attr("href", "classPayment?no="+schNo[0]);
 			}
 		});
 		
@@ -453,8 +453,12 @@
 										<span>18:00</span>
 									</c:otherwise>								
 								</c:choose>
+								<!-- 
+									인원이 다 차거나 진행 상태가 종료가 되면 마감으로 처리
+									사람이 안 차도 시간이 지나면 자동으로 종료가 되도록 하는 로직이 필요하다.
+							  	-->
 								<c:choose>
-									<c:when test="${dcsdto.cMaxrecruitperson eq dcsdto.cPerson}">
+									<c:when test="${dcsdto.cMaxrecruitperson eq dcsdto.cPerson or dcsdto.lPerstatus == '종료'}">
 										<span class="endC">마감</span>									
 									</c:when>
 									<c:otherwise>							

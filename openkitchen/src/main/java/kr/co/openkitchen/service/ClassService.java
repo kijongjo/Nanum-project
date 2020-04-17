@@ -9,6 +9,7 @@ import kr.co.openkitchen.dao.CDaoInter;
 import kr.co.openkitchen.dto.ClassIndexDTO;
 import kr.co.openkitchen.dto.DetailCScheDTO;
 import kr.co.openkitchen.dto.DetailClassDTO;
+import kr.co.openkitchen.dto.PaymentClassDTO;
 import lombok.Setter;
 
 @Service
@@ -43,4 +44,12 @@ public class ClassService implements CserviceInter {
 		public List<ClassIndexDTO> moreClass(int count) {
 			return dao.moreClass(count);
 		}
+
+		@Override
+		public PaymentClassDTO readPaymentC(int recNo) {
+		
+			return dao.selectPaymentC(recNo);
+		}
+		
+		
 }

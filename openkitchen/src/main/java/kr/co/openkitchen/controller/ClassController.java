@@ -89,8 +89,9 @@ public class ClassController {
 //	}
 	
 	@GetMapping("classPayment")
-	public String classPayment() {
+	public String classPayment(@RequestParam("no")int recNo, Model model) {
 		
+		model.addAttribute("paymentC", si.readPaymentC(recNo));
 		
 		return "class/user/classPayment";
 	}

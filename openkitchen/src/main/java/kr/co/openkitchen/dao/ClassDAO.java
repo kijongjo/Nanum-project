@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.openkitchen.dto.ClassIndexDTO;
 import kr.co.openkitchen.dto.DetailCScheDTO;
 import kr.co.openkitchen.dto.DetailClassDTO;
+import kr.co.openkitchen.dto.PaymentClassDTO;
 import lombok.Setter;
 
 @Repository
@@ -43,4 +44,13 @@ public class ClassDAO implements CDaoInter {
 	public List<ClassIndexDTO> moreClass(int count) {
 		return ss.selectList("kr.co.openkitchenIndex.MoreClass", count*8);
 	}
+
+
+	@Override
+	public PaymentClassDTO selectPaymentC(int recNo) {
+		
+		return ss.selectOne("kr.co.openkitchen.class.selectPaymentC", recNo);
+	}
+	
+	
 }
