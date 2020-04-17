@@ -365,7 +365,7 @@
                 </a>
             </div>
             <div>
-                <a href="" class="dim">기본정보<img src="../img/red-check.png" alt=""></a>
+                <a href="spaceBase" class="dim">기본정보<img src="../img/red-check.png" alt=""></a>
                 <a href="" class="active">공간소개<img src="../img/gray-check.png" alt=""></a>
                 <a href="" class="dim">공유일정<img src="../img/gray-check.png" alt=""></a>
             </div>
