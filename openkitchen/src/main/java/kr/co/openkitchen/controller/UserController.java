@@ -415,6 +415,18 @@ public class UserController {
     	   
     	   return "mypage/in";
        }
+
+
+ 	//어디다가둬야하지 이거????????? 
+ 	@RequestMapping(value = {"classBase","classSchedule","classSpace"})
+ 	public String classBase(@RequestParam("no")String no, Model model) {
+ 		System.out.println(no);
+ 		model.addAttribute("no", no);
+ 	
+ 		return "mypage/class/applyClass";
+ 	}
+ 	
+
      // 테스트용 /////////////////////////////////////////////////
      @RequestMapping(value = "spaceBase", method=RequestMethod.GET)
      	public String spaceBase() {
@@ -424,6 +436,7 @@ public class UserController {
   		public String spaceIntro() {
     	 return "mypage/space/spaceIntro";
      }
+
 
 
 }

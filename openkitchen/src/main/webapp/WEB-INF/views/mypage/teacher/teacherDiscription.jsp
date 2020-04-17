@@ -21,12 +21,10 @@
 	href="<c:url value='/resources/css/teacherBase.css'/>">
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/teacherSpace.css'/>">
+
+<script src="<c:url value='/resources/js/teacherDiscription.js'/>"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="<c:url value='/resources/js/teacherDiscription.js'/>"></script>
-<%-- <script src="<c:url value='/resources/js/teacherBase.js'/>"></script>
-<script src="<c:url value='/resources/js/teacherSpace.js'/>"></script> --%>
-
 <script>
 	/* 상황에 따른 script 불러오기 방법 통일성을 위해  나중엔 jstl말고 javascript로 if문 처리해야함  */
 	$(function() {

@@ -649,7 +649,7 @@
             	      }// else end
             	   })/* click end */
             	   
-            	   /* 전문분야 주기. name 지정 비지정으로 결정함 */
+        /* 전문분야 주기. name 지정 비지정으로 결정함 */
         $("#Specialty>ul>li").click(function(){
         	var indexNo= $(this).index();
         	 if($(this).is('[name]')){
