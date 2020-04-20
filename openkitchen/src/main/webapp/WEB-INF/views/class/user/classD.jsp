@@ -45,14 +45,13 @@
 <script>
 	$(document).ready(function () {	
 		// 이 페이지로 전달된 el의 값을 jqeury변수에 담아 사용
-		var test = "<c:out value='${detailClass.sType}' />";
-		if(test=="대여") {
+		var sType = "<c:out value='${detailClass.sType}' />";
+		if(sType == "대여") {
 			$(".detailCLoc").css({'pointer-events':'none'});
 		
 		}
 		
-		var schNo = new Array();
-		var bgC = 0;
+		var schNo = new Array(0,0);
 		var cnt = 0;
 		var classSch = $(".classSch");
 		classSch.on("click", function () {
@@ -100,11 +99,11 @@
 		height: 448px;
 	}
 	
-	.endC {
+	/* .endC {
 		color:#dfdfdf;
 		border-color:#dfdfdf;
 		
-	}
+	} */
 		
 </style>
 
@@ -219,7 +218,7 @@
 						<!-- 스케쥴에 대한 내용이 나온다. -->
 						<div>
 							<ul>
-								<c:forEach var="dcsdto" items="${detailCSche}">
+								<c:forEach var="dcsdto" items="${detailCSche2}">
 									<li>
 										<span><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
 										<c:choose>
@@ -447,7 +446,7 @@
 					<!-- 스케쥴표가 전부 펼쳐진상태를 말한다. javascript로 로직처리가 필요하다. -->
 					<div id="scheduleOn">
 						<ul class="timeList">
-							<c:forEach var="dcsdto" items="${detailCSche}">
+							<c:forEach var="dcsdto" items="${detailCSche1}">
 							<!-- 날짜를 format 할때 양식의 대소문자를 잘 지켜줘야 된다.  -->
 								<li class="classSch" value="${dcsdto.recNo}" >
 								<span><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
