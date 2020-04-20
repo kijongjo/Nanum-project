@@ -447,7 +447,51 @@
     
         
     </style>
+	<script>
+	$(document).ready(function () {		
+		var payType = new Array("","");
+		var cnt = 0;
+		var payWay = $(".payWay");
+		payWay.on("click", function () {
+			cnt++;
+			console.log(cnt);
+			if(cnt == 1) {
+				payType[0] = $(this).children("input").val();
+				console.log(payType[0]);
+				$(this).children("input").css("backgroundColor", "#8E0032");
+				$(this).children("input").css("color", "white");
+			} else if (cnt == 2) {
+				   payType[1] = $(this).children("input").val();
+				   if(payType[0]==payType[1]) {
+					$(this).children("input").css("backgroundColor", "#f0f0f0");
+					$(this).children("input").css("color", "#2e2e2e");
+					payType[0]="";
+					cnt = 0;
+				   } else if(payType[0] != payType[1]) {
+					   payType[0] = $(this).children("input").val();
+					   payWay.children("input").css("backgroundColor", "#f0f0f0");
+					   payWay.children("input").css("color", "#2e2e2e")
+					   $(this).children("input").css("backgroundColor", "#8E0032");
+					   $(this).children("input").css("color", "white");
+					   cnt = 1;
+				   }
+			}			
+		});
+		
+		var orderAgree = $("#orderAgree");
+		
+		orderAgree.on("click", function () {
+			
+		if(orderAgree.is(":checked") && payType[0] != "") {
+			console.log("test");
+		}
+			
+		});
+		
+		
 	
+		});
+	</script>
 <jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 <body>

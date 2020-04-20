@@ -1,10 +1,15 @@
 package kr.co.openkitchen.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +52,7 @@ public class ClassController {
 		model.addAttribute("detailCSche2", si.readDetailCSche(map2));
 		
 		
+	
 		return "class/user/classD";
 	}
 	
@@ -97,9 +103,19 @@ public class ClassController {
 //	}
 	
 	@GetMapping("classPayment")
-	public String classPayment(@RequestParam("no")int recNo, Model model) {
+	public String classPayment(@RequestParam("no")int recNo, Model model, 
+			HttpServletRequest request) {
 		
 		model.addAttribute("paymentC", si.readPaymentC(recNo));
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("openkitchen") == null) {
+			
+			session.setAttribute("classNo", recNo);
+			// 스프링에서 리다이렉트 시키는 방법
+			return "redirect:login";
+			
+		}
 		
 		return "class/user/classPayment";
 	}
