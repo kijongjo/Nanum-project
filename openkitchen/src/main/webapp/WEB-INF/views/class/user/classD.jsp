@@ -402,7 +402,7 @@
 				<li id="classDate">
 					<!-- 위와 동일한 css --> <strong class="otherInfoName">일시</strong> <span
 					class="otherInfoContents">
-						<c:forEach var="dcsdto" items="${detailCSche}">
+						<c:forEach var="dcsdto" items="${detailCSche2}">
 							<fmt:formatDate var="item" value="${dcsdto.lLeasedate}" pattern="MM월dd일(E)"/>
 							${item},				
 						</c:forEach>

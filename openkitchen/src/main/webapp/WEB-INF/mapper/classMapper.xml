@@ -30,7 +30,7 @@
 			      REC.REN_NO = REN.REN_NO AND REN.L_NO = L.L_NO AND C.C_NO = #{cNo}
 			GROUP BY C_MAXRECRUITPERSON, L_LEASEDATE, L_LEASETIME, L_PERSTATUS, C.C_NO, REC.REC_NO
 			<choose>
-				<when test="type = 1">
+				<when test="type == 1">
 					ORDER BY DECODE(L_PERSTATUS,'진행','1','종료','2'), L_LEASEDATE ASC    
 				</when>
 				<otherwise>
