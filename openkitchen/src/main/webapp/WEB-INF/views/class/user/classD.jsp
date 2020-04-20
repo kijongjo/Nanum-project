@@ -45,11 +45,51 @@
 <script>
 	$(document).ready(function () {	
 		// 이 페이지로 전달된 el의 값을 jqeury변수에 담아 사용
-		var test = "<c:out value='${detailClass.sType}' />";
-		if(test=="대여") {
+		var sType = "<c:out value='${detailClass.sType}' />";
+		if(sType == "대여") {
 			$(".detailCLoc").css({'pointer-events':'none'});
 		
 		}
+		
+		var schNo = new Array(0,0);
+		var cnt = 0;
+		var classSch = $(".classSch");
+		classSch.on("click", function () {
+			cnt++;
+			console.log(cnt);
+			if(cnt == 1) {
+				schNo[0] = $(this).val();
+				$(this).css("backgroundColor", "#8E0032");
+				$(this).children("span").css("color", "white");
+			} else if (cnt == 2) {
+				schNo[1] = $(this).val();
+				   if(schNo[0]==schNo[1]) {
+					$(this).css("backgroundColor", "white");
+					$(this).children("span").css("color", "#959595");
+					schNo[0]=0;
+					cnt = 0;
+				   } else if(schNo[0]!=schNo[1]) {
+					   schNo[0] = $(this).val();
+					   classSch.css("backgroundColor", "white");
+					   classSch.children("span").css("color", "#959595")
+					   $(this).css("backgroundColor", "#8E0032");
+					   $(this).children("span").css("color", "white");
+					   cnt = 1;
+				   }
+			}			
+		});
+
+		var btnPayment = $(".btn-payment");
+		btnPayment.on("click", function () {
+			if(schNo[0] == 0) {
+				alert("클래스 일정을 선택해 주세요.");	
+			} else {
+				$(location).attr("href", "classPayment?no="+schNo[0]);
+			}
+		});
+		
+		
+		
 	});
 	
 </script>
@@ -58,6 +98,12 @@
 		width: 100%;
 		height: 448px;
 	}
+	
+	/* .endC {
+		color:#dfdfdf;
+		border-color:#dfdfdf;
+		
+	} */
 		
 </style>
 
@@ -172,7 +218,7 @@
 						<!-- 스케쥴에 대한 내용이 나온다. -->
 						<div>
 							<ul>
-								<c:forEach var="dcsdto" items="${detailCSche}">
+								<c:forEach var="dcsdto" items="${detailCSche2}">
 									<li>
 										<span><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
 										<c:choose>
@@ -355,7 +401,13 @@
 				<!-- 언제 열리는지에 대한 정보(클래스) -->
 				<li id="classDate">
 					<!-- 위와 동일한 css --> <strong class="otherInfoName">일시</strong> <span
-					class="otherInfoContents">03월30일(월),04월20일(월)</span>
+					class="otherInfoContents">
+						<c:forEach var="dcsdto" items="${detailCSche}">
+							<fmt:formatDate var="item" value="${dcsdto.lLeasedate}" pattern="MM월dd일(E)"/>
+							${item},				
+						</c:forEach>
+							
+					</span> 
 				</li>
 				<!-- 모집(클래스),인원(공간)에 대한 정보  -->
 				<li class="capacity">
@@ -394,9 +446,9 @@
 					<!-- 스케쥴표가 전부 펼쳐진상태를 말한다. javascript로 로직처리가 필요하다. -->
 					<div id="scheduleOn">
 						<ul class="timeList">
-							<c:forEach var="dcsdto" items="${detailCSche}">
+							<c:forEach var="dcsdto" items="${detailCSche1}">
 							<!-- 날짜를 format 할때 양식의 대소문자를 잘 지켜줘야 된다.  -->
-								<li>
+								<li class="classSch" value="${dcsdto.recNo}" >
 								<span><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
 								<c:choose>
 									<c:when test="${dcsdto.lLeasetime eq '오전'}">
@@ -409,8 +461,12 @@
 										<span>18:00</span>
 									</c:otherwise>								
 								</c:choose>
+								<!-- 
+									인원이 다 차거나 진행 상태가 종료가 되면 마감으로 처리
+									사람이 안 차도 시간이 지나면 자동으로 종료가 되도록 하는 로직이 필요하다.
+							  	-->
 								<c:choose>
-									<c:when test="${dcsdto.cMaxrecruitperson eq dcsdto.cPerson}">
+									<c:when test="${dcsdto.cMaxrecruitperson eq dcsdto.cPerson or dcsdto.lPerstatus == '종료'}">
 										<span class="endC">마감</span>									
 									</c:when>
 									<c:otherwise>							
@@ -419,46 +475,6 @@
 								</c:choose>
 								</li>
 							</c:forEach>
-							
-
-
-							<!-- <li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li>
-							<li>
-								정보 <span>20.04.04 (토) 오전</span> <span>8명 예약 가능</span>
-
-							</li> -->
-
 						</ul>
 					</div>
 

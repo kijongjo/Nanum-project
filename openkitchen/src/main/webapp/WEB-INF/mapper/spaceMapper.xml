@@ -5,7 +5,7 @@
   <mapper namespace="kr.co.openkitchen.space">
   	<select id="selectDetailS" resultType="dsdto" parameterType="int">
 		SELECT S_DETAILSUMNAIL, S_NAME, S_SHORTINTRO, S_HASHTAG, S_TEMA, S_LOC, 
-			   S_CAPACITY, S_REFERENCE, S_CONVENIENT, S_SAFETY
+			   S_LONGINTRO, S_CAPACITY, S_REFERENCE, S_CONVENIENT, S_SAFETY
 			   FROM SPACE
                WHERE S_NO = #{sNo}		
   	</select>

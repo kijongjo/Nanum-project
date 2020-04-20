@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,10 +34,17 @@ public class ClassController {
 
 	@GetMapping("classD")
 	public String classD(@RequestParam("no") int cNo, Model model) {
+		Map<String, String> map1 = new HashMap<String, String>();
+		Map<String, String> map2 = new HashMap<String, String>();
 		
+		String no = Integer.toString(cNo);
+		map1.put("cNo", no);
+		map1.put("type", "1");
+		map2.put("cNo", no);
+		map2.put("type", "2");
 		model.addAttribute("detailClass", si.readDetailC(cNo));
-		model.addAttribute("detailCSche", si.readDetailCSche(cNo));
-		System.out.println(si.readDetailCSche(cNo));
+		model.addAttribute("detailCSche1", si.readDetailCSche(map1));
+		model.addAttribute("detailCSche2", si.readDetailCSche(map2));
 		
 		
 		return "class/user/classD";
@@ -87,5 +95,13 @@ public class ClassController {
 //	public String spaceIntro() {
 //		return "mypage/space/spaceIntro";
 //	}
+	
+	@GetMapping("classPayment")
+	public String classPayment(@RequestParam("no")int recNo, Model model) {
+		
+		model.addAttribute("paymentC", si.readPaymentC(recNo));
+		
+		return "class/user/classPayment";
+	}
 
 }
