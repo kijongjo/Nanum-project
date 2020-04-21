@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.openkitchen.dto.MemberDTO;
+import kr.co.openkitchen.dto.PaymentMemDTO;
 import lombok.Setter;
 
 @Repository
@@ -57,5 +58,13 @@ public class MemberDao implements MemberDaoInter{
 		return ss.selectOne("kr.co.openkitchen.dto.MemberDTO.selectUserData",mEmail);
 		
 	}
+
+	@Override
+	public PaymentMemDTO selectPaymentM(int mNo) {
+		
+		return ss.selectOne("kr.co.openkitchen.dto.MemberDTO.selectPaymentM", mNo);
+	}
+	
+	
 
 }
