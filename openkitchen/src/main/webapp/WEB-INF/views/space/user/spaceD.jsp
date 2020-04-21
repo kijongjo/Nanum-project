@@ -18,11 +18,15 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/index-slide.css'/>">
+<%-- <link rel="stylesheet"
+	href="<c:url value='/resources/css/index-slide.css'/>"> --%>
 
 <!-- 달력 플러그인 css  -->
 <link rel="stylesheet" href="<c:url value='/resources/css/datepicker.min.css'/>" type="text/css">
+
+<link rel="stylesheet" href="<c:url value='/resources/css/slick.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/slick-theme.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/class-slick.css'/>">
 
 <!-- jquery 불러오기 -->
 <script
@@ -30,12 +34,16 @@
 	<script src="<c:url value='resources/js/spaceD.js'/>"></script>
 
 <script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
-<script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
-<script src="<c:url value='/resources/js/index-slide.js'/>"></script>
+<%-- <script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/resources/js/index-slide.js'/>"></script> --%>
 
 <!-- 달력 플러그인  -->
 <script src="<c:url value='/resources/js/datepicker.min.js'/>"></script>
 <script src="<c:url value='/resources/js/datepicker.en.js'/>"></script>
+
+<!-- detailsumnail slider  -->
+<script src="<c:url value='/resources/js/slick.js'/>"></script>
+<script src="<c:url value='/resources/js/main-slick.js'/>"></script>
 
 <title>Document</title>
 <jsp:include page="../../headerScript.jsp" flush="false" />
@@ -84,19 +92,27 @@
 	<div id="lay01">
 		<section id="left01">
 			<!-- 상세 이미지 section 설정 -->
-			<section class="detailImg">
-				<ul class="bxslider1">
-					<c:forEach var="item" items="${fn:split(detailSpace.sDetailsumnail, ',')}">
-						<li><img src="<c:url value='${item}'/>" alt="" /></li>					
+			<div class="sliderContainer">
+				<ul class="slider single-item">
+					<c:forEach varStatus="status" var="item" items="${fn:split(detailSpace.sDetailsumnail, ',')}">
+						<li>
+							<img src="<c:url value='${item}'/>" alt="" />
+						</li>					
 					</c:forEach>
 				</ul>
-				
+				<div class="progressBarContainer">
+					<c:forEach varStatus="status" var="item" items="${fn:split(detailSpace.sDetailsumnail,',')}">
+ 		 				<div>
+	      					<span data-slick-index="${status.index}" class="progressBar"></span>
+    					</div>
+    				</c:forEach>   
+ 	 			</div>
 				<!-- share 링크 -->
 				<div class="share">
 					<!-- a링크를 누르게 되면 공유 기능이 있는 div가 나온다  -->
 					<a href="#pop_share"></a>
 				</div>
-			</section>
+			</div>
 		</section>
 
 
