@@ -101,18 +101,81 @@
 		height: 448px;
 	}
 	
-	/* .endC {
-		color:#dfdfdf;
-		border-color:#dfdfdf;
-		
-	} */
+	/* 선택된 날짜 아래 표기되는 dot  */
+	.dp-note {
+	    background: #8e0032;
+	    width: 5px;
+	    height: 5px;
+	    border-radius: 50%;
+	    left: 50%;
+	    bottom: 1px;
+	    -webkit-transform: translateX(-50%);
+	    transform: translateX(-50%);
+	}
+	
+	.dp-note, .nav {
+		position: absolute;
+	}
 		
 </style>
 
 <jsp:include page="../../headerScript.jsp" flush="false" />
+<script>
+$(document).ready(function () {
+	
+	var list = new Array();
+	/* ajax를 데이터를 받을 방법을 강구하시오.!  */
+	<c:forEach var="itemList" items="${detailCSche3}" varStatus="listIdx"  >
+		list.push("${itemList}");
+	</c:forEach>
+	console.log(list);
+	var $picker = $(".datepicker-here");
+		
+	$picker.datepicker({
+		// 날짜 선택기의 셀이 렌더링 될 때 콜백  
+		// html로 입력받아 해석해서 표준 출력 장치(모니터)로 출력
+	    // 화면에 날짜가 보여질 때 호출???
+	                    		
+		
+		onRenderCell: function (date, cellType) {
+			/* date : 현재 셀  날짜
+			   cellTpe : 현재 셀 유형 (day, month, year)
+			*/
+	        var currentDate = date.getDate();
+			console.log(typeof currentDate);
+			/* 0~11까지 표기한다.  */
+			var currentMonth = date.getMonth()+1;
+	        var currentYear = date.getFullYear();
+	        
+	        // Add extra element, if `eventDates` contains `currentDate`
+	        /* currentDate는 출력되는 요일?  */
+	        
+	        /* 
+	                    문자열.indexOf("찾을문자") 문자열과 배열에서 사용 가능...
+	                    해당하는 값이 존재 할 경우 위치를 넘겨줌. 찾다가 해당값이 없을 경우 -1을 리턴하는데
+	                    현재 코드에서는 -1이 아닐 경우 즉 찾았을 경우에만 동작하게 되어있다.
+	        */	
+	        for (var i = 0; i < list.length; i++) {
+	        	var eventYear = list[i].substring(0, 4);
+	        	var eventMonth = list[i].substring(5, 6);
+	        	var eventDate = list[i].substring(7, 9);
+	       		
+	        	if (currentYear == eventYear && currentMonth == eventMonth && eventDate.indexOf(currentDate) != -1) {
+		            if(cellType == "day") {
+			        	return {
+			            	/* 지정한 요일에 점추가되는 span  */
+			                html: currentDate + '<span class="dp-note"></span>'
+			            } // return문 end
+		            } // second if문 end
+		        } // first if문 end
+			} // for문 end
+	    }	
+	});
+});
+
+
+</script>
 </head>
-
-
 
 <body>
 <jsp:include page="../../header.jsp" flush="false" />

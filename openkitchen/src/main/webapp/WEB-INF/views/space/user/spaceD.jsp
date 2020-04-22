@@ -52,7 +52,76 @@
 	.datepicker {
 		width: 100%;
 	}
+	
+	.dp-note {
+	    background: #ccc;
+	    width: 4px;
+	    height: 4px;
+	    border-radius: 50%;
+	    left: 50%;
+	    bottom: 1px;
+	    -webkit-transform: translateX(-50%);
+	    transform: translateX(-50%);
+	}
+	
+	.dp-note, .nav {
+    	position: absolute;
+	}
 </style>
+<script>
+	$(document).ready(function () {
+		$(".btn-payment").on("click", function () {
+			$(location).attr("href", "spacePayment?no=1");
+			console.log("test");
+			
+			
+		});
+		
+		var eventDates = [1, 10, 12, 22],
+	    $picker = $('#custom-cells');
+		console.log(typeof eventDates);
+		
+
+		$picker.datepicker({
+			// 날짜 선택기의 셀이 렌더링 될 때 콜백  
+			// html로 입력받아 해석해서 표준 출력 장치(모니터)로 출력
+            // 화면에 날짜가 보여질 때 호출???
+                            		
+			
+			onRenderCell: function (date, cellType) {
+				/* date : 현재 셀  날짜
+				   cellTpe : 현재 셀 유형 (day, month, year)
+				*/
+		        var currentDate = date.getDate();
+				/* 0~11까지 표기한다.  */
+				var currentMonth = date.getMonth()+1;
+		        var currentYear = date.getFullYear();
+		        
+		        // Add extra element, if `eventDates` contains `currentDate`
+		        /* currentDate는 출력되는 요일?  */
+		        
+		        /* 문자열.indexOf("찾을문자") 문자열과 배열에서 사용 가능...
+		                    해당하는 값이 존재 할 경우 위치를 넘겨줌. 찾다가 해당값이 없을 경우 -1을 리턴하는데
+		                    현재 코드에서는 -1이 아닐 경우 즉 찾았을 경우에만 동작하게 되어있다.
+		        */		
+		        if (currentYear == 2020 && currentMonth == 4 && eventDates.indexOf(currentDate) != -1) {
+		            if(cellType == "day") {
+			        	return {
+			            	/* 지정한 요일에 점추가되는 span  */
+			                html: currentDate + '<span class="dp-note"></span>'
+			            }
+		            }
+		        }
+		    }	
+		});
+		
+		// Select initial date from `eventDates`
+		/* var currentDate = currentDate = new Date();
+		$picker.data('datepicker').selectDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), 10)) */
+		
+		
+	});
+</script>
 
 
 </head>
@@ -329,7 +398,8 @@
 					<!-- 시간 선택(클래스,공간)에 관한 ul이다. db 대여 entity에서 정보를 가지고 와서 li에 반복적으로 추가해주자!  -->
 
 					<div id="scheduleOn">
-						<div class="datepicker-here" data-language="en"></div>
+						<div id="custom-cells" data-language="en"></div>
+						<div id="custom-cells-events"></div>
 					</div>
 
 				</div>

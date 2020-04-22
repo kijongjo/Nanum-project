@@ -3,6 +3,9 @@ package kr.co.openkitchen.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.service.ServiceInter;
 import kr.co.openkitchen.service.SserviceInter;
@@ -71,4 +75,29 @@ public class SpaceController {
 //		변환된 list를 return함
 		return str;
 	}
+	
+	@GetMapping("spacePayment")
+	public String spacePayment(@RequestParam("no")int recNo, Model model, 
+			HttpServletRequest request) {
+		
+		
+//		HttpSession session = request.getSession();		
+//		if(session.getAttribute("openkitchen") == null) {
+//			
+//			session.setAttribute("classNo", recNo);
+//			// 스프링에서 리다이렉트 시키는 방법
+//			return "redirect:login";
+//			
+//		}
+		
+//		Object obj = session.getAttribute("openkitchen");
+//		MemberDTO mdto = (MemberDTO)obj;
+//		
+//		
+//		model.addAttribute("paymentC", csi.readPaymentC(recNo));
+//		model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
+		
+		return "space/user/spacePayment";
+	}
+	
 }

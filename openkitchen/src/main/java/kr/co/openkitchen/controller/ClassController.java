@@ -1,8 +1,8 @@
 package kr.co.openkitchen.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,18 +20,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.openkitchen.dto.ClassIndexDTO;
+import kr.co.openkitchen.dto.DetailCScheDTO;
 import kr.co.openkitchen.dto.MemberDTO;
-import kr.co.openkitchen.service.ServiceInter;
-
 import kr.co.openkitchen.service.CserviceInter;
 import kr.co.openkitchen.service.MemberServiceInter;
-import kr.co.openkitchen.service.MserviceInter;
 import lombok.Setter;
 
 @Controller
@@ -52,9 +49,20 @@ public class ClassController {
 		map1.put("type", "1");
 		map2.put("cNo", no);
 		map2.put("type", "2");
+		
+		
+		
+	    List<DetailCScheDTO> list1 = csi.readDetailCSche(map2);
+	    SimpleDateFormat fm = new SimpleDateFormat("yyyy-M-d");
+	    List<String> list2 = new ArrayList<String>();
+	    for(DetailCScheDTO dcsdto : list1) {
+	    	System.out.println(fm.format(dcsdto.lLeasedate));
+	    	list2.add(fm.format(dcsdto.lLeasedate));
+	    }
 		model.addAttribute("detailClass", csi.readDetailC(cNo));
 		model.addAttribute("detailCSche1", csi.readDetailCSche(map1));
 		model.addAttribute("detailCSche2", csi.readDetailCSche(map2));
+		model.addAttribute("detailCSche3", list2);
 		
 		
 	

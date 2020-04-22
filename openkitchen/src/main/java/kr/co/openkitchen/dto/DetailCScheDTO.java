@@ -12,7 +12,7 @@ import lombok.ToString;
 public class DetailCScheDTO {
 	int cNo;
 	int recNo;
-	Date lLeasedate;
+	public Date lLeasedate;
 	String lLeasetime;
 	String lPerstatus;
 	int cPerson;

@@ -48,7 +48,7 @@ public class MemberController {
 		
 		session.setAttribute("openkitchen", memberDTO);
 		Object classNo = session.getAttribute("classNo");
-		
+		Object spaceNo = session.getAttribute("spaceNo");
 		
 		if(classNo != null) {
 			
