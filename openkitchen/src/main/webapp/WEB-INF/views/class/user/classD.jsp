@@ -141,11 +141,11 @@ $(document).ready(function () {
 			/* date : 현재 셀  날짜
 			   cellTpe : 현재 셀 유형 (day, month, year)
 			*/
-	        var currentDate = date.getDate();
-			console.log(typeof currentDate);
+	        var currentDate = String(date.getDate());
 			/* 0~11까지 표기한다.  */
-			var currentMonth = date.getMonth()+1;
+			var currentMonth = String(date.getMonth()+1);
 	        var currentYear = date.getFullYear();
+	        console.log(typeof currentDate);
 	        
 	        // Add extra element, if `eventDates` contains `currentDate`
 	        /* currentDate는 출력되는 요일?  */
@@ -155,20 +155,40 @@ $(document).ready(function () {
 	                    해당하는 값이 존재 할 경우 위치를 넘겨줌. 찾다가 해당값이 없을 경우 -1을 리턴하는데
 	                    현재 코드에서는 -1이 아닐 경우 즉 찾았을 경우에만 동작하게 되어있다.
 	        */	
+	        
+	        	var eventYear = new Array();
+	        	var eventMonth = new Array();
+				var eventDate = new Array(); 
+	        for (var j = 0; j < list.length; j++) {
+	        	eventYear[j] = list[j].substring(0, 4);
+	        	eventMonth[j] = list[j].substring(5, 6); 
+				eventDate[j] = list[j].substring(7, 9);
+	        }
+	        /* console.log(currentYear+"년"+currentMonth+"월"+currentDate+"일");
+			 */
+			
+	        // 현재 date를 통해 get하여 가져온 연월일의 개수는 date에 따라 변동된다.
+	        // 현재 4월은 35개식 가져온다.하지만 비교하는 대상 데이터는 7개이다.(연, 월, 일)
+	        // date를 통해 가져온 날짜와 비교하는 대상 데이터와 정확한 매핑이되고 있지 않다.
+	        // indexOf는 찾은 문자열의 위치를 찾는 함수인데 number type에도 왜 작동을 하는가..??
+	        // 비교대상이 전체 String이던가 int형이여야 화면에 출력값을 보여준다
+	        // 정확한 매핑이 필요한데 indexOf를 사용하지 않으면 어떨까?? (배열로 받아 사용하는 것은 실패)
+	        // 해결!!!
+	        		
 	        for (var i = 0; i < list.length; i++) {
 	        	var eventYear = list[i].substring(0, 4);
-	        	var eventMonth = list[i].substring(5, 6);
-	        	var eventDate = list[i].substring(7, 9);
-	       		
-	        	if (currentYear == eventYear && currentMonth == eventMonth && eventDate.indexOf(currentDate) != -1) {
-		            if(cellType == "day") {
+	        	var eventMonth = list[i].substring(5, 6); 
+				var eventDate = list[i].substring(7, 9);
+	        	
+	        	if (currentYear == eventYear && currentMonth == eventMonth && currentDate == eventDate) {
+		           // if(cellType == "day") {
 			        	return {
 			            	/* 지정한 요일에 점추가되는 span  */
 			                html: currentDate + '<span class="dp-note"></span>'
-			            } // return문 end
+			       //     } // return문 end
 		            } // second if문 end
 		        } // first if문 end
-			} // for문 end
+			 } // for문 end
 	    }	
 	});
 });
