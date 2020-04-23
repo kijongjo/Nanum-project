@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.dao.SDaoInter;
+import kr.co.openkitchen.dto.DetailSScheDTO;
 import kr.co.openkitchen.dto.DetailSpaceDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import lombok.Setter;
@@ -36,6 +37,10 @@ public class SpaceService implements SserviceInter {
 			
 			return dao.selectDetailS(sNo);
 		}
-		
-		
+
+		@Override
+		public List<DetailSScheDTO> readDetailSSche(int sNo) {
+			
+			return dao.selectDetailSSche(sNo);
+		}
 }

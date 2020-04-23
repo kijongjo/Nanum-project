@@ -1,6 +1,8 @@
 package kr.co.openkitchen.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +21,8 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.dto.DetailCScheDTO;
+import kr.co.openkitchen.dto.DetailSScheDTO;
 import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.service.ServiceInter;
@@ -29,22 +33,33 @@ import lombok.Setter;
 public class SpaceController {
 	
 	@Setter(onMethod = @__({ @Autowired }))
-	SserviceInter si;
+	SserviceInter ssi;
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
 	public String classD(@RequestParam("no")int sNo, Model model) {
 		
-		model.addAttribute("detailSpace", si.readDetailS(sNo));
-		System.out.println(si.readDetailS(sNo));
+		List<DetailSScheDTO> list1 = ssi.readDetailSSche(sNo);
+	    SimpleDateFormat fm = new SimpleDateFormat("yyyy-M-d");
+	    List<String> list2 = new ArrayList<String>();
+	    for(DetailSScheDTO dssdto : list1) {
+	    	list2.add(fm.format(dssdto.lLeasedate));
+	    }
+	    
+	    System.out.println(list2);
+		
+		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
+		model.addAttribute("detailSSche", ssi.readDetailSSche(sNo));
+		model.addAttribute("detailSScheDate", list2);
+		
 		
 		return "space/user/spaceD";
 	}
 	
 	@GetMapping("spaceIn")
 	public String spaceIn(Model model) {
-		model.addAttribute("list",si.readFiveS());
-		model.addAttribute("mainContent",si.mainContentS());
+		model.addAttribute("list", ssi.readFiveS());
+		model.addAttribute("mainContent", ssi.mainContentS());
 		return "space/user/spaceIn";
 	}
 	
@@ -52,7 +67,7 @@ public class SpaceController {
 	@ResponseBody
 	public String moreC(@RequestParam("count") int count) {
 		System.out.println("더보기 시 보여질 갯수:" + count);
-		List<SpaceIndexDTO> list = si.moreSpace(count);
+		List<SpaceIndexDTO> list = ssi.moreSpace(count);
 		
 //		 json으로 변환 시키기 위한 로직.
 		// ajax에는 map이나 list 형식이 없어서 string 으로 변환해준다.

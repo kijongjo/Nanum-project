@@ -30,5 +30,6 @@
         <typeAlias type="kr.co.openkitchen.dto.TeacherRegistDTO" alias="trdto" />
         <typeAlias type="kr.co.openkitchen.dto.TeacherRegistDtoS" alias="trsdto" />
         <typeAlias type="kr.co.openkitchen.dto.PaymentMemDTO" alias="pmdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailSScheDTO" alias="dssdto" />
   	</typeAliases>
   </configuration>

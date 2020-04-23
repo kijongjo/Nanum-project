@@ -56,27 +56,50 @@
 		var classSch = $(".classSch");
 		classSch.on("click", function () {
 			cnt++;
-			console.log(cnt);
+			var date = $(this).children(".schLeaseDate").text();
+			var time = $(this).children(".schLeaseTime").text();
+			var outTime = "";
+			
+			if(time.indexOf("10") != -1) {	
+				outTime = "10:00 - 14:00";
+			} else if(time.indexOf("14") != -1) {
+				outTime = "14:00 - 18:00";
+			} else {
+				outTime = "18:00 - 22:00";
+			}
+			
 			if(cnt == 1) {
+				// 첫번째 클릭 했을 때
 				schNo[0] = $(this).val();
 				$(this).css("backgroundColor", "#8E0032");
 				$(this).children("span").css("color", "white");
+				$(".choiceSch").css("display","block");
+				$(".schDate").text(date);
+				$(".schTime").text(outTime);
 			} else if (cnt == 2) {
+				// 두번째 클릭 했을 때
 				schNo[1] = $(this).val();
 				   if(schNo[0]==schNo[1]) {
+					// 같은거 클릭 했을 때   
 					$(this).css("backgroundColor", "white");
 					$(this).children("span").css("color", "#959595");
+					$(".choiceSch").css("display","none");
 					schNo[0]=0;
 					cnt = 0;
 				   } else if(schNo[0]!=schNo[1]) {
+					   // 다른거 클릭 했을 때
 					   schNo[0] = $(this).val();
 					   classSch.css("backgroundColor", "white");
 					   classSch.children("span").css("color", "#959595")
 					   $(this).css("backgroundColor", "#8E0032");
 					   $(this).children("span").css("color", "white");
 					   cnt = 1;
-				   }
-			}			
+					   
+					   $(".schDate").text(date);
+					   $(".schTime").text(outTime);
+					   
+				   }								
+			}
 		});
 
 		var btnPayment = $(".btn-payment");
@@ -87,9 +110,6 @@
 				$(location).attr("href", "classPayment?no="+schNo[0]);
 			}
 		});
-		
-		
-		
 	});
 	
 	
@@ -116,6 +136,40 @@
 	.dp-note, .nav {
 		position: absolute;
 	}
+	
+	.choiceSch {
+		border: 1px solid rgba(0, 0, 0, .1);
+		border-bottom: none;
+		padding: 14px 48px;
+		text-align: center;
+		display: none;
+	}
+	
+	.schTitle {
+	 	font-size: 14px;
+	 	color: #585858;
+	 	text-align: left;
+	}
+	
+	.schDate, .schTime {
+		font-size: 20px;
+		color: #303030;
+		font-weight: 600;
+		display: inline-block;
+		box-sizing: border-box;  
+		line-height: 20px;  
+	}
+	
+	.schDate {
+		padding-right: 20px;
+		border-right: 1px solid #d8d8d8;
+		
+		
+	}
+	
+	.schTime {
+		padding-left: 20px;
+	}
 		
 </style>
 
@@ -141,11 +195,11 @@ $(document).ready(function () {
 			/* date : 현재 셀  날짜
 			   cellTpe : 현재 셀 유형 (day, month, year)
 			*/
-	        var currentDate = String(date.getDate());
+	        var currentDate = date.getDate();
 			/* 0~11까지 표기한다.  */
-			var currentMonth = String(date.getMonth()+1);
+			var currentMonth = date.getMonth()+1;
 	        var currentYear = date.getFullYear();
-	        console.log(typeof currentDate);
+	        /* console.log(typeof currentDate); */
 	        
 	        // Add extra element, if `eventDates` contains `currentDate`
 	        /* currentDate는 출력되는 요일?  */
@@ -156,14 +210,15 @@ $(document).ready(function () {
 	                    현재 코드에서는 -1이 아닐 경우 즉 찾았을 경우에만 동작하게 되어있다.
 	        */	
 	        
-	        	var eventYear = new Array();
+	        /* 	var eventYear = new Array();
 	        	var eventMonth = new Array();
 				var eventDate = new Array(); 
 	        for (var j = 0; j < list.length; j++) {
 	        	eventYear[j] = list[j].substring(0, 4);
 	        	eventMonth[j] = list[j].substring(5, 6); 
 				eventDate[j] = list[j].substring(7, 9);
-	        }
+	        } */
+	        
 	        /* console.log(currentYear+"년"+currentMonth+"월"+currentDate+"일");
 			 */
 			
@@ -171,7 +226,7 @@ $(document).ready(function () {
 	        // 현재 4월은 35개식 가져온다.하지만 비교하는 대상 데이터는 7개이다.(연, 월, 일)
 	        // date를 통해 가져온 날짜와 비교하는 대상 데이터와 정확한 매핑이되고 있지 않다.
 	        // indexOf는 찾은 문자열의 위치를 찾는 함수인데 number type에도 왜 작동을 하는가..??
-	        // 비교대상이 전체 String이던가 int형이여야 화면에 출력값을 보여준다
+	        // 비교대상이 전체 String이던가 number형이여야 화면에 출력값을 보여준다
 	        // 정확한 매핑이 필요한데 indexOf를 사용하지 않으면 어떨까?? (배열로 받아 사용하는 것은 실패)
 	        // 해결!!!
 	        		
@@ -534,16 +589,16 @@ $(document).ready(function () {
 							<c:forEach var="dcsdto" items="${detailCSche1}">
 							<!-- 날짜를 format 할때 양식의 대소문자를 잘 지켜줘야 된다.  -->
 								<li class="classSch" value="${dcsdto.recNo}" >
-								<span><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
+								<span class="schLeaseDate"><fmt:formatDate value="${dcsdto.lLeasedate}" pattern="yy.MM.dd(E)"/></span>
 								<c:choose>
 									<c:when test="${dcsdto.lLeasetime eq '오전'}">
-										<span>10:00</span>
+										<span class="schLeaseTime">10:00</span>
 									</c:when>
 									<c:when test="${dcsdto.lLeasetime eq '오후'}">
-										<span>14:00</span>
+										<span class="schLeaseTime">14:00</span>
 									</c:when>
 									<c:otherwise>
-										<span>18:00</span>
+										<span class="schLeaseTime">18:00</span>
 									</c:otherwise>								
 								</c:choose>
 								<!-- 
@@ -568,6 +623,11 @@ $(document).ready(function () {
 				<p>
 					<a href="javascript:selectBody();">일정 접기 </a>
 				</p>
+				<div class="choiceSch">
+					<div class="schTitle">선택된 일정</div>
+					<span class="schDate">20.05.16(토)</span>
+					<span class="schTime">14:00 - 18:00</span>
+				</div>
 				<!-- 신청하기 버튼이 있는 기능에 bottom이라고 지정했다. -->
 				<div class="selectBottom">
 					<!-- 해당 클래스,공간에 대한 가격이 보이게 된다. -->

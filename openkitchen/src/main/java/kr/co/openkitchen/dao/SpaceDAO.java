@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.openkitchen.dto.DetailSScheDTO;
 import kr.co.openkitchen.dto.DetailSpaceDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import lombok.Setter;
@@ -36,6 +37,14 @@ public class SpaceDAO implements SDaoInter {
 		
 		return ss.selectOne("kr.co.openkitchen.space.selectDetailS", sNo);
 	}
+
+	@Override
+	public List<DetailSScheDTO> selectDetailSSche(int sNo) {
+		
+		return ss.selectList("kr.co.openkitchen.space.selectDetailSSche", sNo);
+	}
+	
+	
 	
 	
 }
