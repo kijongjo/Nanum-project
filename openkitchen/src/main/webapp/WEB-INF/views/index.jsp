@@ -98,7 +98,7 @@ $(document).ready(function() {
 													+  contents4
 													+ contents5 + contents6 + contents7 + contents8;
 											// frag에 먼저 append 함.
-											$frag.append('<li class="mcdetail">' + tag + '</li>')
+											$frag.append('<li class="mcdetail">' + tag + '</li>');
 													
 										});
 								// 최종적인 값을 append 함.

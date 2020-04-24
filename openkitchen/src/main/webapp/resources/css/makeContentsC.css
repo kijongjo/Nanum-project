@@ -103,33 +103,44 @@
 }
 
 
-
-#btn_submit{
-    width: 855px;
-    margin-top: 50px;
-}
-#btn_submit div{
-    float:right;
-}
-#btn_submit input{
-    border-radius: 3px;
-    margin-left: 12px;
-    width: 168px; height: 64px;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 64px;
-    
-}
-#btn_submit input:nth-child(1){
-    color: #2e2e2e;
-    background-color: white;
-}
-#btn_submit input:nth-child(2){
-    color: white;
-    background-color: #8E0032;
+#contents_border #btn-form-wrap {
+	height: 64px;
+	margin: 124px 21px 0px;
+	background-color: #F6F5F5;
 }
 
+#contents_border #btn-form-wrap #complete  {
+	float: right;
+	font-size: 18px;
+	height: 64px;
+	width: 168px;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+}
 
+#contents_border #btn-form-wrap #complete {
+	background: #8e0032;
+	color: white;
+	margin-left: 12px;
+}
+
+#contents_border #btn-form-wrap input[type="button"]:nth-child(2) {
+	background: white;
+	color: #2e2e2e;
+}
+/* 임시저장 버튼 */
+#contents_border #btn-form-wrap>#go {
+	float: right;
+	font-size: 18px;
+	height: 64px;
+	width: 168px;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+	background: white;
+	color: #2e2e2e;
+}
 /*/////////////////////////////////////////체크박스 기본 모듈//////////////////////////////////// */
 #all-check {
 	border-bottom: 2px solid #e5e5e5;
@@ -167,63 +178,6 @@
 .checkboxSection div.checkbox input {
 	width: 60%;
 }
-/* //////////////// //////////////// 체크박스 설정 //////////////// //////////////// //////////////// //////////////// */
-input[type="checkbox"] {
-	display: block;
-	top: -1px;
-	padding: 10;
-	opacity: 0;
-	cursor: pointer;
-	height: 20px;
-	position: relative;
-	z-index: 3;
-}
-/* 체크박스의 위치 지정 요소 */
-input[type="checkbox"]+label {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	z-index: 1;
-}
-/* 체크박스 새로운 디자인 (라벨 이용) */
-input[type="checkbox"]+label:before {
-	content: "";
-	display: block;
-	/* 체크박스 크기조절 */
-	width: 15px;
-	height: 15px;
-	line-height: 18px;
-	margin: 0px 8px 0 0;
-	text-align: center;
-	background: #fff;
-	border: 1px solid #cacece;
-	border-radius: 3px;
-}
-/* 클릭할시 디자인 */
-input[type="checkbox"]:checked+label:before {
-	background-image: url("../img/icon/bg-checkbox.png");
-	/* 클릭할 시 체크박스 모양 디자인 */
-	background-position-x: -17px;
-	background-repeat: no-repeat;
-	background-size: 214%;
-}
-/* 체크박스 txt */
-input[type="checkbox"]+label::after {
-	width: 300px;
-	position: absolute;
-	top: -3px;
-	left: 30px;
-	font-weight: 400;
-	font-size: 16px;
-	color: #838383;
-}
-
-input[name="nickname"]+label::after {
-	content: "클래스 등록시 닉네임을 사용합니다.";
-	font-weight: 300;
-	color: #838383;
-}
-/* //////////////// //////////////// 체크박스 설정 끝 //////////////// //////////////// //////////////// //////////////// */
 
 /* //////////////// //////////////// 라디오박스 설정 //////////////// //////////////// //////////////// //////////////// */
 input[type="radio"] {
@@ -280,30 +234,6 @@ input[type="radio"]+label::after {
 }
 
 /*같은 radio 끼리 name을 같게 하고 id로 식별해준다.  */
-/* 사업자유형 type1~ type4로 지정 */
-input[id="type1"]+label::after {
-	content: "개인과세자";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[id="type2"]+label::after {
-	content: "일반과세자";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[id="type3"]+label::after {
-	content: "면세과세자";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[id="type4"]+label::after {
-	content: "간이과세자";
-	font-weight: 600;
-	color: #838383;
-}
 /*클래스 유형 */
 input[id="ordinary"]+label::after {
 	content: "일반 클래스";
@@ -318,54 +248,6 @@ input[id="manwon"]+label::after {
 }
 input[id="onlyOne"]+label::after {
 	content: "단 한명 클래스";
-	font-weight: 600;
-	color: #838383;
-}
-/* 사업자유형 type1~ type4로 지정 */
-input[name="F-type1"]+label::after {
-	content: "화장실";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[name="F-type2"]+label::after {
-	content: "환풍기";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[name="F-type3"]+label::after {
-	content: "전등";
-	font-weight: 600;
-	color: #838383;
-}
-/* 클래스 만들기 */
-input[name="F-type4"]+label::after {
-	content: "주차시설";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[name="S-type1"]+label::after {
-	content: "소화기";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[name="S-type2"]+label::after {
-	content: "화재 감지기";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[name="S-type3"]+label::after {
-	content: "안전 카드";
-	font-weight: 600;
-	color: #838383;
-}
-
-input[name="S-type4"]+label::after {
-	content: "구급 상자";
 	font-weight: 600;
 	color: #838383;
 }

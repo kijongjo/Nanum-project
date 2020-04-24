@@ -29,5 +29,9 @@
 
         <typeAlias type="kr.co.openkitchen.dto.TeacherRegistDTO" alias="trdto" />
         <typeAlias type="kr.co.openkitchen.dto.TeacherRegistDtoS" alias="trsdto" />
+        <typeAlias type="kr.co.openkitchen.dto.ClassRegistDTO" alias="crdto" />
+        <typeAlias type="kr.co.openkitchen.dto.ClassRegistDtoL" alias="crldto"/>
+        <typeAlias type="kr.co.openkitchen.dto.ClassRegistDtoSch" alias="crschdto"/>
+        
   	</typeAliases>
   </configuration>

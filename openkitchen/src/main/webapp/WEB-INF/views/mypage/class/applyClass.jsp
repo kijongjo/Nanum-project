@@ -20,7 +20,25 @@
 <!-- fontawesome icon링크 -->
 <script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
 <script src="<c:url value='/resources/js/applyClass.js'/>"></script>
-<script src="<c:url value='/resources/js/classSpace.js'/>"></script>
+
+<script>
+	/* 상황에 따른 script 불러오기 방법 통일성을 위해  나중엔 jstl말고 javascript로 if문 처리해야함  */
+	$(function() {
+
+		if (<c:out value="${param.no}"/> == 1) {
+			$.getScript('<c:url value="/resources/js/classBase.js"/>');
+			console.log("1번째");
+		} else if(<c:out value="${param.no}"/> == 2) {
+			$.getScript('<c:url value="/resources/js/classSpace.js"/>');
+			console.log("2번째");
+		}else{
+			$.getScript('<c:url value="/resources/js/classSchedule.js"/>');
+			console.log("3번째");
+		}
+
+	})
+</script>
+
 </head>
 <body>
 <jsp:include page="../../header.jsp" flush="false" />
@@ -41,18 +59,18 @@
 			<div>
 				<c:choose>
 					<c:when test="${no eq 1}">
-						<a href="javascript:action(1)" class="On_active">공간선택</a>
-						<a href="javascript:action(2)" class="Off_active">기본정보</a>
-						<a href="javascript:action(3)" class="Off_active">클래스선택</a>
+						<a href="javascript:action(1)" class="On_active">기본정보</a>
+						<a href="javascript:action(2)" class="Off_active">공간선택</a>
+						<a href="javascript:action(3)" class="Off_active">클래스일정</a>
 					</c:when>
 					<c:when test="${no eq 2}">
-						<a href="javascript:action(1)" class="Off_active">공간선택</a>
-						<a href="javascript:action(2)" class="On_active">기본정보</a>
+						<a href="javascript:action(1)" class="Off_active">기본정보</a>
+						<a href="javascript:action(2)" class="On_active">공간선택</a>
 						<a href="javascript:action(3)" class="Off_active">클래스일정</a>
 					</c:when>
 						<c:when test="${no eq 3}">
-						<a href="javascript:action(1)" class="Off_active">공간선택</a>
-						<a href="javascript:action(2)" class="Off_active">기본정보</a>
+						<a href="javascript:action(1)" class="Off_active">기본정보</a>
+						<a href="javascript:action(2)" class="Off_active">공간선택</a>
 						<a href="javascript:action(3)" class="On_active">클래스일정</a>
 					</c:when>
 				</c:choose>
@@ -62,10 +80,10 @@
 		<section id="right01">
 			<c:choose>
 				<c:when test="${no eq 1}">
-					<jsp:include page="classSpace.jsp"></jsp:include>
+					<jsp:include page="classBase.jsp"></jsp:include>
 				</c:when>
 					<c:when test="${no eq 2}">
-					<jsp:include page="classBase.jsp"></jsp:include>
+					<jsp:include page="classSpace.jsp"></jsp:include>
 				</c:when>
 				<c:when test="${no eq 3}">
 					<jsp:include page="classSchedule.jsp"></jsp:include>

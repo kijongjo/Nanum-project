@@ -12,13 +12,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.openkitchen.classes.GenericOne;
 import kr.co.openkitchen.dao.RegisterDaoInter;
 import lombok.Setter;
 
 //선생님 등록에 대한 service 
 
 @Service
-public class RegistTeacherImple implements RegistServiceInter {
+public class RegistTeacherImple implements RegistServiceInterF {
 	@Autowired
 	ServletContext servletContext;
 
@@ -120,8 +121,13 @@ public class RegistTeacherImple implements RegistServiceInter {
 	public <T> void applyDTO(T dto) {
 		dao.insertDTO(dto);
 	}
-   
+    
+	 @Override
+	public <T> GenericOne<T> selectOne(T genericOne) {
+//등록 페이지로 넘어올때 필요한 정보가 부족해서 남겨둔다.
+		return null;
+	}
 
-
+ 
 
 }
