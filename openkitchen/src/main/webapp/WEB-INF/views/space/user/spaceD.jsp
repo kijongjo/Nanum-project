@@ -144,17 +144,20 @@
 			list.push("${itemList}");
 		</c:forEach>
 		console.log(list);
-		var $picker = $(".datepicker-here");
-			
+		var $picker = $(".datepicker-here");		
+
+				
 		$picker.datepicker({
 			// 날짜 선택기의 셀이 렌더링 될 때 콜백  
 			// html로 입력받아 해석해서 표준 출력 장치(모니터)로 출력
 		    // 화면에 날짜가 보여질 때 호출???
-		                    		
+	     	navTitles: {
+	     		days: '<span class="1">yyyy</span><span class="2">mm</span>',
+       		},               		
 			
 			onRenderCell: function (date, cellType) {
 				/* date : 현재 셀  날짜
-				   cellTpe : 현재 셀 유형 (day, month, year)
+				   cellType : 현재 셀 유형 (day, month, year)
 				*/
 		        var currentDate = date.getDate();
 				/* 0~11까지 표기한다.  */
@@ -170,19 +173,7 @@
 		                    해당하는 값이 존재 할 경우 위치를 넘겨줌. 찾다가 해당값이 없을 경우 -1을 리턴하는데
 		                    현재 코드에서는 -1이 아닐 경우 즉 찾았을 경우에만 동작하게 되어있다.
 		        */	
-		        
-		        /* 	var eventYear = new Array();
-		        	var eventMonth = new Array();
-					var eventDate = new Array(); 
-		        for (var j = 0; j < list.length; j++) {
-		        	eventYear[j] = list[j].substring(0, 4);
-		        	eventMonth[j] = list[j].substring(5, 6); 
-					eventDate[j] = list[j].substring(7, 9);
-		        } */
-		        
-		        /* console.log(currentYear+"년"+currentMonth+"월"+currentDate+"일");
-				 */
-				
+		       	
 		        // 현재 date를 통해 get하여 가져온 연월일의 개수는 date에 따라 변동된다.
 		        // 현재 4월은 35개식 가져온다.하지만 비교하는 대상 데이터는 7개이다.(연, 월, 일)
 		        // date를 통해 가져온 날짜와 비교하는 대상 데이터와 정확한 매핑이되고 있지 않다.
@@ -201,82 +192,138 @@
 				        	return {
 				            	/* 지정한 요일에 점추가되는 span  */
 				                html: currentDate + 
-				                	'<span class="dp-note"><input type="hidden" name="" value="1"/></span>'
+				                	'<span class="dp-note"></span>'
 				       //     } // return문 end
 			            } // second if문 end
 			        } // first if문 end
 				 } // for문 end
-		    } // onRenderCell end
+		    } //, onRenderCell end
+		    
+		    // 날짜 선택시 콜백한다.
+		    /* onSelect: function onSelect(fd, date) {
+		    	cnt++;
+		    	console.log(cnt);
+		    	// fd는 클릭한 날짜의 년월일을 리턴함
+		    	// console.log(fd);
+		        // If date with event is selected, show it
+		        if(cnt==1){
+		        	schNo[0] = fd;
+		   
+			         for (var i = 0; i < list.length; i++) {
+				        if (date.getFullYear() == list[i].substring(0, 4) 
+				        		&& date.getMonth()+1 == list[i].substring(5, 6) 
+				        		&& date.getDate() == list[i].substring(7, 9)) {
+				        	$(".choiceSch").css("display","block");
+				        } 
+			        }   
+			        
+			        // 임대해주는 날짜가 아닌 경우 이걸 어떻게 아냐고...???
+			        // 임대해주는 날짜인지 확인 할 수 있는 트리거가 필요
+			        
+			        
+		        } else if(cnt==2) {
+		        	
+					schNo[1] = fd;		        	
+		        	// 같은거 클릭 했을 때
+		        	// 같은 거를 클릭했을 때는 비교하기 위한 배열 두번째 칸에 공백이 담긴다.
+		        	if(schNo[1] == "") {
+		        		
+		        		
+		        	} else {
+		        		schNo[0] = fd;
+		        	
+		        	}
+		        	
+		        	// 다른거 클릭 했을 때
+		        	
+		        }
+		        // $('strong', $content).html(title)
+		        // $('p', $content).html(content)
+		    } */
 		}); // datepicker end
 		
 		// 한 번 밖에 안 찍히는데 왜 이 방식을 사용하면 전체 작동을 하는가?
 		// 플러그인? api의 작동방식의 차이인가?
+		// 클릭 했을 때 예약정보가 있을 때만 일정을 불러와야 하고 불러온 일정 중
+		// 예약 완료된 것은 다른 상태로 화면에 출력해야 한다.
+		
+		
 		var cnt = 0;
+		var schDate = new Array("", "");
+		var leaseDate = "";
 		$(document).on("click",".datepicker--cell", function () {
+			leaseDate = $(".1").text()+"-"+$(".2").text()+"-"+$(this).text();
 			
-			cnt++;
 			
-			if(cnt==1) {
-				$(".choiceSch").css("display","block");
+			// 1. 일정이 없는 날은 클릭했을 시 동작을 하면 안 된다.
+			// 1.1 무엇을 비교해서 하는가? dot가 없으면 동c작 하지 않게 한다.
+			if($(this).children("span").hasClass("dp-note")) {
+				cnt++;
+				console.log(cnt);
 				
-			} else if(cnt==1) {
-				
-				
-			}
-			
-		});
-		
-		var schNo = new Array(0,0);
-		var cnt = 0;
-		var classSch = $(".classSch");
-		classSch.on("click", function () {
-			cnt++;
-			var date = $(this).children(".schLeaseDate").text();
-			var time = $(this).children(".schLeaseTime").text();
-			var outTime = "";
-			
-			if(time.indexOf("10") != -1) {	
-				outTime = "10:00 - 14:00";
-			} else if(time.indexOf("14") != -1) {
-				outTime = "14:00 - 18:00";
+				if(cnt==1) {
+					schDate[0] = $(this).text();
+					console.log("카운트 1 : "+schDate);
+					
+					
+					// ajax를 통해 실시간으로 일정을 가져오자
+					$.ajax({
+					    url: "ajaxSDetailData",
+					    type: "post",
+					    // cache: false, 얘는 뭐냐???
+					    // dataType: "html",
+					    // 보내는게 뭔지 명시가 되야 함
+					    data: {"leaseDate":leaseDate,
+					    	   "sNo":"<c:out value='${detailSpace.sNo}' />"	
+					    },
+					          
+					    success: function(data){
+					    	
+					    	console.log("test");
+					    },
+
+					    error: function (request, status, error){        
+					    	
+					    }
+					  });
+					
+					$(".choiceSch").css("display","block");
+					
+				} else if(cnt==2) {
+					schDate[1] = $(this).text();
+					console.log("카운트 2 : "+schDate);
+					// 같은 날짜를  클릭했을 때
+					// 클릭했을 때 클릭한 날짜의 date을 값을 가져와 배열에 저장한다.
+					if(schDate[0] == schDate[1]) {					
+						$(".choiceSch").css("display","none");
+						// 배열에 저장된 일정 초기화
+						schDate[0] = "";
+						cnt = 0;
+						console.log("같은 일정을 선택");
+					} else {
+					// 일정상에 다른 날짜를 클릭했을 때
+						console.log("다른 일정을 선택");
+						schDate[0] = $(this).text();  
+						cnt = 1;
+					// 카운트 1로 전환 할 경우? 
+					// 일정 비교 데이터는 변경된게 없음.
+					// 또 한 번 클릭시 카운트2로 전환하면서 비교문 작동
+					// 21, 24 => 21, 25 또 다르네? 다시 반복
+					// 다른 일정으로 바꾸고 바꾼 일정을 다시 클릭해도 해제가 되어야 한다.
+					// 21, 24 ? 24, 24 카운트 2
+					
+					}
+				}
 			} else {
-				outTime = "18:00 - 22:00";
+				$(".choiceSch").css("display","none");	
+				console.log("예약일정이 없습니다!");
+				// 카운트 초기화
+				cnt = 0;
+				// 데이터 초기화
+				schDate = ["",""];
+				console.log(schDate);
 			}
-			
-			if(cnt == 1) {
-				// 첫번째 클릭 했을 때
-				schNo[0] = $(this).val();
-				$(this).css("backgroundColor", "#8E0032");
-				$(this).children("span").css("color", "white");
-				$(".choiceSch").css("display","block");
-				$(".schDate").text(date);
-				$(".schTime").text(outTime);
-			} else if (cnt == 2) {
-				// 두번째 클릭 했을 때
-				schNo[1] = $(this).val();
-				   if(schNo[0]==schNo[1]) {
-					// 같은거 클릭 했을 때   
-					$(this).css("backgroundColor", "white");
-					$(this).children("span").css("color", "#959595");
-					$(".choiceSch").css("display","none");
-					schNo[0]=0;
-					cnt = 0;
-				   } else if(schNo[0]!=schNo[1]) {
-					   // 다른거 클릭 했을 때
-					   schNo[0] = $(this).val();
-					   classSch.css("backgroundColor", "white");
-					   classSch.children("span").css("color", "#959595")
-					   $(this).css("backgroundColor", "#8E0032");
-					   $(this).children("span").css("color", "white");
-					   cnt = 1;
-					   
-					   $(".schDate").text(date);
-					   $(".schTime").text(outTime);
-					   
-				   }								
-			}
-		});
-		
+		}); 
 		
 	}); // jquery end
 </script>
@@ -290,6 +337,7 @@
 
 	<!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
 	<!-- 팝업형식으로 나온다. -->
+	input
 	<div id="pop_share">
 		<!-- 안쪽에 팝업 창에 대한 내용 -->
 		<div id="pop_inner">
@@ -566,9 +614,9 @@
 				</p> -->
 				<div class="choiceSch">
 					<div class="schTitle">선택된 일정</div>
-						<span class="schTime">오전</span>
+						<!-- <span class="schTime">오전</span>
 						<span class="schTime">오후</span>
-						<span class="schTime">저녘</span>	
+						<span class="schTime">저녘</span>	 -->
 				</div>
 				<!-- 신청하기 버튼이 있는 기능에 bottom이라고 지정했다. -->
 				<div class="selectBottom">

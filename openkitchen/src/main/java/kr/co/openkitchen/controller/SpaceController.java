@@ -1,12 +1,12 @@
 package kr.co.openkitchen.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,11 +21,8 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kr.co.openkitchen.dto.DetailCScheDTO;
 import kr.co.openkitchen.dto.DetailSScheDTO;
-import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
-import kr.co.openkitchen.service.ServiceInter;
 import kr.co.openkitchen.service.SserviceInter;
 import lombok.Setter;
 
@@ -34,6 +31,8 @@ public class SpaceController {
 	
 	@Setter(onMethod = @__({ @Autowired }))
 	SserviceInter ssi;
+	
+	
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
@@ -49,7 +48,6 @@ public class SpaceController {
 	    System.out.println(list2);
 		
 		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
-		model.addAttribute("detailSSche", ssi.readDetailSSche(sNo));
 		model.addAttribute("detailSScheDate", list2);
 		
 		
@@ -113,6 +111,16 @@ public class SpaceController {
 //		model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
 		
 		return "space/user/spacePayment";
+	}
+	
+	@RequestMapping(value = "ajaxSDetailData", method = RequestMethod.POST)
+	@ResponseBody
+	public String ajaxSDetailData(@RequestParam("leaseDate")Date leaseDate, @RequestParam("sNo")int sNo) {
+		
+		System.out.println(sNo+":"+leaseDate);
+		
+		return "";
+		
 	}
 	
 }
