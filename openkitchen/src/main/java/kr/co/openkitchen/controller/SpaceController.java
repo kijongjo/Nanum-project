@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,7 +40,12 @@ public class SpaceController {
 	@RequestMapping("/spaceD")
 	public String classD(@RequestParam("no")int sNo, Model model) {
 		
-		List<DetailSScheDTO> list1 = ssi.readDetailSSche(sNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("sNo", sNo);
+		
+		
+		List<DetailSScheDTO> list1 = ssi.readDetailSSche(map);
 	    SimpleDateFormat fm = new SimpleDateFormat("yyyy-M-d");
 	    List<String> list2 = new ArrayList<String>();
 	    for(DetailSScheDTO dssdto : list1) {
@@ -115,11 +122,27 @@ public class SpaceController {
 	
 	@RequestMapping(value = "ajaxSDetailData", method = RequestMethod.POST)
 	@ResponseBody
-	public String ajaxSDetailData(@RequestParam("leaseDate")Date leaseDate, @RequestParam("sNo")int sNo) {
+	public Object ajaxSDetailData(@RequestParam("leaseDate")Date leaseDate, @RequestParam("sNo")int sNo) {
 		
-		System.out.println(sNo+":"+leaseDate);
+		// 가져와야 될 데이터는 무엇인가?
+		// 지정된 공간에 대한 선택된 일정의 대여상태를 알 수 있는 정보
+	    // 기존에 만들어놓은 쿼리문을 다이나믹쿼리를 통해 재활용
 		
-		return "";
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("sNo", sNo);
+		map.put("leaseDate", leaseDate);
+		
+		
+		String str = "";
+		List<DetailSScheDTO> test = ssi.readDetailSSche(map);
+		for (DetailSScheDTO dto : test) {
+			str = dto.getlLeasedate().toString();
+		}
+		
+		
+		
+		return test;
 		
 	}
 	

@@ -1,6 +1,7 @@
 package kr.co.openkitchen.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +40,9 @@ public class SpaceDAO implements SDaoInter {
 	}
 
 	@Override
-	public List<DetailSScheDTO> selectDetailSSche(int sNo) {
+	public List<DetailSScheDTO> selectDetailSSche(Map<String, Object> map) {
 		
-		return ss.selectList("kr.co.openkitchen.space.selectDetailSSche", sNo);
+		return ss.selectList("kr.co.openkitchen.space.selectDetailSSche", map);
 	}
 	
 	

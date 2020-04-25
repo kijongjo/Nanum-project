@@ -253,13 +253,15 @@
 		var leaseDate = "";
 		$(document).on("click",".datepicker--cell", function () {
 			leaseDate = $(".1").text()+"-"+$(".2").text()+"-"+$(this).text();
-			
+			$("span").remove(".schTime");
 			
 			// 1. 일정이 없는 날은 클릭했을 시 동작을 하면 안 된다.
 			// 1.1 무엇을 비교해서 하는가? dot가 없으면 동c작 하지 않게 한다.
 			if($(this).children("span").hasClass("dp-note")) {
 				cnt++;
 				console.log(cnt);
+				
+				
 				
 				if(cnt==1) {
 					schDate[0] = $(this).text();
@@ -279,11 +281,21 @@
 					          
 					    success: function(data){
 					    	
-					    	console.log("test");
+					    	for (var i = 0; i < data.length; i++) {
+								var test = data[i];
+								console.log(test);
+					    		if(test.lLeasetime == "오전") {
+					    			$(".choiceSch").append("<span class='schTime'>오전</span>");
+					    		} else if (test.lLeasetime == "오후") {
+					    			$(".choiceSch").append("<span class='schTime'>오후</span>");
+					    		} else {
+					    			$(".choiceSch").append("<span class='schTime'>저녘</span>");
+					    		}
+							}
 					    },
 
 					    error: function (request, status, error){        
-					    	
+					    	console.log("response no");
 					    }
 					  });
 					
@@ -303,7 +315,43 @@
 					} else {
 					// 일정상에 다른 날짜를 클릭했을 때
 						console.log("다른 일정을 선택");
-						schDate[0] = $(this).text();  
+						schDate[0] = $(this).text();
+						// ajax를 통해 실시간으로 일정을 가져오자
+						$.ajax({
+						    url: "ajaxSDetailData",
+						    type: "post",
+						    // cache: false, 얘는 뭐냐???
+						    // dataType: "html",
+						    // 보내는게 뭔지 명시가 되야 함
+						    data: {"leaseDate":leaseDate,
+						    	   "sNo":"<c:out value='${detailSpace.sNo}' />"	
+						    },
+						          
+						    success: function(data){
+						    	
+						    	for (var i = 0; i < data.length; i++) {
+									var test = data[i];
+									console.log(test);
+						    		if(test.lLeasetime == "오전") {
+						    			$(".choiceSch").append("<span class='schTime'>오전</span>");
+						    			if(test.lPerstatus == "종료") {
+						    				$(".schTime").css("backgroundColor", "red");
+						    				
+						    			}
+						    		} else if (test.lLeasetime == "오후") {
+						    			$(".choiceSch").append("<span class='schTime'>오후</span>");
+						    		} else {
+						    			$(".choiceSch").append("<span class='schTime'>저녘</span>");
+						    		}
+								}
+						    },
+
+						    error: function (request, status, error){        
+						    	console.log("response no");
+						    }
+						  });
+						
+						
 						cnt = 1;
 					// 카운트 1로 전환 할 경우? 
 					// 일정 비교 데이터는 변경된게 없음.
@@ -324,6 +372,10 @@
 				console.log(schDate);
 			}
 		}); 
+		
+		$(document).on("click",".schTime", function () {
+			console.log("test");
+		});
 		
 	}); // jquery end
 </script>

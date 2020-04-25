@@ -10,9 +10,12 @@
                WHERE S_NO = #{sNo}		
   	</select>
   	
-  	<select id="selectDetailSSche" resultType="dssdto" parameterType="int">
+  	<select id="selectDetailSSche" resultType="dssdto" parameterType="map">
   		SELECT L_NO, L_LEASEDATE, L_LEASETIME, L_PERSTATUS
 		FROM SPACE S, LEASE L
 		WHERE S.S_NO = L.S_NO AND S.S_NO = #{sNo}
+		<if test="leaseDate != null">
+		AND L_LEASEDATE = #{leaseDate}
+		</if>
   	</select>
   </mapper>

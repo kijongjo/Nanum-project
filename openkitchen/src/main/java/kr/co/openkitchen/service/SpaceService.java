@@ -1,6 +1,7 @@
 package kr.co.openkitchen.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,8 @@ public class SpaceService implements SserviceInter {
 		}
 
 		@Override
-		public List<DetailSScheDTO> readDetailSSche(int sNo) {
+		public List<DetailSScheDTO> readDetailSSche(Map<String, Object> map) {
 			
-			return dao.selectDetailSSche(sNo);
+			return dao.selectDetailSSche(map);
 		}
 }
