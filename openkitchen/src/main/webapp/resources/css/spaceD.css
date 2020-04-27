@@ -337,7 +337,7 @@
 /* 해쉬태그에 대한 css 설정입니다.  */
 
 #right01>.title>.cont>.hashTag {
-    margin: 15px;
+    margin-top: 15px;
 }
 
 

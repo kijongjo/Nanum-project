@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -454,23 +457,38 @@
             <section id="apply01">
                 <h2>신청내역</h2>
                 <div id="applyDiv01">
-                    <img src="<c:url value='resources/img/icon/smileIcon.png' />" alt="">
+                <c:forEach var="item" varStatus="i" items="${fn:split(paymentC.cDetailsumnail, ',')}">
+                    <c:if test="${i.count==1}"><img src="<c:url value='${item}' />" alt=""></c:if>
+                </c:forEach >
                 </div> 
                     <ul id="applyUl">
-                        <li id="li-title">봄나물 밥과 달래장 & 떡갈비</li>
-                        <li id="li-price"><em>₩</em>50000</li>
+                        <li id="li-title">${paymentC.cName}</li>
+                        <li id="li-price"><em>₩</em>${paymentC.cPrice}</li>
                         <table>
                             <tr>
                                 <th>수강일</th>
-                                <td>20.05.19 (화) / 10:30 - 12:30</td>
+                                <td> 
+                                	<fmt:formatDate value="${paymentC.lLeasedate}" pattern="yy.MM.dd (E)"/> 
+                                	<c:choose>
+                                		<c:when test="${paymentC.lLeasetime eq '오전'}">
+                                			/ 10:00 - 14:00
+                                		</c:when>
+                                		<c:when test="${paymentC.lLeasetime eq '오후'}">
+                                			/ 14:00 - 18:00
+                                		</c:when>
+                                		<c:otherwise>
+                                			/ 18:00 - 22:00
+                                		</c:otherwise>
+                                	</c:choose>
+                                </td>
                             </tr>
                             <tr>
                                 <th>선생님</th>
-                                <td>이영미 가정요리연구가</td>
+                                <td>${paymentC.tHavenickname} ${paymentC.tExpertname}</td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td>경기도 용인시 수지구 문인로31번길</td>
+                                <td>${paymentC.sLoc}</td>
                             </tr>
                         </table>
 
@@ -567,7 +585,7 @@
                 <ul>
                     <li>
                         <strong>클래스 금액</strong>
-                        <span id="rightUpSpan">50,000원</span>
+                        <span id="rightUpSpan">${paymentC.cPrice}원</span>
                     </li>
                 </ul>
             </div>

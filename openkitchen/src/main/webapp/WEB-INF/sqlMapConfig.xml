@@ -26,6 +26,7 @@
   		<typeAlias type="kr.co.openkitchen.dto.MemberDTO" alias="mbdto" />
   		<typeAlias type="kr.co.openkitchen.dto.DetailSpaceDTO" alias="dsdto" />
   		<typeAlias type="kr.co.openkitchen.dto.BestClassDTO" alias="bcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.PaymentClassDTO" alias="pmcdto" />
 
         <typeAlias type="kr.co.openkitchen.dto.TeacherRegistDTO" alias="trdto" />
         <typeAlias type="kr.co.openkitchen.dto.TeacherRegistDtoS" alias="trsdto" />

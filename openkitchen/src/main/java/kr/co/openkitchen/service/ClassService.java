@@ -1,6 +1,7 @@
 package kr.co.openkitchen.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import kr.co.openkitchen.dao.CDaoInter;
 import kr.co.openkitchen.dto.ClassIndexDTO;
 import kr.co.openkitchen.dto.DetailCScheDTO;
 import kr.co.openkitchen.dto.DetailClassDTO;
+import kr.co.openkitchen.dto.PaymentClassDTO;
 import lombok.Setter;
 
 @Service
@@ -34,13 +36,21 @@ public class ClassService implements CserviceInter {
 		}
 		
 		@Override
-		public List<DetailCScheDTO> readDetailCSche(int cNo) {
+		public List<DetailCScheDTO> readDetailCSche(Map<String, String> map) {
 			
-			return dao.selectDetailCSche(cNo);
+			return dao.selectDetailCSche(map);
 		}
 		
 		@Override
 		public List<ClassIndexDTO> moreClass(int count) {
 			return dao.moreClass(count);
 		}
+
+		@Override
+		public PaymentClassDTO readPaymentC(int recNo) {
+		
+			return dao.selectPaymentC(recNo);
+		}
+		
+		
 }
