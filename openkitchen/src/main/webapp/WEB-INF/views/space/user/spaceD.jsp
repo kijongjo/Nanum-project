@@ -73,6 +73,7 @@
 		border-bottom: none;
 		padding: 14px 48px;
 		text-align: center;
+		/* 원인은 이것이였다...  */
 		display: none; 
 	}
 	
@@ -82,14 +83,26 @@
 	 	text-align: left;
 	}
 	
-	.schTime {
+	.schTimeS {
 		border: 1px solid;
 		display: inline-block;
 		width: 75px;
 		border-radius: 80px;
 	}
 	
-	.schTime:nth-of-type(2) {
+	.schTimeS:nth-of-type(2) {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	
+	.schTimeE {
+		display: inline-block;
+		width: 75px;
+		border-radius: 80px;
+		background-color: #8E0032;
+	}
+	
+	.schTimeE:nth-of-type(2) {
 		margin-left: 15px;
 		margin-right: 15px;
 	}
@@ -263,6 +276,7 @@
 				
 				
 				
+				// 첫번째 클릭
 				if(cnt==1) {
 					schDate[0] = $(this).text();
 					console.log("카운트 1 : "+schDate);
@@ -279,9 +293,11 @@
 					    	   "sNo":"<c:out value='${detailSpace.sNo}' />"	
 					    },
 					          
-					    success: function(data){
-					    	
-					    	for (var i = 0; i < data.length; i++) {
+					    // 동적으로 추가된 태그에 css가 적용되지 않는다.
+					    success: function(data) {
+					    	$(".choiceSch").css("display","block");
+					    	$(".selectBody").after(data);
+					    	/* for (var i = 0; i < data.length; i++) {
 								var test = data[i];
 								console.log(test);
 					    		if(test.lLeasetime == "오전") {
@@ -291,7 +307,15 @@
 					    		} else {
 					    			$(".choiceSch").append("<span class='schTime'>저녘</span>");
 					    		}
-							}
+							} */
+					    	
+					    	// 일정을 눌렀을 때 완성되어 있는 데이터를 받아오고 싶다.
+					    	// 감싸는 wrapper와 contents를 동시에 보고 싶다..
+					    	// java단에서 1차적으로 처리를 하고 완료된 값을 보낼까?
+					    	// 성공
+					    	// 문제 발생 실시간으로 데이터가 추가 되지 않음
+					    	
+					    	
 					    },
 
 					    error: function (request, status, error){        
@@ -299,7 +323,7 @@
 					    }
 					  });
 					
-					$(".choiceSch").css("display","block");
+					
 					
 				} else if(cnt==2) {
 					schDate[1] = $(this).text();
@@ -314,6 +338,7 @@
 						console.log("같은 일정을 선택");
 					} else {
 					// 일정상에 다른 날짜를 클릭했을 때
+					$(".choiceSch").remove();
 						console.log("다른 일정을 선택");
 						schDate[0] = $(this).text();
 						// ajax를 통해 실시간으로 일정을 가져오자
@@ -329,7 +354,9 @@
 						          
 						    success: function(data){
 						    	
-						    	for (var i = 0; i < data.length; i++) {
+						    	
+						    	$(".selectBody").after(data);
+						    	/* for (var i = 0; i < data.length; i++) {
 									var test = data[i];
 									console.log(test);
 						    		if(test.lLeasetime == "오전") {
@@ -343,7 +370,7 @@
 						    		} else {
 						    			$(".choiceSch").append("<span class='schTime'>저녘</span>");
 						    		}
-								}
+								} */
 						    },
 
 						    error: function (request, status, error){        
@@ -666,9 +693,9 @@
 				</p> -->
 				<div class="choiceSch">
 					<div class="schTitle">선택된 일정</div>
-						<!-- <span class="schTime">오전</span>
+						<span class="schTime">오전</span>
 						<span class="schTime">오후</span>
-						<span class="schTime">저녘</span>	 -->
+						<span class="schTime">저녘</span>	
 				</div>
 				<!-- 신청하기 버튼이 있는 기능에 bottom이라고 지정했다. -->
 				<div class="selectBottom">

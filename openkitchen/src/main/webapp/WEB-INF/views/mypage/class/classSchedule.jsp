@@ -30,9 +30,10 @@
 
 
 
-			<div class="inp-wrap">
+			<div class="inp-wrap" id="#scheduleList">
 				<span>강의 시간</span>
-				<div class="oftenQuestion">
+				
+			<!-- 	<div class="oftenQuestion">
 					<strong>
                         04.24(금)
 					</strong>
@@ -58,13 +59,13 @@
 					<li>오전(10:00-14:00)</li>
 					<li>저녁(18:00-22:00)</li>
 					</ul>
-					</div>
+					</div> -->
 				
-
+              <div id="scheduleDiv"></div>
 
 				<div id="btn-form-wrap">
 					<input type="button" value="다음" id="complete"> <input
-						type="button" value="임시저장" id="go">
+						type="button" value="돌아가기" id="go">
 				</div>
 			</div>
 		</form>
