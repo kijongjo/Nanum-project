@@ -10,10 +10,6 @@
 		where M_EMAIL = #{mEmail}
 		
 	</select>
-	
-	
-	
-	
 	<insert id="signUpInsert" parameterType="mbdto" >
 		INSERT INTO member (
 			M_NO,
@@ -28,4 +24,12 @@
 			#{mName}
 			)
 	</insert>
+	<select id="selectPaymentM" resultType="pmdto" parameterType="int">
+		SELECT M_NAME, M_PHONE, M_BIRTH, M_GENDER, MG_STORAGE, C_TYPE, PT_STORAGE
+		FROM MEMBER MEM, MILEAGE MG, COUPON CP, POINT PT
+		WHERE MEM.M_NO = MG.M_NO(+) AND MEM.M_NO = CP.M_NO(+) AND MEM.M_NO = PT.M_NO(+) AND
+      	MEM.M_NO = #{mNo}	
+	</select>
+
+	
 </mapper>

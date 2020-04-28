@@ -1,4 +1,4 @@
-   //임의의 file object영역
+               //임의의 file object영역
                 var files = {};
                 var previewIndex = 0;
                 var imgNum = 0;
@@ -228,10 +228,10 @@
                             	 console.log(imgFile.id);
                                     // 상세 이미지9(S-DS-TYPE2) or 메인 섬네일(MS),상세
 									// 섬네일(S-DS-TYPE1)에 따라 이름 붙여지는게 다름
-                                    if (imgFile[0].id == "S-DS-TYPE2") {
+                                    if (imgFile[0].id == "C-DS-TYPE2") {
                                         console.log("상세 사진 저장")
                                             // 이미지 이름을 붙이고 FORM DATA에 저장
-                                        form_Data.append("S-DS-TYPE2-" + registCount, imgcomp(img, file, form_Data), "DS" + registCount);
+                                        form_Data.append("C-DS-TYPE2-" + registCount, imgcomp(img, file, form_Data), "DS" + registCount);
                                         registCount++;
                                         // FORM 데이터 들어 있는 객체 확인하기
                                         for (var key of form_Data.keys()) {
@@ -246,10 +246,10 @@
 
                                         }
 
-                                    } else if (imgFile[0].id == "S-MS") {
+                                    } else if (imgFile[0].id == "C-MS") {
                                         console.log("메인 사진 저장")
                                             // 이미지 이름을 붙이고 FORM DATA에 저장
-                                        form_Data.append("S-MS", imgcomp(img, file, form_Data), "S-MS");
+                                        form_Data.append("C-MS", imgcomp(img, file, form_Data), "C-MS");
                                         // FORM 데이터 들어 있는 객체 확인하기
                                         for (var key of form_Data.keys()) {
 
@@ -265,7 +265,7 @@
                                     } else {
                                         console.log("상세 썸네일 사진  저장")
                                             // 이미지 이름을 붙이고 FORM DATA에 저장
-                                        form_Data.append("S-DS-TYPE1", imgcomp(img, file, form_Data), "DS10");
+                                        form_Data.append("C-DS-TYPE1", imgcomp(img, file, form_Data), "DS10");
                                         // FORM 데이터 들어 있는 객체 확인하기
                                         for (var key of form_Data.keys()) {
 
@@ -383,15 +383,19 @@
                 	// form을 json들의 배열 조합으로 바꿈
                     var form = $('#uploadForm').serializeArray();
                     // 수용인원 text
-                    var capacity=$(".inp-wrap span[name='capacity']").text();
-                    formData.append("sCapacity",capacity);
-                    formData.append("hNo",27);
-                    console.log("capacity"+capacity)
+                    var cMinrecruitperson=$(".inp-wrap span[id='minCapacity']").text();
+                    var cMaxrecruitperson=$(".inp-wrap span[id='maxCapacity']").text();
+                    var cType=$('input[name="cType"]:checked').val();
+                    formData.append("cMinrecruitperson",parseInt(cMinrecruitperson));
+                    formData.append("cMaxrecruitperson",parseInt(cMaxrecruitperson));
+                    formData.append("cType",cType);
+                    formData.append("tNo",27);
+                  
                     /* 하나씩 꺼내서 보낸다. */
                     $.each(form,function(index){
                      
                      /* formData에 담아준다. */
-                     if(form[index].value !=""&& form[index].value !="선택"){
+                     if(form[index].value !=""&& form[index].value !=undefined &&form[index].value !="선택"){
                     formData.append(form[index].name,form[index].value);
                         console.log(form[index].value);
                       }// if end
@@ -400,323 +404,254 @@
                     // 등록된 해쉬태그 값 가지고와서 변수에 담기
                     var hashTag="";
                     $(".inp-wrap input[class='hashTxt']").each(function(i){
-                    	 // #빼고 저장하기
+                     // #빼고 저장하기
                      hashTag +=$(".inp-wrap input[class='hashTxt']").eq(i).val().substr(1)+",";	
                     })// hashtag each end
                     if(hashTag != ""){
                         /* 끝자리 , 자른 후에 넣어준다. */
-                        formData.append("sHashtag",hashTag.slice(0,-1));
+                        formData.append("cHashtag",hashTag.slice(0,-1));
                         }// hashtag end
-                    
-                   // convenient 체크된 항목 하나의 변수에 담기
-                    var convenient ="";
-                    /* 편의시설 체크된 항목 하나로 담아주기 */
-                    $("input[class='convenient']:checked").each(function(i){
-                 	   /* ,형태로 넣기 */
-                 	convenient +=$("input[class='convenient']:checked").eq(i).val()+","; 
-                    })
-                     if(convenient != ""){
-                    /* 끝자리 , 자른 후에 넣어준다. */
-                    formData.append("sConvenient",convenient.slice(0,-1));
-                    }
-                    // convenient 변수 담기 끝
-                    
-                    // safety 체크된 항목 하나의 변수에 담기
-                    var safety ="";
-                    /* 안전시설 체크된 항목 하나로 담아주기 */
-                    $(".inp-wrap input[class='safety']:checked").each(function(i){
-                 	   /* ,형태로 넣기 */
-                 	safety +=$(".inp-wrap input[class='safety']:checked").eq(i).val()+",";
-                    })
-                     if(safety != ""){
-                    /* 끝자리 , 자른 후에 넣어준다. */
-                    formData.append("sSafety",safety.slice(0,-1));
-                    } 
-                    // safety end
-                    
-                    console.log("convenient : "+convenient);
-                    console.log("safety : "+safety);
-                    console.log("hashtag : "+hashTag);
-                    
+     
                 }// appendForm end
                 
-                
-                /* window 실행시 시작됨 */
-                $(function() {
-                	
-                    var formData = new FormData();
-                    // submit 등록. 실제로 submit type은 아니다.
+$(function() {
+	
+	
+	
+	  var formData = new FormData();
+    // submit 등록. 실제로 submit type은 아니다.
 
-                    // /////////////////////////////////form data 전송 ajax 통신 시작
-					// /////////////////////////////////////////////////////////
-                    // 임시 저장을 클릭하게 되면 ajax를 통해 서버로 보내짐
-                    $('#go').on('click', function() {
-                    	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
-                    	appendForm(formData);
-                    	// 임시 저장에 대한 상태값주기 (여기다 이걸 쓰면 통일성이 깨짐.. 보완 필요)
-                    	formData.append("sPerstatus","임시");
-                        console.log("클릭");
-                       /* var form = $('#uploadForm'); */
-                       /*
-						 * // 대응되는 key값을 받아옴 for (var index = 0; index <
-						 * Object.keys(files).length; index++) { // formData 공간에
-						 * files라는 이름으로 파일을 추가한다. // 동일명으로 계속 추가할 수 있다.
-						 * formData.append('files', files[index]); }
-						 */
-                   
-                        // ajax 통신으로 multipart form을 전송한다.
-                        $.ajax({
-                            type: 'POST',
-                            enctype: 'multipart/form-data',
-                            processData: false,
-                            contentType: false,
-                            cache: false,
-                            timeout: 600000,
-                            url: '/openkitchen/mypage' + '/multipartUploadS',
-                            data: formData,
+    // /////////////////////////////////form data 전송 ajax 통신 시작
+	// /////////////////////////////////////////////////////////
+    // 임시 저장을 클릭하게 되면 ajax를 통해 서버로 보내짐
+    $('#go').on('click', function() {
+    	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
+    	appendForm(formData);
+    	// 임시 저장에 대한 상태값주기 (여기다 이걸 쓰면 통일성이 깨짐.. 보완 필요)
+    	formData.append("cPerstatus","임시");
+        console.log("클릭");
+       /* var form = $('#uploadForm'); */
+       /*
+		 * // 대응되는 key값을 받아옴 for (var index = 0; index <
+		 * Object.keys(files).length; index++) { // formData 공간에
+		 * files라는 이름으로 파일을 추가한다. // 동일명으로 계속 추가할 수 있다.
+		 * formData.append('files', files[index]); }
+		 */
+   
+        // ajax 통신으로 multipart form을 전송한다.
+        $.ajax({
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            url: '/openkitchen/mypage' + '/multipartUploadC',
+            data: formData,
 
-                            success: function(result) {
-                                    alert("성공");
-                                    
-                                    // 이 부분을 수정해서 다양한 행동을 할 수 있으며,
-                                    // 여기서는 데이터를 전송받았다면 순수하게 OK 만을 보내기로 하였다.
-                                    // -1 = 잘못된 확장자 업로드, -2 = 용량초과, 그외 = 성공(1)
-                                    if (result === -1) {
-                                        alert('jpg, gif, png, bmp 확장자만 업로드 가능합니다.');
-                                        // 이후 동작 ...
-                                    } else if (result === -2) {
-                                        alert('파일이 10MB를 초과하였습니다.');
-                                        // 이후 동작 ...
-                                    } else {
-                                        alert('이미지 업로드 성공');
-                                        // 이후 동작 ...
-                                    }
-                                }
-                                // 전송실패에대한 핸들링은 고려하지 않음
-                        }); // ajax end
-                        formData=new FormData();
-                    	
-                    }); // o n click end
-                     
-                    $('#complete').on('click', function() {
-                    	
-                    	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
-                    	appendForm(formData);
-                    	// 저장에 대한 상태값주기 (여기다 이걸 쓰면 통일성이 깨짐.. 보완 필요)
-                    	formData.append("sPerstatus","신청");
-                    	
-                    	
-                    	
-                        var formsize=0;
-                    	
-                    	for (var key of formData.keys()) {
-                    		   console.log("formData.key : "+key); 
-                    		   // 상세 추가는 있어도 되고 없어도 되니 count에서 빼준다.
-                    		   if(key.includes("S-DS-TYPE2-")){
-                    		   console.log("필수가 아닌 선택 요소라 count에 안들어감");
-                    		   }else{
-                    		   formsize++
-                    		      
-                    		   }// if end
-                    		               		}// for end
-                          console.log(formsize);
-                      	// 필수 등록 수 12를 넘지 못하면 다음으로 이동 불가
-                          if(formsize <14){
-                    		alert("신청서를 마저 작성해 주세요");
-                    		formData= new FormData();
-                    		formsize=0;
-                    	
-                    	}else{
-                    	
-                        $.ajax({
-                            type: 'POST',
-                            enctype: 'multipart/form-data',
-                            processData: false,
-                            contentType: false,
-                            cache: false,
-                            timeout: 600000,
-                            url:'/openkitchen/mypage' + '/completeS',
-                            data: formData,
-
-                            success: function(result) {
-                            	$(location).attr('href',"in");
-                                }// success function
-                        
-                                // 전송실패에대한 핸들링은 고려하지 않음
-                           }); // ajax end
-                    	}// null값 없는지 체크 end
-                 
-                    	formData= new FormData();
+            success: function(result) {
+                    alert("성공");
                     
-                    }); // o n click end
+                    // 이 부분을 수정해서 다양한 행동을 할 수 있으며,
+                    // 여기서는 데이터를 전송받았다면 순수하게 OK 만을 보내기로 하였다.
+                    // -1 = 잘못된 확장자 업로드, -2 = 용량초과, 그외 = 성공(1)
+                    if (result === -1) {
+                        alert('jpg, gif, png, bmp 확장자만 업로드 가능합니다.');
+                        // 이후 동작 ...
+                    } else if (result === -2) {
+                        alert('파일이 10MB를 초과하였습니다.');
+                        // 이후 동작 ...
+                    } else {
+                        alert('이미지 업로드 성공');
+                        // 이후 동작 ...
+                    }
+                }
+                // 전송실패에대한 핸들링은 고려하지 않음
+        }); // ajax end
+        formData=new FormData();
+    	
+    }); // o n click end
+     
+    $('#complete').on('click', function() {
+    	
+    	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
+    	appendForm(formData);
+    	// 저장에 대한 상태값주기 (여기다 이걸 쓰면 통일성이 깨짐.. 보완 필요)
+    	formData.append("cPerstatus","임시");
+    	
+    	
+    	
+        var formsize=0;
+    	
+    	for (var key of formData.keys()) {
+    		   console.log("formData.key : "+key); 
+    		   // 상세 추가는 있어도 되고 없어도 되니 count에서 빼준다.
+    		   if(key.includes("C-DS-TYPE2-")){
+    		   console.log("필수가 아닌 선택 요소라 count에 안들어감");
+    		   }else{
+    		   formsize++
+    		      
+    		   }// if end
+    		               		}// for end
+          console.log(formsize);
+      	// 필수 등록 수 12를 넘지 못하면 다음으로 이동 불가
+          if(formsize <13){
+    		alert("신청서를 마저 작성해 주세요");
+    		formData= new FormData();
+    		formsize=0;
+    	
+    	}else{
+    	
+        $.ajax({
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            url:'/openkitchen/mypage' + '/completeC',
+            data: formData,
+
+            success: function(result) {
+           
+            	$(location).attr('href',"classSchedule?no=2");
+                }// success function
+        
+                // 전송실패에대한 핸들링은 고려하지 않음
+           }); // ajax end
+    	}// null값 없는지 체크 end
+ 
+    	formData= new FormData();
+    
+    }); // o n click end
 
 
 
 
-                    // / ////////////////////////////////form data 전송 ajax 통신 끝
-					// /////////////////////////////////////////////////////////
+    // / ////////////////////////////////form data 전송 ajax 통신 끝
+	// /////////////////////////////////////////////////////////
 
-                    // <input type=file> 태그 기능 구현
-                    // 메인 썸네일
-                    $('#teacherSpace #mainThum input[type=file]').change(function() {
-                        $("#mainThum label").css('opacity', '0');
-                        addPreviewMain($(this)); // preview form 추가하기
-                        getBlob($(this), formData); // 서버로 전송할 blob 파일 만들기
-                    });
-                    // 상세 썸네일
-                    $('#teacherSpace #detailThum input[type=file]').change(function() {
-                        $("#detailThum label").css('opacity', '0');
-                        addPreviewDetail($(this)); // preview form 추가하기
-                        getBlob($(this), formData); // 서버로 전송할 blob 파일 만들기
-                    });
-                    // 상세 이미지
-                    $('#teacherSpace #input-detail-img input[type=file]').change(function() {
-                        $("#input-detail-img label").css('opacity', '0');
-                        addPreviewPhoto($(this)); // preview form 추가하기
-                        getBlob($(this), formData); // 서버로 전송할 blob 파일 만들기
+    // <input type=file> 태그 기능 구현
+    // 메인 썸네일
+    $('#classBase #mainThum input[type=file]').change(function() {
+        $("#mainThum label").css('opacity', '0');
+        addPreviewMain($(this)); // preview form 추가하기
+        getBlob($(this), formData); // 서버로 전송할 blob 파일 만들기
+    });
+    // 상세 썸네일
+    $('#classBase #detailThum input[type=file]').change(function() {
+        $("#detailThum label").css('opacity', '0');
+        addPreviewDetail($(this)); // preview form 추가하기
+        getBlob($(this), formData); // 서버로 전송할 blob 파일 만들기
+    });
+    // 상세 이미지
+    $('#classBase #input-detail-img input[type=file]').change(function() {
+        $("#input-detail-img label").css('opacity', '0');
+        addPreviewPhoto($(this)); // preview form 추가하기
+        getBlob($(this), formData); // 서버로 전송할 blob 파일 만들기
 
-                    });
+    });
 
 
-            
 
-                  
 
-                    $('#min-btn').click(function(e) {
+  
 
-                        e.preventDefault();
-                        var stat = $('#howMany').text();
-                        var num = parseInt(stat, 10);
-                        num--;
-                        if (num <= 0) {
-                            alert('더이상 줄일수 없습니다.');
-                            num = 1;
-                        }
-                        $('#howMany').text(num);
-                        console.log($("#howMany").html());
-                    });
+    $('.min-btn').click(function(e) {
+        
+        e.preventDefault();
+        var nthCapa=$(this).closest("div").children('.capacity')
+        var stat =nthCapa.text();
+        var num = parseInt(stat, 10);
+        num--;
+        if (num <= 0) {
+            alert('더이상 줄일수 없습니다.');
+            num = 1;
+        }
+        nthCapa.text(num);
+        console.log(nthCapa.html());
+    });
 
-                    $('#plus-btn').click(function(e) {
-                        e.preventDefault();
-                        var stat = $('#capacity').text();
-                        var num = parseInt(stat, 10);
-                        num++;
-                        $('#capacity').text(num);
-                        console.log($("#capacity").html());
-                    });
+    $('.plus-btn').click(function(e) {
+        
+    	e.preventDefault();
+        var nthCapa=$(this).closest("div").children('.capacity')
+        var stat = nthCapa.text();
+        var num = parseInt(stat, 10);
+        num++;
+        nthCapa.text(num);
+        console.log(nthCapa.html());
+    });
 
-                    // 글자수 체크
-                    $('.placeEx').keyup(function(e) {
-                        var content = $(this).val();
-                        $('#placeEx-counter').html(content.length + " / 45"); // 글자수
-																				// 실시간
-																				// 카운팅
+    // 글자수 체크
+    $('.placeEx').keyup(function(e) {
+        var content = $(this).val();
+        $('#placeEx-counter').html(content.length + " / 45"); // 글자수
+																// 실시간
+																// 카운팅
 
-                        if (content.length > 45) {
-                            alert("최대 45자까지 입력 가능합니다.");
-                            $(this).val(content.substring(0, 45));
-                            $('#placeEx-counter').html("45 / 45");
-                        }
-                    });
-
-                    
-                  
-                    $('#addHash').click(function() {
-                    	var im="<c:url value='/resources/img/icon/ico-search_del.png'/>";
-                        if ($(".hashTxt").length < 3) {
-                            if ($('.hashText').val() == '') {
-                                alert("태그를 입력해 주세요"); 
-                               
-                            } else {
-                                $('#hashField').append(
-                                    '<input type="text" class="hashTxt"   readonly="readonly" value=#' + $('.hashText').val() + '><button type="button" class="delHash"><img src="../resources/img/icon/ico-search_del.png" alt=""></button>'
-                                ); // end append
-                                $(".hashText").val('');
-                                $('.delHash').on('click', function() {
-                                    // $(this).prevAll().remove (); // remove
-									// the textbox
-                                    $(this).prev().remove();
-                                    $(this).remove(); // remove the button
-                                    console.log($(".hashTxt"));
-                                }); // function end
-                            } // else end
-                        } else {
-                            $('#hashField').append(
-                                '<div style"color:red;">최대 3개까지 등록 가능합니다.</div>'
-                            ); // end append
-
-                            $('#addHash').prop("disabled", true);
-                            $('.delHash').on('click', function() {
-                                // $(this).prevAll().remove (); // remove the
-								// textbox
-                                $(this).prev().remove();
-                                $(this).remove(); // remove the button
-                                console.log($(".hashTxt"));
-                                $('#addHash').prop("disabled", false);
-                                $('#hashField div').remove();
-                            }); // onclic end
-                        }
-                        console.log($(".hashTxt"));
-                    }); // end click
-
-                   
-                    // 렌탈 하겠다고할시 form이 나오도록 설정한다.
-                    $("#yesrental").on("click",function(){
-                    	
-                    	$("#uploadForm").css({
-                    		height:'100%',
-                    		
-                    	    overflow:'inherit'
-                    		
-                    	}),
-                    	
-                    	$("#btn-norental").css({
-                    		width:'0px',
-                    		height:'0px',
-                    	    margin:'0'
-                    		
-                    	})
-                    	
-                    })// yesrental end
-                    
-                    
-                    
-                    
-                    
-                    
-                    $("#norental").on("click",function(){
-                    	$("#uploadForm").css("overflow",""),
-                    	$("#uploadForm").animate({
-                    		height:'1px',
-                    		overflow:'auto',
-                    		overflow:'hidden'
-                    			
-                    		
-                    	},1000),
-                    	
-                    	$("#btn-norental").css({
-                    		width:'168px',
-                    		height:'64px',
-                            margin: '153px 107px 0 0'
-                    	   
-                    		
-                    	})
-                    	
-                    })
-                    
-                    $("#add-question").click(function(){
-                        $("#oftenQuestion strong").append(
-                            '<div class="qnaInner">'+
-                                '<div class="qnaInner1"><span class="qna-title">Q. 자주 문의되는 질문을 입력해주세요</span><textarea name="" id="" placeholder="클래스에 사용되는 재료는 국내산인가요?" class="qna-textarea" cols="30" rows="5" maxlength="100"></textarea></div>'+
-                                '<div class="qnaInner2"><span class="qna-title">A. 질문에 대한 답변을 입력해주세요</span><textarea name="" id="" placeholder="네, 롤케이크 클래스에 사용되는 재료의 원산지는 모두 국내산입니다" class="qna-textarea" cols="30" rows="5"></textarea></div>'+
-                            '</div>'
-                        );
-                      
-                    });
+        if (content.length > 45) {
+            alert("최대 45자까지 입력 가능합니다.");
+            $(this).val(content.substring(0, 45));
+            $('#placeEx-counter').html("45 / 45");
+        }
+    });
 
     
-                }); // document.ready(function) end
-           
+  
+    $('#addHash').click(function() {
+    	var im="<c:url value='/resources/img/icon/ico-search_del.png'/>";
+        if ($(".hashTxt").length < 3) {
+            if ($('.hashText').val() == '') {
+                alert("태그를 입력해 주세요"); 
+               
+            } else {
+                $('#hashField').append(
+                    '<input type="text" class="hashTxt"   readonly="readonly" value=#' + $('.hashText').val() + '><button type="button" class="delHash"><img src="../resources/img/icon/ico-search_del.png" alt=""></button>'
+                ); // end append
+                $(".hashText").val('');
+                $('.delHash').on('click', function() {
+                    // $(this).prevAll().remove (); // remove
+					// the textbox
+                    $(this).prev().remove();
+                    $(this).remove(); // remove the button
+                    console.log($(".hashTxt"));
+                }); // function end
+            } // else end
+        } else {
+            $('#hashField').append(
+                '<div style"color:red;">최대 3개까지 등록 가능합니다.</div>'
+            ); // end append
+
+            $('#addHash').prop("disabled", true);
+            $('.delHash').on('click', function() {
+                // $(this).prevAll().remove (); // remove the
+				// textbox
+                $(this).prev().remove();
+                $(this).remove(); // remove the button
+                console.log($(".hashTxt"));
+                $('#addHash').prop("disabled", false);
+                $('#hashField div').remove();
+            }); // onclic end
+        }
+        console.log($(".hashTxt"));
+    }); // end click
+
+   
+  
+    $("#add-question").click(function(){
+        $("#oftenQuestion strong").append(
+            '<div class="qnaInner">'+
+                '<div class="qnaInner1"><span class="qna-title">Q. 자주 문의되는 질문을 입력해주세요</span><textarea name="" id="" placeholder="클래스에 사용되는 재료는 국내산인가요?" class="qna-textarea" cols="30" rows="5" maxlength="100"></textarea></div>'+
+                '<div class="qnaInner2"><span class="qna-title">A. 질문에 대한 답변을 입력해주세요</span><textarea name="" id="" placeholder="네, 롤케이크 클래스에 사용되는 재료의 원산지는 모두 국내산입니다" class="qna-textarea" cols="30" rows="5"></textarea></div>'+
+            '</div>'
+        );
+      
+    });
+	
+	
+	
+})//$function end
                 /* 질문 추가하기 함수 */
                 function setDisplay() {
                     if ($("#question").is(":checked")) {
@@ -725,5 +660,3 @@
                         $("#oftenQuestion").hide();
                     }
                 } // setDisplay end
-
-               

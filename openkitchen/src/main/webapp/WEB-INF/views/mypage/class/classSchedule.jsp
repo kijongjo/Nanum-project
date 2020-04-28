@@ -12,17 +12,16 @@
 
 
 			<div class="inp-wrap">
-				<span>일정 선택</span>
+				<span>일정 확인</span>
 				<div>
 					<p>선택된 일정을 확인하실 수 있습니다.</p>
-					<div>
-						<div>이번 달</div>
-						<div id="mainThum"></div>
+					<div id="currentM">
+						<div>일정</div>
+						<div >
+						<div class="datepicker-here" data-language="en"></div>
+						</div>
 					</div>
-					<div>
-						<div>다음 달</div>
-						<div id="detailThum"></div>
-					</div>
+					
 				</div>
 			</div>
 
@@ -30,9 +29,10 @@
 
 
 
-			<div class="inp-wrap">
+			<div class="inp-wrap" id="#scheduleList">
 				<span>강의 시간</span>
-				<div class="oftenQuestion">
+				
+			<!-- 	<div class="oftenQuestion">
 					<strong>
                         04.24(금)
 					</strong>
@@ -58,13 +58,13 @@
 					<li>오전(10:00-14:00)</li>
 					<li>저녁(18:00-22:00)</li>
 					</ul>
-					</div>
+					</div> -->
 				
-
+              <div id="scheduleDiv"></div>
 
 				<div id="btn-form-wrap">
 					<input type="button" value="다음" id="complete"> <input
-						type="button" value="임시저장" id="go">
+						type="button" value="돌아가기" id="go">
 				</div>
 			</div>
 		</form>

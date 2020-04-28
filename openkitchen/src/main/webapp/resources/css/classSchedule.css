@@ -67,7 +67,7 @@
 
 #classSchedule .inp-wrap:nth-child(1)>div>div:nth-child(2) {
 	/* background-color: pink; */
-	width: 427.5px;
+	width: 100%;
 	height: 294.91px;
 	margin-top: 25px;
 	padding-right: 5px;
@@ -126,16 +126,20 @@
 	margin-top:63px;
 	
 }
-
-#classSchedule .inp-wrap:nth-child(2)>.timeLine {
+#classSchedule .inp-wrap:nth-child(2)>#scheduleDiv{
+	padding:0px;
+	min-height: 412px;
+	height: auto;
+}
+#classSchedule .inp-wrap:nth-child(2)>#scheduleDiv>.timeLine {
 	height:143px;
-	    margin-bottom: 58px;
+	
 	
 }
- #classSchedule .inp-wrap:nth-child(2)>.timeLine>ul{ 
+ #classSchedule .inp-wrap:nth-child(2)>#scheduleDiv>.timeLine>ul{ 
    margin-left: 26px;
  }
-#classSchedule .inp-wrap:nth-child(2)>.timeLine>ul>li {
+#classSchedule .inp-wrap:nth-child(2)>#scheduleDiv>.timeLine>ul>li {
 border-radius: 40px;
     height: 41px;
     text-align: center;
@@ -147,7 +151,7 @@ border-radius: 40px;
     width: 32.33333%;
     padding: 0 4px;
     margin: 0;
-    margin-top:23px
+    margin-top:51px
 }
 #classSchedule .inp-wrap:nth-child(2)>span:nth-child(1) {
 	display: block;
@@ -236,3 +240,32 @@ border-radius: 40px;
 	font-weight: 900;
 }
 
+/* 달력 api schedule page custom  */
+.dp-note{
+	
+position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    top: 33px;
+    border-radius: 16px;
+}
+.datepicker{
+	width:100% !important;
+	height:100% !important;
+	font-size:16px !important;
+	
+	
+}
+
+.datepicker--cells{
+	height:400px;
+}
+/*이번달 div  */
+#currentM{
+	height:100%;
+}
+/* 다음달 div */
+#nextM{
+	height:auto !important;
+}

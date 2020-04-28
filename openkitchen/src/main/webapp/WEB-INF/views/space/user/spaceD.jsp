@@ -18,11 +18,15 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/index-slide.css'/>">
+<%-- <link rel="stylesheet"
+	href="<c:url value='/resources/css/index-slide.css'/>"> --%>
 
 <!-- 달력 플러그인 css  -->
 <link rel="stylesheet" href="<c:url value='/resources/css/datepicker.min.css'/>" type="text/css">
+
+<link rel="stylesheet" href="<c:url value='/resources/css/slick.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/slick-theme.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/class-slick.css'/>">
 
 <!-- jquery 불러오기 -->
 <script
@@ -30,12 +34,16 @@
 	<script src="<c:url value='resources/js/spaceD.js'/>"></script>
 
 <script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
-<script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
-<script src="<c:url value='/resources/js/index-slide.js'/>"></script>
+<%-- <script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script> --%>
+<%-- <script src="<c:url value='/resources/js/index-slide.js'/>"></script> --%>
 
 <!-- 달력 플러그인  -->
 <script src="<c:url value='/resources/js/datepicker.min.js'/>"></script>
 <script src="<c:url value='/resources/js/datepicker.en.js'/>"></script>
+
+<!-- detailsumnail slider  -->
+<script src="<c:url value='/resources/js/slick.js'/>"></script>
+<script src="<c:url value='/resources/js/main-slick.js'/>"></script>
 
 <title>Document</title>
 <jsp:include page="../../headerScript.jsp" flush="false" />
@@ -44,7 +52,360 @@
 	.datepicker {
 		width: 100%;
 	}
+	
+	.dp-note {
+	    background: #ccc;
+	    width: 4px;
+	    height: 4px;
+	    border-radius: 50%;
+	    left: 50%;
+	    bottom: 1px;
+	    -webkit-transform: translateX(-50%);
+	    transform: translateX(-50%);
+	}
+	
+	.dp-note, .nav {
+    	position: absolute;
+	}
+	
+	.choiceSch {
+		border: 1px solid rgba(0, 0, 0, .1);
+		border-bottom: none;
+		padding: 14px 48px;
+		text-align: center;
+		/* 원인은 이것이였다...  */
+		display: none; 
+	}
+	
+	.schTitle {
+	 	font-size: 14px;
+	 	color: #585858;
+	 	text-align: left;
+	}
+	
+	.schTimeS {
+		border: 1px solid;
+		display: inline-block;
+		width: 75px;
+		border-radius: 80px;
+	}
+	
+	.schTimeS:nth-of-type(2) {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	
+	.schTimeE {
+		display: inline-block;
+		width: 75px;
+		border-radius: 80px;
+		background-color: #8E0032;
+	}
+	
+	.schTimeE:nth-of-type(2) {
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	
+	
 </style>
+<script>
+	$(document).ready(function () {
+		$(".btn-payment").on("click", function () {
+			$(location).attr("href", "spacePayment?no=1");
+			console.log("test");
+			
+			
+		});
+		
+		/* $picker.datepicker({
+			// 날짜 선택기의 셀이 렌더링 될 때 콜백  
+			// html로 입력받아 해석해서 표준 출력 장치(모니터)로 출력
+            // 화면에 날짜가 보여질 때 호출???
+                            		
+			
+			onRenderCell: function (date, cellType) {
+				// date : 현재 셀  날짜
+				//   cellTpe : 현재 셀 유형 (day, month, year)
+				
+		        var currentDate = date.getDate();
+				// 0~11까지 표기한다.  
+				var currentMonth = date.getMonth()+1;
+		        var currentYear = date.getFullYear();
+		        
+		        // Add extra element, if `eventDates` contains `currentDate`
+		        // currentDate는 출력되는 요일?  
+		        
+		        // 문자열.indexOf("찾을문자") 문자열과 배열에서 사용 가능...
+		        // 해당하는 값이 존재 할 경우 위치를 넘겨줌. 찾다가 해당값이 없을 경우 -1을 리턴하는데
+                // 현재 코드에서는 -1이 아닐 경우 즉 찾았을 경우에만 동작하게 되어있다.
+		        		
+		        if (currentYear == 2020 && currentMonth == 4 && eventDates.indexOf(currentDate) != -1) {
+		            if(cellType == "day") {
+			        	return {
+			            	// 지정한 요일에 점추가되는 span 
+			                html: currentDate + '<span class="dp-note"></span>'
+			            }
+		            }
+		        }
+		    }	
+		}); */
+		
+		var list = new Array();
+		/* ajax를 데이터를 받을 방법을 강구하시오.!  */
+		<c:forEach var="itemList" items="${detailSScheDate}" varStatus="listIdx"  >
+			list.push("${itemList}");
+		</c:forEach>
+		console.log(list);
+		var $picker = $(".datepicker-here");		
+
+				
+		$picker.datepicker({
+			// 날짜 선택기의 셀이 렌더링 될 때 콜백  
+			// html로 입력받아 해석해서 표준 출력 장치(모니터)로 출력
+		    // 화면에 날짜가 보여질 때 호출???
+	     	navTitles: {
+	     		days: '<span class="1">yyyy</span><span class="2">mm</span>',
+       		},               		
+			
+			onRenderCell: function (date, cellType) {
+				/* date : 현재 셀  날짜
+				   cellType : 현재 셀 유형 (day, month, year)
+				*/
+		        var currentDate = date.getDate();
+				/* 0~11까지 표기한다.  */
+				var currentMonth = date.getMonth()+1;
+		        var currentYear = date.getFullYear();
+		        /* console.log(typeof currentDate); */
+		        
+		        // Add extra element, if `eventDates` contains `currentDate`
+		        /* currentDate는 출력되는 요일?  */
+		        
+		        /* 
+		                    문자열.indexOf("찾을문자") 문자열과 배열에서 사용 가능...
+		                    해당하는 값이 존재 할 경우 위치를 넘겨줌. 찾다가 해당값이 없을 경우 -1을 리턴하는데
+		                    현재 코드에서는 -1이 아닐 경우 즉 찾았을 경우에만 동작하게 되어있다.
+		        */	
+		       	
+		        // 현재 date를 통해 get하여 가져온 연월일의 개수는 date에 따라 변동된다.
+		        // 현재 4월은 35개식 가져온다.하지만 비교하는 대상 데이터는 7개이다.(연, 월, 일)
+		        // date를 통해 가져온 날짜와 비교하는 대상 데이터와 정확한 매핑이되고 있지 않다.
+		        // indexOf는 찾은 문자열의 위치를 찾는 함수인데 number type에도 왜 작동을 하는가..??
+		        // 비교대상이 전체 String이던가 number형이여야 화면에 출력값을 보여준다
+		        // 정확한 매핑이 필요한데 indexOf를 사용하지 않으면 어떨까?? (배열로 받아 사용하는 것은 실패)
+		        // 해결!!!
+		        		
+		        for (var i = 0; i < list.length; i++) {
+		        	var eventYear = list[i].substring(0, 4);
+		        	var eventMonth = list[i].substring(5, 6); 
+					var eventDate = list[i].substring(7, 9);
+		        	
+		        	if (currentYear == eventYear && currentMonth == eventMonth && currentDate == eventDate) {
+			           // if(cellType == "day") {
+				        	return {
+				            	/* 지정한 요일에 점추가되는 span  */
+				                html: currentDate + 
+				                	'<span class="dp-note"></span>'
+				       //     } // return문 end
+			            } // second if문 end
+			        } // first if문 end
+				 } // for문 end
+		    } //, onRenderCell end
+		    
+		    // 날짜 선택시 콜백한다.
+		    /* onSelect: function onSelect(fd, date) {
+		    	cnt++;
+		    	console.log(cnt);
+		    	// fd는 클릭한 날짜의 년월일을 리턴함
+		    	// console.log(fd);
+		        // If date with event is selected, show it
+		        if(cnt==1){
+		        	schNo[0] = fd;
+		   
+			         for (var i = 0; i < list.length; i++) {
+				        if (date.getFullYear() == list[i].substring(0, 4) 
+				        		&& date.getMonth()+1 == list[i].substring(5, 6) 
+				        		&& date.getDate() == list[i].substring(7, 9)) {
+				        	$(".choiceSch").css("display","block");
+				        } 
+			        }   
+			        
+			        // 임대해주는 날짜가 아닌 경우 이걸 어떻게 아냐고...???
+			        // 임대해주는 날짜인지 확인 할 수 있는 트리거가 필요
+			        
+			        
+		        } else if(cnt==2) {
+		        	
+					schNo[1] = fd;		        	
+		        	// 같은거 클릭 했을 때
+		        	// 같은 거를 클릭했을 때는 비교하기 위한 배열 두번째 칸에 공백이 담긴다.
+		        	if(schNo[1] == "") {
+		        		
+		        		
+		        	} else {
+		        		schNo[0] = fd;
+		        	
+		        	}
+		        	
+		        	// 다른거 클릭 했을 때
+		        	
+		        }
+		        // $('strong', $content).html(title)
+		        // $('p', $content).html(content)
+		    } */
+		}); // datepicker end
+		
+		// 한 번 밖에 안 찍히는데 왜 이 방식을 사용하면 전체 작동을 하는가?
+		// 플러그인? api의 작동방식의 차이인가?
+		// 클릭 했을 때 예약정보가 있을 때만 일정을 불러와야 하고 불러온 일정 중
+		// 예약 완료된 것은 다른 상태로 화면에 출력해야 한다.
+		
+		
+		var cnt = 0;
+		var schDate = new Array("", "");
+		var leaseDate = "";
+		$(document).on("click",".datepicker--cell", function () {
+			leaseDate = $(".1").text()+"-"+$(".2").text()+"-"+$(this).text();
+			$("span").remove(".schTime");
+			
+			// 1. 일정이 없는 날은 클릭했을 시 동작을 하면 안 된다.
+			// 1.1 무엇을 비교해서 하는가? dot가 없으면 동c작 하지 않게 한다.
+			if($(this).children("span").hasClass("dp-note")) {
+				cnt++;
+				console.log(cnt);
+				
+				
+				
+				// 첫번째 클릭
+				if(cnt==1) {
+					schDate[0] = $(this).text();
+					console.log("카운트 1 : "+schDate);
+					
+					
+					// ajax를 통해 실시간으로 일정을 가져오자
+					$.ajax({
+					    url: "ajaxSDetailData",
+					    type: "post",
+					    // cache: false, 얘는 뭐냐???
+					    // dataType: "html",
+					    // 보내는게 뭔지 명시가 되야 함
+					    data: {"leaseDate":leaseDate,
+					    	   "sNo":"<c:out value='${detailSpace.sNo}' />"	
+					    },
+					          
+					    // 동적으로 추가된 태그에 css가 적용되지 않는다.
+					    success: function(data) {
+					    	$(".choiceSch").css("display","block");
+					    	$(".selectBody").after(data);
+					    	/* for (var i = 0; i < data.length; i++) {
+								var test = data[i];
+								console.log(test);
+					    		if(test.lLeasetime == "오전") {
+					    			$(".choiceSch").append("<span class='schTime'>오전</span>");
+					    		} else if (test.lLeasetime == "오후") {
+					    			$(".choiceSch").append("<span class='schTime'>오후</span>");
+					    		} else {
+					    			$(".choiceSch").append("<span class='schTime'>저녘</span>");
+					    		}
+							} */
+					    	
+					    	// 일정을 눌렀을 때 완성되어 있는 데이터를 받아오고 싶다.
+					    	// 감싸는 wrapper와 contents를 동시에 보고 싶다..
+					    	// java단에서 1차적으로 처리를 하고 완료된 값을 보낼까?
+					    	// 성공
+					    	// 문제 발생 실시간으로 데이터가 추가 되지 않음
+					    	
+					    	
+					    },
+
+					    error: function (request, status, error){        
+					    	console.log("response no");
+					    }
+					  });
+					
+					
+					
+				} else if(cnt==2) {
+					schDate[1] = $(this).text();
+					console.log("카운트 2 : "+schDate);
+					// 같은 날짜를  클릭했을 때
+					// 클릭했을 때 클릭한 날짜의 date을 값을 가져와 배열에 저장한다.
+					if(schDate[0] == schDate[1]) {					
+						$(".choiceSch").css("display","none");
+						// 배열에 저장된 일정 초기화
+						schDate[0] = "";
+						cnt = 0;
+						console.log("같은 일정을 선택");
+					} else {
+					// 일정상에 다른 날짜를 클릭했을 때
+					$(".choiceSch").remove();
+						console.log("다른 일정을 선택");
+						schDate[0] = $(this).text();
+						// ajax를 통해 실시간으로 일정을 가져오자
+						$.ajax({
+						    url: "ajaxSDetailData",
+						    type: "post",
+						    // cache: false, 얘는 뭐냐???
+						    // dataType: "html",
+						    // 보내는게 뭔지 명시가 되야 함
+						    data: {"leaseDate":leaseDate,
+						    	   "sNo":"<c:out value='${detailSpace.sNo}' />"	
+						    },
+						          
+						    success: function(data){
+						    	
+						    	
+						    	$(".selectBody").after(data);
+						    	/* for (var i = 0; i < data.length; i++) {
+									var test = data[i];
+									console.log(test);
+						    		if(test.lLeasetime == "오전") {
+						    			$(".choiceSch").append("<span class='schTime'>오전</span>");
+						    			if(test.lPerstatus == "종료") {
+						    				$(".schTime").css("backgroundColor", "red");
+						    				
+						    			}
+						    		} else if (test.lLeasetime == "오후") {
+						    			$(".choiceSch").append("<span class='schTime'>오후</span>");
+						    		} else {
+						    			$(".choiceSch").append("<span class='schTime'>저녘</span>");
+						    		}
+								} */
+						    },
+
+						    error: function (request, status, error){        
+						    	console.log("response no");
+						    }
+						  });
+						
+						
+						cnt = 1;
+					// 카운트 1로 전환 할 경우? 
+					// 일정 비교 데이터는 변경된게 없음.
+					// 또 한 번 클릭시 카운트2로 전환하면서 비교문 작동
+					// 21, 24 => 21, 25 또 다르네? 다시 반복
+					// 다른 일정으로 바꾸고 바꾼 일정을 다시 클릭해도 해제가 되어야 한다.
+					// 21, 24 ? 24, 24 카운트 2
+					
+					}
+				}
+			} else {
+				$(".choiceSch").css("display","none");	
+				console.log("예약일정이 없습니다!");
+				// 카운트 초기화
+				cnt = 0;
+				// 데이터 초기화
+				schDate = ["",""];
+				console.log(schDate);
+			}
+		}); 
+		
+		$(document).on("click",".schTime", function () {
+			console.log("test");
+		});
+		
+	}); // jquery end
+</script>
 
 
 </head>
@@ -55,6 +416,7 @@
 
 	<!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
 	<!-- 팝업형식으로 나온다. -->
+	input
 	<div id="pop_share">
 		<!-- 안쪽에 팝업 창에 대한 내용 -->
 		<div id="pop_inner">
@@ -79,24 +441,32 @@
 
 
 	</div>
-
+	
 	<!-- /////////////////////////////////////////////선생님 클래스 공간 정보 출력 시작/////////////////////////////////////// -->
 	<div id="lay01">
 		<section id="left01">
 			<!-- 상세 이미지 section 설정 -->
-			<section class="detailImg">
-				<ul class="bxslider1">
-					<c:forEach var="item" items="${fn:split(detailSpace.sDetailsumnail, ',')}">
-						<li><img src="<c:url value='${item}'/>" alt="" /></li>					
+			<div class="sliderContainer">
+				<ul class="slider single-item">
+					<c:forEach varStatus="status" var="item" items="${fn:split(detailSpace.sDetailsumnail, ',')}">
+						<li>
+							<img src="<c:url value='${item}'/>" alt="" />
+						</li>					
 					</c:forEach>
 				</ul>
-				
+				<div class="progressBarContainer">
+					<c:forEach varStatus="status" var="item" items="${fn:split(detailSpace.sDetailsumnail,',')}">
+ 		 				<div>
+	      					<span data-slick-index="${status.index}" class="progressBar"></span>
+    					</div>
+    				</c:forEach>   
+ 	 			</div>
 				<!-- share 링크 -->
 				<div class="share">
 					<!-- a링크를 누르게 되면 공유 기능이 있는 div가 나온다  -->
 					<a href="#pop_share"></a>
 				</div>
-			</section>
+			</div>
 		</section>
 
 
@@ -321,6 +691,12 @@
 				<!-- <p>
 					<a href="javascript:selectBody()">일정 접기 </a>
 				</p> -->
+				<div class="choiceSch">
+					<div class="schTitle">선택된 일정</div>
+						<span class="schTime">오전</span>
+						<span class="schTime">오후</span>
+						<span class="schTime">저녘</span>	
+				</div>
 				<!-- 신청하기 버튼이 있는 기능에 bottom이라고 지정했다. -->
 				<div class="selectBottom">
 					<!-- 해당 클래스,공간에 대한 가격이 보이게 된다. -->

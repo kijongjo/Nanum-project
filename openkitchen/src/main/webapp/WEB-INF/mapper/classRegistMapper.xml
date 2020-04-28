@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.openkitchen.classRegist">
+	<insert id="insertcNo" parameterType="java.util.Map">
+		<selectKey keyProperty="cNo" resultType="int" order="BEFORE">
+			SELECT
+			CLASS_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		MERGE INTO CLASS C
+		USING DUAL
+		ON (C.T_NO = ${tNo})
+
+		WHEN MATCHED THEN
+		UPDATE SET
+
+		C_REGDATE=TO_DATE(SYSDATE,'YY/MM/DD')
+
+		WHEN NOT MATCHED THEN
+
+		INSERT(
+		C_NO,
+		T_NO,
+		C_REGDATE
+		)
+		VALUES(
+		#{cNo},
+		#{tNo,jdbcType=NUMERIC},
+		TO_DATE(SYSDATE,'YY/MM/DD')
+		)
+	</insert>
+	<update id="updateDTO" parameterType="crdto">
+
+		UPDATE CLASS
+
+		SET
+		C_MAINSUMNAIL=#{cMainsumnail , jdbcType=VARCHAR},
+		C_DETAILSUMNAIL=#{cDetailsumnail , jdbcType=VARCHAR},
+		C_NAME=#{cName ,
+		jdbcType=VARCHAR},
+		C_PERSTATUS=#{cPerstatus , jdbcType=VARCHAR},
+		C_REFERENCE=#{cReference ,jdbcType=CLOB},
+		C_SHORTINTRO=#{cShortintro ,
+		jdbcType=VARCHAR},
+		C_TEMA=#{cTema , jdbcType=VARCHAR},
+		C_LONGINTRO=#{cLongintro ,jdbcType=CLOB},
+		C_REGDATE=TO_DATE(SYSDATE,'YY/MM/DD'),
+		C_MINRECRUITPERSON=#{cMinrecruitperson , jdbcType=NUMERIC},
+		C_MAXRECRUITPERSON=#{cMaxrecruitperson,jdbcType=NUMERIC},
+		C_HASHTAG=#{cHashtag,jdbcType=VARCHAR},
+		C_TYPE=#{cType,jdbcType=VARCHAR},
+		C_PRICE=#{cPrice,jdbcType=NUMERIC}
+
+		where T_NO=#{tNo}
+
+	</update>
+
+	<select id="leaseList" parameterType="int" resultType="crldto">
+		SELECT /*+
+		use_nl(S,MIX) */
+		MIX.REN_NO,S.S_NAME,MIX.L_LEASEDATE,MIX.L_LEASETIME,S_MAINSUMNAIL
+		FROM
+		SPACE S,(select /*+ use_nl(R,L) */
+		R.REN_NO,L.L_LEASEDATE,L.L_LEASETIME,L.S_NO
+		from LEASE L,RENTAL R
+		WHERE
+		R.T_NO=#{tNo}
+		AND R.L_NO=L.L_NO
+		AND L.L_PERSTATUS='진행') mix
+		where
+		S.S_NO=MIX.S_NO
+
+
+	</select>
+
+	<insert id="insertrecruit" parameterType="java.util.List">
+		<selectKey keyProperty="recNo" resultType="int"
+			order="BEFORE">
+			SELECT RECRUIT_SEQ.NEXTVAL as recNo FROM DUAL
+		</selectKey>
+		INSERT INTO
+		RECRUIT(
+		REC_NO,
+		REC_PERSTATUS,
+		REC_DATE,
+		REN_NO,
+		C_NO
+		)
+		SELECT
+		RECRUIT_SEQ.NEXTVAL, A.*
+		FROM(
+		<foreach item="item" index="index" collection="list"
+			separator="UNION ALL">
+			SELECT
+
+			#{item.recPerstatus} as REC_PERSTATUS,
+			TO_DATE(SYSDATE,'YY/MM/DD') as REC_DATE,
+			#{item.renNo} as REN_NO,
+			#{item.cNo} as C_NO
+			FROM DUAL
+		</foreach>
+		) A
+	</insert>
+
+	<select id="scheduleList" parameterType="int"
+		resultType="crschdto">
+
+		SELECT /*+ use_nl(MIX2,L) */
+		TO_CHAR(L.L_LEASEDATE,'YYYY-MM-DD') lLeasedate,L.L_LEASETIME
+		FROM
+		(SELECT /*+ use_nl(REN,MIX1) */
+		REN.L_NO
+		FROM
+		RENTAL REN,(SELECT /*+
+		use_nl(C,REC) */
+		REC.REN_NO
+		FROM CLASS C,RECRUIT REC
+		WHERE C.C_NO=#{cNo}
+		AND
+		C.C_NO=REC.C_NO
+		AND REC.REC_PERSTATUS='모집') MIX1
+		WHERE
+		REN.REN_NO=MIX1.REN_NO) MIX2,LEASE L
+		WHERE MIX2.L_NO=L.L_NO
+		AND
+		L.L_PERSTATUS='진행'
+		ORDER BY L.L_LEASEDATE ASC ,
+		(CASE L.L_LEASETIME WHEN '오전' THEN 1
+		WHEN '오후' THEN 2
+		WHEN '저녁' THEN 3
+		END)
+	</select>
+	
+	<update id="modifyStatusC" parameterType="int">
+	   update class 
+	   set
+	   C_PERSTATUS='신청'
+	   
+	   where C_NO=#{cNo}
+	   
+	   
+	</update>
+
+</mapper>

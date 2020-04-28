@@ -1,12 +1,10 @@
 package kr.co.openkitchen.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -34,6 +32,7 @@ public class MemberController {
 		
 		return "login/login";
 	}
+	
 	@RequestMapping("/loginOk")
 	public String loginOk(HttpSession session) { 
 //		시큐리티에서 로그인된 id 가져오기		
@@ -48,8 +47,16 @@ public class MemberController {
 		//세션에 유저번호 저장
 		
 		session.setAttribute("openkitchen", memberDTO);
-
-		return "index";
+		Object classNo = session.getAttribute("classNo");
+		Object spaceNo = session.getAttribute("spaceNo");
+		
+		if(classNo != null) {
+			
+			return "redirect:classPayment?no="+classNo;
+			
+		}
+		
+		return "redirect:index";
 	}
 	
 	

@@ -1,8 +1,16 @@
 package kr.co.openkitchen.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +24,8 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.dto.DetailSScheDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
-import kr.co.openkitchen.service.ServiceInter;
 import kr.co.openkitchen.service.SserviceInter;
 import lombok.Setter;
 
@@ -25,22 +33,39 @@ import lombok.Setter;
 public class SpaceController {
 	
 	@Setter(onMethod = @__({ @Autowired }))
-	SserviceInter si;
+	SserviceInter ssi;
+	
+	
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
 	public String classD(@RequestParam("no")int sNo, Model model) {
 		
-		model.addAttribute("detailSpace", si.readDetailS(sNo));
-		System.out.println(si.readDetailS(sNo));
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("sNo", sNo);
+		
+		
+		List<DetailSScheDTO> list1 = ssi.readDetailSSche(map);
+	    SimpleDateFormat fm = new SimpleDateFormat("yyyy-M-d");
+	    List<String> list2 = new ArrayList<String>();
+	    for(DetailSScheDTO dssdto : list1) {
+	    	list2.add(fm.format(dssdto.lLeasedate));
+	    }
+	    
+	    System.out.println(list2);
+		
+		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
+		model.addAttribute("detailSScheDate", list2);
+		
 		
 		return "space/user/spaceD";
 	}
 	
 	@GetMapping("spaceIn")
 	public String spaceIn(Model model) {
-		model.addAttribute("list",si.readFiveS());
-		model.addAttribute("mainContent",si.mainContentS());
+		model.addAttribute("list", ssi.readFiveS());
+		model.addAttribute("mainContent", ssi.mainContentS());
 		return "space/user/spaceIn";
 	}
 	
@@ -48,7 +73,7 @@ public class SpaceController {
 	@ResponseBody
 	public String moreC(@RequestParam("count") int count) {
 		System.out.println("더보기 시 보여질 갯수:" + count);
-		List<SpaceIndexDTO> list = si.moreSpace(count);
+		List<SpaceIndexDTO> list = ssi.moreSpace(count);
 		
 //		 json으로 변환 시키기 위한 로직.
 		// ajax에는 map이나 list 형식이 없어서 string 으로 변환해준다.
@@ -71,4 +96,89 @@ public class SpaceController {
 //		변환된 list를 return함
 		return str;
 	}
+	
+	@GetMapping("spacePayment")
+	public String spacePayment(@RequestParam("no")int recNo, Model model, 
+			HttpServletRequest request) {
+		
+		
+//		HttpSession session = request.getSession();		
+//		if(session.getAttribute("openkitchen") == null) {
+//			
+//			session.setAttribute("classNo", recNo);
+//			// 스프링에서 리다이렉트 시키는 방법
+//			return "redirect:login";
+//			
+//		}
+		
+//		Object obj = session.getAttribute("openkitchen");
+//		MemberDTO mdto = (MemberDTO)obj;
+//		
+//		
+//		model.addAttribute("paymentC", csi.readPaymentC(recNo));
+//		model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
+		
+		return "space/user/spacePayment";
+	}
+	
+	
+	// ajax 한글 물음표로 가는 증상? produces에 charset utf8 처리 https://marobiana.tistory.com/112 참조
+	@RequestMapping(value = "ajaxSDetailData", method = RequestMethod.POST, produces = "application/text;charset=utf8")
+	@ResponseBody
+	public Object ajaxSDetailData(@RequestParam("leaseDate")Date leaseDate, 
+			@RequestParam("sNo")int sNo) {
+		
+		// 가져와야 될 데이터는 무엇인가?
+		// 지정된 공간에 대한 선택된 일정의 대여상태를 알 수 있는 정보
+	    // 기존에 만들어놓은 쿼리문을 다이나믹쿼리를 통해 재활용
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("sNo", sNo);
+		map.put("leaseDate", leaseDate);
+		
+		List<DetailSScheDTO> test = ssi.readDetailSSche(map);
+		String str = "";
+		String ajaxD = "";
+		System.out.println(test);
+		for (DetailSScheDTO dto : test) {
+		
+			if(dto.getlPerstatus().equals("진행")) {
+				if (dto.getlLeasetime().equals("오전")) {
+					str += "<span class='schTimeS'>오전</span>";	
+				} else if(dto.getlLeasetime().equals("오후")) {
+					str += "<span class='schTimeS'>오후</span>";
+				} else {
+					str += "<span class='schTimeS'>저녁</span>";
+				}
+			} else {
+				if (dto.getlLeasetime().equals("오전")) {
+					str += "<span class='schTimeE'>오전</span>";	
+				} else if(dto.getlLeasetime().equals("오후")) {
+					str += "<span class='schTimeE'>오후</span>";
+				} else {
+					str += "<span class='schTimeE'>저녁</span>";
+				}
+			}
+		}
+		
+		
+		ajaxD = "<div class='choiceSch'><div class='schTitle'>선택된 일정</div>"+str+"</div>";
+		//ajaxD = "<div class='choiceSch'><div class='schTitle'>선택된 일정</div>"+str+"</div>";
+		System.out.println(ajaxD);
+		
+		// 데이터가 하나가 아니라 여러개 올 수 있다.
+		// 어떻게 비교해서 데이터를 json 형태로 뿌릴건가..?
+		// 진행 종료 상태에 따른 css가 달라야 한다. 이 점은 class 이름을 따로 명시해서
+		// 만든다...?
+		
+		// 데이터를 먼저 만들고 랩핑한다.
+		
+		
+		
+		
+		return test;
+		
+	}
+	
 }

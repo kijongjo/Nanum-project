@@ -2,34 +2,27 @@ package kr.co.openkitchen.dto;
 
 import java.sql.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import lombok.AllArgsConstructor;
+
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class DetailCScheDTO {
-	int cNo;
-	int recNo;
+public class DetailSScheDTO {
+	int lNo;
 	public Date lLeasedate;
 	String lLeasetime;
 	String lPerstatus;
-	int cPerson;
-	String cMaxrecruitperson;
 	
 	// getter, setter
-	public int getcNo() {
-		return cNo;
+	public int getlNo() {
+		return lNo;
 	}
-	public void setcNo(int cNo) {
-		this.cNo = cNo;
-	}
-	public int getRecNo() {
-		return recNo;
-	}
-	public void setRecNo(int recNo) {
-		this.recNo = recNo;
+	public void setlNo(int lNo) {
+		this.lNo = lNo;
 	}
 	public Date getlLeasedate() {
 		return lLeasedate;
@@ -48,21 +41,5 @@ public class DetailCScheDTO {
 	}
 	public void setlPerstatus(String lPerstatus) {
 		this.lPerstatus = lPerstatus;
-	}
-	public int getcPerson() {
-		return cPerson;
-	}
-	public void setcPerson(int cPerson) {
-		this.cPerson = cPerson;
-	}
-	public String getcMaxrecruitperson() {
-		return cMaxrecruitperson;
-	}
-	public void setcMaxrecruitperson(String cMaxrecruitperson) {
-		this.cMaxrecruitperson = cMaxrecruitperson;
-	}
-	
-	
-	
-	
+	}	
 }
