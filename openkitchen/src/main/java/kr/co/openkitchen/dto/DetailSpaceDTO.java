@@ -8,7 +8,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class DetailSpaceDTO {
-	int sNo;
 	String sDetailsumnail;
 	String sName;
 	String sShortintro;
@@ -22,12 +21,6 @@ public class DetailSpaceDTO {
 	String sSafety;
 	
 	//getter, setter
-	public int getsNo() {
-		return sNo;
-	}
-	public void setsNo(int sNo) {
-		this.sNo = sNo;
-	}
 	public String getsDetailsumnail() {
 		return sDetailsumnail;
 	}
@@ -94,7 +87,6 @@ public class DetailSpaceDTO {
 	public void setsSafety(String sSafety) {
 		this.sSafety = sSafety;
 	}
-	
 	
 	
 	

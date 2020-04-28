@@ -665,7 +665,6 @@
                     	
                     	$("#uploadForm").css({
                     		height:'100%',
-                    		
                     	    overflow:'inherit'
                     		
                     	}),
@@ -685,12 +684,8 @@
                     
                     
                     $("#norental").on("click",function(){
-                    	$("#uploadForm").css("overflow",""),
                     	$("#uploadForm").animate({
-                    		height:'1px',
-                    		overflow:'auto',
-                    		overflow:'hidden'
-                    			
+                    		height:'1px'
                     		
                     	},1000),
                     	

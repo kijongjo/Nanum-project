@@ -4,18 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="kr.co.openkitchen.space">
   	<select id="selectDetailS" resultType="dsdto" parameterType="int">
-		SELECT S_NO, S_DETAILSUMNAIL, S_NAME, S_SHORTINTRO, S_HASHTAG, S_TEMA, S_LOC, 
+		SELECT S_DETAILSUMNAIL, S_NAME, S_SHORTINTRO, S_HASHTAG, S_TEMA, S_LOC, 
 			   S_LONGINTRO, S_CAPACITY, S_REFERENCE, S_CONVENIENT, S_SAFETY
 			   FROM SPACE
                WHERE S_NO = #{sNo}		
-  	</select>
-  	
-  	<select id="selectDetailSSche" resultType="dssdto" parameterType="map">
-  		SELECT L_NO, L_LEASEDATE, L_LEASETIME, L_PERSTATUS
-		FROM SPACE S, LEASE L
-		WHERE S.S_NO = L.S_NO AND S.S_NO = #{sNo}
-		<if test="leaseDate != null">
-		AND L_LEASEDATE = #{leaseDate}
-		</if>
   	</select>
   </mapper>
