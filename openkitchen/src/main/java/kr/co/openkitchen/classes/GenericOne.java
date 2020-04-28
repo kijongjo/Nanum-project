@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.openkitchen.dto.ClassRegistDtoL;
 import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
+import kr.co.openkitchen.dto.CookBookDTO;
 
 //용도: 다양한 return타입을 받기 위함. 코드 재사용성을 높이기 위함
 //구린네가 심하게 나는데 일단 Generalization 시키긴함. 이거 안고치면 개털릴듯
@@ -13,6 +14,7 @@ public class GenericOne<T> {
 	private List<ClassRegistDtoSch> crdsch;
 	private List<ClassRegistDtoL> crdl;
 	private List<ClassRegistDtoR> crdr;
+	private List<CookBookDTO> cbd;
 	
     
     
@@ -49,6 +51,15 @@ public class GenericOne<T> {
 	public void setCrdsch(List<ClassRegistDtoSch> crdsch) {
 		this.crdsch = crdsch;
 	}
+
+	public List<CookBookDTO> getCbd() {
+		return cbd;
+	}
+
+	public void setCbd(List<CookBookDTO> cbd) {
+		this.cbd = cbd;
+	}
+	
 	
 	
 	

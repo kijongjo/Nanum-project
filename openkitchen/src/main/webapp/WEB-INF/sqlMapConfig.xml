@@ -34,5 +34,7 @@
         <typeAlias type="kr.co.openkitchen.dto.ClassRegistDTO" alias="crdto" />
         <typeAlias type="kr.co.openkitchen.dto.ClassRegistDtoL" alias="crldto"/>
         <typeAlias type="kr.co.openkitchen.dto.ClassRegistDtoSch" alias="crschdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.MypageDTO" alias="mydto"/>
+        <typeAlias type="kr.co.openkitchen.dto.CookBookDTO" alias="cbdto"/>
   	</typeAliases>
   </configuration>

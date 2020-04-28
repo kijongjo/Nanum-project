@@ -92,9 +92,9 @@ div#header_nav {
 	width: 200px;
 	height: 260px;
 	box-shadow: 0px 0px 5px gray;
+	background: white;
+    z-index: 10;
 	
-	background: black;
-
 }
 
 #header_nav a {
