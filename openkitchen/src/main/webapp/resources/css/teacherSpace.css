@@ -227,19 +227,18 @@
 	width: 905px;
 	/* background-color: orange; */
 }
-#teacherSpace .inp-wrap:nth-child(10) select {
-    width: 905px;
-    height: 50px;
-    background: white;
-    padding: 0px 20px;
-    font-weight: 900;
-    color: #b7b7b7;
-    font-size: 15px;
-    font-family: 'Roboto', 'Noto Sans', 'Noto Sans KR', sans-serif;
-    border: none;
+
+#teacherSpace .inp-wrap:nth-child(5) span:nth-child(2) input[type="text"]
+	{
+	height: 50px;
+	width: 905px;
+	padding: 0px 20px;
+	background: rgba(255, 255, 255, 0.6);
+	height: 50px;
+	font-size: 15px;
+	border: none;
+	font-weight: 900;
 }
-
-
 
 #teacherSpace .inp-wrap:nth-child(5) span:nth-child(2) input[type="text"]::placeholder
 	{
