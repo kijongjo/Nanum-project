@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.openkitchen.mypageCook">
+	<select id="cookBookList" parameterType="int" resultType="cbdto">
+		SELECT /*+
+		use_nl(C,MIX) */
+		C.C_MAINSUMNAIL,C.C_NAME,C.C_PRICE,MIX.REC_PERSTATUS
+		FROM
+		CLASS
+		C,(select /*+ use_nl(R,E) */
+		REC.REC_NO,E.REC_NO,REC.REC_PERSTATUS,REC.C_NO
+		from RECRUIT REC,ENROL E
+		WHERE
+		E.M_NO=99
+		AND REC.REC_NO=E.REC_NO
+		AND REC.REC_PERSTATUS IN('모집','진행')) mix
+		where
+		C.C_NO=MIX.C_NO;
+
+
+	</select>
+
+
+
+
+</mapper>
