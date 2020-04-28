@@ -123,14 +123,10 @@ public class SpaceController {
 	
 	
 	// ajax 한글 물음표로 가는 증상? produces에 charset utf8 처리 https://marobiana.tistory.com/112 참조
-	@RequestMapping(value = "ajaxSDetailData", method = RequestMethod.POST, produces = "application/text;charset=utf8")
+	@RequestMapping(value = "ajaxSDetailData", method = RequestMethod.POST)
 	@ResponseBody
-	public Object ajaxSDetailData(@RequestParam("leaseDate")Date leaseDate, 
+	public List<DetailSScheDTO> ajaxSDetailData(@RequestParam("leaseDate")Date leaseDate, 
 			@RequestParam("sNo")int sNo) {
-		
-		// 가져와야 될 데이터는 무엇인가?
-		// 지정된 공간에 대한 선택된 일정의 대여상태를 알 수 있는 정보
-	    // 기존에 만들어놓은 쿼리문을 다이나믹쿼리를 통해 재활용
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -138,44 +134,8 @@ public class SpaceController {
 		map.put("leaseDate", leaseDate);
 		
 		List<DetailSScheDTO> test = ssi.readDetailSSche(map);
-		String str = "";
-		String ajaxD = "";
 		System.out.println(test);
-		for (DetailSScheDTO dto : test) {
-		
-			if(dto.getlPerstatus().equals("진행")) {
-				if (dto.getlLeasetime().equals("오전")) {
-					str += "<span class='schTimeS'>오전</span>";	
-				} else if(dto.getlLeasetime().equals("오후")) {
-					str += "<span class='schTimeS'>오후</span>";
-				} else {
-					str += "<span class='schTimeS'>저녁</span>";
-				}
-			} else {
-				if (dto.getlLeasetime().equals("오전")) {
-					str += "<span class='schTimeE'>오전</span>";	
-				} else if(dto.getlLeasetime().equals("오후")) {
-					str += "<span class='schTimeE'>오후</span>";
-				} else {
-					str += "<span class='schTimeE'>저녁</span>";
-				}
-			}
-		}
-		
-		
-		ajaxD = "<div class='choiceSch'><div class='schTitle'>선택된 일정</div>"+str+"</div>";
-		//ajaxD = "<div class='choiceSch'><div class='schTitle'>선택된 일정</div>"+str+"</div>";
-		System.out.println(ajaxD);
-		
-		// 데이터가 하나가 아니라 여러개 올 수 있다.
-		// 어떻게 비교해서 데이터를 json 형태로 뿌릴건가..?
-		// 진행 종료 상태에 따른 css가 달라야 한다. 이 점은 class 이름을 따로 명시해서
-		// 만든다...?
-		
-		// 데이터를 먼저 만들고 랩핑한다.
-		
-		
-		
+
 		
 		return test;
 		
