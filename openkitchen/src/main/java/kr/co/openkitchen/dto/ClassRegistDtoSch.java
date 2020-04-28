@@ -9,9 +9,9 @@ import lombok.ToString;
 @ToString
 public class ClassRegistDtoSch {
 	
-int cNo;
-String lLeasedate;
-String lLeasetime;
+private int cNo;
+private String lLeasedate;
+private String lLeasetime;
 public int getcNo() {
 	return cNo;
 }

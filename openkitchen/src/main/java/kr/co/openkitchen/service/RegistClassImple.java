@@ -1,9 +1,5 @@
 package kr.co.openkitchen.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
@@ -12,9 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.openkitchen.classes.GenericOne;
-import kr.co.openkitchen.classes.Util;
+import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.dao.RegisterDaoInter;
-import kr.co.openkitchen.dto.ClassRegistDtoL;
 
 @Service
 public class RegistClassImple implements RegistServiceInterF {
@@ -32,17 +27,17 @@ public class RegistClassImple implements RegistServiceInterF {
 
 		if (fileName.equals("C-DS-TYPE1")) {
 			resourceName = "c" + cNo + "-DS-0" + count;
-			resourcesPath = servletContext.getRealPath("/resources/img/classimg");
+			resourcesPath = "resources/img/classimg";
 			filePath = resourcesPath + "/" + resourceName + ".jpg";
 			System.out.println("filePath  :  " + filePath);
 		} else if (fileName.equals("C-MS")) {
 			resourceName = "c" + cNo + "-MS-01";
-			resourcesPath = servletContext.getRealPath("/resources/img/classimg");
+			resourcesPath = "resources/img/classimg";
 			filePath = resourcesPath + "/" + resourceName + ".jpg";
 			System.out.println("filePath  :  " + filePath);
 		} else {
 			resourceName = "c" + cNo + "-DS-0" + count;
-			resourcesPath = servletContext.getRealPath("/resources/img/classimg");
+			resourcesPath = "resources/img/classimg";
 			filePath = resourcesPath + "/" + resourceName + ".jpg";
 			System.out.println("filePath  :  " + filePath);
 		}
@@ -79,23 +74,10 @@ public class RegistClassImple implements RegistServiceInterF {
 	@Override
 	public void makeFile(String filePath, MultipartFile mFile) {
 		// File 경로를 넣어주고 변형시킨 파일을 경로에 넣어준다.
-
-		File file = new File(filePath);
-		if (mFile.getSize() != 0) {
-			if (!file.exists()) {
-				file.mkdirs();
-			}
-			try {
-				mFile.transferTo(file);
-			} catch (IllegalStateException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-		} // if end
+        System.out.println("파일 경로"+filePath);
+		 S3ClientFactory s3Client = new S3ClientFactory();
+		 s3Client.uploadFile(filePath, mFile);
+		 System.out.println("s3 요청 완료");
 
 	}
 

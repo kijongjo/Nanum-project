@@ -22,13 +22,19 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.classes.Util;
 import kr.co.openkitchen.dto.ClassRegistDTO;
 import kr.co.openkitchen.dto.ClassRegistDtoL;
 import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
+import kr.co.openkitchen.dto.CookBookDTO;
+import kr.co.openkitchen.dto.MemberDTO;
+import kr.co.openkitchen.dto.MypageDTO;
 import kr.co.openkitchen.dto.TeacherRegistDTO;
 import kr.co.openkitchen.dto.TeacherRegistDtoS;
+import kr.co.openkitchen.service.MypageCookInter;
+import kr.co.openkitchen.service.MypageServiceInter;
 import kr.co.openkitchen.service.RegistServiceInter;
 import kr.co.openkitchen.service.RegistServiceInterF;
 
@@ -54,12 +60,28 @@ public class UserController {
 	@Resource(name = "registClassImpleSch")
 	RegistServiceInter regServicecSch;
 
+	@Resource(name = "mypageServiceImple")
+	MypageServiceInter mypageService;
+
+	@Resource(name = "mypageCookBook")
+	MypageCookInter mypageCookBook;
+
 	@RequestMapping(value = { "in" })
-	public String mypage() {
-		return "/mypage/mypageIn";
+	public String mypage(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("openkitchen") != null) {
+			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+			System.out.println("mNo : " + mdto.getmNo());
+			MypageDTO mydto = mypageService.mypageInfo(mdto.getmNo());
+			model.addAttribute("mydto", mydto);
+			System.out.println("mydto 값은?" + mydto.toString());
+			return "/mypage/mypageIn";
+		} else {
+			return "login/login";
+		}
 	}
 
-	@RequestMapping(value = { "cookBookD", "cookRefunD", "cookEndD" })
+	@RequestMapping(value = { "cookBookD", "cookRefundD", "cookEndD" })
 	public String cookIn(@RequestParam("no") String no, Model model) {
 		System.out.println(no);
 		model.addAttribute("no", no);
@@ -108,23 +130,6 @@ public class UserController {
 
 		return "/mypage/wishlist/wishlistIn";
 	}
-
-//	@RequestMapping(value = {"standByClass"})
-//	public String standByClass(@RequestParam("no")String no) {
-//		System.out.println(no);
-//		
-//		
-//		return "/mypage/class/standByClass";
-//	}
-//	
-//	@RequestMapping(value = {"ongoingClass"})
-//	public String ongoingClass(@RequestParam("no")String no, Model model) {
-//		System.out.println(no);
-//		model.addAttribute("no", no);
-//		
-//		
-//		return "/mypage/class/openClassD";
-//	}
 
 	// 선생님 [기본정보]등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "multipartUpload", method = RequestMethod.POST)
@@ -430,12 +435,12 @@ public class UserController {
 	public String spaceBookList() {
 		// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 		int tNo = 1;
-
 		List<ClassRegistDtoL> list = regServiceCS.selectOne(tNo).getCrdl();
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println("getsName: " + list.get(i).getsMainsumnail());
-		}
 
+		S3ClientFactory s3client = new S3ClientFactory();
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setsMainsumnail(s3client.geturl(list.get(i).getsMainsumnail()));
+		}
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (list.size() != 0) {
@@ -619,32 +624,42 @@ public class UserController {
 	}
 
 	// 스케쥴 확인시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "totalScheduleList", method = RequestMethod.POST,produces = "application/text; charset=utf8")
+	@RequestMapping(value = "totalScheduleList", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String TotalScheduleList(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
-		/* if (session.getAttribute("cNo") != null) { */
-		if(str=="") {
-			/* int cNo = Integer.parseInt((String) session.getAttribute("cNo")); */
-			List<ClassRegistDtoSch> list = regServicecSch.selectOne(25).getCrdsch();
-			
-			if (list.size() != 0) {
-				try {
-					str = mapper.writeValueAsString(list);
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+		if (session.getAttribute("cNo") != null) {
+			if (str == "") {
+				int cNo = Integer.parseInt((String) session.getAttribute("cNo"));
+				List<ClassRegistDtoSch> list = regServicecSch.selectOne(cNo).getCrdsch();
+
+				if (list.size() != 0) {
+					try {
+						str = mapper.writeValueAsString(list);
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else if (list.size() == 0) {
+					try {
+						str = mapper.writeValueAsString("noregist");
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-			} else if (list.size() == 0) {
+			} else {
 				try {
 					str = mapper.writeValueAsString("noregist");
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+
 			}
+
 		} else {
 			try {
 				str = mapper.writeValueAsString("noregist");
@@ -654,24 +669,89 @@ public class UserController {
 			}
 
 		}
-	
 		return str;
 	}
+
 	@RequestMapping(value = "completeSch", method = RequestMethod.POST)
 	@ResponseBody
 	public String completeSch(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		/* if (session.getAttribute("cNo") != null) { */
-		/* int cNo=Integer.parseInt((String) session.getAttribute("cNo")); */
-		regServicecSch.insertDTO(25);
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
-		try {
-			str = mapper.writeValueAsString("complete");
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (session.getAttribute("mNo") != null) {
+			int cNo = Integer.parseInt((String) session.getAttribute("mNo"));
+			regServicecSch.insertDTO(cNo);
+
+			try {
+				str = mapper.writeValueAsString("complete");
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} else {
+			try {
+				str = mapper.writeValueAsString("noregist");
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
+		return str;
+	}
+
+////////////////////////////예약 클래스 ///////////////////////////////////
+	// 예약한 공간 정보를 가지고 온다.
+	@RequestMapping(value = { "cookBookList" }, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String cookBookList(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		if (session.getAttribute("openkitchen") != null) {
+			System.out.println("openkitchen not null");
+			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+			System.out.println("mNo : " + mdto.getmNo());
+
+			int cNo = mdto.getmNo();
+
+			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
+
+			List<CookBookDTO> list = mypageCookBook.selectOne(cNo).getCbd();
+
+			S3ClientFactory s3client = new S3ClientFactory();
+			for (int i = 0; i < list.size(); i++) {
+				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+			} // for end
+
+			if (list.size() != 0) {
+				try {
+					
+					str = mapper.writeValueAsString(list);
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} else {
+				try {
+					System.out.println("list is null");
+					str = mapper.writeValueAsString("noValue");
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // try catch end
+			} // list.size end
+		} else {
+			System.out.println("openkitchen is null");
+			try {
+				str = mapper.writeValueAsString("noValue");
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} // try catch end
+		} // session end
 		return str;
 	}
 

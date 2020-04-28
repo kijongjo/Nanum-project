@@ -108,7 +108,7 @@
 		resultType="crschdto">
 
 		SELECT /*+ use_nl(MIX2,L) */
-		TO_CHAR(L.L_LEASEDATE,'YY-MM-DD') lLeasedate,L.L_LEASETIME
+		TO_CHAR(L.L_LEASEDATE,'YYYY-MM-DD') lLeasedate,L.L_LEASETIME
 		FROM
 		(SELECT /*+ use_nl(REN,MIX1) */
 		REN.L_NO

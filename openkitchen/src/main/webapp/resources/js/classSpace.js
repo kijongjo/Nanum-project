@@ -29,8 +29,7 @@ $(function() {
 						obj
 								.forEach(function(item) {
 
-									contents1 = getContextPath()
-											+ item.sMainsumnail;
+									contents1 = item.sMainsumnail;
 									console.log(contents1);
 									contents2 = '<img src="' + contents1 + '">';
 									contents3 = '<div>'+"No. " + item.renNo + '</div>';
