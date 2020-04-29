@@ -39,5 +39,6 @@
         <typeAlias type="kr.co.openkitchen.dto.CookRefundDTO" alias="credto"/>
         <typeAlias type="kr.co.openkitchen.dto.StandByClassDTO" alias="sbcdto"/>
         <typeAlias type="kr.co.openkitchen.dto.OngoingClassDTO" alias="ocdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.CompleteClassDTO" alias="ccdto"/>
   	</typeAliases>
   </configuration>
