@@ -21,7 +21,7 @@ $(function() {
 				
 									contents2 = '<a href="classD?no=1"><img src="' + contents1 + '">';
 									contents3 = '<h3>'+item.cName+'</h3>';
-									contents4 = '<div class="Price"><strong>\</strong>'+item.cPrice+'</div>';
+									contents4 = '<div class="Price"><strong>￦</strong>'+item.cPrice.toLocaleString()+'</div>';
 									contents5 = '<p>'+item.recPerstatus +'<i class="ico-more_arrow"></i>'+'</p>'+'</a>';
 									
 									tag = contents2 + contents3 + contents4
@@ -36,6 +36,19 @@ $(function() {
 					return rtn;
 
 				}// success end
+			,
+			beforeSend : function() {
+
+				$('.wrap-loading').removeClass('display-none');
+
+			}//beforeSend end
+
+			,
+			complete : function() {
+
+				$('.wrap-loading').addClass('display-none');
+
+			}//complete end
 
 			})// ajax end
 })

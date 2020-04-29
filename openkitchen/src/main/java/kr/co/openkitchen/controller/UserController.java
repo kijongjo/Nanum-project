@@ -29,6 +29,7 @@ import kr.co.openkitchen.dto.ClassRegistDtoL;
 import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
 import kr.co.openkitchen.dto.CookBookDTO;
+import kr.co.openkitchen.dto.CookRefundDTO;
 import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.dto.MypageDTO;
 import kr.co.openkitchen.dto.TeacherRegistDTO;
@@ -65,7 +66,12 @@ public class UserController {
 
 	@Resource(name = "mypageCookBook")
 	MypageCookInter mypageCookBook;
+	
+	@Resource(name = "mypageCookRefund")
+	MypageCookInter mypageCookRefund;
 
+	@Resource(name = "mypageCookEnd")
+	MypageCookInter mypageCookEnd;
 	@RequestMapping(value = { "in" })
 	public String mypage(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -754,6 +760,110 @@ public class UserController {
 		} // session end
 		return str;
 	}
+	// 예약취소한  정보를 가지고 온다.
+		@RequestMapping(value = { "cookRefundList" }, produces = "application/text; charset=utf8")
+		@ResponseBody
+		public String cookRefundList(HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			String str = "";
+			ObjectMapper mapper = new ObjectMapper();
+			if (session.getAttribute("openkitchen") != null) {
+				System.out.println("openkitchen not null");
+				MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+				System.out.println("mNo : " + mdto.getmNo());
+
+				int cNo = mdto.getmNo();
+
+				// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
+
+				List<CookRefundDTO> list = mypageCookRefund.selectOne(cNo).getCrd();
+
+				S3ClientFactory s3client = new S3ClientFactory();
+				for (int i = 0; i < list.size(); i++) {
+					list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+				} // for end
+
+				if (list.size() != 0) {
+					try {
+						
+						str = mapper.writeValueAsString(list);
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				} else {
+					try {
+						System.out.println("list is null");
+						str = mapper.writeValueAsString("noValue");
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} // try catch end
+				} // list.size end
+			} else {
+				System.out.println("openkitchen is null");
+				try {
+					str = mapper.writeValueAsString("noValue");
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // try catch end
+			} // session end
+			return str;
+		}
+		// 예약종료한  정보를 가지고 온다.
+		@RequestMapping(value = { "cookEndList" }, produces = "application/text; charset=utf8")
+		@ResponseBody
+		public String cookEndList(HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			String str = "";
+			ObjectMapper mapper = new ObjectMapper();
+			if (session.getAttribute("openkitchen") != null) {
+				System.out.println("openkitchen not null");
+				MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+				System.out.println("mNo : " + mdto.getmNo());
+
+				int cNo = mdto.getmNo();
+
+				// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
+
+				List<CookRefundDTO> list = mypageCookEnd.selectOne(cNo).getCrd();
+
+				S3ClientFactory s3client = new S3ClientFactory();
+				for (int i = 0; i < list.size(); i++) {
+					list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+				} // for end
+
+				if (list.size() != 0) {
+					try {
+						
+						str = mapper.writeValueAsString(list);
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				} else {
+					try {
+						System.out.println("list is null");
+						str = mapper.writeValueAsString("noValue");
+					} catch (JsonProcessingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} // try catch end
+				} // list.size end
+			} else {
+				System.out.println("openkitchen is null");
+				try {
+					str = mapper.writeValueAsString("noValue");
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // try catch end
+			} // session end
+			return str;
+		}
 
 	// 테스트용 /////////////////////////////////////////////////
 	@RequestMapping(value = "spaceBase", method = RequestMethod.GET)

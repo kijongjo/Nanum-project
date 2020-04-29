@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/contents_board.css'/>">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="<c:url value='/resources/js/cookIn.js'/>"></script>
+<script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
+
 
 <script>
 	window.onload = function () {
