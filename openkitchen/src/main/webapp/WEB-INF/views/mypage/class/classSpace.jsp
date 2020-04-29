@@ -11,4 +11,8 @@
 		<input type="button" value="다음" id="complete"> <input
 			type="button" value="돌아가기" id="go">
 	</div>
+	  <div class="wrap-loading display-none">
+
+    <div><i class="fas fa-spinner fa-spin fa-4x "></i></div>
+</div>   
 </div>
