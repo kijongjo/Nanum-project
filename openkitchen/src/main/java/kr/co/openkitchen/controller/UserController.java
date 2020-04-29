@@ -28,6 +28,7 @@ import kr.co.openkitchen.dto.ClassRegistDTO;
 import kr.co.openkitchen.dto.ClassRegistDtoL;
 import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
+import kr.co.openkitchen.dto.CompleteClassDTO;
 import kr.co.openkitchen.dto.CookBookDTO;
 import kr.co.openkitchen.dto.CookRefundDTO;
 import kr.co.openkitchen.dto.MemberDTO;
@@ -81,6 +82,9 @@ public class UserController {
 	
 	@Resource(name = "mypageOngoingClass")
 	MypageOpenClassInter mypageOngoingClass;
+
+	@Resource(name = "mypageCompleteClass")
+	MypageOpenClassInter mypageCompleteClass;
 	
 	@RequestMapping(value = { "in" })
 	public String mypage(HttpServletRequest request, Model model) {
@@ -947,6 +951,59 @@ public class UserController {
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
 			List<OngoingClassDTO> list = mypageOngoingClass.selectOne(24).getOcd();
+
+			S3ClientFactory s3client = new S3ClientFactory();
+			for (int i = 0; i < list.size(); i++) {
+				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+			} // for end
+
+			if (list.size() != 0) {
+				try {
+
+					str = mapper.writeValueAsString(list);
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} else {
+				try {
+					System.out.println("list is null");
+					str = mapper.writeValueAsString("noValue");
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} // try catch end
+			} // list.size end
+		} else {
+			System.out.println("openkitchen is null");
+			try {
+				str = mapper.writeValueAsString("noValue");
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} // try catch end
+		} // session end
+		return str;
+	}
+	
+	// 종료된 클래스 정보를 가지고 온다.
+	@RequestMapping(value = { "completeClassList" }, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String CompleteList(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		if (session.getAttribute("openkitchen") != null) {
+			System.out.println("openkitchen not null");
+			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+			System.out.println("mNo : " + mdto.getmNo());
+
+			int mNo = mdto.getmNo();
+
+			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
+
+			List<CompleteClassDTO> list = mypageCompleteClass.selectOne(24).getCcd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {

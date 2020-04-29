@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.openkitchen.dto.ClassRegistDtoL;
 import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
+import kr.co.openkitchen.dto.CompleteClassDTO;
 import kr.co.openkitchen.dto.CookBookDTO;
 import kr.co.openkitchen.dto.CookRefundDTO;
 import kr.co.openkitchen.dto.OngoingClassDTO;
@@ -52,6 +53,11 @@ public class Util {
 	 public static <T> GenericOne<T> packingOngoing(List<OngoingClassDTO> t){
 		 GenericOne<T> genericOne = new GenericOne<T>();
 		 genericOne.setOcd(t);
+		 return genericOne;
+	 }
+	 public static <T> GenericOne<T> packingCompleteC(List<CompleteClassDTO> t){
+		 GenericOne<T> genericOne = new GenericOne<T>();
+		 genericOne.setCcd(t);
 		 return genericOne;
 	 }
 	 

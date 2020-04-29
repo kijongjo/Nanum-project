@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.openkitchen.dto.ClassRegistDtoL;
 import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
+import kr.co.openkitchen.dto.CompleteClassDTO;
 import kr.co.openkitchen.dto.CookBookDTO;
 import kr.co.openkitchen.dto.CookRefundDTO;
 import kr.co.openkitchen.dto.OngoingClassDTO;
@@ -21,10 +22,7 @@ public class GenericOne<T> {
 	private List<CookRefundDTO> crd;
 	private List<StandByClassDTO> sbcd;
 	private List<OngoingClassDTO> ocd;
-	
-    
-    
-	
+	private List<CompleteClassDTO> ccd;
 
 	public T getT() {
 		return genericOne;
@@ -39,7 +37,7 @@ public class GenericOne<T> {
 	}
 
 	public void setCrdl(List<ClassRegistDtoL> crdl) {
-		this.crdl =crdl;
+		this.crdl = crdl;
 	}
 
 	public List<ClassRegistDtoR> getCrdr() {
@@ -89,18 +87,13 @@ public class GenericOne<T> {
 	public void setOcd(List<OngoingClassDTO> ocd) {
 		this.ocd = ocd;
 	}
-	
-	
-	
-	
-	
 
+	public List<CompleteClassDTO> getCcd() {
+		return ccd;
+	}
 
-
-	
-	
-
-	
-	
+	public void setCcd(List<CompleteClassDTO> ccd) {
+		this.ccd = ccd;
+	}
 
 }

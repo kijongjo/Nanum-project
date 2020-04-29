@@ -46,7 +46,8 @@ div > #right02 #contents_border{
 .date:nth-child(1)::after{
     content: "";
     position: absolute; 
-    top: 5px; right: 0;
+    top: 2px;
+    right: 2px;
     background-color: #8D8D8D;
     width: 1px; height: 14px;
 }
