@@ -85,7 +85,7 @@
 					<h2 class="title">요리 배우기</h2>
 					<ul class="list">
 						<li><a href="cookBookD?no=1">예약 클래스</a></li>
-						<li><a href="cookRefunD?no=2">취소/환불</a></li>
+						<li><a href="cookRefundD?no=2">취소/환불</a></li>
 						<li><a href="cookEndD?no=3">종료 클래스</a></li>
 					</ul>
 				</div>
