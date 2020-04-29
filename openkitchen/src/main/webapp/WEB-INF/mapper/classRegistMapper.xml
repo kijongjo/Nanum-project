@@ -60,15 +60,19 @@
 	<select id="leaseList" parameterType="int" resultType="crldto">
 		SELECT /*+
 		use_nl(S,MIX) */
-		MIX.REN_NO,S.S_NAME,MIX.L_LEASEDATE,MIX.L_LEASETIME,S_MAINSUMNAIL
+		MIX.REN_NO,S.S_NAME,TO_CHAR(MIX.L_LEASEDATE,'YYYY-MM-DD')
+		lLeasedate,MIX.L_LEASETIME,S_MAINSUMNAIL
 		FROM
-		SPACE S,(select /*+ use_nl(R,L) */
+		SPACE S,(select /*+
+		use_nl(R,L) */
 		R.REN_NO,L.L_LEASEDATE,L.L_LEASETIME,L.S_NO
-		from LEASE L,RENTAL R
+		from LEASE
+		L,RENTAL R
 		WHERE
 		R.T_NO=#{tNo}
 		AND R.L_NO=L.L_NO
-		AND L.L_PERSTATUS='진행') mix
+		AND L.L_PERSTATUS='진행')
+		mix
 		where
 		S.S_NO=MIX.S_NO
 
@@ -127,20 +131,21 @@
 		AND
 		L.L_PERSTATUS='진행'
 		ORDER BY L.L_LEASEDATE ASC ,
-		(CASE L.L_LEASETIME WHEN '오전' THEN 1
+		(CASE L.L_LEASETIME WHEN
+		'오전' THEN 1
 		WHEN '오후' THEN 2
 		WHEN '저녁' THEN 3
 		END)
 	</select>
-	
+
 	<update id="modifyStatusC" parameterType="int">
-	   update class 
-	   set
-	   C_PERSTATUS='신청'
-	   
-	   where C_NO=#{cNo}
-	   
-	   
+		update class
+		set
+		C_PERSTATUS='신청'
+
+		where C_NO=#{cNo}
+
+
 	</update>
 
 </mapper>
