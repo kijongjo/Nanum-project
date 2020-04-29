@@ -84,7 +84,7 @@
 	 	text-align: left;
 	}
 	
-	.schTime > input {
+	.schTime > input, .schTimeE > input  {
 		display:none
 	}
 	
@@ -93,6 +93,13 @@
 		display: inline-block;
 		width: 75px;
 		border-radius: 80px;
+	}
+	
+	.schTime.E {
+		background-color: red;
+		/* css 이벤트 비활성화  */
+		pointer-events: none;
+		
 	}
 	
 	.schTime:nth-of-type(2) {
@@ -251,7 +258,9 @@
 		var cnt = 0;
 		var schDate = new Array("", "");
 		var leaseDate = "";
+		var detailParams = new Array();
 		$(document).on("click",".datepicker--cell", function () {
+			detailParams = [];
 			leaseDate = $(".1").text()+"-"+$(".2").text()+"-"+$(this).text();
 			$(".schTime").remove();
 			
@@ -283,16 +292,30 @@
 					    success: function(data) {
 					    	for (var i = 0; i < data.length; i++) {
 								var choiceSch = data[i];
+								if(choiceSch.lPerstatus == "진행") {
 						    		if(choiceSch.lLeasetime == "오전") {
 						    			$(".choiceSch").
-						    				append("<label class='schTime'>오전<input type='checkbox' name='lNo' value='"+choiceSch.lNo+"' /></label>");
+						    				append("<label class='schTime'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
 						    		} else if (choiceSch.lLeasetime == "오후") {
 						    			$(".choiceSch").
-					    					append("<label class='schTime'>오후<input type='checkbox' name='lNo' value='"+choiceSch.lNo+"' /></label>");
+					    					append("<label class='schTime'>오후<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
 						    		} else {
 						    			$(".choiceSch").
-					    					append("<label class='schTime'>저녘<input type='checkbox' name='lNo' value='"+choiceSch.lNo+"' /></label>");
+					    					append("<label class='schTime'>저녘<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
 						    		}
+								} else {
+									if(choiceSch.lLeasetime == "오전") {
+						    			$(".choiceSch").
+						    				append("<label class='schTime E'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		} else if (choiceSch.lLeasetime == "오후") {
+						    			$(".choiceSch").
+					    					append("<label class='schTime E'>오후<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		} else {
+						    			$(".choiceSch").
+					    					append("<label class='schTime E'>저녘<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		}
+									
+								}
 							}
 					    },
 
@@ -329,16 +352,30 @@
 						    success: function(data){
 						    	for (var i = 0; i < data.length; i++) {
 									var choiceSch = data[i];
+									if(choiceSch.lPerstatus == "진행") {
 							    		if(choiceSch.lLeasetime == "오전") {
 							    			$(".choiceSch").
-							    				append("<label class='schTime'>오전<input type='checkbox' name='lNo' value='"+choiceSch.lNo+"' /></label>");
+							    				append("<label class='schTime'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
 							    		} else if (choiceSch.lLeasetime == "오후") {
 							    			$(".choiceSch").
-						    					append("<label class='schTime'>오후<input type='checkbox' name='lNo' value='"+choiceSch.lNo+"' /></label>");
+						    					append("<label class='schTime'>오후<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
 							    		} else {
 							    			$(".choiceSch").
-						    					append("<label class='schTime'>저녘<input type='checkbox' name='lNo' value='"+choiceSch.lNo+"' /></label>");
+						    					append("<label class='schTime'>저녘<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
 							    		}
+									} else {
+										if(choiceSch.lLeasetime == "오전") {
+							    			$(".choiceSch").
+							    				append("<label class='schTime E'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		} else if (choiceSch.lLeasetime == "오후") {
+							    			$(".choiceSch").
+						    					append("<label class='schTime E'>오후<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		} else {
+							    			$(".choiceSch").
+						    					append("<label class='schTime E'>저녘<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		}
+										
+									}
 								}
 						    },
 
@@ -363,19 +400,40 @@
 		}); 
 		
 		// https://hermeslog.tistory.com/327 체크박스 checked
-		$(document).on("click",".schTime", function () {
-			if($(this).children("input").is(":checked")) {
-				$(this).css("backgroundColor","red");
+		$(document).on("click",".timeCheck", function () {
+			if($(this).is(":checked")) {
+				$(this).parent().css("backgroundColor","red");
+				detailParams.push($(this).val());
+				console.log(detailParams);
 			} else {
-				$(this).css("backgroundColor","white");
-			}
+				$(this).parent().css("backgroundColor","white");
+				detailParams.splice(detailParams.indexOf($(this).val()),1);
+				console.log(detailParams);
+			} 
+			
 		});
 		
+		var test = "";
 		$(".btn-payment").on("click", function () {
-			// $(location).attr("href", "spacePayment?no=1");
+			test = "";
+			if(detailParams == 0) {
+				
+				alert("일정을 선택해주세요.");
+				
+			} else {
+				
 			
-			
-			
+				for (var i = 0; i < detailParams.length; i++) {
+					if(i==0) {
+						test += "no="+detailParams[i];
+					} else if(i==1) {
+						test += "&no="+detailParams[i];
+					} else {
+						test += "&no="+detailParams[i];
+					}
+				}
+				$(location).attr("href", "spacePayment?"+test);
+			}
 		});
 		
 		
