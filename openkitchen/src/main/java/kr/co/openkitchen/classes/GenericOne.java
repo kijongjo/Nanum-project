@@ -7,6 +7,7 @@ import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
 import kr.co.openkitchen.dto.CookBookDTO;
 import kr.co.openkitchen.dto.CookRefundDTO;
+import kr.co.openkitchen.dto.StandByClassDTO;
 
 //용도: 다양한 return타입을 받기 위함. 코드 재사용성을 높이기 위함
 //구린네가 심하게 나는데 일단 Generalization 시키긴함. 이거 안고치면 개털릴듯
@@ -17,6 +18,7 @@ public class GenericOne<T> {
 	private List<ClassRegistDtoR> crdr;
 	private List<CookBookDTO> cbd;
 	private List<CookRefundDTO> crd;
+	private List<StandByClassDTO> sbcd;
 	
     
     
@@ -68,6 +70,14 @@ public class GenericOne<T> {
 
 	public void setCrd(List<CookRefundDTO> crd) {
 		this.crd = crd;
+	}
+
+	public List<StandByClassDTO> getSbcd() {
+		return sbcd;
+	}
+
+	public void setSbcd(List<StandByClassDTO> sbcd) {
+		this.sbcd = sbcd;
 	}
 	
 	
