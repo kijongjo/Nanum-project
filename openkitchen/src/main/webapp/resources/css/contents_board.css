@@ -340,3 +340,24 @@ div > #right02 > #notData > p::before{
     background-position: 0;
 }
 
+
+
+    .wrap-loading div{ /*로딩 이미지*/
+
+        position: fixed;
+
+        top:44%;
+
+        left:60%;
+
+        margin-left: -21px;
+
+        margin-top: -21px;
+
+    }
+
+    .display-none{ /*감추기*/
+
+        display:none;
+
+    }

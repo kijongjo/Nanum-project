@@ -17,4 +17,8 @@
                     <a href="" class="extra"></a>
                 </div>
    </div>
+   <div class="wrap-loading display-none">
+
+    <div><i class="fas fa-spinner fa-spin fa-4x "></i></div>
+</div>    
 </div>

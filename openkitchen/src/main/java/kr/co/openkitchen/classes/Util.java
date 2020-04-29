@@ -6,6 +6,7 @@ import kr.co.openkitchen.dto.ClassRegistDtoL;
 import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
 import kr.co.openkitchen.dto.CookBookDTO;
+import kr.co.openkitchen.dto.CookRefundDTO;
 
 public class Util {
 
@@ -36,7 +37,11 @@ public class Util {
 		 genericOne.setCbd(t);
 		 return genericOne;
 	 }
-	 
+	 public static <T> GenericOne<T> packingCookR(List<CookRefundDTO> t){
+		 GenericOne<T> genericOne = new GenericOne<T>();
+		 genericOne.setCrd(t);
+		 return genericOne;
+	 }
 	
 	 
 }
