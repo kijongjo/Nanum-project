@@ -7,6 +7,7 @@ import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
 import kr.co.openkitchen.dto.CookBookDTO;
 import kr.co.openkitchen.dto.CookRefundDTO;
+import kr.co.openkitchen.dto.OngoingClassDTO;
 import kr.co.openkitchen.dto.StandByClassDTO;
 
 public class Util {
@@ -46,6 +47,11 @@ public class Util {
 	 public static <T> GenericOne<T> packingStandBy(List<StandByClassDTO> t){
 		 GenericOne<T> genericOne = new GenericOne<T>();
 		 genericOne.setSbcd(t);
+		 return genericOne;
+	 }
+	 public static <T> GenericOne<T> packingOngoing(List<OngoingClassDTO> t){
+		 GenericOne<T> genericOne = new GenericOne<T>();
+		 genericOne.setOcd(t);
 		 return genericOne;
 	 }
 	 

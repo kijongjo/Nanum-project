@@ -7,6 +7,7 @@ import kr.co.openkitchen.dto.ClassRegistDtoR;
 import kr.co.openkitchen.dto.ClassRegistDtoSch;
 import kr.co.openkitchen.dto.CookBookDTO;
 import kr.co.openkitchen.dto.CookRefundDTO;
+import kr.co.openkitchen.dto.OngoingClassDTO;
 import kr.co.openkitchen.dto.StandByClassDTO;
 
 //용도: 다양한 return타입을 받기 위함. 코드 재사용성을 높이기 위함
@@ -19,6 +20,7 @@ public class GenericOne<T> {
 	private List<CookBookDTO> cbd;
 	private List<CookRefundDTO> crd;
 	private List<StandByClassDTO> sbcd;
+	private List<OngoingClassDTO> ocd;
 	
     
     
@@ -78,6 +80,14 @@ public class GenericOne<T> {
 
 	public void setSbcd(List<StandByClassDTO> sbcd) {
 		this.sbcd = sbcd;
+	}
+
+	public List<OngoingClassDTO> getOcd() {
+		return ocd;
+	}
+
+	public void setOcd(List<OngoingClassDTO> ocd) {
+		this.ocd = ocd;
 	}
 	
 	
