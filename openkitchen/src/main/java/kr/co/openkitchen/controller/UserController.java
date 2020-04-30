@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.classes.MypageCookInterType;
 import kr.co.openkitchen.classes.RegistServiceType;
 import kr.co.openkitchen.classes.RegistServiceTypeF;
 import kr.co.openkitchen.classes.S3ClientFactory;
@@ -41,6 +42,7 @@ import kr.co.openkitchen.dto.StandByClassDTO;
 import kr.co.openkitchen.dto.TeacherRegistDTO;
 import kr.co.openkitchen.dto.TeacherRegistDtoS;
 import kr.co.openkitchen.service.MypageCookInter;
+import kr.co.openkitchen.service.MypageCookOrder;
 import kr.co.openkitchen.service.MypageOpenClassInter;
 import kr.co.openkitchen.service.MypageServiceInter;
 import kr.co.openkitchen.service.RegistOrderService;
@@ -60,18 +62,14 @@ public class UserController {
     RegistOrderServiceF registOrderServiceF;
     RegistServiceInterF registServiceF;
     
+    @Autowired
+    MypageCookOrder mypageCookOrder;
+    MypageCookInter mypageCook;
+    
 	// 같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완이 필요함.
 	@Resource(name = "mypageServiceImple")
 	MypageServiceInter mypageService;
 
-	@Resource(name = "mypageCookBook")
-	MypageCookInter mypageCookBook;
-
-	@Resource(name = "mypageCookRefund")
-	MypageCookInter mypageCookRefund;
-
-	@Resource(name = "mypageCookEnd")
-	MypageCookInter mypageCookEnd;
 
 	@Resource(name = "mypageStandByClass")
 	MypageOpenClassInter mypageStandByClass;
@@ -737,6 +735,8 @@ public class UserController {
 	@RequestMapping(value = { "cookBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookBookList(HttpServletRequest request) {
+		
+		mypageCook=mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -749,7 +749,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<CookBookDTO> list = mypageCookBook.selectOne(cNo).getCbd();
+			List<CookBookDTO> list = mypageCook.selectOne(cNo).getCbd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -790,6 +790,7 @@ public class UserController {
 	@RequestMapping(value = { "cookRefundList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookRefundList(HttpServletRequest request) {
+		mypageCook=mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKREFUND);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -802,7 +803,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<CookRefundDTO> list = mypageCookRefund.selectOne(cNo).getCrd();
+			List<CookRefundDTO> list = mypageCook.selectOne(cNo).getCrd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -843,6 +844,7 @@ public class UserController {
 	@RequestMapping(value = { "cookEndList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookEndList(HttpServletRequest request) {
+		mypageCook=mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -855,7 +857,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<CookRefundDTO> list = mypageCookEnd.selectOne(cNo).getCrd();
+			List<CookRefundDTO> list = mypageCook.selectOne(cNo).getCrd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
