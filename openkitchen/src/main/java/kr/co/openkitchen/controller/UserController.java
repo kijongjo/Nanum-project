@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.classes.RegistServiceType;
 import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.classes.Util;
 import kr.co.openkitchen.dto.ClassRegistDTO;
@@ -40,6 +42,7 @@ import kr.co.openkitchen.dto.TeacherRegistDtoS;
 import kr.co.openkitchen.service.MypageCookInter;
 import kr.co.openkitchen.service.MypageOpenClassInter;
 import kr.co.openkitchen.service.MypageServiceInter;
+import kr.co.openkitchen.service.RegistOrderService;
 import kr.co.openkitchen.service.RegistServiceInter;
 import kr.co.openkitchen.service.RegistServiceInterF;
 
@@ -47,7 +50,10 @@ import kr.co.openkitchen.service.RegistServiceInterF;
 @RequestMapping("/mypage")
 @SessionAttributes("cNo")
 public class UserController {
-
+    @Autowired
+	RegistOrderService registOrderService;
+    RegistServiceInter registService;
+    
 	// 같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완이 필요함.
 
 	@Resource(name = "registTeacherImple")
@@ -58,12 +64,6 @@ public class UserController {
 
 	@Resource(name = "registClassImple")
 	RegistServiceInterF regServiceC;
-
-	@Resource(name = "registClassImpleS")
-	RegistServiceInter regServiceCS;
-
-	@Resource(name = "registClassImpleSch")
-	RegistServiceInter regServicecSch;
 
 	@Resource(name = "mypageServiceImple")
 	MypageServiceInter mypageService;
@@ -79,13 +79,13 @@ public class UserController {
 
 	@Resource(name = "mypageStandByClass")
 	MypageOpenClassInter mypageStandByClass;
-	
+
 	@Resource(name = "mypageOngoingClass")
 	MypageOpenClassInter mypageOngoingClass;
 
 	@Resource(name = "mypageCompleteClass")
 	MypageOpenClassInter mypageCompleteClass;
-	
+
 	@RequestMapping(value = { "in" })
 	public String mypage(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -453,9 +453,12 @@ public class UserController {
 	@RequestMapping(value = { "spaceBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String spaceBookList() {
+
+		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
+
 		// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 		int tNo = 1;
-		List<ClassRegistDtoL> list = regServiceCS.selectOne(tNo).getCrdl();
+		List<ClassRegistDtoL> list = registService.selectOne(tNo).getCrdl();
 
 		S3ClientFactory s3client = new S3ClientFactory();
 		for (int i = 0; i < list.size(); i++) {
@@ -619,12 +622,14 @@ public class UserController {
 	@RequestMapping(value = "completeR", method = RequestMethod.POST)
 	@ResponseBody
 	public String completeR(@RequestBody List<ClassRegistDtoR> list) {
+         
+		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
 
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (list.get(0).getcNo() != 0) {
 
-			regServiceCS.insertDTO(Util.packingR(list));
+			registService.insertDTO(Util.packingR(list));
 			try {
 				str = mapper.writeValueAsString("regist");
 			} catch (JsonProcessingException e) {
@@ -647,13 +652,15 @@ public class UserController {
 	@RequestMapping(value = "totalScheduleList", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String TotalScheduleList(HttpServletRequest request) {
+
+		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("cNo") != null) {
 			if (str == "") {
 				int cNo = Integer.parseInt((String) session.getAttribute("cNo"));
-				List<ClassRegistDtoSch> list = regServicecSch.selectOne(cNo).getCrdsch();
+				List<ClassRegistDtoSch> list = registService.selectOne(cNo).getCrdsch();
 
 				if (list.size() != 0) {
 					try {
@@ -695,12 +702,13 @@ public class UserController {
 	@RequestMapping(value = "completeSch", method = RequestMethod.POST)
 	@ResponseBody
 	public String completeSch(HttpServletRequest request) {
+		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("mNo") != null) {
 			int cNo = Integer.parseInt((String) session.getAttribute("mNo"));
-			regServicecSch.insertDTO(cNo);
+			registService.insertDTO(cNo);
 
 			try {
 				str = mapper.writeValueAsString("complete");
@@ -934,6 +942,7 @@ public class UserController {
 		} // session end
 		return str;
 	}
+
 	// 진행중 클래스 정보를 가지고 온다.
 	@RequestMapping(value = { "ongoingClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
@@ -986,7 +995,7 @@ public class UserController {
 		} // session end
 		return str;
 	}
-	
+
 	// 종료된 클래스 정보를 가지고 온다.
 	@RequestMapping(value = { "completeClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
@@ -1039,6 +1048,7 @@ public class UserController {
 		} // session end
 		return str;
 	}
+
 	// 테스트용 /////////////////////////////////////////////////
 	@RequestMapping(value = "spaceBase", method = RequestMethod.GET)
 	public String spaceBase() {
