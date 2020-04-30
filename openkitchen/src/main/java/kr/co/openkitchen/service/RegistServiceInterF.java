@@ -3,10 +3,13 @@ package kr.co.openkitchen.service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.openkitchen.classes.GenericOne;
+import kr.co.openkitchen.classes.RegistServiceTypeF;
 
 //파일을 다루는 RegistServiceInterfaceFile
 public interface RegistServiceInterF {
 
+	RegistServiceTypeF getServiceType();
+	
 	// 이미지 파일 이름을 받아와서 경로와 이름을 조합
 	public String acceptImg(String fileName, int count, int tNo);
 
@@ -15,9 +18,11 @@ public interface RegistServiceInterF {
 
 	// 이름을 배열 형태로 이음
 	public String makeDS(String fileName, int count, int tNo);
-    // 메인 이미지 파일 
+
+	// 메인 이미지 파일
 	public String makeMS(String fileName, int tNo);
-   //  은행 있는 사람만 
+
+	// 은행 있는 사람만
 	public default String makeBK(String fileName, int no) {
 		String resourceName = "";
 		if (fileName.equals("proRegImg")) {
@@ -32,7 +37,7 @@ public interface RegistServiceInterF {
 		return resourceName;
 
 	};
-   
+
 	// generic type으로 줘서 teacherDTO,spaceDTO,classDTO
 	public <T> void insertDTO(T dto);
 

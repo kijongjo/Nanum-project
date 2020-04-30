@@ -24,6 +24,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.openkitchen.classes.RegistServiceType;
+import kr.co.openkitchen.classes.RegistServiceTypeF;
 import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.classes.Util;
 import kr.co.openkitchen.dto.ClassRegistDTO;
@@ -43,6 +44,7 @@ import kr.co.openkitchen.service.MypageCookInter;
 import kr.co.openkitchen.service.MypageOpenClassInter;
 import kr.co.openkitchen.service.MypageServiceInter;
 import kr.co.openkitchen.service.RegistOrderService;
+import kr.co.openkitchen.service.RegistOrderServiceF;
 import kr.co.openkitchen.service.RegistServiceInter;
 import kr.co.openkitchen.service.RegistServiceInterF;
 
@@ -54,17 +56,11 @@ public class UserController {
 	RegistOrderService registOrderService;
     RegistServiceInter registService;
     
+    @Autowired
+    RegistOrderServiceF registOrderServiceF;
+    RegistServiceInterF registServiceF;
+    
 	// 같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완이 필요함.
-
-	@Resource(name = "registTeacherImple")
-	RegistServiceInterF regService;
-
-	@Resource(name = "registTeacherImpleS")
-	RegistServiceInterF regServiceS;
-
-	@Resource(name = "registClassImple")
-	RegistServiceInterF regServiceC;
-
 	@Resource(name = "mypageServiceImple")
 	MypageServiceInter mypageService;
 
@@ -154,7 +150,7 @@ public class UserController {
 	// 선생님 [기본정보]등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "multipartUpload", method = RequestMethod.POST)
 	public String multipartUpload(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
-
+		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -184,29 +180,29 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regService.acceptImg(fileName, count, tNo);
+			filePath = registServiceF.acceptImg(fileName, count, tNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regService.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("DS-TYPE1")) {
-				tDetailsumnail += regService.makeDS(fileName, count, tNo) + ",";
+				tDetailsumnail += registServiceF.makeDS(fileName, count, tNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("MS")) {
 				// sumnail
-				String tMainsumnail = regService.makeMS(fileName, tNo);
+				String tMainsumnail = registServiceF.makeMS(fileName, tNo);
 				dto.settMainsumnail(tMainsumnail);
 
 				// 사업자 인증 사진과 통장 사본 이미지를 판단해 dto에 넣는다.
 			} else if (fileName.equals("proRegImg")) {
-				dto.setProRegimg(regService.makeBK(fileName, tNo));
+				dto.setProRegimg(registServiceF.makeBK(fileName, tNo));
 
 			} else if (fileName.equals("proAccountIng")) {
 				// interface의 default method 사용
-				dto.setProAccounting(regService.makeBK(fileName, tNo));
+				dto.setProAccounting(registServiceF.makeBK(fileName, tNo));
 			}
 		} // while end
 
@@ -218,7 +214,7 @@ public class UserController {
 			dto.settDetailsumnail(tDetailsumnail);
 		}
 
-		regService.insertDTO(dto);
+		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -226,7 +222,9 @@ public class UserController {
 	// 선생님 [기본정보]등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "complete", method = RequestMethod.POST)
 	public String complete(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
-
+		
+		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
+		
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -256,29 +254,29 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regService.acceptImg(fileName, count, tNo);
+			filePath = registServiceF.acceptImg(fileName, count, tNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regService.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("DS-TYPE1")) {
-				tDetailsumnail += regService.makeDS(fileName, count, tNo) + ",";
+				tDetailsumnail += registServiceF.makeDS(fileName, count, tNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("MS")) {
 				// sumnail
-				String tMainsumnail = regService.makeMS(fileName, tNo);
+				String tMainsumnail = registServiceF.makeMS(fileName, tNo);
 				dto.settMainsumnail(tMainsumnail);
 
 				// 사업자 인증 사진과 통장 사본 이미지를 판단해 dto에 넣는다.
 			} else if (fileName.equals("proRegImg")) {
-				dto.setProRegimg(regService.makeBK(fileName, tNo));
+				dto.setProRegimg(registServiceF.makeBK(fileName, tNo));
 
 			} else if (fileName.equals("proAccountIng")) {
 				// interface의 default method 사용
-				dto.setProAccounting(regService.makeBK(fileName, tNo));
+				dto.setProAccounting(registServiceF.makeBK(fileName, tNo));
 			}
 		} // while end
 
@@ -290,7 +288,7 @@ public class UserController {
 			dto.settDetailsumnail(tDetailsumnail);
 		}
 
-		regService.applyDTO(dto);
+		registServiceF.applyDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -299,6 +297,8 @@ public class UserController {
 	@RequestMapping(value = "multipartUploadS", method = RequestMethod.POST)
 	public String multipartUpload(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
 
+		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
+		
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -324,23 +324,23 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regServiceS.acceptImg(fileName, count, hNo);
+			filePath = registServiceF.acceptImg(fileName, count, hNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regServiceS.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("S-DS-TYPE1")) {
-				sDetailsumnail += regServiceS.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("S-MS")) {
 				// sumnail
-				String sMainsumnail = regServiceS.makeMS(fileName, hNo);
+				String sMainsumnail = registServiceF.makeMS(fileName, hNo);
 				dto.setsMainsumnail(sMainsumnail);
 			} else {
-				sDetailsumnail += regServiceS.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
@@ -355,7 +355,7 @@ public class UserController {
 			dto.setsDetailsumnail(sDetailsumnail);
 		}
 
-		regServiceS.insertDTO(dto);
+		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -364,6 +364,7 @@ public class UserController {
 	@RequestMapping(value = "completeS", method = RequestMethod.POST)
 	public String completeS(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
 
+		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -389,23 +390,23 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regServiceS.acceptImg(fileName, count, hNo);
+			filePath = registServiceF.acceptImg(fileName, count, hNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regServiceS.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("S-DS-TYPE1")) {
-				sDetailsumnail += regServiceS.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("S-MS")) {
 				// sumnail
-				String sMainsumnail = regServiceS.makeMS(fileName, hNo);
+				String sMainsumnail = registServiceF.makeMS(fileName, hNo);
 				dto.setsMainsumnail(sMainsumnail);
 			} else {
-				sDetailsumnail += regServiceS.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
@@ -420,7 +421,7 @@ public class UserController {
 			dto.setsDetailsumnail(sDetailsumnail);
 		}
 
-		regServiceS.applyDTO(dto);
+		registServiceF.applyDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -487,7 +488,8 @@ public class UserController {
 	// 클래스 [기본정보] 등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "multipartUploadC", method = RequestMethod.POST)
 	public String multipartUploadC(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request) {
-
+    
+		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);     	
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -501,7 +503,7 @@ public class UserController {
 
 		// 필요한 정보를 가지고오는 class
 		// 필요한 정보를 담아 준다.
-		int cNo = regServiceC.<Integer>selectOne(tNo).getT();
+		int cNo = registServiceF.<Integer>selectOne(tNo).getT();
 		System.out.println("cNo 들어 갔니?" + cNo);
 
 		// form data에 저장된 name들을 뽑아낸다.
@@ -515,23 +517,23 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regServiceC.acceptImg(fileName, count, cNo);
+			filePath = registServiceF.acceptImg(fileName, count, cNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regServiceC.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("C-DS-TYPE1")) {
-				cDetailsumnail += regServiceC.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("C-MS")) {
 				// sumnail
-				String cMainsumnail = regServiceC.makeMS(fileName, cNo);
+				String cMainsumnail = registServiceF.makeMS(fileName, cNo);
 				dto.setcMainsumnail(cMainsumnail);
 			} else {
-				cDetailsumnail += regServiceC.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
@@ -545,7 +547,7 @@ public class UserController {
 		if (cDetailsumnail != "") {
 			dto.setcDetailsumnail(cDetailsumnail);
 		}
-		regServiceC.insertDTO(dto);
+		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -554,6 +556,7 @@ public class UserController {
 	@RequestMapping(value = "completeC", method = RequestMethod.POST)
 	public String completeC(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request, Model model) {
 
+		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -567,7 +570,7 @@ public class UserController {
 
 		// 필요한 정보를 가지고오는 class
 		// 필요한 정보를 담아 준다.
-		int cNo = regServiceC.<Integer>selectOne(tNo).getT();
+		int cNo = registServiceF.<Integer>selectOne(tNo).getT();
 		System.out.println("cNo 들어 갔니?" + cNo);
 
 		// 공간 등록시 필요한 클래스번호 session에 넣음
@@ -583,23 +586,23 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regServiceC.acceptImg(fileName, count, cNo);
+			filePath = registServiceF.acceptImg(fileName, count, cNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regServiceC.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("C-DS-TYPE1")) {
-				cDetailsumnail += regServiceC.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("C-MS")) {
 				// sumnail
-				String cMainsumnail = regServiceC.makeMS(fileName, cNo);
+				String cMainsumnail = registServiceF.makeMS(fileName, cNo);
 				dto.setcMainsumnail(cMainsumnail);
 			} else {
-				cDetailsumnail += regServiceC.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
@@ -613,7 +616,7 @@ public class UserController {
 		if (cDetailsumnail != "") {
 			dto.setcDetailsumnail(cDetailsumnail);
 		}
-		regServiceC.applyDTO(dto);
+		registServiceF.applyDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}

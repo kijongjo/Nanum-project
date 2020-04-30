@@ -1,20 +1,16 @@
 package kr.co.openkitchen.service;
 
-import java.io.File;
-import java.io.IOException;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.openkitchen.classes.GenericOne;
+import kr.co.openkitchen.classes.RegistServiceTypeF;
 import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.dao.RegisterDaoInter;
-import lombok.Setter;
 
 @Service
 public class RegistTeacherImpleS implements RegistServiceInterF {
@@ -23,6 +19,12 @@ public class RegistTeacherImpleS implements RegistServiceInterF {
 
 	@Resource(name="teacherRegistDaoS")
 	RegisterDaoInter dao;
+	
+	@Override
+	public RegistServiceTypeF getServiceType() {
+		// TODO Auto-generated method stub
+		return RegistServiceTypeF.REGISTTEACHERIMPLES;
+	}
 	
 	
 	@Override
