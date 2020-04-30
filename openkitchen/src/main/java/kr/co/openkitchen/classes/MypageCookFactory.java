@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.util.CollectionUtils;
 
 import kr.co.openkitchen.service.MypageCookInter;
-import kr.co.openkitchen.service.RegistServiceInter;
 
 public class MypageCookFactory {
 

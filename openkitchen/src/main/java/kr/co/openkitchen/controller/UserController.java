@@ -24,6 +24,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.openkitchen.classes.MypageCookInterType;
+import kr.co.openkitchen.classes.MypageOpenCType;
 import kr.co.openkitchen.classes.RegistServiceType;
 import kr.co.openkitchen.classes.RegistServiceTypeF;
 import kr.co.openkitchen.classes.S3ClientFactory;
@@ -44,6 +45,7 @@ import kr.co.openkitchen.dto.TeacherRegistDtoS;
 import kr.co.openkitchen.service.MypageCookInter;
 import kr.co.openkitchen.service.MypageCookOrder;
 import kr.co.openkitchen.service.MypageOpenClassInter;
+import kr.co.openkitchen.service.MypageOpenClassOrder;
 import kr.co.openkitchen.service.MypageServiceInter;
 import kr.co.openkitchen.service.RegistOrderService;
 import kr.co.openkitchen.service.RegistOrderServiceF;
@@ -54,31 +56,27 @@ import kr.co.openkitchen.service.RegistServiceInterF;
 @RequestMapping("/mypage")
 @SessionAttributes("cNo")
 public class UserController {
-    @Autowired
+	//같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완 필요 <-해결
+	//Design Pattern
+	@Autowired
 	RegistOrderService registOrderService;
-    RegistServiceInter registService;
-    
-    @Autowired
-    RegistOrderServiceF registOrderServiceF;
-    RegistServiceInterF registServiceF;
-    
-    @Autowired
-    MypageCookOrder mypageCookOrder;
-    MypageCookInter mypageCook;
-    
-	// 같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완이 필요함.
+	RegistServiceInter registService;
+
+	@Autowired
+	RegistOrderServiceF registOrderServiceF;
+	RegistServiceInterF registServiceF;
+
+	@Autowired
+	MypageCookOrder mypageCookOrder;
+	MypageCookInter mypageCook;
+
+	@Autowired
+	MypageOpenClassOrder mypageOpenClassOrder;
+	MypageOpenClassInter mypageOpenClass;
+
+	
 	@Resource(name = "mypageServiceImple")
 	MypageServiceInter mypageService;
-
-
-	@Resource(name = "mypageStandByClass")
-	MypageOpenClassInter mypageStandByClass;
-
-	@Resource(name = "mypageOngoingClass")
-	MypageOpenClassInter mypageOngoingClass;
-
-	@Resource(name = "mypageCompleteClass")
-	MypageOpenClassInter mypageCompleteClass;
 
 	@RequestMapping(value = { "in" })
 	public String mypage(HttpServletRequest request, Model model) {
@@ -148,7 +146,7 @@ public class UserController {
 	// 선생님 [기본정보]등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "multipartUpload", method = RequestMethod.POST)
 	public String multipartUpload(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
-		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -220,9 +218,9 @@ public class UserController {
 	// 선생님 [기본정보]등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "complete", method = RequestMethod.POST)
 	public String complete(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
-		
-		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
-		
+
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
+
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -295,8 +293,8 @@ public class UserController {
 	@RequestMapping(value = "multipartUploadS", method = RequestMethod.POST)
 	public String multipartUpload(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
 
-		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
-		
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
+
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -362,7 +360,7 @@ public class UserController {
 	@RequestMapping(value = "completeS", method = RequestMethod.POST)
 	public String completeS(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
 
-		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -486,8 +484,8 @@ public class UserController {
 	// 클래스 [기본정보] 등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "multipartUploadC", method = RequestMethod.POST)
 	public String multipartUploadC(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request) {
-    
-		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);     	
+
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -554,7 +552,7 @@ public class UserController {
 	@RequestMapping(value = "completeC", method = RequestMethod.POST)
 	public String completeC(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request, Model model) {
 
-		registServiceF=registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -623,7 +621,7 @@ public class UserController {
 	@RequestMapping(value = "completeR", method = RequestMethod.POST)
 	@ResponseBody
 	public String completeR(@RequestBody List<ClassRegistDtoR> list) {
-         
+
 		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
 
 		String str = "";
@@ -735,8 +733,8 @@ public class UserController {
 	@RequestMapping(value = { "cookBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookBookList(HttpServletRequest request) {
-		
-		mypageCook=mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
+
+		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -790,7 +788,7 @@ public class UserController {
 	@RequestMapping(value = { "cookRefundList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookRefundList(HttpServletRequest request) {
-		mypageCook=mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKREFUND);
+		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKREFUND);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -844,7 +842,7 @@ public class UserController {
 	@RequestMapping(value = { "cookEndList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookEndList(HttpServletRequest request) {
-		mypageCook=mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
+		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -899,6 +897,8 @@ public class UserController {
 	@RequestMapping(value = { "standByList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String standByList(HttpServletRequest request) {
+		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGESTANDBYCLASS);
+
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -911,7 +911,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<StandByClassDTO> list = mypageStandByClass.selectOne(mNo).getSbcd();
+			List<StandByClassDTO> list = mypageOpenClass.selectOne(mNo).getSbcd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -952,6 +952,7 @@ public class UserController {
 	@RequestMapping(value = { "ongoingClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String OngoingList(HttpServletRequest request) {
+		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGEONGOINGCLASS);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -964,7 +965,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<OngoingClassDTO> list = mypageOngoingClass.selectOne(24).getOcd();
+			List<OngoingClassDTO> list = mypageOpenClass.selectOne(24).getOcd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -1005,6 +1006,8 @@ public class UserController {
 	@RequestMapping(value = { "completeClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String CompleteList(HttpServletRequest request) {
+		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGECOMPLETECLASS);
+
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -1017,7 +1020,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<CompleteClassDTO> list = mypageCompleteClass.selectOne(24).getCcd();
+			List<CompleteClassDTO> list = mypageOpenClass.selectOne(24).getCcd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
