@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.openkitchen.classes.GenericOne;
+import kr.co.openkitchen.classes.RegistServiceTypeF;
 import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.dao.RegisterDaoInter;
 
@@ -21,6 +22,12 @@ public class RegistTeacherImple implements RegistServiceInterF {
 	@Resource(name="teacherRegistDAO")
 	RegisterDaoInter dao;
 
+	@Override
+	public RegistServiceTypeF getServiceType() {
+		// TODO Auto-generated method stub
+		return RegistServiceTypeF.REGISTTEACHERIMPLE;
+	}
+	
 	// 이미지를 받아서 이름을 줌.
 	@Override
 	public String acceptImg(String fileName, int count, int tNo) {

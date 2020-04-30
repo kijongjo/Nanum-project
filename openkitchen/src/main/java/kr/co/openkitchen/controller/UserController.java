@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.classes.MypageCookInterType;
+import kr.co.openkitchen.classes.MypageOpenCType;
+import kr.co.openkitchen.classes.RegistServiceType;
+import kr.co.openkitchen.classes.RegistServiceTypeF;
 import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.classes.Util;
 import kr.co.openkitchen.dto.ClassRegistDTO;
@@ -38,8 +43,12 @@ import kr.co.openkitchen.dto.StandByClassDTO;
 import kr.co.openkitchen.dto.TeacherRegistDTO;
 import kr.co.openkitchen.dto.TeacherRegistDtoS;
 import kr.co.openkitchen.service.MypageCookInter;
+import kr.co.openkitchen.service.MypageCookOrder;
 import kr.co.openkitchen.service.MypageOpenClassInter;
+import kr.co.openkitchen.service.MypageOpenClassOrder;
 import kr.co.openkitchen.service.MypageServiceInter;
+import kr.co.openkitchen.service.RegistOrderService;
+import kr.co.openkitchen.service.RegistOrderServiceF;
 import kr.co.openkitchen.service.RegistServiceInter;
 import kr.co.openkitchen.service.RegistServiceInterF;
 
@@ -47,45 +56,28 @@ import kr.co.openkitchen.service.RegistServiceInterF;
 @RequestMapping("/mypage")
 @SessionAttributes("cNo")
 public class UserController {
+	//같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완 필요 <-해결
+	//Design Pattern
+	@Autowired
+	RegistOrderService registOrderService;
+	RegistServiceInter registService;
 
-	// 같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완이 필요함.
+	@Autowired
+	RegistOrderServiceF registOrderServiceF;
+	RegistServiceInterF registServiceF;
 
-	@Resource(name = "registTeacherImple")
-	RegistServiceInterF regService;
+	@Autowired
+	MypageCookOrder mypageCookOrder;
+	MypageCookInter mypageCook;
 
-	@Resource(name = "registTeacherImpleS")
-	RegistServiceInterF regServiceS;
+	@Autowired
+	MypageOpenClassOrder mypageOpenClassOrder;
+	MypageOpenClassInter mypageOpenClass;
 
-	@Resource(name = "registClassImple")
-	RegistServiceInterF regServiceC;
-
-	@Resource(name = "registClassImpleS")
-	RegistServiceInter regServiceCS;
-
-	@Resource(name = "registClassImpleSch")
-	RegistServiceInter regServicecSch;
-
+	
 	@Resource(name = "mypageServiceImple")
 	MypageServiceInter mypageService;
 
-	@Resource(name = "mypageCookBook")
-	MypageCookInter mypageCookBook;
-
-	@Resource(name = "mypageCookRefund")
-	MypageCookInter mypageCookRefund;
-
-	@Resource(name = "mypageCookEnd")
-	MypageCookInter mypageCookEnd;
-
-	@Resource(name = "mypageStandByClass")
-	MypageOpenClassInter mypageStandByClass;
-	
-	@Resource(name = "mypageOngoingClass")
-	MypageOpenClassInter mypageOngoingClass;
-
-	@Resource(name = "mypageCompleteClass")
-	MypageOpenClassInter mypageCompleteClass;
-	
 	@RequestMapping(value = { "in" })
 	public String mypage(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -154,7 +146,7 @@ public class UserController {
 	// 선생님 [기본정보]등록시 필요한 파일을 등록하는 프로그램
 	@RequestMapping(value = "multipartUpload", method = RequestMethod.POST)
 	public String multipartUpload(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
-
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -184,29 +176,29 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regService.acceptImg(fileName, count, tNo);
+			filePath = registServiceF.acceptImg(fileName, count, tNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regService.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("DS-TYPE1")) {
-				tDetailsumnail += regService.makeDS(fileName, count, tNo) + ",";
+				tDetailsumnail += registServiceF.makeDS(fileName, count, tNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("MS")) {
 				// sumnail
-				String tMainsumnail = regService.makeMS(fileName, tNo);
+				String tMainsumnail = registServiceF.makeMS(fileName, tNo);
 				dto.settMainsumnail(tMainsumnail);
 
 				// 사업자 인증 사진과 통장 사본 이미지를 판단해 dto에 넣는다.
 			} else if (fileName.equals("proRegImg")) {
-				dto.setProRegimg(regService.makeBK(fileName, tNo));
+				dto.setProRegimg(registServiceF.makeBK(fileName, tNo));
 
 			} else if (fileName.equals("proAccountIng")) {
 				// interface의 default method 사용
-				dto.setProAccounting(regService.makeBK(fileName, tNo));
+				dto.setProAccounting(registServiceF.makeBK(fileName, tNo));
 			}
 		} // while end
 
@@ -218,7 +210,7 @@ public class UserController {
 			dto.settDetailsumnail(tDetailsumnail);
 		}
 
-		regService.insertDTO(dto);
+		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -227,6 +219,8 @@ public class UserController {
 	@RequestMapping(value = "complete", method = RequestMethod.POST)
 	public String complete(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
 
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
+
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -256,29 +250,29 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regService.acceptImg(fileName, count, tNo);
+			filePath = registServiceF.acceptImg(fileName, count, tNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regService.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("DS-TYPE1")) {
-				tDetailsumnail += regService.makeDS(fileName, count, tNo) + ",";
+				tDetailsumnail += registServiceF.makeDS(fileName, count, tNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("MS")) {
 				// sumnail
-				String tMainsumnail = regService.makeMS(fileName, tNo);
+				String tMainsumnail = registServiceF.makeMS(fileName, tNo);
 				dto.settMainsumnail(tMainsumnail);
 
 				// 사업자 인증 사진과 통장 사본 이미지를 판단해 dto에 넣는다.
 			} else if (fileName.equals("proRegImg")) {
-				dto.setProRegimg(regService.makeBK(fileName, tNo));
+				dto.setProRegimg(registServiceF.makeBK(fileName, tNo));
 
 			} else if (fileName.equals("proAccountIng")) {
 				// interface의 default method 사용
-				dto.setProAccounting(regService.makeBK(fileName, tNo));
+				dto.setProAccounting(registServiceF.makeBK(fileName, tNo));
 			}
 		} // while end
 
@@ -290,7 +284,7 @@ public class UserController {
 			dto.settDetailsumnail(tDetailsumnail);
 		}
 
-		regService.applyDTO(dto);
+		registServiceF.applyDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -299,6 +293,8 @@ public class UserController {
 	@RequestMapping(value = "multipartUploadS", method = RequestMethod.POST)
 	public String multipartUpload(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
 
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
+
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -324,23 +320,23 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regServiceS.acceptImg(fileName, count, hNo);
+			filePath = registServiceF.acceptImg(fileName, count, hNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regServiceS.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("S-DS-TYPE1")) {
-				sDetailsumnail += regServiceS.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("S-MS")) {
 				// sumnail
-				String sMainsumnail = regServiceS.makeMS(fileName, hNo);
+				String sMainsumnail = registServiceF.makeMS(fileName, hNo);
 				dto.setsMainsumnail(sMainsumnail);
 			} else {
-				sDetailsumnail += regServiceS.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
@@ -355,7 +351,7 @@ public class UserController {
 			dto.setsDetailsumnail(sDetailsumnail);
 		}
 
-		regServiceS.insertDTO(dto);
+		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -364,6 +360,7 @@ public class UserController {
 	@RequestMapping(value = "completeS", method = RequestMethod.POST)
 	public String completeS(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
 
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -389,23 +386,23 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regServiceS.acceptImg(fileName, count, hNo);
+			filePath = registServiceF.acceptImg(fileName, count, hNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regServiceS.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("S-DS-TYPE1")) {
-				sDetailsumnail += regServiceS.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("S-MS")) {
 				// sumnail
-				String sMainsumnail = regServiceS.makeMS(fileName, hNo);
+				String sMainsumnail = registServiceF.makeMS(fileName, hNo);
 				dto.setsMainsumnail(sMainsumnail);
 			} else {
-				sDetailsumnail += regServiceS.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
@@ -420,7 +417,7 @@ public class UserController {
 			dto.setsDetailsumnail(sDetailsumnail);
 		}
 
-		regServiceS.applyDTO(dto);
+		registServiceF.applyDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -453,9 +450,12 @@ public class UserController {
 	@RequestMapping(value = { "spaceBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String spaceBookList() {
+
+		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
+
 		// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 		int tNo = 1;
-		List<ClassRegistDtoL> list = regServiceCS.selectOne(tNo).getCrdl();
+		List<ClassRegistDtoL> list = registService.selectOne(tNo).getCrdl();
 
 		S3ClientFactory s3client = new S3ClientFactory();
 		for (int i = 0; i < list.size(); i++) {
@@ -485,6 +485,7 @@ public class UserController {
 	@RequestMapping(value = "multipartUploadC", method = RequestMethod.POST)
 	public String multipartUploadC(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request) {
 
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -498,7 +499,7 @@ public class UserController {
 
 		// 필요한 정보를 가지고오는 class
 		// 필요한 정보를 담아 준다.
-		int cNo = regServiceC.<Integer>selectOne(tNo).getT();
+		int cNo = registServiceF.<Integer>selectOne(tNo).getT();
 		System.out.println("cNo 들어 갔니?" + cNo);
 
 		// form data에 저장된 name들을 뽑아낸다.
@@ -512,23 +513,23 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regServiceC.acceptImg(fileName, count, cNo);
+			filePath = registServiceF.acceptImg(fileName, count, cNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regServiceC.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("C-DS-TYPE1")) {
-				cDetailsumnail += regServiceC.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("C-MS")) {
 				// sumnail
-				String cMainsumnail = regServiceC.makeMS(fileName, cNo);
+				String cMainsumnail = registServiceF.makeMS(fileName, cNo);
 				dto.setcMainsumnail(cMainsumnail);
 			} else {
-				cDetailsumnail += regServiceC.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
@@ -542,7 +543,7 @@ public class UserController {
 		if (cDetailsumnail != "") {
 			dto.setcDetailsumnail(cDetailsumnail);
 		}
-		regServiceC.insertDTO(dto);
+		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -551,6 +552,7 @@ public class UserController {
 	@RequestMapping(value = "completeC", method = RequestMethod.POST)
 	public String completeC(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request, Model model) {
 
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
@@ -564,7 +566,7 @@ public class UserController {
 
 		// 필요한 정보를 가지고오는 class
 		// 필요한 정보를 담아 준다.
-		int cNo = regServiceC.<Integer>selectOne(tNo).getT();
+		int cNo = registServiceF.<Integer>selectOne(tNo).getT();
 		System.out.println("cNo 들어 갔니?" + cNo);
 
 		// 공간 등록시 필요한 클래스번호 session에 넣음
@@ -580,23 +582,23 @@ public class UserController {
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
 			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = regServiceC.acceptImg(fileName, count, cNo);
+			filePath = registServiceF.acceptImg(fileName, count, cNo);
 
 			// 파일을 지정된 경로에 저장하기
-			regServiceC.makeFile(filePath, mFile);
+			registServiceF.makeFile(filePath, mFile);
 
 			// dto에 저장하기 위해 ds만 뽑아온다.
 			if (fileName.equals("C-DS-TYPE1")) {
-				cDetailsumnail += regServiceC.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
 			} else if (fileName.equals("C-MS")) {
 				// sumnail
-				String cMainsumnail = regServiceC.makeMS(fileName, cNo);
+				String cMainsumnail = registServiceF.makeMS(fileName, cNo);
 				dto.setcMainsumnail(cMainsumnail);
 			} else {
-				cDetailsumnail += regServiceC.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
 				count++;
 				System.out.println("밖에 쪽 count:" + count);
 
@@ -610,7 +612,7 @@ public class UserController {
 		if (cDetailsumnail != "") {
 			dto.setcDetailsumnail(cDetailsumnail);
 		}
-		regServiceC.applyDTO(dto);
+		registServiceF.applyDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -620,11 +622,13 @@ public class UserController {
 	@ResponseBody
 	public String completeR(@RequestBody List<ClassRegistDtoR> list) {
 
+		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
+
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (list.get(0).getcNo() != 0) {
 
-			regServiceCS.insertDTO(Util.packingR(list));
+			registService.insertDTO(Util.packingR(list));
 			try {
 				str = mapper.writeValueAsString("regist");
 			} catch (JsonProcessingException e) {
@@ -647,13 +651,15 @@ public class UserController {
 	@RequestMapping(value = "totalScheduleList", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String TotalScheduleList(HttpServletRequest request) {
+
+		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("cNo") != null) {
 			if (str == "") {
 				int cNo = Integer.parseInt((String) session.getAttribute("cNo"));
-				List<ClassRegistDtoSch> list = regServicecSch.selectOne(cNo).getCrdsch();
+				List<ClassRegistDtoSch> list = registService.selectOne(cNo).getCrdsch();
 
 				if (list.size() != 0) {
 					try {
@@ -695,12 +701,13 @@ public class UserController {
 	@RequestMapping(value = "completeSch", method = RequestMethod.POST)
 	@ResponseBody
 	public String completeSch(HttpServletRequest request) {
+		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("mNo") != null) {
 			int cNo = Integer.parseInt((String) session.getAttribute("mNo"));
-			regServicecSch.insertDTO(cNo);
+			registService.insertDTO(cNo);
 
 			try {
 				str = mapper.writeValueAsString("complete");
@@ -726,6 +733,8 @@ public class UserController {
 	@RequestMapping(value = { "cookBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookBookList(HttpServletRequest request) {
+
+		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -738,7 +747,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<CookBookDTO> list = mypageCookBook.selectOne(cNo).getCbd();
+			List<CookBookDTO> list = mypageCook.selectOne(cNo).getCbd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -779,6 +788,7 @@ public class UserController {
 	@RequestMapping(value = { "cookRefundList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookRefundList(HttpServletRequest request) {
+		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKREFUND);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -791,7 +801,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<CookRefundDTO> list = mypageCookRefund.selectOne(cNo).getCrd();
+			List<CookRefundDTO> list = mypageCook.selectOne(cNo).getCrd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -832,6 +842,7 @@ public class UserController {
 	@RequestMapping(value = { "cookEndList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookEndList(HttpServletRequest request) {
+		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -844,7 +855,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<CookRefundDTO> list = mypageCookEnd.selectOne(cNo).getCrd();
+			List<CookRefundDTO> list = mypageCook.selectOne(cNo).getCrd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -886,6 +897,8 @@ public class UserController {
 	@RequestMapping(value = { "standByList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String standByList(HttpServletRequest request) {
+		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGESTANDBYCLASS);
+
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -898,7 +911,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<StandByClassDTO> list = mypageStandByClass.selectOne(mNo).getSbcd();
+			List<StandByClassDTO> list = mypageOpenClass.selectOne(mNo).getSbcd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -934,10 +947,12 @@ public class UserController {
 		} // session end
 		return str;
 	}
+
 	// 진행중 클래스 정보를 가지고 온다.
 	@RequestMapping(value = { "ongoingClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String OngoingList(HttpServletRequest request) {
+		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGEONGOINGCLASS);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -950,7 +965,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<OngoingClassDTO> list = mypageOngoingClass.selectOne(24).getOcd();
+			List<OngoingClassDTO> list = mypageOpenClass.selectOne(24).getOcd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -986,11 +1001,13 @@ public class UserController {
 		} // session end
 		return str;
 	}
-	
+
 	// 종료된 클래스 정보를 가지고 온다.
 	@RequestMapping(value = { "completeClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String CompleteList(HttpServletRequest request) {
+		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGECOMPLETECLASS);
+
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
@@ -1003,7 +1020,7 @@ public class UserController {
 
 			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
 
-			List<CompleteClassDTO> list = mypageCompleteClass.selectOne(24).getCcd();
+			List<CompleteClassDTO> list = mypageOpenClass.selectOne(24).getCcd();
 
 			S3ClientFactory s3client = new S3ClientFactory();
 			for (int i = 0; i < list.size(); i++) {
@@ -1039,6 +1056,7 @@ public class UserController {
 		} // session end
 		return str;
 	}
+
 	// 테스트용 /////////////////////////////////////////////////
 	@RequestMapping(value = "spaceBase", method = RequestMethod.GET)
 	public String spaceBase() {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.openkitchen.classes.GenericOne;
+import kr.co.openkitchen.classes.RegistServiceTypeF;
 import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.dao.RegisterDaoInter;
 
@@ -19,6 +20,12 @@ public class RegistClassImple implements RegistServiceInterF {
 	@Resource(name = "classRegistDAO")
 	RegisterDaoInter dao;
 
+	 @Override
+	public RegistServiceTypeF getServiceType() {
+		// TODO Auto-generated method stub
+		return RegistServiceTypeF.REGISTCLASSIMPLE;
+	}
+	
 	@Override
 	public String acceptImg(String fileName, int count, int cNo) {
 		String filePath;

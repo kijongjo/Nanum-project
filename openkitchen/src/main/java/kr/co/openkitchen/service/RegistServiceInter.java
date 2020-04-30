@@ -1,10 +1,14 @@
 package kr.co.openkitchen.service;
 
 import kr.co.openkitchen.classes.GenericOne;
+import kr.co.openkitchen.classes.RegistServiceType;
 import kr.co.openkitchen.classes.Util;
 
 //파일을 다루지않는 RegistServiceInterface 
 public interface RegistServiceInter {
+	RegistServiceType getServiceType();
+	
+	
 	// generic type으로 줘서 teacherDTO,spaceDTO,classDTO
 	public <T> void insertDTO(T dto);
 	

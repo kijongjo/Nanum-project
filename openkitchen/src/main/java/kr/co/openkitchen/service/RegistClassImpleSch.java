@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.classes.GenericOne;
+import kr.co.openkitchen.classes.RegistServiceType;
 import kr.co.openkitchen.dao.RegisterDaoInter;
 
 @Service
@@ -13,6 +14,13 @@ public class RegistClassImpleSch implements RegistServiceInter {
 	
 	@Resource(name="classRegistDaoSch")
 	RegisterDaoInter dao ;
+	
+	@Override
+	public RegistServiceType getServiceType() {
+		
+		
+		return RegistServiceType.REGISTCLASSIMPLESCH;
+	}
 	
 	@Override
 	public <T> GenericOne<T> selectOne(T genericOne) {

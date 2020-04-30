@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.classes.GenericOne;
+import kr.co.openkitchen.classes.RegistServiceType;
 import kr.co.openkitchen.dao.RegisterDaoInter;
 
 @Service
@@ -12,7 +13,12 @@ public class RegistClassImpleS implements RegistServiceInter {
 
 	@Resource(name="classRegistDaoS")
 	RegisterDaoInter dao ;
-	 
+	
+	
+	@Override
+	public RegistServiceType getServiceType() {
+		return RegistServiceType.REGISTCLASSIMPLES;
+	}
 	@Override
 	public <T> void insertDTO(T dto) {
 
