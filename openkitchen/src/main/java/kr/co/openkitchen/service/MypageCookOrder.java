@@ -11,7 +11,7 @@ public class MypageCookOrder {
 	private MypageCookFactory mypageCookFactory;
 
 	public MypageCookInter receiveOrder(MypageCookInterType mypageCookType) {
-    return mypageCookFactory.getService(mypageCookType);
+		return mypageCookFactory.getService(mypageCookType);
 	}
 
 }

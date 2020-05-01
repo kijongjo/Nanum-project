@@ -41,7 +41,6 @@ public interface RegistServiceInterF {
 	// generic type으로 줘서 teacherDTO,spaceDTO,classDTO
 	public <T> void insertDTO(T dto);
 
-
 	// 번호를 가져오든 dto를 가져오든 아무거나 가져올 수 있는 method
 	public <T> GenericOne<T> selectOne(T genericOne);
 

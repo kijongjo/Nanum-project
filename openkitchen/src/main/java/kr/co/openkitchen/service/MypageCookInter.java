@@ -4,8 +4,8 @@ import kr.co.openkitchen.classes.GenericOne;
 import kr.co.openkitchen.classes.MypageCookInterType;
 
 public interface MypageCookInter {
-    
+
 	MypageCookInterType getServiceType();
-	
-    public <T> GenericOne<T> selectOne(T genericOne);
+
+	public <T> GenericOne<T> selectOne(T genericOne);
 }

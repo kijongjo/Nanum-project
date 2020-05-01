@@ -10,13 +10,13 @@ import kr.co.openkitchen.dto.MypageDTO;
 @Service
 public class MypageServiceImple implements MypageServiceInter {
 
-	@Resource(name="mypageDAO")
-	MypageDaoInter dao ;
-	
+	@Resource(name = "mypageDAO")
+	MypageDaoInter dao;
+
 	@Override
 	public MypageDTO mypageInfo(int mNo) {
-		
+
 		return dao.selectOne(mNo);
 	}
-	
+
 }
