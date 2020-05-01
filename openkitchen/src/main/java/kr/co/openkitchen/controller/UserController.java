@@ -92,7 +92,6 @@ public class UserController {
 		}
 	}
 
-
 	@RequestMapping(value = { "standBySpace", "ongoingSpace", "completeSpace" })
 	public String openSpaceD(@RequestParam("no") String no, Model model) {
 
@@ -171,7 +170,7 @@ public class UserController {
 
 		// 데이터 유효성 판단
 		if (tDetailsumnail.length() != 0)
-			// 문자열의 마지막 콤마 지우기
+			// 문자열의 마지막 콤마 제거
 			tDetailsumnail = tDetailsumnail.substring(0, tDetailsumnail.length() - 1);
 
 		if (tDetailsumnail != "") {
@@ -259,23 +258,34 @@ public class UserController {
 	@RequestMapping(value = { "spaceBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String spaceBookList(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
 		// JacksonLibrary 사용
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
-		HttpSession session = request.getSession();
+		try {
+			str = mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		if (session.getAttribute("openkitchen") != null) {
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			// FactoryPattern Service Instance
 			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
 			// 선생님 번호= 회원번호
 			int tNo = mdto.getmNo();
+			List<ClassRegistDtoL> sumnailList = registService.selectOne(tNo).getCrdl();
+			//aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
 
-			List<ClassRegistDtoL> sumnailList = registService.selectOne(tNo).getCrdl();
+			//request url from s3
 			for (int i = 0; i < sumnailList.size(); i++) {
 				sumnailList.get(i).setsMainsumnail(s3client.geturl(sumnailList.get(i).getsMainsumnail()));
 			}
-
+			
+             //데이터 json 변환
 			if (sumnailList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(sumnailList);
@@ -283,25 +293,9 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
-				try {
-					str = mapper.writeValueAsString("noValue");
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			return str;
-		} else {
-
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return str;
-		}
+			}//list end
+		}//session end 
+		return str;
 	}
 
 	// 클래스 [기본정보] 등록 요청
@@ -363,6 +357,7 @@ public class UserController {
 		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		
 		if (rentalNoList.get(0).getcNo() != 0) {
 			registService.insertDTO(Util.packingR(rentalNoList));
 			try {
@@ -378,7 +373,7 @@ public class UserController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}//if end
 		return str;
 	}
 
@@ -388,14 +383,22 @@ public class UserController {
 	public String TotalScheduleList(HttpServletRequest request) {
 
 		HttpSession session = request.getSession();
+		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str = mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		if (session.getAttribute("cNo") != null) {
 			// FactoryPattern Service Instance
 			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
 			int cNo = Integer.parseInt((String) session.getAttribute("cNo"));
-			List<ClassRegistDtoSch> scheduleList = registService.selectOne(cNo).getCrdsch();
 
+			List<ClassRegistDtoSch> scheduleList = registService.selectOne(cNo).getCrdsch();
 			if (scheduleList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(scheduleList);
@@ -403,22 +406,7 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else if (scheduleList.size() == 0) {
-				try {
-					str = mapper.writeValueAsString("noValue");
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		} else {
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+			} // if end
 		}
 		return str;
 	}
@@ -432,6 +420,13 @@ public class UserController {
 		// JacksonLibrary 사용
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str = mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		if (session.getAttribute("mNo") != null) {
 			// FactoryPattern Service Instance
 			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
@@ -445,24 +440,14 @@ public class UserController {
 				e.printStackTrace();
 			}
 
-		} else {
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
 		}
 		return str;
 	}
-	
-	
+
 //클래스 등록 End
-	
-	
+
 //예약  클래스 정보
-	
+
 	@RequestMapping(value = { "cookBookD", "cookRefundD", "cookEndD" })
 	public String cookIn(@RequestParam("no") String no, Model model) {
 
@@ -471,29 +456,37 @@ public class UserController {
 		return "/mypage/class/cookIn";
 	}
 
-	// [예약한 클래스 정보] 요청 
+	// [예약한 클래스 정보] 요청
 	@RequestMapping(value = { "cookBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookBookList(HttpServletRequest request) {
 
-		
 		HttpSession session = request.getSession();
-		//JacksonLibrary
+		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str = mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
 			List<CookBookDTO> bookingList = mypageCook.selectOne(tNo).getCbd();
+			//aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-			
-			//S3에 저장된 url 요청 
+
+			// request url form s3
 			for (int i = 0; i < bookingList.size(); i++) {
 				bookingList.get(i).setcMainsumnail(s3client.geturl(bookingList.get(i).getcMainsumnail()));
 			} // for end
-
+            
+			//데이터 JSON 변환
 			if (bookingList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(bookingList);
@@ -501,23 +494,7 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
-				try {
-					System.out.println("list is null");
-					str = mapper.writeValueAsString("noValue");
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // try catch end
-			} // list.size end
-		} else {
-			System.out.println("openkitchen is null");
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // try catch end
+			} // if문 end
 		} // session end
 		return str;
 	}
@@ -526,23 +503,33 @@ public class UserController {
 	@RequestMapping(value = { "cookRefundList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookRefundList(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
-		//JacksonLibrary
+		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str=mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKREFUND);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
-	        int tNo = mdto.getmNo();
+			int tNo = mdto.getmNo();
 			List<CookRefundDTO> refundList = mypageCook.selectOne(tNo).getCrd();
+			//aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-			
+              
+			//request url form s3
 			for (int i = 0; i < refundList.size(); i++) {
 				refundList.get(i).setcMainsumnail(s3client.geturl(refundList.get(i).getcMainsumnail()));
 			} // for end
-
+			
+            //데이터 json 변환
 			if (refundList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(refundList);
@@ -550,24 +537,8 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
-				try {
-					System.out.println("list is null");
-					str = mapper.writeValueAsString("noValue");
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // try catch end
-			} // list.size end
-		} else {
-			System.out.println("openkitchen is null");
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // try catch end
-		} // session end
+			}//list end 
+		} //session end
 		return str;
 	}
 
@@ -575,24 +546,33 @@ public class UserController {
 	@RequestMapping(value = { "cookEndList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookEndList(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
-		//JacksonLibrary
+		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str=mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
 			List<CookRefundDTO> endList = mypageCook.selectOne(tNo).getCrd();
+			//aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-			
-			//url 가져오기
+
+			// request url from s3
 			for (int i = 0; i < endList.size(); i++) {
 				endList.get(i).setcMainsumnail(s3client.geturl(endList.get(i).getcMainsumnail()));
 			} // for end
-
+			
+            //데이터 json 변환
 			if (endList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(endList);
@@ -600,31 +580,15 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
-				try {
-					System.out.println("list is null");
-					str = mapper.writeValueAsString("noValue");
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // try catch end
-			} // list.size end
-		} else {
-			System.out.println("openkitchen is null");
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // try catch end
-		} // session end
+			}//list end 
+		} //session end
 		return str;
 	}
-	
-	//예약  클래스 정보 end
-	
-	//개설된 클래스 상태 정보
-	
+
+	// 예약 클래스 정보 end
+
+	// 개설된 클래스 상태 정보
+
 	@RequestMapping(value = { "standByClass", "ongoingClass", "completeClass" })
 	public String openClassD(@RequestParam("no") String no, Model model) {
 
@@ -632,18 +596,22 @@ public class UserController {
 
 		return "/mypage/class/openClassD";
 	}
-	
-	
+
 	// 신청 클래스 정보를 가지고 온다.
 	@RequestMapping(value = { "standByList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String standByList(HttpServletRequest request) {
-		
 
 		HttpSession session = request.getSession();
-		//JacksonLibrary
+		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str=mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
@@ -651,12 +619,15 @@ public class UserController {
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
 			List<StandByClassDTO> standByList = mypageOpenClass.selectOne(tNo).getSbcd();
+			//aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-			
+           
+			//request url from s3
 			for (int i = 0; i < standByList.size(); i++) {
 				standByList.get(i).setcMainsumnail(s3client.geturl(standByList.get(i).getcMainsumnail()));
 			} // for end
-
+            
+			//데이터 json 변환
 			if (standByList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(standByList);
@@ -664,24 +635,8 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
-				try {
-					System.out.println("list is null");
-					str = mapper.writeValueAsString("noValue");
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // try catch end
-			} // list.size end
-		} else {
-			System.out.println("openkitchen is null");
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // try catch end
-		} // session end
+			} //list end
+		}//session end
 		return str;
 	}
 
@@ -689,49 +644,42 @@ public class UserController {
 	@RequestMapping(value = { "ongoingClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String OngoingList(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
-		//JacksonLibrary
+		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str=mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGEONGOINGCLASS);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
-			List<OngoingClassDTO> list = mypageOpenClass.selectOne(tNo).getOcd();
+			List<OngoingClassDTO> ongoingList = mypageOpenClass.selectOne(tNo).getOcd();
+			//aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
 			
-			
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+			//request url from s3
+			for (int i = 0; i < ongoingList.size(); i++) {
+				ongoingList.get(i).setcMainsumnail(s3client.geturl(ongoingList.get(i).getcMainsumnail()));
 			} // for end
-
-			if (list.size() != 0) {
+			
+           //데이터 json 변환
+			if (ongoingList.size() != 0) {
 				try {
-					str = mapper.writeValueAsString(list);
+					str = mapper.writeValueAsString(ongoingList);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
-				try {
-					System.out.println("list is null");
-					str = mapper.writeValueAsString("noValue");
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // try catch end
-			} // list.size end
-		} else {
-			System.out.println("openkitchen is null");
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // try catch end
-		} // session end
+			}//list end 
+		} //session end
 		return str;
 	}
 
@@ -739,54 +687,46 @@ public class UserController {
 	@RequestMapping(value = { "completeClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String CompleteList(HttpServletRequest request) {
-	
 
 		HttpSession session = request.getSession();
-		//JacksonLibrary
+		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str=mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
-			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGECOMPLETECLASS);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
-			List<CompleteClassDTO> list = mypageOpenClass.selectOne(tNo).getCcd();
+			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGECOMPLETECLASS);
+			List<CompleteClassDTO> completeList = mypageOpenClass.selectOne(tNo).getCcd();
+			//aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-			
-			
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+ 
+			//request url from s3
+			for (int i = 0; i < completeList.size(); i++) {
+				completeList.get(i).setcMainsumnail(s3client.geturl(completeList.get(i).getcMainsumnail()));
 			} // for end
-
-			if (list.size() != 0) {
+           
+			//데이터 json 변환
+			if (completeList.size() != 0) {
 				try {
-					str = mapper.writeValueAsString(list);
+					str = mapper.writeValueAsString(completeList);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else {
-				try {
-					System.out.println("list is null");
-					str = mapper.writeValueAsString("noValue");
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // try catch end
-			} // list.size end
-		} else {
-			System.out.println("openkitchen is null");
-			try {
-				str = mapper.writeValueAsString("noValue");
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} // try catch end
-		} // session end
+			}//list end 
+		}//session end 
 		return str;
 	}
-	
-	//개설된 클래스 상태 정보 종료
+
+	// 개설된 클래스 상태 정보 종료
 
 	// 테스트용 /////////////////////////////////////////////////
 	@RequestMapping(value = "spaceBase", method = RequestMethod.GET)

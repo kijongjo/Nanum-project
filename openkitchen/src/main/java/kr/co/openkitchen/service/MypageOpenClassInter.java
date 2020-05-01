@@ -6,6 +6,6 @@ import kr.co.openkitchen.classes.MypageOpenCType;
 public interface MypageOpenClassInter {
 
 	MypageOpenCType getServiceType();
-	
+
 	public <T> GenericOne<T> selectOne(T genericOne);
 }

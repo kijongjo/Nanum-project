@@ -11,28 +11,26 @@ import kr.co.openkitchen.dao.RegisterDaoInter;
 @Service
 public class RegistClassImpleSch implements RegistServiceInter {
 
-	
-	@Resource(name="classRegistDaoSch")
-	RegisterDaoInter dao ;
-	
+	@Resource(name = "classRegistDaoSch")
+	RegisterDaoInter dao;
+
 	@Override
 	public RegistServiceType getServiceType() {
-		
-		
+
 		return RegistServiceType.REGISTCLASSIMPLESCH;
 	}
-	
+
 	@Override
 	public <T> GenericOne<T> selectOne(T genericOne) {
-	  
-	return dao.selectOne(genericOne);
+
+		return dao.selectOne(genericOne);
 	}
-	
+
 	@Override
 	public <T> void insertDTO(T cNo) {
-	 
+
 		dao.insertDTO(cNo);
-		
+
 	}
-	
+
 }

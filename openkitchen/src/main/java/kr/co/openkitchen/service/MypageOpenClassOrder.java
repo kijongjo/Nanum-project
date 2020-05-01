@@ -10,12 +10,12 @@ import kr.co.openkitchen.classes.MypageOpenCType;
 public class MypageOpenClassOrder {
 
 	@Autowired
-	private  MypageOpenCFactory mypageOpenCFactory ;
+	private MypageOpenCFactory mypageOpenCFactory;
 
-	public MypageOpenClassInter receiveOrder(MypageOpenCType mypageOpenCType ) {
+	public MypageOpenClassInter receiveOrder(MypageOpenCType mypageOpenCType) {
 
 		return mypageOpenCFactory.getService(mypageOpenCType);
 
 	}
-	
+
 }

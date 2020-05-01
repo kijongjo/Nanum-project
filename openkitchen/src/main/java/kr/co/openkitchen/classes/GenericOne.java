@@ -12,7 +12,6 @@ import kr.co.openkitchen.dto.OngoingClassDTO;
 import kr.co.openkitchen.dto.StandByClassDTO;
 
 //용도: 다양한 return타입을 받기 위함. 코드 재사용성을 높이기 위함
-//구린네가 심하게 나는데 일단 Generalization 시키긴함. 이거 안고치면 개털릴듯
 public class GenericOne<T> {
 	private T genericOne;
 	private List<ClassRegistDtoSch> crdsch;

@@ -5,11 +5,12 @@ import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.classes.RegistServiceFactory;
 import kr.co.openkitchen.classes.RegistServiceType;
+
 @Service
 public class RegistOrderService {
-	
+
 	@Autowired
-	private  RegistServiceFactory registServiceFactory;
+	private RegistServiceFactory registServiceFactory;
 
 	public RegistServiceInter receiveOrder(RegistServiceType registType) {
 
