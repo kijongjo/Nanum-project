@@ -28,7 +28,7 @@ public class RegistTeacherImpleS implements RegistServiceInterF {
 	
 	
 	@Override
-	public String acceptImg(String fileName, int count, int hNo) {
+	public String createImgNameNpath(String fileName, int count, int hNo) {
 		String filePath;
 		String resourceName;
 		String resourcesPath;
@@ -61,7 +61,7 @@ public class RegistTeacherImpleS implements RegistServiceInterF {
 	}
 
 	@Override
-	public String makeDS(String fileName, int count, int hNo) {
+	public String namingDS(String fileName, int count, int hNo) {
 		System.out.println(fileName);
 		String resourceName;
 		if (fileName.equals("S-DS-TYPE1")) {
@@ -78,7 +78,7 @@ public class RegistTeacherImpleS implements RegistServiceInterF {
 		return resourceName;
 	}
 	@Override
-	public void makeFile(String filePath, MultipartFile mFile) {
+	public void registerFileToS3(String filePath, MultipartFile mFile) {
 		// File 경로를 넣어주고 변형시킨 파일을 경로에 넣어준다.
         System.out.println("파일 경로"+filePath);
 		 S3ClientFactory s3Client = new S3ClientFactory();
@@ -89,15 +89,12 @@ public class RegistTeacherImpleS implements RegistServiceInterF {
 		
 	
 	@Override
-	public String makeMS(String fileName, int hNo) {
+	public String namingMS(String fileName, int hNo) {
 		// TODO Auto-generated method stub
 				return "/resources/img/spaceimg/S" + hNo + "-MS-01";
 	}
 	
-	@Override
-	public <T> void applyDTO(T dto) {
-		dao.insertDTO(dto);
-	}
+
 	
 	
 	@Override

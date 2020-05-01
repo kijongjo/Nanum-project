@@ -56,8 +56,8 @@ import kr.co.openkitchen.service.RegistServiceInterF;
 @RequestMapping("/mypage")
 @SessionAttributes("cNo")
 public class UserController {
-	//같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완 필요 <-해결
-	//Design Pattern
+	// 같은 Interface를 두번 쓴다는 것은 무슨 법칙에 깨진다고 들엇는데 여튼 보완 필요 <-해결
+	// Design Pattern
 	@Autowired
 	RegistOrderService registOrderService;
 	RegistServiceInter registService;
@@ -74,52 +74,28 @@ public class UserController {
 	MypageOpenClassOrder mypageOpenClassOrder;
 	MypageOpenClassInter mypageOpenClass;
 
-	
 	@Resource(name = "mypageServiceImple")
 	MypageServiceInter mypageService;
 
 	@RequestMapping(value = { "in" })
 	public String mypage(HttpServletRequest request, Model model) {
+
 		HttpSession session = request.getSession();
+
 		if (session.getAttribute("openkitchen") != null) {
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
-			System.out.println("mNo : " + mdto.getmNo());
 			MypageDTO mydto = mypageService.mypageInfo(mdto.getmNo());
 			model.addAttribute("mydto", mydto);
-			System.out.println("mydto 값은?" + mydto.toString());
 			return "/mypage/mypageIn";
 		} else {
 			return "login/login";
 		}
 	}
 
-	@RequestMapping(value = { "cookBookD", "cookRefundD", "cookEndD" })
-	public String cookIn(@RequestParam("no") String no, Model model) {
-		System.out.println(no);
-		model.addAttribute("no", no);
-
-		return "/mypage/class/cookIn";
-	}
-
-	@RequestMapping(value = { "teacherBase", "teacherSpace" })
-	public String teacherBase(@RequestParam("no") String no, Model model) {
-		System.out.println(no);
-		model.addAttribute("no", no);
-
-		return "/mypage/teacher/teacherDiscription";
-	}
-
-	@RequestMapping(value = { "standByClass", "ongoingClass", "completeClass" })
-	public String openClassD(@RequestParam("no") String no, Model model) {
-		System.out.println(no);
-		model.addAttribute("no", no);
-
-		return "/mypage/class/openClassD";
-	}
 
 	@RequestMapping(value = { "standBySpace", "ongoingSpace", "completeSpace" })
 	public String openSpaceD(@RequestParam("no") String no, Model model) {
-		System.out.println(no);
+
 		model.addAttribute("no", no);
 
 		return "/mypage/class/openSpaceD";
@@ -137,287 +113,126 @@ public class UserController {
 
 	@RequestMapping(value = { "wishlistClass", "wishlistTeacher", "wishlistSpace" })
 	public String wishlistIn(@RequestParam("no") String no, Model model) {
-		System.out.println(no);
+
 		model.addAttribute("no", no);
 
 		return "/mypage/wishlist/wishlistIn";
 	}
 
-	// 선생님 [기본정보]등록시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "multipartUpload", method = RequestMethod.POST)
-	public String multipartUpload(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
+	// 선생님 등록 페이지 시작
+
+	@RequestMapping(value = { "teacherBase", "teacherSpace" })
+	public String teacherBase(@RequestParam("no") String no, Model model) {
+
+		model.addAttribute("no", no);
+
+		return "/mypage/teacher/teacherDiscription";
+	}
+
+	// 선생님 [기본정보]등록 요청
+	@RequestMapping(value = "teacherBaseInfo", method = RequestMethod.POST)
+	public String teacherBaseInfo(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
+
+		// FactoryPattern Service Instance
 		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
 		String tDetailsumnail = "";
-
-		// 사진 끝번호
+		// 사진 번호 부여
 		int count = 1;
-		int mNo = dto.getmNo();
-		System.out.println("회원 번호 넘어왔니?" + mNo);
-
-		// tNo가 mNo임
+		// 선생님번호=회원번호
 		int tNo = dto.getmNo();
-		dto.settNo(tNo);
+		// 넘어온 파일 리스트
+		Iterator<String> fileList = request.getFileNames();
 
-		// !!!proceo가 proname이랑 같음.약간 이상해서 수동으로 일단 넣어주겟음
-		dto.setProCeo(dto.getProName());
-
-		// form data에 저장된 name들을 뽑아낸다.
-
-		Iterator<String> it = request.getFileNames();
 		// 넘어온 파일들의 정체를 밝히는 while문
-		while (it.hasNext()) {
-			String fileName = it.next();
-
-			System.out.println("fileName:     " + fileName);
-
-			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
+		while (fileList.hasNext()) {
+			String fileName = fileList.next();
+			// blob 또는 기존 File 형식으로 보내온 파일을 MultiPart로 변환
 			MultipartFile mFile = request.getFile(fileName);
-			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = registServiceF.acceptImg(fileName, count, tNo);
+			filePath = registServiceF.createImgNameNpath(fileName, count, tNo);
+			registServiceF.registerFileToS3(filePath, mFile);
 
-			// 파일을 지정된 경로에 저장하기
-			registServiceF.makeFile(filePath, mFile);
-
-			// dto에 저장하기 위해 ds만 뽑아온다.
+			// 파일 종류 구분 후 저장
 			if (fileName.equals("DS-TYPE1")) {
-				tDetailsumnail += registServiceF.makeDS(fileName, count, tNo) + ",";
+				tDetailsumnail += registServiceF.namingDS(fileName, count, tNo) + ",";
 				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
 			} else if (fileName.equals("MS")) {
-				// sumnail
-				String tMainsumnail = registServiceF.makeMS(fileName, tNo);
+				String tMainsumnail = registServiceF.namingMS(fileName, tNo);
 				dto.settMainsumnail(tMainsumnail);
-
-				// 사업자 인증 사진과 통장 사본 이미지를 판단해 dto에 넣는다.
 			} else if (fileName.equals("proRegImg")) {
-				dto.setProRegimg(registServiceF.makeBK(fileName, tNo));
-
+				dto.setProRegimg(registServiceF.namingBK(fileName, tNo));
 			} else if (fileName.equals("proAccountIng")) {
-				// interface의 default method 사용
-				dto.setProAccounting(registServiceF.makeBK(fileName, tNo));
-			}
+				dto.setProAccounting(registServiceF.namingBK(fileName, tNo));
+			} // 파일 종류 구분 end
+
 		} // while end
 
+		// 데이터 유효성 판단
 		if (tDetailsumnail.length() != 0)
 			// 문자열의 마지막 콤마 지우기
 			tDetailsumnail = tDetailsumnail.substring(0, tDetailsumnail.length() - 1);
 
 		if (tDetailsumnail != "") {
 			dto.settDetailsumnail(tDetailsumnail);
-		}
+		} // 데이터 유효성 판단 end
 
-		registServiceF.insertDTO(dto);
-
-		return "mypage/teacher/teacherBase";
-	}
-
-	// 선생님 [기본정보]등록시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "complete", method = RequestMethod.POST)
-	public String complete(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
-
-		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
-
-		// 파일 저장되는 경로
-		String filePath;
-		// 상세 썸네일
-		String tDetailsumnail = "";
-
-		// 사진 끝번호
-		int count = 1;
-		int mNo = dto.getmNo();
-		System.out.println("회원 번호 넘어왔니?" + mNo);
-
-		// tNo가 mNo임
-		int tNo = dto.getmNo();
 		dto.settNo(tNo);
-
-		// !!!proceo가 proname이랑 같음.약간 이상해서 수동으로 일단 넣어주겟음
+		// proceo=proname
 		dto.setProCeo(dto.getProName());
 
-		// form data에 저장된 name들을 뽑아낸다.
-
-		Iterator<String> it = request.getFileNames();
-		// 넘어온 파일들의 정체를 밝히는 while문
-		while (it.hasNext()) {
-			String fileName = it.next();
-
-			System.out.println("fileName:     " + fileName);
-
-			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
-			MultipartFile mFile = request.getFile(fileName);
-			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = registServiceF.acceptImg(fileName, count, tNo);
-
-			// 파일을 지정된 경로에 저장하기
-			registServiceF.makeFile(filePath, mFile);
-
-			// dto에 저장하기 위해 ds만 뽑아온다.
-			if (fileName.equals("DS-TYPE1")) {
-				tDetailsumnail += registServiceF.makeDS(fileName, count, tNo) + ",";
-				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
-			} else if (fileName.equals("MS")) {
-				// sumnail
-				String tMainsumnail = registServiceF.makeMS(fileName, tNo);
-				dto.settMainsumnail(tMainsumnail);
-
-				// 사업자 인증 사진과 통장 사본 이미지를 판단해 dto에 넣는다.
-			} else if (fileName.equals("proRegImg")) {
-				dto.setProRegimg(registServiceF.makeBK(fileName, tNo));
-
-			} else if (fileName.equals("proAccountIng")) {
-				// interface의 default method 사용
-				dto.setProAccounting(registServiceF.makeBK(fileName, tNo));
-			}
-		} // while end
-
-		if (tDetailsumnail.length() != 0)
-			// 문자열의 마지막 콤마 지우기
-			tDetailsumnail = tDetailsumnail.substring(0, tDetailsumnail.length() - 1);
-
-		if (tDetailsumnail != "") {
-			dto.settDetailsumnail(tDetailsumnail);
-		}
-
-		registServiceF.applyDTO(dto);
-
-		return "mypage/teacher/teacherBase";
-	}
-
-	// 선생님 [공간]등록시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "multipartUploadS", method = RequestMethod.POST)
-	public String multipartUpload(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
-
-		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
-
-		// 파일 저장되는 경로
-		String filePath;
-		// 상세 썸네일
-		String sDetailsumnail = "";
-
-		// 사진 끝번호
-		int count = 1;
-		int mNo = dto.gethNo();
-		System.out.println("회원 번호 넘어왔니?" + mNo);
-
-		// hNo가 mNo임
-		int hNo = mNo;
-
-		// form data에 저장된 name들을 뽑아낸다.
-
-		Iterator<String> it = request.getFileNames();
-		// 넘어온 파일들의 정체를 밝히는 while문
-		while (it.hasNext()) {
-			String fileName = it.next();
-
-			System.out.println("fileName:     " + fileName);
-
-			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
-			MultipartFile mFile = request.getFile(fileName);
-			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = registServiceF.acceptImg(fileName, count, hNo);
-
-			// 파일을 지정된 경로에 저장하기
-			registServiceF.makeFile(filePath, mFile);
-
-			// dto에 저장하기 위해 ds만 뽑아온다.
-			if (fileName.equals("S-DS-TYPE1")) {
-				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
-				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
-			} else if (fileName.equals("S-MS")) {
-				// sumnail
-				String sMainsumnail = registServiceF.makeMS(fileName, hNo);
-				dto.setsMainsumnail(sMainsumnail);
-			} else {
-				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
-				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
-			}
-		} // while end
-
-		if (sDetailsumnail.length() != 0)
-			// 문자열의 마지막 콤마 지우기
-			sDetailsumnail = sDetailsumnail.substring(0, sDetailsumnail.length() - 1);
-
-		if (sDetailsumnail != "") {
-			dto.setsDetailsumnail(sDetailsumnail);
-		}
-
+		// DB insert Service
 		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
 
-	// 선생님 등록시 등록[완료]하는 프로그램
-	@RequestMapping(value = "completeS", method = RequestMethod.POST)
-	public String completeS(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
-
+	// 선생님 [공간]등록 요청
+	@RequestMapping(value = "teacherSpaceInfo", method = RequestMethod.POST)
+	public String teacherSpaceInfo(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
+		// FactoryPattern Service Instance
 		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
 		String sDetailsumnail = "";
-
 		// 사진 끝번호
 		int count = 1;
-		int mNo = dto.gethNo();
-		System.out.println("회원 번호 넘어왔니?" + mNo);
-
-		// hNo가 mNo임
-		int hNo = mNo;
-
+		int hNo = dto.gethNo();
 		// form data에 저장된 name들을 뽑아낸다.
+		Iterator<String> fileList = request.getFileNames();
 
-		Iterator<String> it = request.getFileNames();
-		// 넘어온 파일들의 정체를 밝히는 while문
-		while (it.hasNext()) {
-			String fileName = it.next();
-
-			System.out.println("fileName:     " + fileName);
-
+		while (fileList.hasNext()) {
+			String fileName = fileList.next();
 			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
 			MultipartFile mFile = request.getFile(fileName);
-			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = registServiceF.acceptImg(fileName, count, hNo);
+			filePath = registServiceF.createImgNameNpath(fileName, count, hNo);
+			registServiceF.registerFileToS3(filePath, mFile);
 
-			// 파일을 지정된 경로에 저장하기
-			registServiceF.makeFile(filePath, mFile);
-
-			// dto에 저장하기 위해 ds만 뽑아온다.
+			// 파일 종류 구분 후 저장
 			if (fileName.equals("S-DS-TYPE1")) {
-				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.namingDS(fileName, count, hNo) + ",";
 				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
 			} else if (fileName.equals("S-MS")) {
 				// sumnail
-				String sMainsumnail = registServiceF.makeMS(fileName, hNo);
+				String sMainsumnail = registServiceF.namingMS(fileName, hNo);
 				dto.setsMainsumnail(sMainsumnail);
 			} else {
-				sDetailsumnail += registServiceF.makeDS(fileName, count, hNo) + ",";
+				sDetailsumnail += registServiceF.namingDS(fileName, count, hNo) + ",";
 				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
-			}
+			} // 파일 종류 구분 end
 		} // while end
 
+		// 데이터 유효성 판단
 		if (sDetailsumnail.length() != 0)
 			// 문자열의 마지막 콤마 지우기
 			sDetailsumnail = sDetailsumnail.substring(0, sDetailsumnail.length() - 1);
-
 		if (sDetailsumnail != "") {
 			dto.setsDetailsumnail(sDetailsumnail);
-		}
+		} // 데이터 유효성 판단 end
 
-		registServiceF.applyDTO(dto);
+		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
@@ -428,207 +243,128 @@ public class UserController {
 
 		return "mypage/in";
 	}
+	// 선생님 등록 페이지 End
 
-	// 어디다가둬야하지 이거?????????
-	@RequestMapping(value = { "classBase", "classSchedule" })
+	// 클래스 등록 페이지 시작
+
+	@RequestMapping(value = { "classBase", "classSchedule", "classSpace" })
 	public String classBase(@RequestParam("no") String no, Model model) {
-		System.out.println(no);
+
 		model.addAttribute("no", no);
 
 		return "mypage/class/applyClass";
 	}
 
-	@RequestMapping(value = { "classSpace" })
-	public String classSpace(@RequestParam("no") String no, Model model) {
-		System.out.println(no);
-		model.addAttribute("no", no);
-
-		return "mypage/class/applyClass";
-	}
-
-	// 예약한 공간 정보를 가지고 온다.
+	// 클래스 등록시 [예약한 공간 정보] 리스트 요청
 	@RequestMapping(value = { "spaceBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String spaceBookList() {
-
-		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
-
-		// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
-		int tNo = 1;
-		List<ClassRegistDtoL> list = registService.selectOne(tNo).getCrdl();
-
-		S3ClientFactory s3client = new S3ClientFactory();
-		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setsMainsumnail(s3client.geturl(list.get(i).getsMainsumnail()));
-		}
+	public String spaceBookList(HttpServletRequest request) {
+		// JacksonLibrary 사용
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
-		if (list.size() != 0) {
-			try {
-				str = mapper.writeValueAsString(list);
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		HttpSession session = request.getSession();
+		if (session.getAttribute("openkitchen") != null) {
+			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+			// FactoryPattern Service Instance
+			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
+			// 선생님 번호= 회원번호
+			int tNo = mdto.getmNo();
+			S3ClientFactory s3client = new S3ClientFactory();
+
+			List<ClassRegistDtoL> sumnailList = registService.selectOne(tNo).getCrdl();
+			for (int i = 0; i < sumnailList.size(); i++) {
+				sumnailList.get(i).setsMainsumnail(s3client.geturl(sumnailList.get(i).getsMainsumnail()));
 			}
+
+			if (sumnailList.size() != 0) {
+				try {
+					str = mapper.writeValueAsString(sumnailList);
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					str = mapper.writeValueAsString("noValue");
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return str;
 		} else {
+
 			try {
 				str = mapper.writeValueAsString("noValue");
 			} catch (JsonProcessingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			return str;
 		}
-		return str;
 	}
 
-	// 클래스 [기본정보] 등록시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "multipartUploadC", method = RequestMethod.POST)
-	public String multipartUploadC(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request) {
-
+	// 클래스 [기본정보] 등록 요청
+	@RequestMapping(value = "classBaseInfo", method = RequestMethod.POST)
+	public String classBaseInfo(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request) {
+		// FactoryPattern Service Instance
 		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
 		// 파일 저장되는 경로
 		String filePath;
 		// 상세 썸네일
 		String cDetailsumnail = "";
-
-		System.out.println("dto.toString :  " + dto.toString());
-		// 사진 끝번호
+		// 사진 번호
 		int count = 1;
 		int tNo = dto.gettNo();
-		System.out.println("선생님 번호 넘어왔니?" + tNo);
-
-		// 필요한 정보를 가지고오는 class
-		// 필요한 정보를 담아 준다.
 		int cNo = registServiceF.<Integer>selectOne(tNo).getT();
-		System.out.println("cNo 들어 갔니?" + cNo);
+		// form data에 저장된 fileList
+		Iterator<String> fileList = request.getFileNames();
 
-		// form data에 저장된 name들을 뽑아낸다.
-		Iterator<String> it = request.getFileNames();
-		// 넘어온 파일들의 정체를 밝히는 while문
-		while (it.hasNext()) {
-			String fileName = it.next();
-
-			System.out.println("fileName:     " + fileName);
-
-			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
+		while (fileList.hasNext()) {
+			String fileName = fileList.next();
+			// blob 또는 기존 형식으로 보내온 파일을 변환
 			MultipartFile mFile = request.getFile(fileName);
-			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = registServiceF.acceptImg(fileName, count, cNo);
+			// 이미지 저장 시킬 위치 + 파일명
+			filePath = registServiceF.createImgNameNpath(fileName, count, cNo);
+			registServiceF.registerFileToS3(filePath, mFile);
 
-			// 파일을 지정된 경로에 저장하기
-			registServiceF.makeFile(filePath, mFile);
-
-			// dto에 저장하기 위해 ds만 뽑아온다.
+			// 파일 종류 구분
 			if (fileName.equals("C-DS-TYPE1")) {
-				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.namingDS(fileName, count, cNo) + ",";
 				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
 			} else if (fileName.equals("C-MS")) {
-				// sumnail
-				String cMainsumnail = registServiceF.makeMS(fileName, cNo);
+				String cMainsumnail = registServiceF.namingMS(fileName, cNo);
 				dto.setcMainsumnail(cMainsumnail);
 			} else {
-				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
+				cDetailsumnail += registServiceF.namingDS(fileName, count, cNo) + ",";
 				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
-			}
+			} // 파일 종류 구분 end
 		} // while end
 
+		// 데이터 유효성 검사
 		if (cDetailsumnail.length() != 0)
 			// 문자열의 마지막 콤마 지우기
 			cDetailsumnail = cDetailsumnail.substring(0, cDetailsumnail.length() - 1);
-
 		if (cDetailsumnail != "") {
 			dto.setcDetailsumnail(cDetailsumnail);
-		}
+		} // 데이터 유효성 검사 end
+
 		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
 	}
 
-	// 클래스 [기본정보] 등록시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "completeC", method = RequestMethod.POST)
-	public String completeC(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request, Model model) {
-
-		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
-		// 파일 저장되는 경로
-		String filePath;
-		// 상세 썸네일
-		String cDetailsumnail = "";
-
-		System.out.println("dto.toString :  " + dto.toString());
-		// 사진 끝번호
-		int count = 1;
-		int tNo = dto.gettNo();
-		System.out.println("선생님 번호 넘어왔니?" + tNo);
-
-		// 필요한 정보를 가지고오는 class
-		// 필요한 정보를 담아 준다.
-		int cNo = registServiceF.<Integer>selectOne(tNo).getT();
-		System.out.println("cNo 들어 갔니?" + cNo);
-
-		// 공간 등록시 필요한 클래스번호 session에 넣음
-		model.addAttribute("cNo", cNo);
-		// form data에 저장된 name들을 뽑아낸다.
-		Iterator<String> it = request.getFileNames();
-		// 넘어온 파일들의 정체를 밝히는 while문
-		while (it.hasNext()) {
-			String fileName = it.next();
-
-			System.out.println("fileName:     " + fileName);
-
-			// blob 또는 기존 형식으로 보내온 파일을 변환시킴
-			MultipartFile mFile = request.getFile(fileName);
-			// 이미지 저장 시킬 위치 + 파일명을 뽑아옴+
-			filePath = registServiceF.acceptImg(fileName, count, cNo);
-
-			// 파일을 지정된 경로에 저장하기
-			registServiceF.makeFile(filePath, mFile);
-
-			// dto에 저장하기 위해 ds만 뽑아온다.
-			if (fileName.equals("C-DS-TYPE1")) {
-				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
-				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
-			} else if (fileName.equals("C-MS")) {
-				// sumnail
-				String cMainsumnail = registServiceF.makeMS(fileName, cNo);
-				dto.setcMainsumnail(cMainsumnail);
-			} else {
-				cDetailsumnail += registServiceF.makeDS(fileName, count, cNo) + ",";
-				count++;
-				System.out.println("밖에 쪽 count:" + count);
-
-			}
-		} // while end
-
-		if (cDetailsumnail.length() != 0)
-			// 문자열의 마지막 콤마 지우기
-			cDetailsumnail = cDetailsumnail.substring(0, cDetailsumnail.length() - 1);
-
-		if (cDetailsumnail != "") {
-			dto.setcDetailsumnail(cDetailsumnail);
-		}
-		registServiceF.applyDTO(dto);
-
-		return "mypage/teacher/teacherBase";
-	}
-
 	// 클래스 [공간정보] 등록시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "completeR", method = RequestMethod.POST)
+	@RequestMapping(value = "classSpaceRegist", method = RequestMethod.POST)
 	@ResponseBody
-	public String completeR(@RequestBody List<ClassRegistDtoR> list) {
-
+	public String classSpaceRegist(@RequestBody List<ClassRegistDtoR> rentalNoList) {
+		// FactoryPattern Service Instance
 		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
-
+		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
-		if (list.get(0).getcNo() != 0) {
-
-			registService.insertDTO(Util.packingR(list));
+		if (rentalNoList.get(0).getcNo() != 0) {
+			registService.insertDTO(Util.packingR(rentalNoList));
 			try {
 				str = mapper.writeValueAsString("regist");
 			} catch (JsonProcessingException e) {
@@ -643,52 +379,41 @@ public class UserController {
 				e.printStackTrace();
 			}
 		}
-
 		return str;
 	}
 
-	// 스케쥴 확인시 필요한 파일을 등록하는 프로그램
+	// 클래스 등록시 [스케쥴 확인] 요청
 	@RequestMapping(value = "totalScheduleList", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String TotalScheduleList(HttpServletRequest request) {
 
-		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
 		HttpSession session = request.getSession();
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("cNo") != null) {
-			if (str == "") {
-				int cNo = Integer.parseInt((String) session.getAttribute("cNo"));
-				List<ClassRegistDtoSch> list = registService.selectOne(cNo).getCrdsch();
+			// FactoryPattern Service Instance
+			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
+			int cNo = Integer.parseInt((String) session.getAttribute("cNo"));
+			List<ClassRegistDtoSch> scheduleList = registService.selectOne(cNo).getCrdsch();
 
-				if (list.size() != 0) {
-					try {
-						str = mapper.writeValueAsString(list);
-					} catch (JsonProcessingException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} else if (list.size() == 0) {
-					try {
-						str = mapper.writeValueAsString("noregist");
-					} catch (JsonProcessingException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			} else {
+			if (scheduleList.size() != 0) {
 				try {
-					str = mapper.writeValueAsString("noregist");
+					str = mapper.writeValueAsString(scheduleList);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
+			} else if (scheduleList.size() == 0) {
+				try {
+					str = mapper.writeValueAsString("noValue");
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-
 		} else {
 			try {
-				str = mapper.writeValueAsString("noregist");
+				str = mapper.writeValueAsString("noValue");
 			} catch (JsonProcessingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -698,14 +423,18 @@ public class UserController {
 		return str;
 	}
 
+	// 클래스 등록 [신청완료] 요청
 	@RequestMapping(value = "completeSch", method = RequestMethod.POST)
 	@ResponseBody
 	public String completeSch(HttpServletRequest request) {
-		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
+
 		HttpSession session = request.getSession();
+		// JacksonLibrary 사용
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("mNo") != null) {
+			// FactoryPattern Service Instance
+			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
 			int cNo = Integer.parseInt((String) session.getAttribute("mNo"));
 			registService.insertDTO(cNo);
 
@@ -718,7 +447,7 @@ public class UserController {
 
 		} else {
 			try {
-				str = mapper.writeValueAsString("noregist");
+				str = mapper.writeValueAsString("noValue");
 			} catch (JsonProcessingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -727,42 +456,51 @@ public class UserController {
 		}
 		return str;
 	}
+	
+	
+//클래스 등록 End
+	
+	
+//예약  클래스 정보
+	
+	@RequestMapping(value = { "cookBookD", "cookRefundD", "cookEndD" })
+	public String cookIn(@RequestParam("no") String no, Model model) {
 
-////////////////////////////예약 클래스 ///////////////////////////////////
-	// 예약한 공간 정보를 가지고 온다.
+		model.addAttribute("no", no);
+
+		return "/mypage/class/cookIn";
+	}
+
+	// [예약한 클래스 정보] 요청 
 	@RequestMapping(value = { "cookBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookBookList(HttpServletRequest request) {
 
-		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
+		
 		HttpSession session = request.getSession();
+		//JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("openkitchen") != null) {
-			System.out.println("openkitchen not null");
+			// FactoryPattern Service Instance
+			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
-			System.out.println("mNo : " + mdto.getmNo());
-
-			int cNo = mdto.getmNo();
-
-			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
-
-			List<CookBookDTO> list = mypageCook.selectOne(cNo).getCbd();
-
+			int tNo = mdto.getmNo();
+			List<CookBookDTO> bookingList = mypageCook.selectOne(tNo).getCbd();
 			S3ClientFactory s3client = new S3ClientFactory();
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+			
+			//S3에 저장된 url 요청 
+			for (int i = 0; i < bookingList.size(); i++) {
+				bookingList.get(i).setcMainsumnail(s3client.geturl(bookingList.get(i).getcMainsumnail()));
 			} // for end
 
-			if (list.size() != 0) {
+			if (bookingList.size() != 0) {
 				try {
-
-					str = mapper.writeValueAsString(list);
+					str = mapper.writeValueAsString(bookingList);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			} else {
 				try {
 					System.out.println("list is null");
@@ -784,39 +522,34 @@ public class UserController {
 		return str;
 	}
 
-	// 예약취소한 정보를 가지고 온다.
+	// 클래스 [예약취소정보] 요청
 	@RequestMapping(value = { "cookRefundList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookRefundList(HttpServletRequest request) {
-		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKREFUND);
+		
 		HttpSession session = request.getSession();
+		//JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("openkitchen") != null) {
-			System.out.println("openkitchen not null");
+			// FactoryPattern Service Instance
+			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKREFUND);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
-			System.out.println("mNo : " + mdto.getmNo());
-
-			int cNo = mdto.getmNo();
-
-			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
-
-			List<CookRefundDTO> list = mypageCook.selectOne(cNo).getCrd();
-
+	        int tNo = mdto.getmNo();
+			List<CookRefundDTO> refundList = mypageCook.selectOne(tNo).getCrd();
 			S3ClientFactory s3client = new S3ClientFactory();
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+			
+			for (int i = 0; i < refundList.size(); i++) {
+				refundList.get(i).setcMainsumnail(s3client.geturl(refundList.get(i).getcMainsumnail()));
 			} // for end
 
-			if (list.size() != 0) {
+			if (refundList.size() != 0) {
 				try {
-
-					str = mapper.writeValueAsString(list);
+					str = mapper.writeValueAsString(refundList);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			} else {
 				try {
 					System.out.println("list is null");
@@ -838,39 +571,35 @@ public class UserController {
 		return str;
 	}
 
-	// 예약종료한 정보를 가지고 온다.
+	// 클래스 [예약종료 정보] 요청
 	@RequestMapping(value = { "cookEndList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookEndList(HttpServletRequest request) {
-		mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
+		
 		HttpSession session = request.getSession();
+		//JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("openkitchen") != null) {
-			System.out.println("openkitchen not null");
+			// FactoryPattern Service Instance
+			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
-			System.out.println("mNo : " + mdto.getmNo());
-
-			int cNo = mdto.getmNo();
-
-			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
-
-			List<CookRefundDTO> list = mypageCook.selectOne(cNo).getCrd();
-
+			int tNo = mdto.getmNo();
+			List<CookRefundDTO> endList = mypageCook.selectOne(tNo).getCrd();
 			S3ClientFactory s3client = new S3ClientFactory();
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+			
+			//url 가져오기
+			for (int i = 0; i < endList.size(); i++) {
+				endList.get(i).setcMainsumnail(s3client.geturl(endList.get(i).getcMainsumnail()));
 			} // for end
 
-			if (list.size() != 0) {
+			if (endList.size() != 0) {
 				try {
-
-					str = mapper.writeValueAsString(list);
+					str = mapper.writeValueAsString(endList);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			} else {
 				try {
 					System.out.println("list is null");
@@ -891,42 +620,50 @@ public class UserController {
 		} // session end
 		return str;
 	}
+	
+	//예약  클래스 정보 end
+	
+	//개설된 클래스 상태 정보
+	
+	@RequestMapping(value = { "standByClass", "ongoingClass", "completeClass" })
+	public String openClassD(@RequestParam("no") String no, Model model) {
 
-///////////////////////마이 페이지 개설된 클래스 /////////////////////////////////////////////
+		model.addAttribute("no", no);
+
+		return "/mypage/class/openClassD";
+	}
+	
+	
 	// 신청 클래스 정보를 가지고 온다.
 	@RequestMapping(value = { "standByList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String standByList(HttpServletRequest request) {
-		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGESTANDBYCLASS);
+		
 
 		HttpSession session = request.getSession();
+		//JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
+		
 		if (session.getAttribute("openkitchen") != null) {
-			System.out.println("openkitchen not null");
+			// FactoryPattern Service Instance
+			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGESTANDBYCLASS);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
-			System.out.println("mNo : " + mdto.getmNo());
-
-			int mNo = mdto.getmNo();
-
-			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
-
-			List<StandByClassDTO> list = mypageOpenClass.selectOne(mNo).getSbcd();
-
+			int tNo = mdto.getmNo();
+			List<StandByClassDTO> standByList = mypageOpenClass.selectOne(tNo).getSbcd();
 			S3ClientFactory s3client = new S3ClientFactory();
-			for (int i = 0; i < list.size(); i++) {
-				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
+			
+			for (int i = 0; i < standByList.size(); i++) {
+				standByList.get(i).setcMainsumnail(s3client.geturl(standByList.get(i).getcMainsumnail()));
 			} // for end
 
-			if (list.size() != 0) {
+			if (standByList.size() != 0) {
 				try {
-
-					str = mapper.writeValueAsString(list);
+					str = mapper.writeValueAsString(standByList);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			} else {
 				try {
 					System.out.println("list is null");
@@ -952,35 +689,31 @@ public class UserController {
 	@RequestMapping(value = { "ongoingClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String OngoingList(HttpServletRequest request) {
-		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGEONGOINGCLASS);
+		
 		HttpSession session = request.getSession();
+		//JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("openkitchen") != null) {
-			System.out.println("openkitchen not null");
+			// FactoryPattern Service Instance
+			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGEONGOINGCLASS);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
-			System.out.println("mNo : " + mdto.getmNo());
-
-			int mNo = mdto.getmNo();
-
-			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
-
-			List<OngoingClassDTO> list = mypageOpenClass.selectOne(24).getOcd();
-
+			int tNo = mdto.getmNo();
+			List<OngoingClassDTO> list = mypageOpenClass.selectOne(tNo).getOcd();
 			S3ClientFactory s3client = new S3ClientFactory();
+			
+			
 			for (int i = 0; i < list.size(); i++) {
 				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
 			} // for end
 
 			if (list.size() != 0) {
 				try {
-
 					str = mapper.writeValueAsString(list);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			} else {
 				try {
 					System.out.println("list is null");
@@ -1006,36 +739,32 @@ public class UserController {
 	@RequestMapping(value = { "completeClassList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String CompleteList(HttpServletRequest request) {
-		mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGECOMPLETECLASS);
+	
 
 		HttpSession session = request.getSession();
+		//JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		if (session.getAttribute("openkitchen") != null) {
-			System.out.println("openkitchen not null");
+			// FactoryPattern Service Instance
+			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGECOMPLETECLASS);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
-			System.out.println("mNo : " + mdto.getmNo());
-
-			int mNo = mdto.getmNo();
-
-			// !!세션에 회원번호 담겨지면 그걸로 가지고 오자~ 회원번호= 선생님 번호임
-
-			List<CompleteClassDTO> list = mypageOpenClass.selectOne(24).getCcd();
-
+			int tNo = mdto.getmNo();
+			List<CompleteClassDTO> list = mypageOpenClass.selectOne(tNo).getCcd();
 			S3ClientFactory s3client = new S3ClientFactory();
+			
+			
 			for (int i = 0; i < list.size(); i++) {
 				list.get(i).setcMainsumnail(s3client.geturl(list.get(i).getcMainsumnail()));
 			} // for end
 
 			if (list.size() != 0) {
 				try {
-
 					str = mapper.writeValueAsString(list);
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
 			} else {
 				try {
 					System.out.println("list is null");
@@ -1056,6 +785,8 @@ public class UserController {
 		} // session end
 		return str;
 	}
+	
+	//개설된 클래스 상태 정보 종료
 
 	// 테스트용 /////////////////////////////////////////////////
 	@RequestMapping(value = "spaceBase", method = RequestMethod.GET)

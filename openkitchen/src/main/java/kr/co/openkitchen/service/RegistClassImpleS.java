@@ -34,11 +34,7 @@ public class RegistClassImpleS implements RegistServiceInter {
 		return dao.selectOne(tNo);
 	}
 	
-	@Override
-	public <T> void applyDTO(T dto) {
 	
-	}
-
 	
 	
 	

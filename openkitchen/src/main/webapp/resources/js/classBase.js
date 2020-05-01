@@ -446,7 +446,7 @@ $(function() {
             contentType: false,
             cache: false,
             timeout: 600000,
-            url: '/openkitchen/mypage' + '/multipartUploadC',
+            url: '/openkitchen/mypage' + '/classBaseInfo',
             data: formData,
 
             success: function(result) {
@@ -477,7 +477,7 @@ $(function() {
     	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
     	appendForm(formData);
     	// 저장에 대한 상태값주기 (여기다 이걸 쓰면 통일성이 깨짐.. 보완 필요)
-    	formData.append("cPerstatus","임시");
+    	formData.append("cPerstatus","신청");
     	
     	
     	
@@ -509,7 +509,7 @@ $(function() {
             contentType: false,
             cache: false,
             timeout: 600000,
-            url:'/openkitchen/mypage' + '/completeC',
+            url:'/openkitchen/mypage' + '/classBaseInfo',
             data: formData,
 
             success: function(result) {
