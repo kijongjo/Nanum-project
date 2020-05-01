@@ -1,9 +1,7 @@
 package kr.co.openkitchen.service;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,26 +10,23 @@ import kr.co.openkitchen.classes.RegistServiceTypeF;
 import kr.co.openkitchen.classes.S3ClientFactory;
 import kr.co.openkitchen.dao.RegisterDaoInter;
 
-//선생님 등록에 대한 service 
 
+//선생님 등록 Service
 @Service
 public class RegistTeacherImple implements RegistServiceInterF {
-	@Autowired
-	ServletContext servletContext;
+	
 
 	@Resource(name="teacherRegistDAO")
 	RegisterDaoInter dao;
 
 	@Override
 	public RegistServiceTypeF getServiceType() {
-		// TODO Auto-generated method stub
 		return RegistServiceTypeF.REGISTTEACHERIMPLE;
 	}
 	
 	// 이미지를 받아서 이름을 줌.
 	@Override
-	public String acceptImg(String fileName, int count, int tNo) {
-
+	public String createImgNameNpath(String fileName, int count, int tNo) {
 		String filePath;
 		String resourceName;
 		String resourcesPath;
@@ -65,7 +60,7 @@ public class RegistTeacherImple implements RegistServiceInterF {
 	}
 
 	@Override
-	public void makeFile(String filePath, MultipartFile mFile) {
+	public void registerFileToS3(String filePath, MultipartFile mFile) {
 		// File 경로를 넣어주고 변형시킨 파일을 경로에 넣어준다.
          System.out.println("파일 경로"+filePath);
 		 S3ClientFactory s3Client = new S3ClientFactory();
@@ -75,7 +70,7 @@ public class RegistTeacherImple implements RegistServiceInterF {
 	}// makeFile end
 
 	@Override
-	public String makeDS(String fileName, int count, int tNo) {
+	public String namingDS(String fileName, int count, int tNo) {
 		System.out.println(fileName);
 		String resourceName;
 		if (fileName.equals("DS-TYPE1")) {
@@ -93,7 +88,7 @@ public class RegistTeacherImple implements RegistServiceInterF {
 	}
 
 	@Override
-	public String makeMS(String fileName, int tNo) {
+	public String namingMS(String fileName, int tNo) {
 		// TODO Auto-generated method stub
 		return "/resources/img/teacherImg/T" + tNo + "-MS-01";
 	}
@@ -102,14 +97,10 @@ public class RegistTeacherImple implements RegistServiceInterF {
 	@Override
 	public <T> void insertDTO(T dto) {
 		
-		System.out.println(dto.toString());
 		dao.insertDTO(dto);
 	}
 
-	 @Override
-	public <T> void applyDTO(T dto) {
-		dao.insertDTO(dto);
-	}
+
     
 	 @Override
 	public <T> GenericOne<T> selectOne(T genericOne) {

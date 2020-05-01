@@ -472,7 +472,7 @@
                             contentType: false,
                             cache: false,
                             timeout: 600000,
-                            url: '/openkitchen/mypage' + '/multipartUploadS',
+                            url: '/openkitchen/mypage' + '/teacherSpaceInfo',
                             data: formData,
 
                             success: function(result) {
@@ -535,7 +535,7 @@
                             contentType: false,
                             cache: false,
                             timeout: 600000,
-                            url:'/openkitchen/mypage' + '/completeS',
+                            url:'/openkitchen/mypage' + '/teacherSpaceInfo',
                             data: formData,
 
                             success: function(result) {

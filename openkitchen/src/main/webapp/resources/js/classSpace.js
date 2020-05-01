@@ -130,7 +130,7 @@ $(function() {
 			$.ajax({
 				type : 'POST',
 				contentType : "application/json; charset=utf-8",
-				url : '/openkitchen/mypage' + '/completeR',
+				url : '/openkitchen/mypage' + '/classSpaceRegist',
 				data : jso,
 				success : function(result) {
 					var obj = JSON.parse(result);

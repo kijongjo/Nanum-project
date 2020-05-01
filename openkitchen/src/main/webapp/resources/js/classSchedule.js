@@ -22,7 +22,7 @@ $(function() {
 				type : 'POST',
 				success : function(data) {
 					var obj = JSON.parse(data);
-					if (obj == "noregist") {
+					if (obj == "noValue") {
 						alert("클래스 등록,공간 등록 먼저 해주시기 바랍니다.")
 					} else {
 
@@ -138,7 +138,7 @@ $(function() {
 				
 				success : function(result) {
 					var obj = JSON.parse(result);
-					if (obj == "noregist") {
+					if (obj == "noValue") {
 						alert("등록할 수 없습니다.");
 					} else {
 						$(location).attr('href', "in");

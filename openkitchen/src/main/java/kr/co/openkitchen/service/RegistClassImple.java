@@ -20,14 +20,14 @@ public class RegistClassImple implements RegistServiceInterF {
 	@Resource(name = "classRegistDAO")
 	RegisterDaoInter dao;
 
-	 @Override
+	@Override
 	public RegistServiceTypeF getServiceType() {
 		// TODO Auto-generated method stub
 		return RegistServiceTypeF.REGISTCLASSIMPLE;
 	}
-	
+
 	@Override
-	public String acceptImg(String fileName, int count, int cNo) {
+	public String createImgNameNpath(String fileName, int count, int cNo) {
 		String filePath;
 		String resourceName;
 		String resourcesPath;
@@ -55,13 +55,11 @@ public class RegistClassImple implements RegistServiceInterF {
 
 	@Override
 	public <T> void insertDTO(T dto) {
-		System.out.println("TeacherRegistDaoS :    " + dto.toString());
 		dao.insertDTO(dto);
-
 	}
 
 	@Override
-	public String makeDS(String fileName, int count, int cNo) {
+	public String namingDS(String fileName, int count, int cNo) {
 		System.out.println(fileName);
 		String resourceName;
 		if (fileName.equals("C-DS-TYPE1")) {
@@ -79,29 +77,20 @@ public class RegistClassImple implements RegistServiceInterF {
 	}
 
 	@Override
-	public void makeFile(String filePath, MultipartFile mFile) {
-		// File 경로를 넣어주고 변형시킨 파일을 경로에 넣어준다.
-        System.out.println("파일 경로"+filePath);
-		 S3ClientFactory s3Client = new S3ClientFactory();
-		 s3Client.uploadFile(filePath, mFile);
-		 System.out.println("s3 요청 완료");
-
+	public void registerFileToS3(String filePath, MultipartFile mFile) {
+		S3ClientFactory s3Client = new S3ClientFactory();
+		s3Client.uploadFile(filePath, mFile);
 	}
 
 	@Override
-	public String makeMS(String fileName, int cNo) {
+	public String namingMS(String fileName, int cNo) {
 		// TODO Auto-generated method stub
 		return "/resources/img/classimg/c" + cNo + "-MS-01";
 	}
 
 	@Override
-	public <T> void applyDTO(T dto) {
-		dao.insertDTO(dto);
-	}
+	public <T> GenericOne<T> selectOne(T genericOne) {
 
-	@Override
-	public <T> GenericOne<T> selectOne(T genericOne) {	
-		 
 		return dao.selectOne(genericOne);
 	}
 
