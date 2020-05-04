@@ -1,5 +1,19 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/54735867/80936697-38fc4f80-8e0d-11ea-8294-7d0dda749065.png" width="300" height="300"></p>
+<strong>목차</strong>
 
+1. [OpenKitchen](#openkitchen) <br/>
+2. [Summary-프로젝트 요약](#summary)<br/>
+3. [Default-기본규칙](#default)<br/>
+4. [기술-적용기술설명](#기술)<br/>
+*각자 구현한 기술에 대한 설명<br/>
+   [이정용](#이정용)<br/>
+   [조기종](#조기종)<br/>
+    
+
+
+
+
+
+<p align="center"><img src="https://user-images.githubusercontent.com/54735867/80936697-38fc4f80-8e0d-11ea-8294-7d0dda749065.png" width="300" height="300"></p>
 
 # OpenKitchen
 <ul>
@@ -28,8 +42,11 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 </ul>
 
 
-# 기능 & 기술
+# 기술
 
+##  이정용
+
+##  조기종
 
 
 
