@@ -15,7 +15,15 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 <img src="https://user-images.githubusercontent.com/54735867/80943236-b0d47500-8e21-11ea-89dc-4492e5e760a8.png" width="100%" height="400">
 <img src="https://user-images.githubusercontent.com/54735867/80943238-b16d0b80-8e21-11ea-9490-aa0e75c2dd57.png" width="98%" height="480">
 
-
+# Default
+<ul>
+  <li>기본 폰트:'Roboto','Noto Sans', 'Noto Sans KR', sans-serif,기본색:#8E0032</li>
+  <li>모든 페이지의 레이아웃은 lay01,lay02,lay03을 따라 통일성 및 유지 보수 코드 재사용성을 높인다.</li>
+  <li>모듈의 재사용성을 높이고 개발 시간을 줄이기 위해 Repository의 'Module' 폴더에 저장해 사용한다.</li>
+  <li>버튼을 오른쪽 하단에 배치시켜 사용자의 편의를 증진시킨다.</li>
+  <li>맡은 페이지&기능마다 Issue를 생성하며 해당 Issue의 History에 개발 기록을 남긴다.</li>
+  <li>페이지명은 미리 약속한 이름 규칙을 따라 헷갈리지 않도록 한다.</li>
+</ul>
 
 
 
