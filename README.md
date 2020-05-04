@@ -8,6 +8,8 @@
 </ul>
 
 # Summary
+해당 프로젝트는 주방 공유 플랫폼인 <a href="https://www.public-kitchen.com/">공공의주방</a> 사이트를 모티브로 제작하였습니다.
+Spring 기반의 백엔드단 기술 중심 사이트이며    
 
 
 
