@@ -12,6 +12,10 @@
 플랫폼 내선생님,회원,호스트간의 상호작용을 통해  대여한 주방공간에서 클래스를 열고 요리를 배우며 가치를 창출하는 Vertical Platform입니다.
 OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며 기본 기술 뿐만 아니라 AWS CLOUD COMPUTING을 추가해 최신 기술을 적용하고자 노력했습니다. 
 
+<img src="https://user-images.githubusercontent.com/54735867/80943236-b0d47500-8e21-11ea-89dc-4492e5e760a8.png" width="100%" height="400">
+<img src="https://user-images.githubusercontent.com/54735867/80943238-b16d0b80-8e21-11ea-9490-aa0e75c2dd57.png" width="98%" height="400">
+
+
 
 
 
