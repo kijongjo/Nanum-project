@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -112,6 +109,7 @@
        }
        /* 신청자 정보 섹션 */
        #lay03 > #left01 > #apply02  {
+           height: 489px;
            padding: 50px 0px;
            border-bottom: 2px lightgray solid;
        }
@@ -374,7 +372,7 @@
         #apply02Gender{
             width: 100%;
             height: 66px;
-            margin: 30px 0px 0px;
+            margin: 20px 0px 0px;
             font-size: 20px;
            font-weight: bold;
            color: #838383;
@@ -446,141 +444,32 @@
     
         
     </style>
-	<script>
-	$(document).ready(function () {		
-		var payType = new Array("","");
-		var cnt = 0;
-		var payWay = $(".payWay");
-		payWay.on("click", function () {
-			cnt++;
-			console.log(cnt);
-			
-			if(cnt == 1) {
-				payType[0] = $(this).children("input").val();
-				$(this).children("input").css("backgroundColor", "#8E0032");
-				$(this).children("input").css("color", "white");
-				
-			} else if (cnt == 2) {
-				   payType[1] = $(this).children("input").val();
-				   if(payType[0]==payType[1]) {
-				   	   cnt = 1;   
-				   	  
-				   } else if(payType[0] != payType[1]) {
-					   payType[0] = $(this).children("input").val();
-				
-					   payWay.children("input").css("backgroundColor", "#f0f0f0");
-					   payWay.children("input").css("color", "#2e2e2e")
-					   $(this).children("input").css("backgroundColor", "#8E0032");
-					   $(this).children("input").css("color", "white");
-					   cnt = 1;
-				   }
-			}			
-		});
-		
-		var orderAgree = $("#orderAgree");
-		var payButton = $("#payButton");
-		orderAgree.on("click", function () {	
-			if(orderAgree.is(":checked") && payType[0] != "") {
-				payButton.css("backgroundColor", "#8E0032");
-				payButton.css({'cursor':'Pointer'});
-			} else {
-				payButton.css("backgroundColor", "#f0f0f0");
-				payButton.css({'cursor':'Default'});
-			}
-		});
-		
-		var pointText = $("#point");
-		var mileaseText = $("#mileage");
-		
-		var cPrice = parseInt("<c:out value='${paymentC.cPrice}'/>");
-		var cPoint = parseInt("<c:out value='${paymentM.ptStorage}'/>");
-		var cMileage = parseInt("<c:out value='${paymentM.mgStorage}'/>"); 
-		
-		var point = 0;
-		var mileage = 0;
-		var totalPay = cPrice;
-		
-		
-		/* 
-			키가 눌릴때마다 총 금액의 숫자가 바껴야됨.
-			총 금액은 전역변수여야됨. 
-		*/
-		pointText.keyup(function () {
-	
-		    point = parseInt(pointText.val())
-			if(cPoint >= point) {
-				$("#ptStorage").text(cPoint-point);
-				$("b").text();
-			} else {
-				console.log("최대 사용 가능 포인트를 초과했습니다. 결제금액의 10% 이하 사용 가능합니다.")
-				$("#ptStorage").text(cPoint);
-				$("b").text(cPrice);
-				pointText.val("");
-				totalPay = cPrice;
-				
-			}
-		});
-		
-		mileaseText.keyup(function () {
-			mileage = parseInt(mileaseText.val());
-			if(cMileage >= mileage) {		 
-				$("#mgStorage").text(cMileage-mileage);
-				$("b").text();
-				
-			} else {
-				console.log("최대 사용 가능 마일리지를 초과했습니다. 결제금액의 10% 이하 사용 가능합니다.");
-				$("#mgStorage").text(cMileage);
-				$("b").text(cPrice);
-				mileaseText.val("");
-				totalPay = cPrice;
-			}
-		});
-		
-	
-	});
-	</script>
-<jsp:include page="../../headerScript.jsp" flush="false" />
+	<jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 <body>
-
-<jsp:include page="../../header.jsp" flush="false" />
+	<jsp:include page="../../header.jsp" flush="false" />
     <div id="lay03">
         <section id="left01">
             <section id="apply01">
                 <h2>신청내역</h2>
                 <div id="applyDiv01">
-                <c:forEach var="item" varStatus="i" items="${fn:split(paymentC.cDetailsumnail, ',')}">
-                    <c:if test="${i.count==1}"><img src="<c:url value='${item}' />" alt=""></c:if>
-                </c:forEach >
+                    <img src="<c:url value='resources/img/icon/smileIcon.png' />" alt="">
                 </div> 
                     <ul id="applyUl">
-                        <li id="li-title">${paymentC.cName}</li>
-                        <li id="li-price"><em>₩</em>${paymentC.cPrice}</li>
+                        <li id="li-title">봄나물 밥과 달래장 & 떡갈비</li>
+                        <li id="li-price"><em>₩</em>50000</li>
                         <table>
                             <tr>
                                 <th>대여일</th>
-                                <td> 
-                                	<fmt:formatDate value="${paymentC.lLeasedate}" pattern="yy.MM.dd (E)"/> 
-                                	<c:choose>
-                                		<c:when test="${paymentC.lLeasetime eq '오전'}">
-                                			/ 10:00 - 14:00
-                                		</c:when>
-                                		<c:when test="${paymentC.lLeasetime eq '오후'}">
-                                			/ 14:00 - 18:00
-                                		</c:when>
-                                		<c:otherwise>
-                                			/ 18:00 - 22:00
-                                		</c:otherwise>
-                                	</c:choose>
-                                </td>
+                                <td>20.05.19 (화) / 10:30 - 12:30</td>
                             </tr>
                             <tr>
                                 <th>호스트</th>
-                                <td>${paymentC.tHavenickname} ${paymentC.tExpertname}</td>
+                                <td>노마의주방</td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td>${paymentC.sLoc}</td>
+                                <td>경기도 용인시 수지구 문인로31번길</td>
                             </tr>
                         </table>
 
@@ -591,32 +480,26 @@
                 <h3>신청자 정보</h3>
             <div>
                 <span id="apply02Name">이름</span>
-                <input type="text" name="" id="a" class="apply02Input" value="${paymentM.mName}" readonly="readonly">
+                <input type="text" name="" id="a" class="apply02Input">
             </div>
-            <c:if test="${paymentM.mGender eq null}">
-	            <div id="apply02Gender">
-	                <span>성별</span>
-	                <!-- 라디오 버튼 성늘을 위한 name 입력(테스트) 수정 해도 됨 -->
-	                <input type="radio" name="appGen" id="" style="width: 18px; height: 18px;">남자
-	                <input type="radio" name="appGen" id="" style="width: 18px; height: 18px;">여자
-	                
-	            </div>
-            </c:if>
-            <c:if test="${paymentM.mBirth eq null}">
-	            <div id="apply02Birth">
-	                <p id="apply02BirthP">생년월일</p>
-	                <input type="text" name="" id="b" class="apply02Input" placeholder="8자리로 입력해 주세요(예시 : 19880101)">
-	            </div>
-            </c:if>
-            <c:if test="${paymentM.mPhone eq null}">
-	            <div id="apply02Phone">
-	                <p>핸드폰 번호 인증</p>
-	                <div>
-	                    <input type="text" name="" id="" placeholder="‘ - ’ 빼고 입력해주세요">
-	                    <a href=""><input type="button" value="인증번호 발송"></a>
-	                </div>
-	            </div>
-            </c:if>
+            <div id="apply02Gender">
+                <span>성별</span>
+                <!-- 라디오 버튼 성늘을 위한 name 입력(테스트) 수정 해도 됨 -->
+                <input type="radio" name="appGen" id="" style="width: 18px; height: 18px;">남자
+                <input type="radio" name="appGen" id="" style="width: 18px; height: 18px;">여자
+                
+            </div>
+            <div id="apply02Birth">
+                <p id="apply02BirthP">생년월일</p>
+                <input type="text" name="" id="b" class="apply02Input" placeholder="8자리로 입력해 주세요(예시 : 19880101)">
+            </div>
+            <div id="apply02Phone">
+                <p>핸드폰 번호 인증</p>
+                <div>
+                    <input type="text" name="" id="" placeholder="‘ - ’ 빼고 입력해주세요">
+                    <a href=""><input type="button" value="인증번호 발송"></a>
+                </div>
+            </div>
              </section>
              <section id="apply03">
                 <h3>쿠폰/포인트/마일리지</h3>
@@ -624,14 +507,6 @@
                     <p class="cou-title">쿠폰</p>
                     <select name="" id="">
                         <option value="">쿠폰을 선택해 주세요.</option>
-                        <c:choose>
-                        	<c:when test="${paymentM.cType eq 1}">
-                        		<option value="">10% 할인 쿠폰</option>                      	
-                        	</c:when>
-                        	<c:otherwise>
-                        		<option value="">5% 할인 쿠폰</option>                      	                        	
-                        	</c:otherwise>
-                        </c:choose>
                     </select>
                 </div>
                 <div class="cou-wrap">
@@ -639,15 +514,13 @@
                     포인트 사용
                     <small>
                         잔여 포인트
-                        <em id="ptStorage">${paymentM.ptStorage}</em>
+                        <em>0</em>
                         P
                     </small>
                 </p>
                 <div>
-	                <input type="text" name="" id="point" placeholder="0P">
-	                <a href="">
-	                	<input type="button" value="전체사용">
-                	</a>
+                <input type="text" name="" id="d" placeholder="0원">
+                <a href=""><input type="button" value="전체사용"></a>
                 </div>
              </div>
             <div class="cou-wrap">
@@ -655,12 +528,12 @@
                     마일리지 사용
                     <small>
                         잔여 마일리지
-                        <em id="mgStorage">${paymentM.mgStorage}</em>
+                        <em>0</em>
                         원
                     </small>
                 </p>
                 <div>
-                <input type="text" name="" id="mileage" placeholder="0원">
+                <input type="text" name="" id="e" placeholder="0원">
                 <a href=""><input type="button" value="전체사용"></a>
                 </div>
             </div>
@@ -693,7 +566,7 @@
                 <ul>
                     <li>
                         <strong>클래스 금액</strong>
-                        <span id="rightUpSpan">${paymentC.cPrice}원</span>
+                        <span id="rightUpSpan">50,000원</span>
                     </li>
                 </ul>
             </div>
@@ -701,7 +574,7 @@
             <p id="rightPaymentP">
                 <strong>총 결제 금액</strong>
                 <span id="rightDownSpan">
-                    <b>${paymentC.cPrice}</b>원
+                    <b>50,000</b>원
                 </span>
             </p>
             </div>

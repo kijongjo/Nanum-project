@@ -16,6 +16,7 @@
 		WHERE S.S_NO = L.S_NO AND S.S_NO = #{sNo}
 		<if test="leaseDate != null">
 		AND L_LEASEDATE = #{leaseDate}
+		ORDER BY DECODE(L_LEASETIME,'오전','1','오후','2') 
 		</if>
   	</select>
   </mapper>

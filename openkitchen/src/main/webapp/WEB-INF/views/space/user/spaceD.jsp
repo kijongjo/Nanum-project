@@ -150,7 +150,7 @@
 		<c:forEach var="itemList" items="${detailSScheDate}" varStatus="listIdx"  >
 			list.push("${itemList}");
 		</c:forEach>
-		console.log(list);
+		
 		var $picker = $(".datepicker-here");		
 
 				
@@ -413,27 +413,44 @@
 			
 		});
 		
-		var test = "";
+		
+		var isAuthenticated = "<c:out value='${isAuthenticated}' />";
+		console.log("현재 접속자 권한 확인 : "+isAuthenticated);
+		
+		var leaseNo = "";
 		$(".btn-payment").on("click", function () {
-			test = "";
-			if(detailParams == 0) {
-				
-				alert("일정을 선택해주세요.");
-				
-			} else {
-				
-			
-				for (var i = 0; i < detailParams.length; i++) {
-					if(i==0) {
-						test += "no="+detailParams[i];
-					} else if(i==1) {
-						test += "&no="+detailParams[i];
-					} else {
-						test += "&no="+detailParams[i];
+			leaseNo = "";
+			if(isAuthenticated == "teacher") {	
+				if(detailParams == 0) {
+					// 로그인 안 했을 때는 일정 선택 경고창이 뜨는게 아니라 
+					// 로그인 페이지로 이동 시켜야 된다.
+					// 선생님 일때만 동작해야 된다. 무조건!
+					// 선생님이 아닐 경우에는 경고창을 띄운다.
+					// 선생님 등록하라고!
+					
+						alert("일정을 선택해주세요.");
+					
+				} else {
+					for (var i = 0; i < detailParams.length; i++) {
+						if(i==0) {
+							leaseNo += "no="+detailParams[i];
+						} else if(i==1) {
+							leaseNo += "&no="+detailParams[i];
+						} else {
+							leaseNo += "&no="+detailParams[i];
+						}
 					}
+					$(location).attr("href", "spacePayment?"+leaseNo);
 				}
-				$(location).attr("href", "spacePayment?"+test);
-			}
+			} else if(isAuthenticated == "user") {
+				
+				var teacherSignUp = confirm("공공의 주방 선생님만 공간대여를 신청 할 수 있습니다.선생님으로 등록하시겠습니까?");
+				if(teacherSignUp) {
+					$(location).attr("href", "mypage/in");
+				} 
+			} else {	
+				$(location).attr("href", "login");
+			}	
 		});
 		
 		
@@ -725,13 +742,9 @@
 				<!-- <p>
 					<a href="javascript:selectBody()">일정 접기 </a>
 				</p> -->
-				<form action="" method="get">
 					<div class="choiceSch">
-						<div class="schTitle">선택된 일정</div>
-					
-						
+						<div class="schTitle">선택된 일정</div>	
 					</div>
-				</form>
 				<!-- 신청하기 버튼이 있는 기능에 bottom이라고 지정했다. -->
 				<div class="selectBottom">
 					<!-- 해당 클래스,공간에 대한 가격이 보이게 된다. -->

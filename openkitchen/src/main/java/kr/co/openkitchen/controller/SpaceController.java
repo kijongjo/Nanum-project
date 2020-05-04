@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,8 +25,11 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.dto.AuthorityCheckDTO;
 import kr.co.openkitchen.dto.DetailSScheDTO;
+import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
+import kr.co.openkitchen.service.MemberServiceInter;
 import kr.co.openkitchen.service.SserviceInter;
 import lombok.Setter;
 
@@ -35,11 +39,13 @@ public class SpaceController {
 	@Setter(onMethod = @__({ @Autowired }))
 	SserviceInter ssi;
 	
-	
+	// 권한 검사를 위한 목적
+	@Setter(onMethod = @__({ @Autowired }))
+	MemberServiceInter msi;
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
-	public String classD(@RequestParam("no")int sNo, Model model) {
+	public String classD(@RequestParam("no")int sNo, Model model, HttpServletRequest request) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -55,11 +61,34 @@ public class SpaceController {
 	    
 	    System.out.println(list2);
 		
+	    // 공간에 대한 기본 정보
 		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
-		model.addAttribute("detailSScheDate", list2);
+		// 공간의 호스트가 등록한 정보를 출력함.
 		
+		
+		// 로그인 했을 때만 일정을 보여줌
+		// 그냥 로그인 했을때만 보여줘야 되나..??
+		// 아님. 일반회원을 볼 수 없어야 함.
+		HttpSession session = request.getSession(); 
+		// 로그인 한후에 다시 페이지로 돌아오기 위해 session에 데이터를 저장
+		// 쿠키를 사용 할 수 있지 않을까?
+		session.setAttribute("spaceNo", sNo);
+		
+		if(session.getAttribute("openkitchen") != null) {
+			MemberDTO mdto = (MemberDTO)session.getAttribute("openkitchen");
+			map.put("mNo", mdto.getmNo());
+			AuthorityCheckDTO acdto = msi.readAuthorityCheck(map);
+			// 선생님 일 경우에만 동작한다. 선생님과 구분할 데이터를 페이지로 전송해야 한다.
+			if (acdto.gettNo() != 0) {
+				model.addAttribute("detailSScheDate", list2);
+				model.addAttribute("isAuthenticated", "teacher");				
+			} else {
+				model.addAttribute("isAuthenticated", "user");				
+			}
+		} 
 		
 		return "space/user/spaceD";
+		
 	}
 	
 	@GetMapping("spaceIn")
@@ -97,31 +126,6 @@ public class SpaceController {
 		return str;
 	}
 	
-	@GetMapping("spacePayment")
-	public String spacePayment(@RequestParam("no")int recNo, Model model, 
-			HttpServletRequest request) {
-		
-		
-//		HttpSession session = request.getSession();		
-//		if(session.getAttribute("openkitchen") == null) {
-//			
-//			session.setAttribute("classNo", recNo);
-//			// 스프링에서 리다이렉트 시키는 방법
-//			return "redirect:login";
-//			
-//		}
-		
-//		Object obj = session.getAttribute("openkitchen");
-//		MemberDTO mdto = (MemberDTO)obj;
-//		
-//		
-//		model.addAttribute("paymentC", csi.readPaymentC(recNo));
-//		model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
-		
-		return "space/user/spacePayment";
-	}
-	
-	
 	// ajax 한글 물음표로 가는 증상? produces에 charset utf8 처리 https://marobiana.tistory.com/112 참조
 	@RequestMapping(value = "ajaxSDetailData", method = RequestMethod.POST)
 	@ResponseBody
@@ -140,5 +144,26 @@ public class SpaceController {
 		return test;
 		
 	}
+	
+	@GetMapping("spacePayment")
+	public String spacePayment(String[] no, Model model, 
+			HttpServletRequest request) {
+	
+		
+//		HttpSession session = request.getSession();		
+//		if(session.getAttribute("openkitchen") == null) {
+//				
+//			return "redirect:login";
+//			
+//		}
+		
+//		Object obj = session.getAttribute("openkitchen");
+//		MemberDTO mdto = (MemberDTO)obj;
+		
+		return "space/user/spacePayment";
+	}
+	
+	
+	
 	
 }

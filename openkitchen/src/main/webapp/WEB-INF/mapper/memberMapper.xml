@@ -30,6 +30,12 @@
 		WHERE MEM.M_NO = MG.M_NO(+) AND MEM.M_NO = CP.M_NO(+) AND MEM.M_NO = PT.M_NO(+) AND
       	MEM.M_NO = #{mNo}	
 	</select>
-
 	
+	<select id="selectAuthorityCheck" resultType="acdto" parameterType="map">
+		SELECT MEM.M_NO, T.T_NO, H.H_NO
+		FROM MEMBER MEM, TEACHER T, CLASS C, HOST H, SPACE S
+		WHERE MEM.M_NO = T.T_NO(+) AND MEM.M_NO = H.H_NO(+) AND H.H_NO = S.H_NO(+) AND
+      	T.T_NO = C.T_NO(+) AND MEM.M_NO = #{mNo}
+      	GROUP BY MEM.M_NO, T.T_NO, H.H_NO
+	</select>
 </mapper>

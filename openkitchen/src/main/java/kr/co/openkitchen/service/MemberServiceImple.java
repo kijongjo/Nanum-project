@@ -1,9 +1,12 @@
 package kr.co.openkitchen.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.dao.MemberDaoInter;
+import kr.co.openkitchen.dto.AuthorityCheckDTO;
 import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.dto.PaymentMemDTO;
 import lombok.Setter;
@@ -32,6 +35,15 @@ public class MemberServiceImple implements MemberServiceInter{
 		
 		return dao.selectPaymentM(mNo);
 	}
+
+
+	@Override
+	public AuthorityCheckDTO readAuthorityCheck(Map<String, Object> map) {
+		
+		return dao.selectAuthorityCheck(map);
+	}
+	
+	
 	
 	
 	
