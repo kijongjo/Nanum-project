@@ -99,7 +99,7 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
     </tr>  
 </table>
 
-각자 맡은 페이지에서 사용한 기술 설명 하기 
+
 
 <h5  align="right"> <a href="#목차">목차보기▲</a></h5>
 
