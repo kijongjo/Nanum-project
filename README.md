@@ -79,21 +79,17 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
         <li>Generic Method & Class사용으로 코드 재사용성 향상</li>
         <li>Factory Design Pattern을 통한 코드 유연성 향상</li>
         <li>Controller와 비즈니스 로직의 분리를 통한 Service 재사용성 향상 </li>
-        <li>동일한 코드 형식으로 가독성 & 유지보수 향상 </li>
-        
+        <li>동일한 코드 형식으로 가독성 & 유지보수 향상 </li> 
     </ul>
     
 </td>
         <td>
-            
             <ul>
        <li>View 사용으로 회원 정보 보호</li>
        <li>Nested Loop Join을 통한 Join 성능 향상</li>
        <li>Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상</li>
-        </ul>
-        
-        </td>
-        
+        </ul>       
+        </td>      
         <td>
         <ul>
          <li>1</li>
@@ -101,8 +97,7 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
          <li>3</li>      
         </ul>
         </td>
-    </tr>
-      
+    </tr>  
 </table>
 
 각자 맡은 페이지에서 사용한 기술 설명 하기 
