@@ -41,7 +41,7 @@ public class SpaceController {
 	
 	// 권한 검사를 위한 목적
 	@Setter(onMethod = @__({ @Autowired }))
-	MemberServiceInter msi;
+	MemberServiceInter memsi;
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
@@ -77,7 +77,7 @@ public class SpaceController {
 		if(session.getAttribute("openkitchen") != null) {
 			MemberDTO mdto = (MemberDTO)session.getAttribute("openkitchen");
 			map.put("mNo", mdto.getmNo());
-			AuthorityCheckDTO acdto = msi.readAuthorityCheck(map);
+			AuthorityCheckDTO acdto = memsi.readAuthorityCheck(map);
 			// 선생님 일 경우에만 동작한다. 선생님과 구분할 데이터를 페이지로 전송해야 한다.
 			if (acdto.gettNo() != 0) {
 				model.addAttribute("detailSScheDate", list2);
@@ -149,17 +149,22 @@ public class SpaceController {
 	public String spacePayment(String[] no, Model model, 
 			HttpServletRequest request) {
 	
+		Map<String, Object> map = new HashMap<String, Object>();
 		
-//		HttpSession session = request.getSession();		
-//		if(session.getAttribute("openkitchen") == null) {
-//				
-//			return "redirect:login";
-//			
-//		}
+		// array나 list를 보낼 경우에는 map으로 감싸되 key의 이름을
+		// 정확히 array와 list로 명시해야 된다.
+		map.put("array", no);
+		model.addAttribute("paymentS", ssi.readPaymentS(map));
 		
-//		Object obj = session.getAttribute("openkitchen");
-//		MemberDTO mdto = (MemberDTO)obj;
+		HttpSession session = request.getSession();
+		if(session != null) {
+			MemberDTO mdto = (MemberDTO)session.getAttribute("openkitchen");
+			model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
+		}
 		
+		
+		
+		System.out.println(ssi.readPaymentS(map));
 		return "space/user/spacePayment";
 	}
 	
