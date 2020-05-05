@@ -59,7 +59,7 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
 
 ##  조기종
-<table style="width:600px ;" name="JoList" >
+<table style="width:600px ;" name="JoList">
     <tr>
         <th>Front-end</th>
         <th>Back-end</th>
@@ -69,37 +69,37 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
     <tr>
         <td>
             <ul>
-                <li>이미지 최적화 & 이미지 용량 Resizing</li>
-                <li>documentFragement를 이용한 Append 성능 향상</li>
-                <li>보안을 위한 업로드 유형 제한</li>
-                <li>모듈 관리로 코드 재사용성 및 개발 속도 향상</li>
+                <li><a href="#F1">이미지 최적화 & 이미지 용량 Resizing</a></li>
+                <li><a href="#F2">documentFragement를 이용한 Append 성능 향상</a></li>
+                <li><a href="#F3">보안을 위한 업로드 유형 제한</a></li>
+                <li><a href="#F4">모듈 관리로 코드 재사용성 및 개발 속도 향상</a></li>
             </ul>
         </td>
         <td>
             <ul>
-        <li>JACKSON Library사용으로 POJO Serialization</li>
-        <li>Generic Method & Class사용으로 코드 재사용성 향상</li>
-        <li>Factory Design Pattern을 통한 코드 유연성 향상</li>
-        <li>Controller와 비즈니스 로직의 분리를 통한 Service 재사용성 향상 </li>
-        <li>동일한 코드 형식으로 가독성 & 유지보수 향상 </li> 
-    </ul>
-    
-</td>
+                <li><a href="#B1">JACKSON Library사용으로 POJO Serialization</a></li>
+                <li><a href="#B2">Generic Method & Class사용으로 코드 재사용성 향상</a></li>
+                <li><a href="#B3">Factory Design Pattern을 통한 코드 유연성 향상</a></li>
+                <li><a href="#B4">Controller와 비즈니스 로직의 분리를 통한 Service 재사용성 향상</a> </li>
+                <li><a href="#B5">동일한 코드 형식으로 가독성 & 유지보수 향상</a> </li>
+            </ul>
+        </td>
         <td>
             <ul>
-       <li>View 사용으로 회원 정보 보호</li>
-       <li>Nested Loop Join을 통한 Join 성능 향상</li>
-       <li>Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상</li>
-        </ul>       
-        </td>      
-        <td>
-        <ul>
-         <li>GitHub Project Board를 이용한 이슈 관리</li>
-         <li>AWS S3를 이용한 리소스 관리 및 비용 감소 </li>      
-        </ul>
+                <li><a href="#D1">View 사용으로 회원 정보 보호</a></li>
+                <li><a href="#D2">Nested Loop Join을 통한 Join 성능 향상</a></li>
+                <li><a href="#D3">Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상</a></li>
+            </ul>
         </td>
-    </tr>  
+        <td>
+            <ul>
+                <li><a href="#E1">GitHub Project Board를 이용한 이슈 관리</a></li>
+                <li><a href="#E2">AWS S3를 이용한 리소스 관리 및 비용 감소</a></li>
+            </ul>
+        </td>
+    </tr>
 </table>
+
 <h5  align="right"> <a href="#목차">목차보기▲</a></h5>
 
 #### F1.이미지 최적화 & 이미지 용량 Resizing <div name="F1"></div>
@@ -293,7 +293,7 @@ $("특정 div").append($frag);
 #### D2.Nested Loop Join과 힌트절을 통한 Join 성능 향상 <div name="D2"></div>
 *  Join시 힌트절을 사용해 순차적 루프 방식을 유도해 좀 더 빨리 결과물을 낼 수 있도록 조정했습니다.
 
-<img src="https://user-images.githubusercontent.com/54735867/81089084-de5f1280-8f36-11ea-8395-46caf1072706.png" width="300" height="300">
+<img src="https://user-images.githubusercontent.com/54735867/81089084-de5f1280-8f36-11ea-8395-46caf1072706.png" width="500" height="300">
 
 
 
@@ -301,7 +301,7 @@ $("특정 div").append($frag);
 
 #### D3.Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상 <div name="D3"></div>
 * 로직으로 처리한 후 여러번의 Query요청을 줄이기 위해 Merge Into 구문을 사용해 한번의 Query요청만으로 완료할 수 있도록 만들었습니다.
-<img src="https://user-images.githubusercontent.com/54735867/81085798-a48c0d00-8f32-11ea-92c7-2bf4a265e79f.png" width="300" height="300">
+<img src="https://user-images.githubusercontent.com/54735867/81085798-a48c0d00-8f32-11ea-92c7-2bf4a265e79f.png" width="340" height="300">
 
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
