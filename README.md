@@ -10,7 +10,7 @@
     
 <a href="http://codeomni.tistory.com/" target="_parent">새 창, 탭 열기</a>
 
-
+<http://codeomni.tistory.com/>{: target="_blank"}
 
 
 
