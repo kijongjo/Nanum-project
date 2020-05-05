@@ -103,6 +103,9 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 #### F1.이미지 최적화 & 이미지 용량 Resizing <div name="F1"></div>
 * 서비스 운영의 리소스 관리를 위해 이미지 용량을 리사이징하였고 서버 부하를 줄이기 위해 프론트 단에서 리사이징을 진행하였습니다.
 
+[리사이징 코드보기](https://github.com/kijongjo/Nanum-project/blob/feature/develop/%EB%AA%A8%EB%93%88/fileresizing.js){: target="_blank"}
+
+
 
                
 #### F2.Frag를 이용한 Append 메모리 부담 감소 <div name="F2"></div>
