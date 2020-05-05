@@ -57,7 +57,7 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
 
 ##  조기종
-<table style="width:600px ; " ">
+<table style="width:600px ;" name="JoList" >
     <tr>
         <th>Front-end</th>
         <th>Back-end</th>
@@ -98,8 +98,57 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
         </td>
     </tr>  
 </table>
-
-
-
 <h5  align="right"> <a href="#목차">목차보기▲</a></h5>
+
+#### F1.이미지 최적화 & 이미지 용량 Resizing <div name="F1"></div>
+
+               
+#### F2.Frag를 이용한 Append 메모리 부담 감소 <div name="F2"></div>
+
+
+#### F3.보안을 위한 업로드 유형 제한 <div name="F3"></div>
+
+
+#### F4.모듈 관리로 코드 재사용성 및 개발 속도 향상 <div name="F4"></div>
+
+
+#### B1.JACKSON Library사용으로 POJO Serialization <div name="B1"></div>
+
+
+
+#### B2.Generic Method & Class사용으로 코드 재사용성 향상 <div name="B2"></div>
+
+
+
+#### B3.Factory Design Pattern을 통한 코드 유연성 향상 <div name="B3"></div>
+
+
+
+#### B4.Controller와 비즈니스 로직의 분리를 통한 Service 재사용성 향상 <div name="B4"></div>
+
+
+
+#### B5.동일한 코드 형식으로 가독성 & 유지보수 향상 <div name="B5"></div>
+
+
+#### D1.View 사용으로 회원 정보 보호 <div name="D1"></div>
+
+               
+#### D2.Nested Loop Join을 통한 Join 성능 향상 <div name="D2"></div>
+
+
+#### D3.Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상 <div name="D3"></div>
+
+
+#### E1.GitHub Project Board를 이용한 이슈 관리 <div name="E1"></div>
+
+               
+#### E2.AWS S3를 이용한 리소스 관리 및 비용 감소 <div name="E2"></div>
+
+
+
+   
+  
+
+
 
