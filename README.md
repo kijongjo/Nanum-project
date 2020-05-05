@@ -283,16 +283,22 @@ $("특정 div").append($frag);
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### D1.View 사용으로 회원 정보 보호 <div name="D1"></div>
+* 실제 회원들의 개인정보가 적혀있는 테이블에 접근하지 않고 플랫폼 활동에 필요한 Attribute를 뽑아낸 View 테이블을 사용함으로써 회원의 개인정보를 보 호하고자 했습니다.
+ <img src="https://user-images.githubusercontent.com/54735867/81075553-78b65a80-8f25-11ea-8e9e-a2b2ebdef4d2.png" width="100%" height="300">
 
 
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>          
           
-#### D2.Nested Loop Join을 통한 Join 성능 향상 <div name="D2"></div>
+#### D2.Nested Loop Join과 힌트절을 통한 Join 성능 향상 <div name="D2"></div>
+*  Join시 힌트절을 사용해 순차적 루프 방식을 유도해 좀 더 빨리 결과물을 낼 수 있도록 조정했습니다.
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### D3.Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상 <div name="D3"></div>
+* 로직으로 처리한 후 여러번의 Query요청을 줄이기 위해 Merge Into 구문을 사용해 한번의 Query요청만으로 완료할 수 있도록 만들었습니다.
+
+
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
