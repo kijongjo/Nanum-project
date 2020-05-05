@@ -327,9 +327,11 @@
 						
                         var thumbFile = tmpThumbFile; // 여기서 이미지 객체 img를 활용하여
 														// 썸네일 처리를 할 수 있음
-                        console.log("리사이징전 크기: " + thumbFile.size); // 크기가 1자리
+                        var change= thumbFile.size/( 1024 * 1024 );
+                        var nochange=file.size/( 1024 * 1024 );
+                        console.log("리사이징후 크기: " + change.toFixed(1) +"MB"); // 크기가 1자리
 																	// 이상 줄어듬
-                        console.log("리사이징후 크기: " + file.size); // 크기가 6자리수
+                        console.log("리사이징전 크기: " + nochange.toFixed(1) +"MB"); // 크기가 6자리수
 
                         // blob 파일만 이제 전송하면 된다.
                         return thumbFile;
