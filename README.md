@@ -312,6 +312,9 @@ $("특정 div").append($frag);
 #### E2.AWS S3를 이용한 리소스 관리 및 비용 감소 <div name="E2"></div>
 * Amazone web service의 S3를 사용해 파일에 대한 액세스를 관리하고 데이터 손실에 대한 위험을 줄였습니다. 또한 AWS RDS에 파일이 저장 되는 경우보다
   부담이 적어 실제 운영할 경우 예상 비용을 감소시킬 수 있었습니다.
+  <img src=" https://user-images.githubusercontent.com/54735867/81088598-1fa2f280-8f36-11ea-860b-86f98d157642.png" width="400%" height="400">
+
+ 
   
   
 
