@@ -92,8 +92,8 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
         </td>      
         <td>
         <ul>
-         <li>1</li>
-         <li>2</li>
+         <li>View 사용으로 회원 정보 보호</li>
+         <li>View 사용으로 회원 정보 보호</li>
          <li>3</li>      
         </ul>
         </td>
