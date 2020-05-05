@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import kr.co.openkitchen.service.RegistServiceInterF;
 
+@Component
 public class RegistServiceFactoryF {
 	// 목록 collection
 	private final Map<RegistServiceTypeF, RegistServiceInterF> registServicesF = new HashMap<>();

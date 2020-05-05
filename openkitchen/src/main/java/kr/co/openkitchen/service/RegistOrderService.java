@@ -9,7 +9,7 @@ import kr.co.openkitchen.classes.RegistServiceType;
 @Service
 public class RegistOrderService {
 
-	@Autowired
+	 @Autowired
 	private RegistServiceFactory registServiceFactory;
 
 	public RegistServiceInter receiveOrder(RegistServiceType registType) {

@@ -9,7 +9,7 @@ import kr.co.openkitchen.classes.MypageOpenCType;
 @Service
 public class MypageOpenClassOrder {
 
-	@Autowired
+	 @Autowired
 	private MypageOpenCFactory mypageOpenCFactory;
 
 	public MypageOpenClassInter receiveOrder(MypageOpenCType mypageOpenCType) {

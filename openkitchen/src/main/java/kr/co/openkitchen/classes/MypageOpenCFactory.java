@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import kr.co.openkitchen.service.MypageOpenClassInter;
 import kr.co.openkitchen.service.RegistServiceInter;
 
+@Component
 public class MypageOpenCFactory {
 	private final Map<MypageOpenCType, MypageOpenClassInter> mypageOpenClasses = new HashMap<>();
 
