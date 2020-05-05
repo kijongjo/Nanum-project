@@ -8,7 +8,7 @@
    [이정용](#이정용)<br/>
    [조기종](#조기종)<br/>
     
-<a href="http://codeomni.tistory.com/" target="_blank">새 창, 탭 열기</a>
+
 
 
 
@@ -104,8 +104,8 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 
 #### F1.이미지 최적화 & 이미지 용량 Resizing <div name="F1"></div>
 * 서비스 운영의 리소스 관리를 위해 이미지 용량을 리사이징하였고 서버 부하를 줄이기 위해 프론트 단에서 리사이징을 진행하였습니다.
+<a href="https://github.com/kijongjo/Nanum-project/blob/feature/develop/%EB%AA%A8%EB%93%88/fileresizing.js">리사이징 코드보기</a> 
 
-<a href="https://github.com/kijongjo/Nanum-project/blob/feature/develop/%EB%AA%A8%EB%93%88/fileresizing.js" target="_blank">리사이징 코드보기</a> 
 
 
 
