@@ -220,15 +220,57 @@ $("특정 div").append($frag);
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B3.Factory Design Pattern을 통한 코드 유연성 향상 <div name="B3"></div>
-* Factory Design Pattern으로 의존성을 줄이고 ,Field 주입의 단점을 보완하고자 했습니다. 또한 가독성을 높이고 리팩토링시  
-  변경범위를 최소화 하기 위해  Enum 클래스를 사용했습니다.
+* Factory Design Pattern으로 의존성을 줄이고 ,Field 주입의 단점을 보완하고자 했습니다. 
+* 또한 가독성을 높이고 리팩토링시변경범위를 최소화 하기 위해  Enum 클래스를 사용했습니다.
   
-  
-
+ <img src="https://user-images.githubusercontent.com/54735867/81068639-a8606500-8f1b-11ea-9ca7-15d7847c6bb0.png" width="100%" height="500">  
+ <img src="https://user-images.githubusercontent.com/54735867/81068631-a4344780-8f1b-11ea-82e4-51f34960dd05.png" width="100%" height="500">
+ 
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B4.Controller와 비즈니스 로직의 분리를 통한 Service 재사용성 향상 <div name="B4"></div>
+* Controller단에서 request 객체를 POJO 형태로 가공해 서비스단에 넘겨주고 서비스 단에서 비즈니스 로직을 처리함으로써 서비스를 화면과 독립적으로
+ 만들어 재사용성을 향상 시켰습니다.
+```java
+// 클래스 [기본정보] 등록 요청
+	@RequestMapping(value = "classBaseInfo", method = RequestMethod.POST)
+	public String classBaseInfo(@ModelAttribute ClassRegistDTO dto, MultipartHttpServletRequest request) {
+		// FactoryPattern Service Instance
+		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTCLASSIMPLE);
+		// 파일 저장되는 경로
+		String filePath;
+		// 상세 썸네일
+		String cDetailsumnail = "";
+		// 사진 번호
+		int count = 1;
+		int tNo = dto.gettNo();
+		int cNo = registServiceF.<Integer>selectOne(tNo).getT();
+		// form data에 저장된 fileList
+		Iterator<String> fileList = request.getFileNames();
+
+		while (fileList.hasNext()) {
+			String fileName = fileList.next();
+			// blob 또는 기존 형식으로 보내온 파일을 변환
+			MultipartFile mFile = request.getFile(fileName);
+			// 이미지 저장 시킬 위치 + 파일명
+			filePath = registServiceF.createImgNameNpath(fileName, count, cNo);
+			registServiceF.registerFileToS3(filePath, mFile);
+
+			// 파일 종류 구분
+			if (fileName.equals("C-DS-TYPE1")) {
+				cDetailsumnail += registServiceF.namingDS(fileName, count, cNo) + ",";
+				count++;
+			} else if (fileName.equals("C-MS")) {
+				String cMainsumnail = registServiceF.namingMS(fileName, cNo);
+				dto.setcMainsumnail(cMainsumnail);
+			} else {
+				cDetailsumnail += registServiceF.namingDS(fileName, count, cNo) + ",";
+				count++;
+			} // 파일 종류 구분 end
+		} // while end
+		return "mypage/teacher/teacherBase";
+```
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
