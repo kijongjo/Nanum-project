@@ -132,7 +132,29 @@ obj.forEach(function(item) {
 //append 
 $("특정 div").append($frag);
 ```
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
+
 #### F3.보안을 위한 업로드 유형 제한 <div name="F3"></div>
+* 서버측에서 실행될 수 있는 악성 스크립트 파일 업로드를 제한하고 플랫폼을 보호하기 위해 확장자에 제한을 걸어두었습니다.
+
+```javascript
+     // client-side validation
+     // always server-side validation required
+     // 파일 형식 체크
+     function validation(fileName) {
+         fileName = fileName + "";
+         var fileNameExtensionIndex = fileName.lastIndexOf('.') + 1;
+         var fileNameExtension = fileName.toLowerCase().substring(
+             fileNameExtensionIndex, fileName.length);
+         if (!((fileNameExtension === 'jpg') || (fileNameExtension === 'jpeg') ||
+                 (fileNameExtension === 'gif') || (fileNameExtension === 'png'))) {
+             alert('jpg, gif, png 확장자만 업로드 가능합니다.');
+             return true;
+         } else {
+             return false;
+         }
+     }
+```
 
 
 #### F4.모듈 관리로 코드 재사용성 및 개발 속도 향상 <div name="F4"></div>
