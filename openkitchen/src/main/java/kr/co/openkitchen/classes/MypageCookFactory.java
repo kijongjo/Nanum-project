@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import kr.co.openkitchen.service.MypageCookInter;
 
+@Component
 public class MypageCookFactory {
 
 	  private final Map<MypageCookInterType,MypageCookInter> mypageCooks = new HashMap<>();

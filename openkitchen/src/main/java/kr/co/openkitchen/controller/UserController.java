@@ -88,7 +88,7 @@ public class UserController {
 			model.addAttribute("mydto", mydto);
 			return "/mypage/mypageIn";
 		} else {
-			return "login/login";
+			return "/login/login";
 		}
 	}
 
