@@ -276,13 +276,15 @@ $("특정 div").append($frag);
 
 #### B5.동일한 코드 형식으로 가독성 & 유지보수 향상 <div name="B5"></div>
 * 클린 코드를 위해 기존 코드와 통일성 있는 코드를 작성하도록 노력했습니다. 
-<img src="https://user-images.githubusercontent.com/54735867/81068639-a8606500-8f1b-11ea-9ca7-15d7847c6bb0.png" width="100%" height="500">  
- <img src="https://user-images.githubusercontent.com/54735867/81068631-a4344780-8f1b-11ea-82e4-51f34960dd05.png" width="100%" height="500">
+<img src="https://user-images.githubusercontent.com/54735867/81074595-304a6d00-8f24-11ea-8128-7d52aee58138.png" width="100%" height="500">  
+ <img src="https://user-images.githubusercontent.com/54735867/81074601-32143080-8f24-11ea-8def-df43aedf869c.png" width="100%" height="500">
 
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### D1.View 사용으로 회원 정보 보호 <div name="D1"></div>
+
+
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>          
           
