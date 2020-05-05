@@ -156,41 +156,98 @@ $("특정 div").append($frag);
      }
 ```
 
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### F4.모듈 관리로 코드 재사용성 및 개발 속도 향상 <div name="F4"></div>
+* 자주 쓰이는 기능을 따로 관리해 개발 속도를 향상시켰습니다.
+<img src="https://user-images.githubusercontent.com/54735867/81050072-5ce98f00-8efa-11ea-924b-5234a4182e5f.gif" width="300" height="300">
+
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 
 #### B1.JACKSON Library사용으로 POJO Serialization <div name="B1"></div>
+*  요청한 데이터를 JSON화 하여 보냄으로써 프론트단에서 서버 사이드 언어가 섞이지 않도록 했고,REST API로 개발 방식이 변경될때 좀더 
+   수월하게 변경될 수 있도록 가능성을 열어두었습니다.
 
+```java
+   	// 클래스 [예약종료 정보] 요청
+	@RequestMapping(value = { "cookEndList" }, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String cookEndList(HttpServletRequest request) {
 
+		String str = "";
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			str=mapper.writeValueAsString("noValue");
+		} catch (JsonProcessingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+			// FactoryPattern Service Instance
+			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
+			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+			int tNo = mdto.getmNo();
+			List<CookRefundDTO> endList = mypageCook.selectOne(tNo).getCrd();
+			//aws s3
+			S3ClientFactory s3client = new S3ClientFactory();
+
+			// request url from s3
+			for (int i = 0; i < endList.size(); i++) {
+				endList.get(i).setcMainsumnail(s3client.geturl(endList.get(i).getcMainsumnail()));
+			} // for end
+			
+            //데이터 json 변환
+			if (endList.size() != 0) {
+				try {
+					str = mapper.writeValueAsString(endList);
+				} catch (JsonProcessingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}//list end 
+		return str;
+	}
+```
+
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B2.Generic Method & Class사용으로 코드 재사용성 향상 <div name="B2"></div>
+*   
+<img src="https://user-images.githubusercontent.com/54735867/81050072-5ce98f00-8efa-11ea-924b-5234a4182e5f.gif" width="300" height="300">
+<img src="https://user-images.githubusercontent.com/54735867/81050072-5ce98f00-8efa-11ea-924b-5234a4182e5f.gif" width="300" height="300">
 
-
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B3.Factory Design Pattern을 통한 코드 유연성 향상 <div name="B3"></div>
 
-
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B4.Controller와 비즈니스 로직의 분리를 통한 Service 재사용성 향상 <div name="B4"></div>
 
-
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B5.동일한 코드 형식으로 가독성 & 유지보수 향상 <div name="B5"></div>
 
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### D1.View 사용으로 회원 정보 보호 <div name="D1"></div>
 
-               
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>          
+          
 #### D2.Nested Loop Join을 통한 Join 성능 향상 <div name="D2"></div>
 
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### D3.Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상 <div name="D3"></div>
 
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### E1.GitHub Project Board를 이용한 이슈 관리 <div name="E1"></div>
 
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
                
 #### E2.AWS S3를 이용한 리소스 관리 및 비용 감소 <div name="E2"></div>
 
+<h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
