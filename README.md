@@ -213,13 +213,15 @@ $("특정 div").append($frag);
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B2.Generic Method & Class사용으로 코드 재사용성 향상 <div name="B2"></div>
-*   
+* Generic Method와 Class 사용으로 Service Interface의 재사용성을 향상시키고자 노력했습니다.
 <img src="https://user-images.githubusercontent.com/54735867/81054708-42b3af00-8f02-11ea-9b3b-bcf2d9069361.gif" width="100%" height="500">
-
+<img src="https://user-images.githubusercontent.com/54735867/81055789-60821380-8f04-11ea-8c4c-7da41e9fdaee.gif" width="100%" height="500">
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B3.Factory Design Pattern을 통한 코드 유연성 향상 <div name="B3"></div>
+* Factory Design Pattern으로 의존성을 줄이고 ,Field 주입의 단점을 보완하고자 했습니다. 또한 Enum 클래스로 가독성을 높
+
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
