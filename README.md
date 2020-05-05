@@ -297,12 +297,15 @@ $("특정 div").append($frag);
 
 #### D3.Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상 <div name="D3"></div>
 * 로직으로 처리한 후 여러번의 Query요청을 줄이기 위해 Merge Into 구문을 사용해 한번의 Query요청만으로 완료할 수 있도록 만들었습니다.
-
+<img src="https://user-images.githubusercontent.com/54735867/81085798-a48c0d00-8f32-11ea-92c7-2bf4a265e79f.png" width="300" height="300">
 
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### E1.GitHub Project Board를 이용한 이슈 관리 <div name="E1"></div>
+* GitHub 프로젝트 보드를 사용해 프로젝트 작업을 구성하고 우선순위를 지정했으며, 보편적 기능 부터 특정 기능 작업까지의 흐름을 관리해 이슈 티켓을 발행  함으로써 체계적으로 개발을 진행해 나갈 수 있도록 노력했습니다.
+
+
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
                
