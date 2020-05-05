@@ -220,7 +220,10 @@ $("특정 div").append($frag);
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### B3.Factory Design Pattern을 통한 코드 유연성 향상 <div name="B3"></div>
-* Factory Design Pattern으로 의존성을 줄이고 ,Field 주입의 단점을 보완하고자 했습니다. 또한 Enum 클래스로 가독성을 높
+* Factory Design Pattern으로 의존성을 줄이고 ,Field 주입의 단점을 보완하고자 했습니다. 또한 가독성을 높이고 리팩토링시  
+  변경범위를 최소화 하기 위해  Enum 클래스를 사용했습니다.
+  
+  
 
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
