@@ -101,6 +101,8 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 <h5  align="right"> <a href="#목차">목차보기▲</a></h5>
 
 #### F1.이미지 최적화 & 이미지 용량 Resizing <div name="F1"></div>
+* 서비스 운영의 리소스 관리를 위해 이미지 용량을 리사이징하였고 서버 부하를 줄이기 위해 프론트 단에서 리사이징을 진행하였습니다.
+
 
                
 #### F2.Frag를 이용한 Append 메모리 부담 감소 <div name="F2"></div>
