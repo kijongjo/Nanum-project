@@ -293,6 +293,10 @@ $("특정 div").append($frag);
 #### D2.Nested Loop Join과 힌트절을 통한 Join 성능 향상 <div name="D2"></div>
 *  Join시 힌트절을 사용해 순차적 루프 방식을 유도해 좀 더 빨리 결과물을 낼 수 있도록 조정했습니다.
 
+<img src="https://user-images.githubusercontent.com/54735867/81089084-de5f1280-8f36-11ea-8395-46caf1072706.png" width="300" height="300">
+
+
+
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
 #### D3.Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상 <div name="D3"></div>
