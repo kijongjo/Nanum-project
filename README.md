@@ -57,15 +57,52 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
 
 ##  조기종
- <table >
-   <tr>
-   <th>Front-end</th>
-   <th>Back-end</th>
-   <th>DB</th>
-   </tr>
-   <tr><td>1</td><td>2</td><td>3</td></tr>
-   <tr></tr>
-   <tr></tr>
+<table style="width:600px ; " ">
+    <tr>
+        <th>Front-end</th>
+        <th>Back-end</th>
+        <th>DB</th>
+        <th>기타</th>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li>이미지 최적화 & 이미지 용량 Resizing</li>
+                <li>Frag를 이용한 Append 메모리 부담 감소</li>
+                <li>보안을 위한 업로드 유형 제한</li>
+                <li>모듈 관리로 코드 재사용성 및 개발 속도 향상</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+        <li>JACKSON Library사용으로 POJO Serialization</li>
+        <li>Generic Method & Class사용으로 코드 재사용성 향상</li>
+        <li>Factory Design Pattern을 통한 코드 유연성 향상</li>
+        <li>Controller와 비즈니스 로직의 분리를 통한 Service 재사용성 향상 </li>
+        <li>동일한 코드 형식으로 가독성 & 유지보수 향상 </li>
+        
+    </ul>
+    
+</td>
+        <td>
+            
+            <ul>
+       <li>View 사용으로 회원 정보 보호</li>
+       <li>Nested Loop Join을 통한 Join 성능 향상</li>
+       <li>Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상</li>
+        </ul>
+        
+        </td>
+        
+        <td>
+        <ul>
+         <li>1</li>
+         <li>2</li>
+         <li>3</li>      
+        </ul>
+        </td>
+    </tr>
+      
 </table>
 
 각자 맡은 페이지에서 사용한 기술 설명 하기 
