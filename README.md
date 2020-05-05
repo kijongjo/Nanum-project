@@ -214,8 +214,8 @@ $("특정 div").append($frag);
 
 #### B2.Generic Method & Class사용으로 코드 재사용성 향상 <div name="B2"></div>
 *   
-<img src="https://user-images.githubusercontent.com/54735867/81050072-5ce98f00-8efa-11ea-924b-5234a4182e5f.gif" width="300" height="300">
-<img src="https://user-images.githubusercontent.com/54735867/81050072-5ce98f00-8efa-11ea-924b-5234a4182e5f.gif" width="300" height="300">
+<img src="https://user-images.githubusercontent.com/54735867/81054708-42b3af00-8f02-11ea-9b3b-bcf2d9069361.gif" width="100%" height="500">
+
 
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
