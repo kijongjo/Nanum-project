@@ -8,9 +8,9 @@
    [이정용](#이정용)<br/>
    [조기종](#조기종)<br/>
     
-<a href="http://codeomni.tistory.com/" target="_parent">새 창, 탭 열기</a>
+<a href="http://codeomni.tistory.com/" target="_blank">새 창, 탭 열기</a>
 
-<http://codeomni.tistory.com/>{: target="_blank"}
+
 
 
 
