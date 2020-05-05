@@ -70,7 +70,7 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
         <td>
             <ul>
                 <li>이미지 최적화 & 이미지 용량 Resizing</li>
-                <li>Frag를 이용한 Append 메모리 부담 감소</li>
+                <li>documentFragement를 이용한 Append 성능 향상</li>
                 <li>보안을 위한 업로드 유형 제한</li>
                 <li>모듈 관리로 코드 재사용성 및 개발 속도 향상</li>
             </ul>
@@ -109,9 +109,29 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 <h5  align="right"> <a href="#JoList">조기종-구현기술목록▲</a></h5>
 
                
-#### F2.Frag를 이용한 Append 메모리 부담 감소 <div name="F2"></div>
+#### F2. documentFragement를 이용한 Append로 성능 향상 <div name="F2"></div>
+* 서버단에서 Json데이터를 가져와 페이지를 동적으로 그리는데 있어서 여러번의 append는 부담을 줄 수 있습니다. 가상 메모리 공간에서 데이터를
+  가공한 후에 한번의 Append만으로 페이지를 그릴 수 있도록 지정해 Dom 객체의 접근을 최소화 했습니다. 
+```javascript
+//모듈: Javascript의 성능을 높여줄 수 있는 append 모듈
 
-
+//fragment
+var $frag = $(document.createDocumentFragment());
+//json
+var obj = JSON.parse(data);
+//반복문    
+obj.forEach(function(item) {
+    contents1 = item.something1;
+    contents2 = '<a href="ex1"><img src="' + contents1 + '">';
+    contents3 = '<h3>' + item.something2 + '</h3>';
+    contents4 = '<div class="Price"><strong>￦</strong>' + item.something3 + '</div>';
+    contents5 = '<p>' + item.something4 + '</p>' + '</a>';
+    tag = contents2 + contents3 + contents4 + contents5;
+    $frag.append('<li>' + tag + '</li>');
+}); // foreachend
+//append 
+$("특정 div").append($frag);
+```
 #### F3.보안을 위한 업로드 유형 제한 <div name="F3"></div>
 
 
