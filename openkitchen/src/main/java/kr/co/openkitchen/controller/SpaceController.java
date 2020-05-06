@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,8 +25,12 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import kr.co.openkitchen.dto.AuthorityCheckDTO;
 import kr.co.openkitchen.dto.DetailSScheDTO;
+import kr.co.openkitchen.dto.MemberDTO;
+import kr.co.openkitchen.dto.PaymentSpaceDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
+import kr.co.openkitchen.service.MemberServiceInter;
 import kr.co.openkitchen.service.SserviceInter;
 import lombok.Setter;
 
@@ -35,11 +40,13 @@ public class SpaceController {
 	@Setter(onMethod = @__({ @Autowired }))
 	SserviceInter ssi;
 	
-	
+	// 권한 검사를 위한 목적
+	@Setter(onMethod = @__({ @Autowired }))
+	MemberServiceInter memsi;
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
-	public String classD(@RequestParam("no")int sNo, Model model) {
+	public String classD(@RequestParam("no")int sNo, Model model, HttpServletRequest request) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -55,11 +62,34 @@ public class SpaceController {
 	    
 	    System.out.println(list2);
 		
+	    // 공간에 대한 기본 정보
 		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
-		model.addAttribute("detailSScheDate", list2);
+		// 공간의 호스트가 등록한 정보를 출력함.
 		
+		
+		// 로그인 했을 때만 일정을 보여줌
+		// 그냥 로그인 했을때만 보여줘야 되나..??
+		// 아님. 일반회원을 볼 수 없어야 함.
+		HttpSession session = request.getSession(); 
+		// 로그인 한후에 다시 페이지로 돌아오기 위해 session에 데이터를 저장
+		// 쿠키를 사용 할 수 있지 않을까?
+		session.setAttribute("spaceNo", sNo);
+		
+		if(session.getAttribute("openkitchen") != null) {
+			MemberDTO mdto = (MemberDTO)session.getAttribute("openkitchen");
+			map.put("mNo", mdto.getmNo());
+			AuthorityCheckDTO acdto = memsi.readAuthorityCheck(map);
+			// 선생님 일 경우에만 동작한다. 선생님과 구분할 데이터를 페이지로 전송해야 한다.
+			if (acdto.gettNo() != 0) {
+				model.addAttribute("detailSScheDate", list2);
+				model.addAttribute("isAuthenticated", "teacher");				
+			} else {
+				model.addAttribute("isAuthenticated", "user");				
+			}
+		} 
 		
 		return "space/user/spaceD";
+		
 	}
 	
 	@GetMapping("spaceIn")
@@ -81,8 +111,8 @@ public class SpaceController {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			str = mapper.writeValueAsString(list);
-			System.out.println();
-			System.out.println("str : " + str);
+			// System.out.println();
+			// System.out.println("str : " + str);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,40 +127,11 @@ public class SpaceController {
 		return str;
 	}
 	
-	@GetMapping("spacePayment")
-	public String spacePayment(@RequestParam("no")int recNo, Model model, 
-			HttpServletRequest request) {
-		
-		
-//		HttpSession session = request.getSession();		
-//		if(session.getAttribute("openkitchen") == null) {
-//			
-//			session.setAttribute("classNo", recNo);
-//			// 스프링에서 리다이렉트 시키는 방법
-//			return "redirect:login";
-//			
-//		}
-		
-//		Object obj = session.getAttribute("openkitchen");
-//		MemberDTO mdto = (MemberDTO)obj;
-//		
-//		
-//		model.addAttribute("paymentC", csi.readPaymentC(recNo));
-//		model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
-		
-		return "space/user/spacePayment";
-	}
-	
-	
 	// ajax 한글 물음표로 가는 증상? produces에 charset utf8 처리 https://marobiana.tistory.com/112 참조
-	@RequestMapping(value = "ajaxSDetailData", method = RequestMethod.POST, produces = "application/text;charset=utf8")
+	@RequestMapping(value = "ajaxSDetailData", method = RequestMethod.POST)
 	@ResponseBody
-	public Object ajaxSDetailData(@RequestParam("leaseDate")Date leaseDate, 
+	public List<DetailSScheDTO> ajaxSDetailData(@RequestParam("leaseDate")Date leaseDate, 
 			@RequestParam("sNo")int sNo) {
-		
-		// 가져와야 될 데이터는 무엇인가?
-		// 지정된 공간에 대한 선택된 일정의 대여상태를 알 수 있는 정보
-	    // 기존에 만들어놓은 쿼리문을 다이나믹쿼리를 통해 재활용
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -138,47 +139,54 @@ public class SpaceController {
 		map.put("leaseDate", leaseDate);
 		
 		List<DetailSScheDTO> test = ssi.readDetailSSche(map);
-		String str = "";
-		String ajaxD = "";
-		System.out.println(test);
-		for (DetailSScheDTO dto : test) {
-		
-			if(dto.getlPerstatus().equals("진행")) {
-				if (dto.getlLeasetime().equals("오전")) {
-					str += "<span class='schTimeS'>오전</span>";	
-				} else if(dto.getlLeasetime().equals("오후")) {
-					str += "<span class='schTimeS'>오후</span>";
-				} else {
-					str += "<span class='schTimeS'>저녁</span>";
-				}
-			} else {
-				if (dto.getlLeasetime().equals("오전")) {
-					str += "<span class='schTimeE'>오전</span>";	
-				} else if(dto.getlLeasetime().equals("오후")) {
-					str += "<span class='schTimeE'>오후</span>";
-				} else {
-					str += "<span class='schTimeE'>저녁</span>";
-				}
-			}
-		}
-		
-		
-		ajaxD = "<div class='choiceSch'><div class='schTitle'>선택된 일정</div>"+str+"</div>";
-		//ajaxD = "<div class='choiceSch'><div class='schTitle'>선택된 일정</div>"+str+"</div>";
-		System.out.println(ajaxD);
-		
-		// 데이터가 하나가 아니라 여러개 올 수 있다.
-		// 어떻게 비교해서 데이터를 json 형태로 뿌릴건가..?
-		// 진행 종료 상태에 따른 css가 달라야 한다. 이 점은 class 이름을 따로 명시해서
-		// 만든다...?
-		
-		// 데이터를 먼저 만들고 랩핑한다.
-		
-		
-		
+		// System.out.println(test);
+
 		
 		return test;
 		
 	}
+	
+	@GetMapping("spacePayment")
+	public String spacePayment(String[] no, Model model, 
+			HttpServletRequest request) {
+	
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// array나 list를 보낼 경우에는 map으로 감싸되 key의 이름을
+		// 정확히 array와 list로 명시해야 된다.
+		map.put("array", no);
+		
+		List<PaymentSpaceDTO> list = ssi.readPaymentS(map);
+		
+		System.out.println("공간정보 사이즈 : "+list.size());
+		
+		// 1. 공간 사이즈가 2개 이상일때만 로직처리를 한다.
+		int count = 0;
+		int amount = 0;
+		
+		for(PaymentSpaceDTO psdto : list) {
+			count++;
+			System.out.println("인원수 : "+psdto.getsCapacity());
+			if(psdto.getsCapacity() <= 6) {
+				amount = 80000;
+			} else if(psdto.getsCapacity() >= 7) {
+				amount = 110000;
+			}
+		}
+			
+		model.addAttribute("paymentAmount",amount*count);
+		model.addAttribute("paymentS", ssi.readPaymentS(map));
+		
+		HttpSession session = request.getSession();
+		if(session != null) {
+			MemberDTO mdto = (MemberDTO)session.getAttribute("openkitchen");
+			model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
+		}
+		
+		return "space/user/spacePayment";
+	}
+	
+	
+	
 	
 }

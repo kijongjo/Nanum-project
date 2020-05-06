@@ -10,6 +10,7 @@ import kr.co.openkitchen.dao.SDaoInter;
 import kr.co.openkitchen.dto.DetailSScheDTO;
 import kr.co.openkitchen.dto.DetailSpaceDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
+import kr.co.openkitchen.dto.PaymentSpaceDTO;
 import lombok.Setter;
 
 @Service
@@ -44,4 +45,12 @@ public class SpaceService implements SserviceInter {
 			
 			return dao.selectDetailSSche(map);
 		}
+
+		@Override
+		public List<PaymentSpaceDTO> readPaymentS(Map<String, Object> map) {
+			
+			return dao.selectPaymentS(map);
+		}
+		
+		
 }
