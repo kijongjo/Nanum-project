@@ -37,28 +37,25 @@ public class CommonController {
 	User user;
 
 	BCryptPasswordEncoder pe;
-	//Bcrypt  패스워드 암호화에 특화된 Password Hashing function
-	
+	// Bcrypt 패스워드 암호화에 특화된 Password Hashing function
+
 	// 데이터를 가져올 service
 	@Setter(onMethod = @__({ @Autowired }))
 	MserviceInter si;
-	
+
 	@Setter(onMethod = @__({ @Autowired }))
 	ServletContext sc;
 
 	private static final Logger logger = LoggerFactory.getLogger(CommonController.class);
 
-	
-	
-
 //	더보기 요청에 대한 program 
 	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String init(@RequestParam int count) {
-		
+
 		System.out.println("더보기 시 보여질 갯수:" + count);
 		// List를 JSON으로 변환시켜 보낸다. db에서 데이터를 가지고 오게 되면 list도 가지고 온 list로 초기화시켜준다.
-		
+
 		String popularInit = sc.getInitParameter("globalParam");
 		System.out.println("popularInit : " + popularInit);
 		String[] popularKey = popularInit.split(",");
@@ -72,7 +69,7 @@ public class CommonController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
 		map.put("popularList", popularList);
-		
+
 		List<PopularClassDTO> list = si.readPopularC(map);
 		System.out.println("map : " + map);
 		System.out.println(list);
@@ -97,14 +94,15 @@ public class CommonController {
 //		변환된 list를 return함
 		return str;
 	}
+
 	@RequestMapping
 	public String classIndex() {
 		return "";
 	}
-	
+
 	@RequestMapping("/searchIn")
 	public String serarchIn() {
-		
+
 		return "searchIn";
 	}
 }

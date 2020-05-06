@@ -13,6 +13,9 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/lay03_sideBar.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/contents_board.css'/>">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="<c:url value='/resources/js/cookIn.js'/>"></script>
+<script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
+
 
 <script>
 	window.onload = function () {
@@ -25,6 +28,23 @@
 		}
 	}
 </script>
+<script>
+	/* 상황에 따른 script 불러오기 방법 통일성을 위해  나중엔 jstl말고 javascript로 if문 처리해야함  */
+	$(function() {
+
+		if (<c:out value="${param.no}"/> == 1) {
+			$.getScript('<c:url value="/resources/js/cookBookD.js"/>');
+			console.log("1번째");
+		} else if(<c:out value="${param.no}"/> == 2) {
+			$.getScript('<c:url value="/resources/js/cookRefundD.js"/>');
+			console.log("2번째");
+		}else{
+			$.getScript('<c:url value="/resources/js/cookEndD.js"/>');
+			console.log("3번째");
+		}
+
+	})
+</script>
 <jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 <body>
@@ -36,9 +56,23 @@
 				<h1>요리 배우기</h1>
 			</div>
 			<div class="list">
-				<a href="cookBookD?no=1" ><div class="select-On">예약 클래스</div></a>
-				<a href="cookRefunD?no=2" class="active-color">취소 / 환불</a>
-				<a href="cookEndD?no=3"><div>종료 클래스</div></a>
+				<c:choose>
+					<c:when test="${no eq 1}">
+						<a href="javascript:action(1)" class="On_active">예약 클래스</a>
+						<a href="javascript:action(2)" class="Off_active">취소/환불</a>
+						<a href="javascript:action(3)" class="Off_active">종료 클래스</a>
+					</c:when>
+					<c:when test="${no eq 2}">
+						<a href="javascript:action(1)" class="Off_active">예약 클래스</a>
+						<a href="javascript:action(2)" class="On_active">취소/환불</a>
+						<a href="javascript:action(3)" class="Off_active">종료 클래스</a>
+					</c:when>
+						<c:when test="${no eq 3}">
+						<a href="javascript:action(1)" class="Off_active">예약 클래스</a>
+						<a href="javascript:action(2)" class="Off_active">취소/환불</a>
+						<a href="javascript:action(3)" class="On_active">종료 클래스</a>
+					</c:when>
+				</c:choose>
 			</div>
 
 		</section>

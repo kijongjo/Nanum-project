@@ -12,17 +12,16 @@
 
 
 			<div class="inp-wrap">
-				<span>일정 선택</span>
+				<span>일정 확인</span>
 				<div>
 					<p>선택된 일정을 확인하실 수 있습니다.</p>
-					<div>
-						<div>이번 달</div>
-						<div id="mainThum"></div>
+					<div id="currentM">
+						<div>일정</div>
+						<div >
+						<div class="datepicker-here" data-language="en"></div>
+						</div>
 					</div>
-					<div>
-						<div>다음 달</div>
-						<div id="detailThum"></div>
-					</div>
+					
 				</div>
 			</div>
 

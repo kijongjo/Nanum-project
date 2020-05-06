@@ -4,40 +4,6 @@
 	    
 <div id="contents_border">
     <ul>
-		<li>
-			<a href="#">
-				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
-				<h3>달래쭈꾸미장과 덮밥</h3>
-				<div class="Price"><strong>\</strong> 45,000</div>
-				<p>진행중<i class="ico-more_arrow"></i></p>
-			</a>
-		</li>
-		<!-- 복사코드  -->
-		<li>
-			<a href="#">
-				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
-				<h3>달래쭈꾸미장과 덮밥</h3>
-				<div class="Price"><strong>\</strong> 45,000</div>
-				<p>진행중<i class="ico-more_arrow"></i></p>
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
-				<h3>달래쭈꾸미장과 덮밥</h3>
-				<div class="Price"><strong>\</strong> 45,000</div>
-				<p>진행중<i class="ico-more_arrow"></i></p>
-			</a>
-		</li>
-		<li>
-			<a href="#">
-				<img src="<c:url value='/resources/img/testimg/test1.jpg'/>" alt="slide01">
-				<h3>달래쭈꾸미장과 덮밥</h3>
-				<div class="Price"><strong>\</strong> 45,000</div>
-				<p>진행중<i class="ico-more_arrow"></i></p>
-			</a>
-		</li>
-		<!-- 복사코드  -->
 	</ul>
 	<div class="contents-paging">
                 <div class="paging-wrapper">
@@ -51,4 +17,8 @@
                     <a href="" class="extra"></a>
                 </div>
    </div>
+   <div class="wrap-loading display-none">
+
+    <div><i class="fas fa-spinner fa-spin fa-4x "></i></div>
+</div>    
 </div>

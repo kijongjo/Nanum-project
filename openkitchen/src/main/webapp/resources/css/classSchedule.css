@@ -67,7 +67,7 @@
 
 #classSchedule .inp-wrap:nth-child(1)>div>div:nth-child(2) {
 	/* background-color: pink; */
-	width: 427.5px;
+	width: 100%;
 	height: 294.91px;
 	margin-top: 25px;
 	padding-right: 5px;
@@ -240,3 +240,32 @@ border-radius: 40px;
 	font-weight: 900;
 }
 
+/* 달력 api schedule page custom  */
+.dp-note{
+	
+position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    top: 33px;
+    border-radius: 16px;
+}
+.datepicker{
+	width:100% !important;
+	height:100% !important;
+	font-size:16px !important;
+	
+	
+}
+
+.datepicker--cells{
+	height:400px;
+}
+/*이번달 div  */
+#currentM{
+	height:100%;
+}
+/* 다음달 div */
+#nextM{
+	height:auto !important;
+}

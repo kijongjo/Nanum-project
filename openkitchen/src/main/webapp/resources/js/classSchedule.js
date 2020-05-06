@@ -1,3 +1,8 @@
+//달력 api 사용을 위한 list
+var list = new Array();
+//달력 api를 둘 태그 
+var $picker = $(".datepicker-here");
+
 var $frag = $(document.createDocumentFragment());
 // html 코드를 입력할 변수 선언
 var contents1, contents2, contents3, contents4, contents5, contents6;
@@ -17,7 +22,7 @@ $(function() {
 				type : 'POST',
 				success : function(data) {
 					var obj = JSON.parse(data);
-					if (obj == "noregist") {
+					if (obj == "noValue") {
 						alert("클래스 등록,공간 등록 먼저 해주시기 바랍니다.")
 					} else {
 
@@ -38,7 +43,9 @@ $(function() {
 								.forEach(function(item, i) {
 									// json안의 시간요소를 하나씩 꺼내서 넣기 위한 변수
 									var leasetime = obj[i].lLeasetime.split(",");
-											
+									//달력 api에 사용하기 위해 전역 변수로 선언한 list에 날짜를 담아준다.    
+									console.log("?"+item.lLeasedate);
+									list.push(item.lLeasedate);
 									var li="";
 									for (var z = 0; z < obj[i].lLeasetime
 											.split(",").length; z++) {
@@ -66,6 +73,50 @@ $(function() {
 								});// foreachend
 						$("#scheduleDiv").append($frag);
 					}
+					
+					$picker.datepicker({
+					    // 날짜 선택기의 셀이 렌더링 될 때 콜백
+					    // html로 입력받아 해석해서 표준 출력 장치(모니터)로 출력
+					    // 화면에 날짜가 보여질 때 호출???
+
+
+					    onRenderCell: function(date, cellType) {
+					            /* date : 현재 셀  날짜
+					               cellType : 현재 셀 유형 (day, month, year)
+					            */
+					            var currentDate = date.getDate();
+					            
+					            /* 0~11까지 표기한다.  */
+					            var currentMonth = date.getMonth() + 1;
+					           
+					            var currentYear = date.getFullYear();
+					            console.log("현재 연월일"+currentYear+" "+currentMonth+" "+currentDate);
+					
+
+					            for (var i = 0; i < list.length; i++) {
+					           	 console.log("list :   ",list[i]);
+					            	var array=list[i].split("-");
+					                var eventYear = array[0].replace(/(^0+)/, "");
+					                console.log(eventYear +"eY vs cY" +currentYear);
+					                var eventMonth = array[1].replace(/(^0+)/, "");
+					                console.log(eventMonth +"eM vs cM" +currentMonth);
+					                var eventDate = array[2].replace(/(^0+)/, "");
+					                console.log(eventDate +"eD vs cD" +currentDate);
+
+					                if (currentYear == eventYear && currentMonth == eventMonth && currentDate == eventDate) {
+					                    // if(cellType == "day") {
+					                    return {
+					                        /* 지정한 요일에 점추가되는 span  */
+					                        html: currentDate +
+					                            '<span class="dp-note"></span>'
+					                            //     } // return문 end
+					                    } // second if문 end
+					                } // first if문 end
+					            } // for문 end
+					        } // onRenderCell end
+					}); // datepicker end
+					
+					
 					// 요청 정지
 					return rtn;
 
@@ -87,7 +138,7 @@ $(function() {
 				
 				success : function(result) {
 					var obj = JSON.parse(result);
-					if (obj == "noregist") {
+					if (obj == "noValue") {
 						alert("등록할 수 없습니다.");
 					} else {
 						$(location).attr('href', "in");

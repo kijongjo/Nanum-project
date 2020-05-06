@@ -15,6 +15,7 @@
 #contents_border > ul{
     width: 965px;
     overflow: hidden;
+    min-height: 500px;
 }
 #contents_border > ul > li{
     margin: 0 10px 20px 0;
@@ -25,6 +26,7 @@
 
 
 div > #right02 #contents_border{
+	min-height: 600px;
 	text-align: start;
 }
 
@@ -44,7 +46,8 @@ div > #right02 #contents_border{
 .date:nth-child(1)::after{
     content: "";
     position: absolute; 
-    top: 5px; right: 0;
+    top: 2px;
+    right: 2px;
     background-color: #8D8D8D;
     width: 1px; height: 14px;
 }
@@ -323,4 +326,39 @@ div > #right02 > #notData > p::before{
     filter: gray;     
 }
 
+/* sidebar 리스트 선택시 선택시 */
+ #lay03 > #left01 .On_active{
+     font-weight: 600;
+     border-bottom: 3px solid #8E0032;
+     position: relative;
+    display: inline-block;
+ }
+ #lay03 > #left01 .On_active::after{
+    content: "";
+    position: absolute; top: 5px; right: -23px;
+    width: 19px; height: 18px;
+    background-image: url("../img/icon/ico-tab_check.svg");
+    background-position: 0;
+}
 
+
+
+    .wrap-loading div{ /*로딩 이미지*/
+
+        position: fixed;
+
+        top:44%;
+
+        left:60%;
+
+        margin-left: -21px;
+
+        margin-top: -21px;
+
+    }
+
+    .display-none{ /*감추기*/
+
+        display:none;
+
+    }

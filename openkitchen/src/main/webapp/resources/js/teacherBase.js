@@ -444,7 +444,7 @@
                     contentType: false,
                     cache: false,
                     timeout: 600000,
-                    url: 'multipartUpload',
+                    url: 'teacherBaseInfo',
                     data: formData,
 
                     success: function(result) {
@@ -500,7 +500,7 @@
                     contentType: false,
                     cache: false,
                     timeout: 600000,
-                    url: 'multipartUpload',
+                    url: 'teacherBaseInfo',
                     data: formData,
 
                     success: function(result) {

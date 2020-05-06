@@ -302,4 +302,23 @@ input[id="onlyOne"]+label::after {
 div > #right02 #contents_border{
 	text-align: start;
 }
+/* 로딩 css */
+ .wrap-loading div{ /*로딩 이미지*/
 
+        position: fixed;
+
+        top:44%;
+
+        left:60%;
+
+        margin-left: -21px;
+
+        margin-top: -21px;
+
+    }
+
+    .display-none{ /*감추기*/
+
+        display:none;
+
+    }

@@ -29,11 +29,11 @@ $(function() {
 						obj
 								.forEach(function(item) {
 
-									contents1 = getContextPath()
-											+ item.sMainsumnail;
+									contents1 = item.sMainsumnail;
 									console.log(contents1);
 									contents2 = '<img src="' + contents1 + '">';
-									contents3 = '<div>'+"No. " + item.renNo + '</div>';
+									contents3 = '<div>' + "No. " + item.renNo
+											+ '</div>';
 									contents4 = '<h3><a href="classSchedule?no=2">'
 											+ item.sName + '</a></h3>';
 									contents5 = '<p>' + item.lLeasedate
@@ -52,6 +52,19 @@ $(function() {
 					return rtn;
 
 				}// success end
+				,
+				beforeSend : function() {
+
+					$('.wrap-loading').removeClass('display-none');
+
+				}// beforeSend end
+
+				,
+				complete : function() {
+
+					$('.wrap-loading').addClass('display-none');
+
+				}// complete end
 
 			})// ajax end
 
@@ -117,7 +130,7 @@ $(function() {
 			$.ajax({
 				type : 'POST',
 				contentType : "application/json; charset=utf-8",
-				url : '/openkitchen/mypage' + '/completeR',
+				url : '/openkitchen/mypage' + '/classSpaceRegist',
 				data : jso,
 				success : function(result) {
 					var obj = JSON.parse(result);
@@ -127,7 +140,7 @@ $(function() {
 						alert("등록할 수 없습니다.");
 
 					}
-					
+
 				}// success function
 
 			// 전송실패에대한 핸들링은 고려하지 않음

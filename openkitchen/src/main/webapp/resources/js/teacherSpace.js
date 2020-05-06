@@ -472,7 +472,7 @@
                             contentType: false,
                             cache: false,
                             timeout: 600000,
-                            url: '/openkitchen/mypage' + '/multipartUploadS',
+                            url: '/openkitchen/mypage' + '/teacherSpaceInfo',
                             data: formData,
 
                             success: function(result) {
@@ -535,7 +535,7 @@
                             contentType: false,
                             cache: false,
                             timeout: 600000,
-                            url:'/openkitchen/mypage' + '/completeS',
+                            url:'/openkitchen/mypage' + '/teacherSpaceInfo',
                             data: formData,
 
                             success: function(result) {
@@ -665,6 +665,7 @@
                     	
                     	$("#uploadForm").css({
                     		height:'100%',
+                    		
                     	    overflow:'inherit'
                     		
                     	}),
@@ -684,8 +685,12 @@
                     
                     
                     $("#norental").on("click",function(){
+                    	$("#uploadForm").css("overflow",""),
                     	$("#uploadForm").animate({
-                    		height:'1px'
+                    		height:'1px',
+                    		overflow:'auto',
+                    		overflow:'hidden'
+                    			
                     		
                     	},1000),
                     	

@@ -7,8 +7,6 @@
 
                 // image preview 기능 구현
 
-                // ///////////////////////////이미지 preview
-				// 함수/////////////////////////////////////////////////////
                 // 기본적으로 변화가 일어날 때마다 function이 작용한다.
                 // 메인 썸네일용 이미지 input:file이 매개변수로 들어옴
                 function addPreviewMain(input) {
@@ -36,21 +34,13 @@
                             var file = input[0].files[fileIndex];
                             if (validation(file.name)) continue;
                             setPreviewFormDetail(file);
-
-
                         }
                     } else
                         alert('invalid file input'); // 첨부클릭 후 취소시의 대응책은 세우지
 														// 않았다.
                 }
 
-                // //////////////////////////////이미지 preview 함수
-				// 끝/////////////////////////////////////////////////
-
-
-                // //////////////////////////////이미지 등록
-				// 함수//////////////////////////////////////////////////
-
+        
                 // 상세 이미지 등록
                 function addPreviewPhoto(input) {
                     if (input[0].files) {
@@ -96,8 +86,7 @@
                     // div id="preview" 내에 동적코드추가.
                     // 이 부분을 수정해서 이미지 링크 외 파일명, 사이즈 등의 부가설명을 할 수 있을 것이다.
                     reader.onload = function(img) {
-                        // console.log(img);
-                        // var imgNum = previewIndex++;
+                     
                         $("#detailThum").append(
                             "<div class=\"preview-box\" value=\"" + imgNum + "\">" +
                             "<img class=\"thumbnail\" src=\"" + img.target.result + "\"\/>" +
@@ -147,12 +136,6 @@
                     }
                 }
 
-                // //////////////////////////////이미지 등록 함수
-				// 끝//////////////////////////////////////////////////
-
-
-                // ////////////////////////////이미지 삭제
-				// 함수//////////////////////////////////////////////////
                 // preview 영역에서 삭제 버튼 클릭시 해당 미리보기이미지 영역 삭제
                 // 메인 썸네일 삭제
                 function deleteMainPreview(obj) {
@@ -180,8 +163,7 @@
                     console.log(imgNum);
                 }
 
-                // //////////////////////////////이미지 등록 함수
-				// 끝//////////////////////////////////////////////////
+               
                 // client-side validation
                 // always server-side validation required
                 // 파일 형식 체크
@@ -198,26 +180,20 @@
                         return false;
                     }
                 }
-                // //////////////////////////////이미지 파일 형식 함수
-				// 끝//////////////////////////////////////////////////
-
-                /*
-				 * ///////////////////////////////이미지 파일 용량
-				 * 축소///////////////////////////////////////////////////
-				 */
+                
                 // binary 파일 준비
                 function getBlob(imgFile, form_Data) {
                     var fileList = imgFile[0].files;
 
 
                     $.each(fileList, function(i, file) {
-                        // 리더기는바쁘기 땜시 계속 갱신해서 사용해야함.
+                        // 지속적 instance
                         var reader = new FileReader();
                         // 파일객체 해석
                         reader.readAsDataURL(file);
                         // reader 해석 완료 -> resizing img 생성 function 작동
-                        reader.onload = function() {
 
+                        reader.onload = function() {
                             // image객체 생성
                             var img = document.createElement("img");
                             // data-uri를 이미지 객체에 주입
@@ -225,41 +201,41 @@
 
                             // img 객체 주입 ->종류에 따라 blob 파일 생성하는 function 작동
                             img.onload = function() {
-                            	 console.log(imgFile.id);
+                          
                                     // 상세 이미지9(S-DS-TYPE2) or 메인 섬네일(MS),상세
 									// 섬네일(S-DS-TYPE1)에 따라 이름 붙여지는게 다름
                                     if (imgFile[0].id == "C-DS-TYPE2") {
                                         console.log("상세 사진 저장")
-                                            // 이미지 이름을 붙이고 FORM DATA에 저장
+                                    // 이미지 이름을 붙이고 FORM DATA에 저장
                                         form_Data.append("C-DS-TYPE2-" + registCount, imgcomp(img, file, form_Data), "DS" + registCount);
                                         registCount++;
                                         // FORM 데이터 들어 있는 객체 확인하기
                                         for (var key of form_Data.keys()) {
 
-                                            console.log("!!!!form data에 이런게?------>" + key);
+                                            console.log("form data key ------>" + key);
 
                                         }
 
                                         for (var value of form_Data.values()) {
 
-                                            console.log("!!!!form data에 이런게?-------->" + value);
+                                            console.log("form data value ------>" + value);
 
                                         }
 
                                     } else if (imgFile[0].id == "C-MS") {
                                         console.log("메인 사진 저장")
-                                            // 이미지 이름을 붙이고 FORM DATA에 저장
+                                        // 이미지 이름을 붙이고 FORM DATA에 저장
                                         form_Data.append("C-MS", imgcomp(img, file, form_Data), "C-MS");
                                         // FORM 데이터 들어 있는 객체 확인하기
                                         for (var key of form_Data.keys()) {
 
-                                            console.log("!!!!form data에 이런게?------>" + key);
+                                            console.log("form data key ------>" + key);
 
                                         }
 
                                         for (var value of form_Data.values()) {
 
-                                            console.log("!!!!form data에 이런게?------>" + value);
+                                            console.log("form data value ------>" + value);
 
                                         }
                                     } else {
@@ -269,13 +245,13 @@
                                         // FORM 데이터 들어 있는 객체 확인하기
                                         for (var key of form_Data.keys()) {
 
-                                            console.log("!!!!form data에 이런게?------>" + key);
+                                            console.log("form data key ------>" + key);
 
                                         }
 
                                         for (var value of form_Data.values()) {
 
-                                            console.log("!!!!form data에 이런게?------>" + value);
+                                            console.log("form data value ------>" + value);
 
                                         }
                                     } // else end
@@ -287,11 +263,7 @@
 
                 } // getBlob() end
 
-                /*
-				 * /////////////////////////////////////////////// 이미지파일 blob
-				 * 파일로 변환
-				 * 시작//////////////////////////////////////////////////////
-				 */
+               // 이미지 파일 blob 파일로 변환
                 function imgcomp(img, file, form_Data) {
                     // getMSBLOB(img) function 작용
                     // canvas에 이미지 객체를 리사이징해서 담는 과정
@@ -309,9 +281,9 @@
 
                     var base_size = 1024000; // 1MB (썸네일 작업을 할지 말지 기준이 되는
 												// size)
+												
                     var comp_size = 102400; // 100kb (썸네일 작업 결과물 사이즈)
-
-                    // 이미지 크기 가져옴
+                    // 이미지 크기
                     var width = img.width;
                     var height = img.height;
                     var size = file.size;
@@ -319,13 +291,12 @@
                     console.log("리사이징 시작");
                     // size가 더 크면 blob 파일 전송
                     if (size > base_size) {
-
-                        console.log("파일이 너무커서 blob객체로 만듦");
+                        console.log("파일용량 기준치 초과 > blob객체화");
                         // 지정한 사이즈에 맞게 비율 조정하기
                         var ratio = Math.ceil(Math.sqrt((size / comp_size), 2));
                         // 높이와 넓이 비율에 따라 변환
                         width = img.width / ratio,
-                            height = img.height / ratio;
+                        height = img.height / ratio;
 
                         // canvas 옵션에 줌
                         canvas.width = width;
@@ -352,13 +323,15 @@
                         var tmpThumbFile = new Blob([ab], {
                             type: mimeString
                         });
-                        // /////////////////////////bytetype으로 변환하기
-						// 끝/////////////////////////////////
+                        // bytetype으로 변환하기 끝
+						
                         var thumbFile = tmpThumbFile; // 여기서 이미지 객체 img를 활용하여
 														// 썸네일 처리를 할 수 있음
-                        console.log("리사이징전 크기: " + thumbFile.size); // 크기가 1자리
+                        var change= thumbFile.size/( 1024 * 1024 );
+                        var nochange=file.size/( 1024 * 1024 );
+                        console.log("리사이징후 크기: " + change.toFixed(1) +"MB"); // 크기가 1자리
 																	// 이상 줄어듬
-                        console.log("리사이징후 크기: " + file.size); // 크기가 6자리수
+                        console.log("리사이징전 크기: " + nochange.toFixed(1) +"MB"); // 크기가 6자리수
 
                         // blob 파일만 이제 전송하면 된다.
                         return thumbFile;
@@ -372,11 +345,7 @@
 
                 }; // function imgcomp end
 
-
-                /*
-				 * ///////////////////////////////이미지 파일 용량 축소
-				 * 끝///////////////////////////////////////////////////
-				 */
+                  
 
                 /* form 가공해서 formdata에 붙여주는 함수 */
                 function appendForm(formData){
@@ -397,7 +366,7 @@
                      /* formData에 담아준다. */
                      if(form[index].value !=""&& form[index].value !=undefined &&form[index].value !="선택"){
                     formData.append(form[index].name,form[index].value);
-                        console.log(form[index].value);
+                        console.log("form[Index] : "+form[index].value);
                       }// if end
                     });// each end
                      
@@ -416,29 +385,23 @@
                 
 $(function() {
 	
-	
-	
 	  var formData = new FormData();
     // submit 등록. 실제로 submit type은 아니다.
-
-    // /////////////////////////////////form data 전송 ajax 통신 시작
-	// /////////////////////////////////////////////////////////
     // 임시 저장을 클릭하게 되면 ajax를 통해 서버로 보내짐
     $('#go').on('click', function() {
     	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
     	appendForm(formData);
     	// 임시 저장에 대한 상태값주기 (여기다 이걸 쓰면 통일성이 깨짐.. 보완 필요)
     	formData.append("cPerstatus","임시");
-        console.log("클릭");
-       /* var form = $('#uploadForm'); */
+     
+
        /*
 		 * // 대응되는 key값을 받아옴 for (var index = 0; index <
-		 * Object.keys(files).length; index++) { // formData 공간에
-		 * files라는 이름으로 파일을 추가한다. // 동일명으로 계속 추가할 수 있다.
-		 * formData.append('files', files[index]); }
+		 * Object.keys(files).length; index++) { // formData 공간에 files라는 이름으로
+		 * 파일을 추가한다. // 동일명으로 계속 추가할 수 있다. formData.append('files',
+		 * files[index]); }
 		 */
    
-        // ajax 통신으로 multipart form을 전송한다.
         $.ajax({
             type: 'POST',
             enctype: 'multipart/form-data',
@@ -446,7 +409,7 @@ $(function() {
             contentType: false,
             cache: false,
             timeout: 600000,
-            url: '/openkitchen/mypage' + '/multipartUploadC',
+            url: '/openkitchen/mypage' + '/classBaseInfo',
             data: formData,
 
             success: function(result) {
@@ -477,7 +440,7 @@ $(function() {
     	/* form 태그의 내용을 dto에 넣을 수 있도록 가공하기 */
     	appendForm(formData);
     	// 저장에 대한 상태값주기 (여기다 이걸 쓰면 통일성이 깨짐.. 보완 필요)
-    	formData.append("cPerstatus","임시");
+    	formData.append("cPerstatus","신청");
     	
     	
     	
@@ -489,19 +452,15 @@ $(function() {
     		   if(key.includes("C-DS-TYPE2-")){
     		   console.log("필수가 아닌 선택 요소라 count에 안들어감");
     		   }else{
-    		   formsize++
-    		      
+    		   formsize++    		      
     		   }// if end
     		               		}// for end
-          console.log(formsize);
       	// 필수 등록 수 12를 넘지 못하면 다음으로 이동 불가
           if(formsize <13){
     		alert("신청서를 마저 작성해 주세요");
     		formData= new FormData();
     		formsize=0;
-    	
     	}else{
-    	
         $.ajax({
             type: 'POST',
             enctype: 'multipart/form-data',
@@ -509,7 +468,7 @@ $(function() {
             contentType: false,
             cache: false,
             timeout: 600000,
-            url:'/openkitchen/mypage' + '/completeC',
+            url:'/openkitchen/mypage' + '/classBaseInfo',
             data: formData,
 
             success: function(result) {
@@ -525,11 +484,6 @@ $(function() {
     
     }); // o n click end
 
-
-
-
-    // / ////////////////////////////////form data 전송 ajax 통신 끝
-	// /////////////////////////////////////////////////////////
 
     // <input type=file> 태그 기능 구현
     // 메인 썸네일
@@ -569,7 +523,7 @@ $(function() {
             num = 1;
         }
         nthCapa.text(num);
-        console.log(nthCapa.html());
+       
     });
 
     $('.plus-btn').click(function(e) {
@@ -600,7 +554,6 @@ $(function() {
     
   
     $('#addHash').click(function() {
-    	var im="<c:url value='/resources/img/icon/ico-search_del.png'/>";
         if ($(".hashTxt").length < 3) {
             if ($('.hashText').val() == '') {
                 alert("태그를 입력해 주세요"); 
@@ -651,7 +604,7 @@ $(function() {
 	
 	
 	
-})//$function end
+})// $function end
                 /* 질문 추가하기 함수 */
                 function setDisplay() {
                     if ($("#question").is(":checked")) {

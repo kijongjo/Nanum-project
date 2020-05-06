@@ -36,5 +36,11 @@
         <typeAlias type="kr.co.openkitchen.dto.ClassRegistDtoSch" alias="crschdto"/>
         <typeAlias type="kr.co.openkitchen.dto.AuthorityCheckDTO" alias="acdto"/>
         <typeAlias type="kr.co.openkitchen.dto.PaymentSpaceDTO" alias="psdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.MypageDTO" alias="mydto"/>
+        <typeAlias type="kr.co.openkitchen.dto.CookBookDTO" alias="cbdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.CookRefundDTO" alias="credto"/>
+        <typeAlias type="kr.co.openkitchen.dto.StandByClassDTO" alias="sbcdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.OngoingClassDTO" alias="ocdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.CompleteClassDTO" alias="ccdto"/>
   	</typeAliases>
   </configuration>
