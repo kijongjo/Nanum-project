@@ -16,6 +16,17 @@
 		WHERE S.S_NO = L.S_NO AND S.S_NO = #{sNo}
 		<if test="leaseDate != null">
 		AND L_LEASEDATE = #{leaseDate}
+		ORDER BY DECODE(L_LEASETIME,'오전','1','오후','2') 
 		</if>
+  	</select>
+  	<select id="selectPaymentS" resultType="psdto" parameterType="map">
+  		SELECT S.S_NAME, S.S_DETAILSUMNAIL, S.S_CAPACITY, L.L_LEASEDATE, L.L_LEASETIME, S.S_LOC, MEM.M_NAME
+		FROM LEASE L, SPACE S, HOST H, MEMBER MEM
+		WHERE L.S_NO = S.S_NO AND S.H_NO = H.H_NO AND H.H_NO = MEM.M_NO
+      		  AND L.L_NO in
+		<foreach collection="array" item="item" open="(" close=")" separator=",">
+		 	#{item}
+		</foreach>
+  	
   	</select>
   </mapper>

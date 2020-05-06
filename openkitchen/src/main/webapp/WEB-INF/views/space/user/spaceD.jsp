@@ -69,6 +69,7 @@
 	}
 	
 	.choiceSch {
+		height: 80px;
 		border: 1px solid rgba(0, 0, 0, .1);
 		border-bottom: none;
 		padding: 14px 48px;
@@ -83,41 +84,39 @@
 	 	text-align: left;
 	}
 	
-	.schTimeS {
-		border: 1px solid;
+	.schTime > input, .schTimeE > input  {
+		display:none
+	}
+	
+	.schTime {
+		background-color: grey;
+		color: white;
 		display: inline-block;
 		width: 75px;
 		border-radius: 80px;
 	}
 	
-	.schTimeS:nth-of-type(2) {
-		margin-left: 15px;
-		margin-right: 15px;
-	}
-	
-	.schTimeE {
-		display: inline-block;
-		width: 75px;
-		border-radius: 80px;
+	.schTime.E {
 		background-color: #8E0032;
+		/* css 이벤트 비활성화  */
+		pointer-events: none;
+		
 	}
 	
-	.schTimeE:nth-of-type(2) {
+	.schTime:nth-of-type(2) {
 		margin-left: 15px;
 		margin-right: 15px;
 	}
 	
+	.selectBottom p {
+		display: none;
+	}
 	
 </style>
 <script>
 	$(document).ready(function () {
-		$(".btn-payment").on("click", function () {
-			$(location).attr("href", "spacePayment?no=1");
-			console.log("test");
-			
-			
-		});
 		
+		var isAuthenticated = "<c:out value='${isAuthenticated}' />";
 		/* $picker.datepicker({
 			// 날짜 선택기의 셀이 렌더링 될 때 콜백  
 			// html로 입력받아 해석해서 표준 출력 장치(모니터)로 출력
@@ -156,7 +155,7 @@
 		<c:forEach var="itemList" items="${detailSScheDate}" varStatus="listIdx"  >
 			list.push("${itemList}");
 		</c:forEach>
-		console.log(list);
+		
 		var $picker = $(".datepicker-here");		
 
 				
@@ -260,13 +259,17 @@
 		// 클릭 했을 때 예약정보가 있을 때만 일정을 불러와야 하고 불러온 일정 중
 		// 예약 완료된 것은 다른 상태로 화면에 출력해야 한다.
 		
-		
+		// 무조건 결재 금액이 보이면 안 된다.
+		var amountNo = "<c:out value='${detailSpace.sCapacity}' />";
+		var amountCount = 0;
 		var cnt = 0;
 		var schDate = new Array("", "");
 		var leaseDate = "";
+		var detailParams = new Array();
 		$(document).on("click",".datepicker--cell", function () {
+			detailParams = [];
 			leaseDate = $(".1").text()+"-"+$(".2").text()+"-"+$(this).text();
-			$("span").remove(".schTime");
+			$(".schTime").remove();
 			
 			// 1. 일정이 없는 날은 클릭했을 시 동작을 하면 안 된다.
 			// 1.1 무엇을 비교해서 하는가? dot가 없으면 동c작 하지 않게 한다.
@@ -274,72 +277,73 @@
 				cnt++;
 				console.log(cnt);
 				
-				
-				
 				// 첫번째 클릭
 				if(cnt==1) {
 					schDate[0] = $(this).text();
 					console.log("카운트 1 : "+schDate);
-					
+					$(".choiceSch").css("display","block");
 					
 					// ajax를 통해 실시간으로 일정을 가져오자
 					$.ajax({
 					    url: "ajaxSDetailData",
 					    type: "post",
 					    // cache: false, 얘는 뭐냐???
-					    // dataType: "html",
+					    // dataType: "json",
 					    // 보내는게 뭔지 명시가 되야 함
 					    data: {"leaseDate":leaseDate,
 					    	   "sNo":"<c:out value='${detailSpace.sNo}' />"	
-					    },
-					          
+					    },       
 					    // 동적으로 추가된 태그에 css가 적용되지 않는다.
 					    success: function(data) {
-					    	$(".choiceSch").css("display","block");
-					    	$(".selectBody").after(data);
-					    	/* for (var i = 0; i < data.length; i++) {
-								var test = data[i];
-								console.log(test);
-					    		if(test.lLeasetime == "오전") {
-					    			$(".choiceSch").append("<span class='schTime'>오전</span>");
-					    		} else if (test.lLeasetime == "오후") {
-					    			$(".choiceSch").append("<span class='schTime'>오후</span>");
-					    		} else {
-					    			$(".choiceSch").append("<span class='schTime'>저녘</span>");
-					    		}
-							} */
-					    	
-					    	// 일정을 눌렀을 때 완성되어 있는 데이터를 받아오고 싶다.
-					    	// 감싸는 wrapper와 contents를 동시에 보고 싶다..
-					    	// java단에서 1차적으로 처리를 하고 완료된 값을 보낼까?
-					    	// 성공
-					    	// 문제 발생 실시간으로 데이터가 추가 되지 않음
-					    	
-					    	
+					    	for (var i = 0; i < data.length; i++) {
+								var choiceSch = data[i];
+								if(choiceSch.lPerstatus == "진행") {
+						    		if(choiceSch.lLeasetime == "오전") {
+						    			$(".choiceSch").
+						    				append("<label class='schTime'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		} else if (choiceSch.lLeasetime == "오후") {
+						    			$(".choiceSch").
+					    					append("<label class='schTime'>오후<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		} else {
+						    			$(".choiceSch").
+					    					append("<label class='schTime'>저녘<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		}
+								} else {
+									if(choiceSch.lLeasetime == "오전") {
+						    			$(".choiceSch").
+						    				append("<label class='schTime E'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		} else if (choiceSch.lLeasetime == "오후") {
+						    			$(".choiceSch").
+					    					append("<label class='schTime E'>오후<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		} else {
+						    			$(".choiceSch").
+					    					append("<label class='schTime E'>저녘<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+						    		}
+									
+								}
+							}
 					    },
 
 					    error: function (request, status, error){        
 					    	console.log("response no");
 					    }
 					  });
-					
-					
-					
 				} else if(cnt==2) {
 					schDate[1] = $(this).text();
 					console.log("카운트 2 : "+schDate);
 					// 같은 날짜를  클릭했을 때
 					// 클릭했을 때 클릭한 날짜의 date을 값을 가져와 배열에 저장한다.
-					if(schDate[0] == schDate[1]) {					
+					if(schDate[0] == schDate[1]) {	
 						$(".choiceSch").css("display","none");
+						$(".selectBottom").children("p").css("display","none");
 						// 배열에 저장된 일정 초기화
 						schDate[0] = "";
 						cnt = 0;
 						console.log("같은 일정을 선택");
 					} else {
 					// 일정상에 다른 날짜를 클릭했을 때
-					$(".choiceSch").remove();
 						console.log("다른 일정을 선택");
+						$(".selectBottom").children("p").css("display","none");
 						schDate[0] = $(this).text();
 						// ajax를 통해 실시간으로 일정을 가져오자
 						$.ajax({
@@ -353,44 +357,47 @@
 						    },
 						          
 						    success: function(data){
-						    	
-						    	
-						    	$(".selectBody").after(data);
-						    	/* for (var i = 0; i < data.length; i++) {
-									var test = data[i];
-									console.log(test);
-						    		if(test.lLeasetime == "오전") {
-						    			$(".choiceSch").append("<span class='schTime'>오전</span>");
-						    			if(test.lPerstatus == "종료") {
-						    				$(".schTime").css("backgroundColor", "red");
-						    				
-						    			}
-						    		} else if (test.lLeasetime == "오후") {
-						    			$(".choiceSch").append("<span class='schTime'>오후</span>");
-						    		} else {
-						    			$(".choiceSch").append("<span class='schTime'>저녘</span>");
-						    		}
-								} */
+						    	for (var i = 0; i < data.length; i++) {
+									var choiceSch = data[i];
+									if(choiceSch.lPerstatus == "진행") {
+							    		if(choiceSch.lLeasetime == "오전") {
+							    			$(".choiceSch").
+							    				append("<label class='schTime'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		} else if (choiceSch.lLeasetime == "오후") {
+							    			$(".choiceSch").
+						    					append("<label class='schTime'>오후<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		} else {
+							    			$(".choiceSch").
+						    					append("<label class='schTime'>저녘<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		}
+									} else {
+										if(choiceSch.lLeasetime == "오전") {
+							    			$(".choiceSch").
+							    				append("<label class='schTime E'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		} else if (choiceSch.lLeasetime == "오후") {
+							    			$(".choiceSch").
+						    					append("<label class='schTime E'>오후<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		} else {
+							    			$(".choiceSch").
+						    					append("<label class='schTime E'>저녘<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
+							    		}
+										
+									}
+								}
 						    },
 
 						    error: function (request, status, error){        
 						    	console.log("response no");
 						    }
 						  });
-						
-						
-						cnt = 1;
-					// 카운트 1로 전환 할 경우? 
-					// 일정 비교 데이터는 변경된게 없음.
-					// 또 한 번 클릭시 카운트2로 전환하면서 비교문 작동
-					// 21, 24 => 21, 25 또 다르네? 다시 반복
-					// 다른 일정으로 바꾸고 바꾼 일정을 다시 클릭해도 해제가 되어야 한다.
-					// 21, 24 ? 24, 24 카운트 2
-					
+				
+						cnt = 1;	
 					}
 				}
 			} else {
-				$(".choiceSch").css("display","none");	
+				$(".choiceSch").css("display","none");
+				// 결제 금액 초기화
+				$(".selectBottom").children("p").css("display","none");
 				console.log("예약일정이 없습니다!");
 				// 카운트 초기화
 				cnt = 0;
@@ -400,10 +407,77 @@
 			}
 		}); 
 		
-		$(document).on("click",".schTime", function () {
-			console.log("test");
+		// https://hermeslog.tistory.com/327 체크박스 checked
+		$(document).on("click",".timeCheck", function () {
+			if($(this).is(":checked")) {
+				$(".selectBottom").children("p").css("display","block");
+				$(this).parent().css("backgroundColor","#8E0032");
+				detailParams.push($(this).val());
+				
+				if(amountNo <= 6) {
+					amountCount = 80000*detailParams.length;
+					$(".amountS").text(amountCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+				} else if(amountNo >= 7) {
+					amountCount = 110000*detailParams.length;
+					$(".amountS").text(amountCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));	
+				}	
+			} else {
+				$(this).parent().css("backgroundColor","grey")
+				detailParams.splice(detailParams.indexOf($(this).val()),1);
+				console.log(detailParams);
+				
+				if(amountNo <= 6) {
+					amountCount -= 80000;
+					$(".amountS").text(amountCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+				} else if(amountNo >= 7) {
+					amountCount -= 110000;
+					$(".amountS").text(amountCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));	
+				}
+				
+				
+				if(detailParams.length == 0) {				
+					$(".selectBottom").children("p").css("display","none");
+				}
+			} 
+			
 		});
 		
+		
+		var leaseNo = "";
+		$(".btn-payment").on("click", function () {
+			leaseNo = "";
+			if(isAuthenticated == "teacher") {	
+				if(detailParams == 0) {
+					// 로그인 안 했을 때는 일정 선택 경고창이 뜨는게 아니라 
+					// 로그인 페이지로 이동 시켜야 된다.
+					// 선생님 일때만 동작해야 된다. 무조건!
+					// 선생님이 아닐 경우에는 경고창을 띄운다.
+					// 선생님 등록하라고!
+					
+						alert("일정을 선택해주세요.");
+					
+				} else {
+					for (var i = 0; i < detailParams.length; i++) {
+						if(i==0) {
+							leaseNo += "no="+detailParams[i];
+						} else if(i==1) {
+							leaseNo += "&no="+detailParams[i];
+						} else {
+							leaseNo += "&no="+detailParams[i];
+						}
+					}
+					$(location).attr("href", "spacePayment?"+leaseNo);
+				}
+			} else if(isAuthenticated == "user") {
+				
+				var teacherSignUp = confirm("공공의 주방 선생님만 공간대여를 신청 할 수 있습니다.선생님으로 등록하시겠습니까?");
+				if(teacherSignUp) {
+					$(location).attr("href", "mypage/in");
+				} 
+			} else {	
+				$(location).attr("href", "login");
+			}	
+		});
 	}); // jquery end
 </script>
 
@@ -413,10 +487,10 @@
 <body>
 <jsp:include page="../../header.jsp" flush="false" />
 	<!-- /////////////////////////////////////공유하기 팝업창 시작//////////////////////////////////////////////// -->
-
+	
 	<!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
 	<!-- 팝업형식으로 나온다. -->
-	input
+	
 	<div id="pop_share">
 		<!-- 안쪽에 팝업 창에 대한 내용 -->
 		<div id="pop_inner">
@@ -438,7 +512,6 @@
 			<a href="" id="btn-close"></a>
 
 		</div>
-
 
 	</div>
 	
@@ -691,18 +764,15 @@
 				<!-- <p>
 					<a href="javascript:selectBody()">일정 접기 </a>
 				</p> -->
-				<div class="choiceSch">
-					<div class="schTitle">선택된 일정</div>
-						<span class="schTime">오전</span>
-						<span class="schTime">오후</span>
-						<span class="schTime">저녘</span>	
-				</div>
+					<div class="choiceSch">
+						<div class="schTitle">선택된 일정</div>	
+					</div>
 				<!-- 신청하기 버튼이 있는 기능에 bottom이라고 지정했다. -->
 				<div class="selectBottom">
 					<!-- 해당 클래스,공간에 대한 가격이 보이게 된다. -->
 					<!-- !!선생님만 보인다.  -->
 					<p>
-						<em>₩</em><span>55,000</span>
+						<em>₩</em><span class="amountS"></span>
 					</p>
 					<!-- 클래스 공간의 결제 상세페이지로 넘어가는 버튼이다. -->
 					<button class="btn-payment">신청하기</button>

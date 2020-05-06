@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.openkitchen.dto.DetailSScheDTO;
 import kr.co.openkitchen.dto.DetailSpaceDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
+import kr.co.openkitchen.dto.PaymentSpaceDTO;
 import lombok.Setter;
 
 @Repository
@@ -44,6 +45,13 @@ public class SpaceDAO implements SDaoInter {
 		
 		return ss.selectList("kr.co.openkitchen.space.selectDetailSSche", map);
 	}
+
+	@Override
+	public List<PaymentSpaceDTO> selectPaymentS(Map<String, Object> map) {
+		
+		return ss.selectList("kr.co.openkitchen.space.selectPaymentS", map);
+	}
+	
 	
 	
 	

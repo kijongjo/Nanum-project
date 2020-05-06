@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,26 +35,29 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/loginOk")
-	public String loginOk(HttpSession session) { 
+	public String loginOk(HttpSession session, Model model) { 
 //		시큐리티에서 로그인된 id 가져오기		
 		User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		user.getUsername();
 		
 //		가져온 id로 다시 쿼리 해서 유저정보 가져오기
 		MemberDTO memberDTO = ms.selectUserData(user.getUsername());
-//		memberDTO.setmPwd(null);
 
-		//System.out.println("123123"+memberDTO);
-		//세션에 유저번호 저장
-		
 		session.setAttribute("openkitchen", memberDTO);
 		Object classNo = session.getAttribute("classNo");
 		Object spaceNo = session.getAttribute("spaceNo");
 		
+		// 클래스 결제 페이지 연관 로직
 		if(classNo != null) {
 			
 			return "redirect:classPayment?no="+classNo;
 			
+		}
+		
+		// 공간 결제 페이지 연관 로직
+		if(spaceNo != null) {
+			
+			return "redirect:spaceD?no="+spaceNo;
 		}
 		
 		return "redirect:index";
