@@ -381,7 +381,7 @@ public class UserController {
 	@RequestMapping(value = "totalScheduleList", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String TotalScheduleList(HttpServletRequest request) {
-
+        //변수선언
 		HttpSession session = request.getSession();
 		// JacksonLibrary
 		String str = "";
@@ -392,13 +392,15 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		
+        //데이터 서비스단 처리
 		if (session.getAttribute("cNo") != null) {
 			// FactoryPattern Service Instance
 			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
 			int cNo = Integer.parseInt((String) session.getAttribute("cNo"));
-
 			List<ClassRegistDtoSch> scheduleList = registService.selectOne(cNo).getCrdsch();
+		
+			//데이터 유효성 검사
 			if (scheduleList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(scheduleList);
@@ -460,7 +462,8 @@ public class UserController {
 	@RequestMapping(value = { "cookBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookBookList(HttpServletRequest request) {
-
+        
+		//변수 선언
 		HttpSession session = request.getSession();
 		// JacksonLibrary
 		String str = "";
@@ -471,22 +474,22 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
+		
+        //데이터 Service단 처리 
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
-			List<CookBookDTO> bookingList = mypageCook.selectOne(tNo).getCbd();
-			//aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-
+			List<CookBookDTO> bookingList = mypageCook.selectOne(tNo).getCbd();
+			
 			// request url form s3
 			for (int i = 0; i < bookingList.size(); i++) {
 				bookingList.get(i).setcMainsumnail(s3client.geturl(bookingList.get(i).getcMainsumnail()));
 			} // for end
             
-			//데이터 JSON 변환
+			//데이터유효성 검사
 			if (bookingList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(bookingList);

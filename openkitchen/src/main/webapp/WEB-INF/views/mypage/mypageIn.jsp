@@ -116,7 +116,7 @@
 							<!-- 클래스 상태 jstl -->
 								<c:choose>
 									<c:when test="${mydto.cPerstatus eq 'NOINFO' or mydto.cPerstatus eq '승인'}">
-										<li><a href="classSpase?no=1">신청하기 <i
+										<li><a href="classBase?no=1">신청하기 <i
 												class="ico-more_arrow"></i></a></li>
 									</c:when>
 									<c:when test="${mydto.cPerstatus eq '신청'}">
