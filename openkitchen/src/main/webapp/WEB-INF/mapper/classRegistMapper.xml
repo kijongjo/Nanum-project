@@ -58,22 +58,19 @@
 	</update>
 
 	<select id="leaseList" parameterType="int" resultType="crldto">
-		SELECT /*+
-		use_nl(S,MIX) */
-		MIX.REN_NO,S.S_NAME,TO_CHAR(MIX.L_LEASEDATE,'YYYY-MM-DD')
-		lLeasedate,MIX.L_LEASETIME,S_MAINSUMNAIL
-		FROM
-		SPACE S,(select /*+
-		use_nl(R,L) */
-		R.REN_NO,L.L_LEASEDATE,L.L_LEASETIME,L.S_NO
-		from LEASE
-		L,RENTAL R
-		WHERE
-		R.T_NO=#{tNo}
-		AND R.L_NO=L.L_NO
-		AND L.L_PERSTATUS='진행')
-		mix
-		where
+		SELECT /*+ ordered use_nl(S,MIX) */
+		MIX.REN_NO,S.S_NAME,TO_CHAR(MIX.L_LEASEDATE,'YYYY-MM-DD')lLeasedate,MIX.L_LEASETIME,S_MAINSUMNAIL
+		FROM SPACE S,
+		(SELECT /*+ ordered use_nl(L,R) */
+		 R.REN_NO,L.L_LEASEDATE,L.L_LEASETIME,L.S_NO
+		 FROM LEASE L,RENTAL R
+		 
+		 WHERE
+		 R.T_NO=#{tNo}
+		 AND R.L_NO=L.L_NO
+		 AND L.L_PERSTATUS='진행') MIX
+		
+	 	WHERE
 		S.S_NO=MIX.S_NO
 
 
@@ -111,10 +108,10 @@
 	<select id="scheduleList" parameterType="int"
 		resultType="crschdto">
 
-		SELECT /*+ use_nl(MIX2,L) */
+		SELECT /*+ ordered use_nl(MIX2,L) */
 		TO_CHAR(L.L_LEASEDATE,'YYYY-MM-DD') lLeasedate,L.L_LEASETIME
 		FROM
-		(SELECT /*+ use_nl(REN,MIX1) */
+		(SELECT /*+ ordered use_nl(REN,MIX1) */
 		REN.L_NO
 		FROM
 		RENTAL REN,(SELECT /*+
