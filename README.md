@@ -3,8 +3,8 @@
 1. [OpenKitchen](#openkitchen) <br/>
 2. [Summary-프로젝트 요약](#summary)<br/>
 3. [Default-기본규칙](#default)<br/>
-4. [기술-적용기술설명](#기술)<br/>
-*각자 구현한 기술에 대한 설명<br/>
+4. [공통기술-적용기술설명](#기술)<br/>
+* 개인 기술 Part<br/>
    [이정용](#이정용)<br/>
    [조기종](#조기종)<br/>
     
