@@ -555,7 +555,7 @@
                 </div> 
                     <ul id="applyUl">
                         <li id="li-title">${paymentC.cName}</li>
-                        <li id="li-price"><em>₩</em>${paymentC.cPrice}</li>
+                        <li id="li-price"><em>₩</em><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentC.cPrice}"/></li>
                         <table>
                             <tr>
                                 <th>수강일</th>
@@ -693,7 +693,7 @@
                 <ul>
                     <li>
                         <strong>클래스 금액</strong>
-                        <span id="rightUpSpan">${paymentC.cPrice}원</span>
+                        <span id="rightUpSpan"><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentC.cPrice}"/>원</span>
                     </li>
                 </ul>
             </div>
@@ -701,7 +701,7 @@
             <p id="rightPaymentP">
                 <strong>총 결제 금액</strong>
                 <span id="rightDownSpan">
-                    <b>${paymentC.cPrice}</b>원
+                    <b><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentC.cPrice}"/></b>원
                 </span>
             </p>
             </div>

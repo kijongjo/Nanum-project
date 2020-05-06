@@ -565,10 +565,10 @@
                     			<li id="li-title">${item.sName}</li>
                         		<li id="li-price"><em>₩</em>
 	                    			<c:choose>
-	                    				<c:when test="${item.sCapacity ge 6}">
+	                    				<c:when test="${item.sCapacity le 6}">
 	                    					80,000
 	                    				</c:when>
-	                    				<c:when test="${item.sCapacity le 7}">
+	                    				<c:when test="${item.sCapacity ge 7}">
 	                    					110,000
 	                    				</c:when>
 	                    			</c:choose>
@@ -585,13 +585,13 @@
                                 		<fmt:formatDate value="${item.lLeasedate}" pattern="yy.MM.dd (E)"/> 
 	                                	<c:choose>
 	                                		<c:when test="${item.lLeasetime eq '오전'}">
-	                                			/ 10:00 - 14:00 
+	                                			/ 10:00 - 14:00 <br />
 	                                		</c:when>
 	                                		<c:when test="${item.lLeasetime eq '오후'}">
-	                                			/ 14:00 - 18:00 
+	                                			/ 14:00 - 18:00 <br />
 	                                		</c:when>
 	                                		<c:otherwise>
-	                                			/ 18:00 - 22:00 
+	                                			/ 18:00 - 22:00 <br />
 	                                		</c:otherwise>
 	                                	</c:choose>
                                 	</c:forEach>
@@ -723,22 +723,7 @@
                     <li>
                         <strong>공간 금액</strong>
                         <span id="rightUpSpan">
-                        	<b>
-                        	<c:forEach items="${paymentS}" var="item" varStatus="i">
-                        		<c:out value="${i.end}" />
-                        		<c:if test="${i.index == 0}">
-	                        		<c:choose>
-		                    				<c:when test="${item.sCapacity ge 6}">
-		                    					<c:out value="${80000}" />
-		                    				</c:when>
-		                    				<c:when test="${item.sCapacity le 7}">
-		                    					<c:out value="${110000}" />
-		                    				</c:when>
-	                    			</c:choose>
-	                    		</c:if>	
-                    
-                        	</c:forEach>
-                       		</b>원
+                        	<b><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentAmount}"/></b>원
                         </span>
                     </li>
                 </ul>
@@ -747,20 +732,7 @@
             <p id="rightPaymentP">
                 <strong>총 결제 금액</strong>
                 <span id="rightDownSpan">
-                    <b>
-                    	<c:forEach items="${paymentS}" var="item" varStatus="i">
-                        		<c:if test="${i.index == 0}">
-	                        		<c:choose>
-		                    				<c:when test="${item.sCapacity ge 6}">
-		                    					80000
-		                    				</c:when>
-		                    				<c:when test="${item.sCapacity le 7}">
-		                    					110000
-		                    				</c:when>
-	                    			</c:choose>
-	                    		</c:if>	
-                        </c:forEach>	
-                    </b>원
+                    <b><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentAmount}"/></b>원
                 </span>
             </p>
             </div>

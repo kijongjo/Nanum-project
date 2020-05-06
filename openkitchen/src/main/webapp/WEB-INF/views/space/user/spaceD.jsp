@@ -89,14 +89,15 @@
 	}
 	
 	.schTime {
-		border: 1px solid;
+		background-color: grey;
+		color: white;
 		display: inline-block;
 		width: 75px;
 		border-radius: 80px;
 	}
 	
 	.schTime.E {
-		background-color: red;
+		background-color: #8E0032;
 		/* css 이벤트 비활성화  */
 		pointer-events: none;
 		
@@ -107,11 +108,15 @@
 		margin-right: 15px;
 	}
 	
+	.selectBottom p {
+		display: none;
+	}
+	
 </style>
 <script>
 	$(document).ready(function () {
 		
-		
+		var isAuthenticated = "<c:out value='${isAuthenticated}' />";
 		/* $picker.datepicker({
 			// 날짜 선택기의 셀이 렌더링 될 때 콜백  
 			// html로 입력받아 해석해서 표준 출력 장치(모니터)로 출력
@@ -254,7 +259,9 @@
 		// 클릭 했을 때 예약정보가 있을 때만 일정을 불러와야 하고 불러온 일정 중
 		// 예약 완료된 것은 다른 상태로 화면에 출력해야 한다.
 		
-		
+		// 무조건 결재 금액이 보이면 안 된다.
+		var amountNo = "<c:out value='${detailSpace.sCapacity}' />";
+		var amountCount = 0;
 		var cnt = 0;
 		var schDate = new Array("", "");
 		var leaseDate = "";
@@ -269,8 +276,6 @@
 			if($(this).children("span").hasClass("dp-note")) {
 				cnt++;
 				console.log(cnt);
-				
-				
 				
 				// 첫번째 클릭
 				if(cnt==1) {
@@ -330,6 +335,7 @@
 					// 클릭했을 때 클릭한 날짜의 date을 값을 가져와 배열에 저장한다.
 					if(schDate[0] == schDate[1]) {	
 						$(".choiceSch").css("display","none");
+						$(".selectBottom").children("p").css("display","none");
 						// 배열에 저장된 일정 초기화
 						schDate[0] = "";
 						cnt = 0;
@@ -337,6 +343,7 @@
 					} else {
 					// 일정상에 다른 날짜를 클릭했을 때
 						console.log("다른 일정을 선택");
+						$(".selectBottom").children("p").css("display","none");
 						schDate[0] = $(this).text();
 						// ajax를 통해 실시간으로 일정을 가져오자
 						$.ajax({
@@ -383,13 +390,14 @@
 						    	console.log("response no");
 						    }
 						  });
-						
-						
+				
 						cnt = 1;	
 					}
 				}
 			} else {
-				$(".choiceSch").css("display","none");	
+				$(".choiceSch").css("display","none");
+				// 결제 금액 초기화
+				$(".selectBottom").children("p").css("display","none");
 				console.log("예약일정이 없습니다!");
 				// 카운트 초기화
 				cnt = 0;
@@ -402,20 +410,38 @@
 		// https://hermeslog.tistory.com/327 체크박스 checked
 		$(document).on("click",".timeCheck", function () {
 			if($(this).is(":checked")) {
-				$(this).parent().css("backgroundColor","red");
+				$(".selectBottom").children("p").css("display","block");
+				$(this).parent().css("backgroundColor","#8E0032");
 				detailParams.push($(this).val());
-				console.log(detailParams);
+				
+				if(amountNo <= 6) {
+					amountCount = 80000*detailParams.length;
+					$(".amountS").text(amountCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+				} else if(amountNo >= 7) {
+					amountCount = 110000*detailParams.length;
+					$(".amountS").text(amountCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));	
+				}	
 			} else {
-				$(this).parent().css("backgroundColor","white");
+				$(this).parent().css("backgroundColor","grey")
 				detailParams.splice(detailParams.indexOf($(this).val()),1);
 				console.log(detailParams);
+				
+				if(amountNo <= 6) {
+					amountCount -= 80000;
+					$(".amountS").text(amountCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+				} else if(amountNo >= 7) {
+					amountCount -= 110000;
+					$(".amountS").text(amountCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));	
+				}
+				
+				
+				if(detailParams.length == 0) {				
+					$(".selectBottom").children("p").css("display","none");
+				}
 			} 
 			
 		});
 		
-		
-		var isAuthenticated = "<c:out value='${isAuthenticated}' />";
-		console.log("현재 접속자 권한 확인 : "+isAuthenticated);
 		
 		var leaseNo = "";
 		$(".btn-payment").on("click", function () {
@@ -452,10 +478,6 @@
 				$(location).attr("href", "login");
 			}	
 		});
-		
-		
-		
-		
 	}); // jquery end
 </script>
 
@@ -750,7 +772,7 @@
 					<!-- 해당 클래스,공간에 대한 가격이 보이게 된다. -->
 					<!-- !!선생님만 보인다.  -->
 					<p>
-						<em>₩</em><span>55,000</span>
+						<em>₩</em><span class="amountS"></span>
 					</p>
 					<!-- 클래스 공간의 결제 상세페이지로 넘어가는 버튼이다. -->
 					<button class="btn-payment">신청하기</button>

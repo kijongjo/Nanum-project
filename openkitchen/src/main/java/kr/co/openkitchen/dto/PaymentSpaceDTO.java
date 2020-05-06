@@ -13,7 +13,7 @@ public class PaymentSpaceDTO {
 	int lNo;
 	String sName;
 	String sDetailsumnail;
-	String sCapacity;
+	int sCapacity;
 	Date lLeasedate;
 	String lLeasetime;
 	String sLoc;
@@ -38,10 +38,10 @@ public class PaymentSpaceDTO {
 	public void setsDetailsumnail(String sDetailsumnail) {
 		this.sDetailsumnail = sDetailsumnail;
 	}
-	public String getsCapacity() {
+	public int getsCapacity() {
 		return sCapacity;
 	}
-	public void setsCapacity(String sCapacity) {
+	public void setsCapacity(int sCapacity) {
 		this.sCapacity = sCapacity;
 	}
 	public Date getlLeasedate() {

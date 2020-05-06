@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.openkitchen.dto.AuthorityCheckDTO;
 import kr.co.openkitchen.dto.DetailSScheDTO;
 import kr.co.openkitchen.dto.MemberDTO;
+import kr.co.openkitchen.dto.PaymentSpaceDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.service.MemberServiceInter;
 import kr.co.openkitchen.service.SserviceInter;
@@ -110,8 +111,8 @@ public class SpaceController {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			str = mapper.writeValueAsString(list);
-			System.out.println();
-			System.out.println("str : " + str);
+			// System.out.println();
+			// System.out.println("str : " + str);
 		} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,7 +139,7 @@ public class SpaceController {
 		map.put("leaseDate", leaseDate);
 		
 		List<DetailSScheDTO> test = ssi.readDetailSSche(map);
-		System.out.println(test);
+		// System.out.println(test);
 
 		
 		return test;
@@ -154,6 +155,26 @@ public class SpaceController {
 		// array나 list를 보낼 경우에는 map으로 감싸되 key의 이름을
 		// 정확히 array와 list로 명시해야 된다.
 		map.put("array", no);
+		
+		List<PaymentSpaceDTO> list = ssi.readPaymentS(map);
+		
+		System.out.println("공간정보 사이즈 : "+list.size());
+		
+		// 1. 공간 사이즈가 2개 이상일때만 로직처리를 한다.
+		int count = 0;
+		int amount = 0;
+		
+		for(PaymentSpaceDTO psdto : list) {
+			count++;
+			System.out.println("인원수 : "+psdto.getsCapacity());
+			if(psdto.getsCapacity() <= 6) {
+				amount = 80000;
+			} else if(psdto.getsCapacity() >= 7) {
+				amount = 110000;
+			}
+		}
+			
+		model.addAttribute("paymentAmount",amount*count);
 		model.addAttribute("paymentS", ssi.readPaymentS(map));
 		
 		HttpSession session = request.getSession();
@@ -162,9 +183,6 @@ public class SpaceController {
 			model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
 		}
 		
-		
-		
-		System.out.println(ssi.readPaymentS(map));
 		return "space/user/spacePayment";
 	}
 	
