@@ -5,7 +5,6 @@
 3. [Default-기본규칙](#default)<br/>
 4. [공통기술-적용기술설명](#기술)<br/>
 * 개인 기술 Part<br/>
-   [이정용](#이정용)<br/>
    [조기종](#조기종)<br/>
     
 
@@ -70,10 +69,7 @@ GIT- 소스 트리
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
 
 
-##  이정용
 
-각자 맡은 페이지에서 사용한 기술 설명 하기 
-<h5 align="right"> <a href="#목차">목차보기▲</a></h5>
 
 ##  조기종
 <table style="width:600px ;" name="JoList">
