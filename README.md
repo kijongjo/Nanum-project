@@ -51,11 +51,24 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 # 기술
 
 ## 형상관리 및 도구
-GIT- 소스 트리 
+GIT- 소스 트리
+<img alt="GitHub issues" src="https://img.shields.io/github/issues/kijongjo/Nanum-project">
+<img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/kijongjo/Nanum-project">
+<img alt="GitHub closed pull requests" src="https://img.shields.io/github/issues-pr-closed-raw/kijongjo/Nanum-project">
+<img alt="GitHub milestones" src="https://img.shields.io/github/milestones/all/kijongjo/Nanum-project">
 
-https://img.shields.io/github/commit-activity/m/kijongjo/Nanum-project
+* 이슈관리를 통한 개발 진행
+<img src="https://user-images.githubusercontent.com/54735867/81146109-9c73b200-8fb2-11ea-9199-04a33aea0ec1.png" width="100%" height="400">
 
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
+
+## Spring Security 
+*  사용자 접근 권한 관리와 CSRF 프로텍션을 위해 Spring Security를 사용했습니다. 
+<img src="https://user-images.githubusercontent.com/54735867/81146244-dcd33000-8fb2-11ea-81ee-e315e895a1b9.png" width="70%" height="300">
+
+
+<h5 align="right"> <a href="#목차">목차보기▲</a></h5>
+
 
 ##  이정용
 
