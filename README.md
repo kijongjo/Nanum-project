@@ -51,7 +51,9 @@ OpenKitchen은 Spring으로 제작된 백엔드 기술 중심 프로젝트이며
 # 기술
 
 ## 형상관리 및 도구
-GIT- 소스 트리 ,
+GIT- 소스 트리 
+
+https://img.shields.io/github/commit-activity/m/kijongjo/Nanum-project
 
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
 
