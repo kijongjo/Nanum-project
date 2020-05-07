@@ -86,5 +86,15 @@
 			      REN.T_NO = T.T_NO AND REN.L_NO = L.L_NO AND L.S_NO = S.S_NO
 			      AND REC.REC_NO = #{no}
   		</select>
+  		<insert id="insertPayment" parameterType="ipdto">
+  			<selectKey keyProperty="eNo,cpNo" resultType="map" order="BEFORE">
+  				SELECT ENROL_SEQ.NEXTVAL AS eNo, CLASS_PAY_SEQ.NEXTVAL AS cpNo FROM DUAL
+  			</selectKey>
+  			INSERT ALL
+			INTO ENROL VALUES(#{eNo}, '예약대기', SYSDATE, #{memberNo}, #{classNo})
+			INTO CLASS_PAY VALUES(#{cpNo}, #{payType}, '승인', #{totalPay},SYSDATE, #{eNo})
+			SELECT *
+			FROM DUAL
+  		</insert>
   		
   </mapper>

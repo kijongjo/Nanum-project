@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.co.openkitchen.dto.ClassIndexDTO;
 import kr.co.openkitchen.dto.DetailCScheDTO;
 import kr.co.openkitchen.dto.DetailClassDTO;
+import kr.co.openkitchen.dto.InsertPaymentDTO;
 import kr.co.openkitchen.dto.PaymentClassDTO;
 
 public interface CDaoInter {
@@ -15,4 +16,6 @@ public interface CDaoInter {
 	public List<DetailCScheDTO> selectDetailCSche(Map<String, String> map);
 	public List<ClassIndexDTO> moreClass(int count);
 	public PaymentClassDTO selectPaymentC(int recNo);
+	//public void insertPayment(Map<String, Object> map);
+	public void insertPayment(InsertPaymentDTO ipdto);
 }

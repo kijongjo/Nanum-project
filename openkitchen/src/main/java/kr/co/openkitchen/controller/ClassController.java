@@ -15,10 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -26,6 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.openkitchen.dto.ClassIndexDTO;
 import kr.co.openkitchen.dto.DetailCScheDTO;
+import kr.co.openkitchen.dto.InsertPaymentDTO;
 import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.service.CserviceInter;
 import kr.co.openkitchen.service.MemberServiceInter;
@@ -131,12 +136,44 @@ public class ClassController {
 		
 		Object obj = session.getAttribute("openkitchen");
 		MemberDTO mdto = (MemberDTO)obj;
-		
-		
+		session.setAttribute("classNo", recNo);
+		session.setAttribute("memberNo", mdto.getmNo());
 		model.addAttribute("paymentC", csi.readPaymentC(recNo));
 		model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
 		
 		return "class/user/classPayment";
+	}
+	
+	@PostMapping("classPayment")
+	public String paymentApproval(@SessionAttribute("classNo")int recNo,
+			@SessionAttribute("memberNo")int mNo, @ModelAttribute("totalPay")int totalPay,
+			@ModelAttribute("payType")String payType) {
+		
+		System.out.println("classNo : "+recNo);
+		System.out.println("memberNo : "+mNo);
+		System.out.println("totalPay : "+totalPay);
+		System.out.println("payType : "+payType);
+		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		
+//		map.put("classNo", recNo);
+//		map.put("memberNo", mNo);
+//		map.put("totalPay", totalPay);
+//		map.put("payType", payType);
+		
+		InsertPaymentDTO ipdto = new InsertPaymentDTO();
+		
+		ipdto.setmNo(mNo);
+		ipdto.setPayType(payType);
+		ipdto.setRecNo(recNo);
+		ipdto.setTotalPay(totalPay);
+		ipdto.seteNo(0);
+		ipdto.setCpNo(0);
+		
+//		csi.addPaymentData(map);
+		csi.addPaymentData(ipdto);
+		
+		return "redirect:index";
 	}
 
 }
