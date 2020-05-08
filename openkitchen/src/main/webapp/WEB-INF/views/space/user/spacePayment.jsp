@@ -117,7 +117,6 @@
        }
        /* 쿠폰 마일리지 섹션 */
        #lay03 > #left01 > #apply03 {
-           height: 379px;
            padding: 50px 0px;
            border-bottom: 2px lightgray solid;
        }
@@ -180,7 +179,8 @@
            font-style: normal;
        }
        /* 쿠포마 부분의 전체 사용 버튼  */
-       #lay03 > #left01 > #apply03 .cou-wrap a >input{
+       #lay03 > #left01 > #apply03 .cou-wrap #pointAll,
+       #lay03 > #left01 > #apply03 .cou-wrap #mileageAll {
            /* width: 150px; */
            width: 20%;
            height: 54px;
@@ -477,6 +477,7 @@
 			}			
 		});
 		
+		// 일정선택
 		var orderAgree = $("#orderAgree");
 		var payButton = $("#payButton");
 		orderAgree.on("click", function () {	
@@ -489,16 +490,53 @@
 			}
 		});
 		
+		
+		
+		
+		
+		
 		var pointText = $("#point");
 		var mileaseText = $("#mileage");
 		
-		var cPrice = parseInt("<c:out value='${paymentC.cPrice}'/>");
+		var cPrice = parseInt("<c:out value='${paymentAmount}'/>");
 		var cPoint = parseInt("<c:out value='${paymentM.ptStorage}'/>");
 		var cMileage = parseInt("<c:out value='${paymentM.mgStorage}'/>"); 
+		var cCoupon = parseInt("<c:out value='${paymentM.cType}'/>");
+		var limitDiscount = cPrice-cPrice*0.1;
+		
 		
 		var point = 0;
 		var mileage = 0;
+		// 데이터로 넘겨야 할 최종금액 
 		var totalPay = cPrice;
+		
+		// 쿠폰 옵션 선택 이벤트
+		$("#cpSelect").on("change", function () {
+			if($("#cpSelect option").index($("#cpSelect option:selected"))==0) {
+				totalPay = cPrice;
+				$(".cou-wrap").css("display", "block");
+				$("b").text(totalPay);
+			} else {
+				$(".cou-wrap").css("display", "none");
+				pointText.val("");
+				mileaseText.val("");
+				if(cCoupon==1) {
+					totalPay = cPrice-cPrice*0.1;
+					console.log("cPrice : "+cPrice);
+					// $("b").text(cPrice-cPrice*0.1);
+					$("b").text(totalPay);
+				} else {
+					totalPay = cPrice-cPrice*0.05;
+					// $("b").text(cPrice-cPrice*0.05);
+					$("b").text(totalPay);
+				}
+				
+				$(".paymentAlert").remove();
+				$("#cou-div1").after("<div class='paymentAlert'>쿠폰만 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+			}	
+		});
 		
 		
 		/* 
@@ -506,37 +544,165 @@
 			총 금액은 전역변수여야됨. 
 		*/
 		pointText.keyup(function () {
-	
-		    point = parseInt(pointText.val())
+				
+			// 최종 할인 금액만 저장된다.
+		    point = parseInt(pointText.val());
+			console.log("뭐임 : "+point);
+		    totalPay = cPrice-(point+mileage);
 			if(cPoint >= point) {
+				console.log("최종 : "+totalPay);
+				if(totalPay>=limitDiscount) {
+					$("#ptStorage").text(cPoint-point);
+					$("b").text(totalPay);	
+				} else {
+					
+					$(".paymentAlert").remove();
+					$(".cou-wrap").eq(0).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+					$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+					
+					console.log("할인최대 넘음 point : "+totalPay);
+					
+					totalPay = totalPay+point
+					point = 0;
+
+					$("#ptStorage").text(cPoint);
+					$("b").text(totalPay);
+					pointText.val("");
+				}
+				
+			} else if(isNaN(point)) {
+				point = 0;
+				totalPay = cPrice-(point+mileage);
 				$("#ptStorage").text(cPoint-point);
-				$("b").text();
+				$("b").text(totalPay);
 			} else {
-				console.log("최대 사용 가능 포인트를 초과했습니다. 결제금액의 10% 이하 사용 가능합니다.")
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(0).after("<div class='paymentAlert'>최대 사용 가능 포인트를 초과했습니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				point = 0;
+				totalPay = cPrice-(point+mileage);
+								
 				$("#ptStorage").text(cPoint);
-				$("b").text(cPrice);
+				$("b").text(totalPay);				
 				pointText.val("");
-				totalPay = cPrice;
 				
 			}
 		});
 		
 		mileaseText.keyup(function () {
 			mileage = parseInt(mileaseText.val());
+			totalPay = cPrice-(point+mileage);
 			if(cMileage >= mileage) {		 
+				if(totalPay>=limitDiscount) {
+					$("#mgStorage").text(cMileage-mileage);
+					$("b").text(totalPay);
+				} else {
+					$(".paymentAlert").remove();
+					$(".cou-wrap").eq(1).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+					$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+					
+						
+					totalPay = totalPay+mileage;
+					mileage = 0;
+					
+					$("#mgStorage").text(cMileage);
+					$("b").text(totalPay);
+					mileaseText.val("");
+				}
+			} else if(isNaN(mileage)) {
+				mileage = 0;
+				totalPay = cPrice-(point+mileage);
 				$("#mgStorage").text(cMileage-mileage);
-				$("b").text();
+				$("b").text(totalPay);
 				
 			} else {
-				console.log("최대 사용 가능 마일리지를 초과했습니다. 결제금액의 10% 이하 사용 가능합니다.");
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(1).after("<div class='paymentAlert'>최대 사용 가능 마일리지를 초과했습니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				mileage = 0;
+				totalPay = cPrice-(point+mileage);
+								
 				$("#mgStorage").text(cMileage);
-				$("b").text(cPrice);
+				$("b").text(totalPay);
 				mileaseText.val("");
-				totalPay = cPrice;
+					
 			}
 		});
 		
-	
+		var pointAll = $("#pointAll");
+		var mileageAll = $("#mileageAll");
+		
+		pointAll.on("click", function () {
+			point = cPoint;
+			pointText.val(cPoint);
+			totalPay = cPrice-(point+mileage);
+			if(totalPay>=limitDiscount) {
+				$("#ptStorage").text(0);
+				$("b").text(totalPay);	
+			} else {
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(0).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				totalPay = totalPay+point;
+				point = 0;
+				
+				$("#ptStorage").text(cPoint);
+				$("b").text(totalPay);
+				pointText.val("");
+			}
+		});
+		
+		mileageAll.on("click", function () {
+			mileage = cMileage;
+			mileaseText.val(cMileage);
+			totalPay = cPrice-(point+mileage);
+			if(totalPay>=limitDiscount) {
+				$("#mgStorage").text(0);
+				$("b").text(totalPay);
+			} else {
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(1).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				console.log("할인 최대 넘음 mileage : "+totalPay);	
+
+				totalPay = totalPay+mileage;
+				mileage = 0;
+			
+				$("#mgStorage").text(cMileage);
+				$("b").text(totalPay+mileage);
+				mileaseText.val("");
+			}
+		});
+		
+		$("#payButton").on("click", function () {
+			if(orderAgree.is(":checked")) {
+				console.log("test");		
+		
+				$.ajax({
+				    url:'classPayment', // 요청 할 주소
+				    async:true,// false 일 경우 동기 요청으로 변경
+				    type:'POST', // GET, PUT
+				    dataType:'text',// xml, json, script, html
+				    data: {
+				        "totalPay":totalPay,
+				        "payType":payType[0]
+				    }, success:function(data) {
+				    	console.log("성공");
+				    	$("#pop_share").css("opacity","1").css("z-index","100");
+				    },error:function() {
+			    		console.log("실패");
+			    	}
+			    });
+					
+				    
+			} else {
+				return false;
+			}
+		});
 	});
 	</script>
 <jsp:include page="../../headerScript.jsp" flush="false" />
@@ -651,7 +817,7 @@
                 <h3>쿠폰/포인트/마일리지</h3>
                 <div id="cou-div1">
                     <p class="cou-title">쿠폰</p>
-                    <select name="" id="">
+                    <select name="" id="cpSelect">
                         <option value="">쿠폰을 선택해 주세요.</option>
                         <c:choose>
                         	<c:when test="${paymentM.cType eq 1}">
@@ -674,9 +840,7 @@
                 </p>
                 <div>
 	                <input type="text" name="" id="point" placeholder="0P">
-	                <a href="">
-	                	<input type="button" value="전체사용">
-                	</a>
+	                	<input type="button" id="pointAll" value="전체사용">
                 </div>
              </div>
             <div class="cou-wrap">
@@ -690,7 +854,7 @@
                 </p>
                 <div>
                 <input type="text" name="" id="mileage" placeholder="0원">
-                <a href=""><input type="button" value="전체사용"></a>
+                <input type="button" id="mileageAll" value="전체사용">
                 </div>
             </div>
             </section>
@@ -736,7 +900,7 @@
                 </span>
             </p>
             </div>
-            <a href=""><input type="button" value="결제하기" id="payButton" disabled></a>
+            <input type="button" value="결제하기" id="payButton">
         </section>
     </div>
     <jsp:include page="../../footer.jsp" flush="false" />

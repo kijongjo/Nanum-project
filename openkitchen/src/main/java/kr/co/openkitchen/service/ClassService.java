@@ -10,7 +10,6 @@ import kr.co.openkitchen.dao.CDaoInter;
 import kr.co.openkitchen.dto.ClassIndexDTO;
 import kr.co.openkitchen.dto.DetailCScheDTO;
 import kr.co.openkitchen.dto.DetailClassDTO;
-import kr.co.openkitchen.dto.InsertPaymentDTO;
 import kr.co.openkitchen.dto.PaymentClassDTO;
 import lombok.Setter;
 
@@ -52,20 +51,13 @@ public class ClassService implements CserviceInter {
 		
 			return dao.selectPaymentC(recNo);
 		}
-
-		@Override
-		public void addPaymentData(InsertPaymentDTO ipdto) {
 		
-			dao.insertPayment(ipdto);
+		@Override
+		public int addPaymentData(Map<String, Object> map) {
+			
+			return dao.insertPayment(map);
 			
 		}
-
-//		@Override
-//		public void addPaymentData(Map<String, Object> map) {
-//			
-//			dao.insertPayment(map);
-//			
-//		}
 		
 		
 		
