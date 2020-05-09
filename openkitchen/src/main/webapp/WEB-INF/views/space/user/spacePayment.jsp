@@ -443,7 +443,79 @@
            font-size: 20px;
            font-weight: 900;
        }
+    	
+       #pop_share {
+    /* 내용이 잘리게 될때 스크롤바가 보이도록 설정한다. */
+    overflow: auto;
+    position: fixed;
+  
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 81px 25px 0;
+    /* 반투명 설정 */
+    background: rgba(0, 0, 0, 0.67);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+    z-index:-9999;
+	}
+
+    /* #pop_share:target {
+    opacity: 1;
+    z-index: 100;
     
+	} */
+
+	/* 팝업창에 대한 css 설정 */
+	
+	#pop_inner {
+	    margin: 95px auto 0;
+	    /* 내용물이 가운데로 오도록 설정 */
+	    padding-top: 40px;
+	    padding-bottom: 10px;
+	    /* 550으로 잡아주어야 팝업창 모양이 나온다 안잡아주면 너무 김. */
+	    max-width: 550px;
+	    position: relative;
+	    background: white;
+	    padding: 40px 40px;
+	}
+	
+	#pop_title {
+	    font-weight: 600 !important;
+	    font-size: 24px !important;
+	    line-height: 1.5;
+	    margin-bottom: 30px;
+	}
+      
+	.paymentOk {
+		 /* clear: both; */
+		 text-align: center;
+	}
+	
+	#mainCGoing, #detailCGoing {
+		display: inline-block;
+		width: 222px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 16px;
+		background-color: #8E0032;
+		color: white;
+		border-radius: 3px;			
+	}
+    #pop_share #pop_inner .pop_paymentData {
+    	border-bottom: none;
+    }
+    
+    #mainCGoing {
+    	margin-right: 10px;
+    }
+    
+    #detailCGoing {
+    	margin-left: 10px;
+    }	
         
     </style>
 	<script>
@@ -683,7 +755,7 @@
 				console.log("test");		
 		
 				$.ajax({
-				    url:'classPayment', // 요청 할 주소
+				    url:'spacePayment', // 요청 할 주소
 				    async:true,// false 일 경우 동기 요청으로 변경
 				    type:'POST', // GET, PUT
 				    dataType:'text',// xml, json, script, html
@@ -710,6 +782,58 @@
 <body>
 
 <jsp:include page="../../header.jsp" flush="false" />
+	<div id="pop_share">
+		<!-- 안쪽에 팝업 창에 대한 내용 -->
+		<div id="pop_inner">
+			<div id="pop_title">결제가 완료되었습니다.</div>
+				<section id="apply01" class="pop_paymentData">
+                <h2>클래스정보</h2>
+                <div id="applyDiv01">
+                <c:forEach var="item" varStatus="i" items="${fn:split(paymentC.cDetailsumnail, ',')}">
+                    <c:if test="${i.count==1}"><img src="<c:url value='${item}' />" alt=""></c:if>
+                </c:forEach >
+                </div> 
+                    <ul id="applyUl">
+                        <li id="li-title">${paymentC.cName}</li>
+                        <li id="li-price"><em>₩</em><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentC.cPrice}"/></li>
+                        <table>
+                            <tr>
+                                <th>수강일</th>
+                                <td> 
+                                	<fmt:formatDate value="${paymentC.lLeasedate}" pattern="yy.MM.dd (E)"/> 
+                                	<c:choose>
+                                		<c:when test="${paymentC.lLeasetime eq '오전'}">
+                                			/ 10:00 - 14:00
+                                		</c:when>
+                                		<c:when test="${paymentC.lLeasetime eq '오후'}">
+                                			/ 14:00 - 18:00
+                                		</c:when>
+                                		<c:otherwise>
+                                			/ 18:00 - 22:00
+                                		</c:otherwise>
+                                	</c:choose>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>선생님</th>
+                                <td>${paymentC.tHavenickname} ${paymentC.tExpertname}</td>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <td>${paymentC.sLoc}</td>
+                            </tr>
+                        </table>
+                    </ul>  
+            </section>
+            <div class="paymentOk">
+              	<a href="index" id="mainCGoing">메인으로 이동</a>
+              	<a href="mypage/in" id="detailCGoing">예약상세 확인하기</a>
+            </div>
+		</div>
+	</div>
+
+
+
     <div id="lay03">
         <section id="left01">
             <section id="apply01">

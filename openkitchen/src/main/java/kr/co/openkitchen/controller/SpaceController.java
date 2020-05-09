@@ -156,14 +156,12 @@ public class SpaceController {
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		
 		// array나 list를 보낼 경우에는 map으로 감싸되 key의 이름을
 		// 정확히 array와 list로 명시해야 된다.
 		map.put("array", no);
 		
 		List<PaymentSpaceDTO> list = ssi.readPaymentS(map);
-		
-		System.out.println("공간정보 사이즈 : "+list.size());
-		
 		// 1. 공간 사이즈가 2개 이상일때만 로직처리를 한다.
 		int count = 0;
 		int amount = 0;
@@ -181,35 +179,29 @@ public class SpaceController {
 		model.addAttribute("paymentAmount",amount*count);
 		model.addAttribute("paymentS", ssi.readPaymentS(map));
 		
+		
 		HttpSession session = request.getSession();
 		if(session != null) {
 			MemberDTO mdto = (MemberDTO)session.getAttribute("openkitchen");
 			model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
 		}
 		
+		session.setAttribute("leaseNo", no);
+		
 		return "space/user/spacePayment";
 	}
 	
 	@PostMapping("spacePayment")
 	@ResponseBody
-	public String paymentApproval(@SessionAttribute("leaseNo")int recNo,
+	public String paymentApproval(@SessionAttribute("leaseNo")String[] lNo,
 			@SessionAttribute("memberNo")int mNo, @ModelAttribute("totalPay")int totalPay,
 			@ModelAttribute("payType")String payType, ModelAndView mav) {
 		
-		System.out.println("classNo : "+recNo);
+		System.out.println("leaseNo : "+lNo);
 		System.out.println("memberNo : "+mNo);
 		System.out.println("totalPay : "+totalPay);
 		System.out.println("payType : "+payType);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("classNo", recNo);
-		map.put("memberNo", mNo);
-		map.put("totalPay", totalPay);
-		map.put("payType", payType);
-				
-		// int result = csi.addPaymentData(map);
-		// System.out.println(result);
 		return "test";
 	}
 	
