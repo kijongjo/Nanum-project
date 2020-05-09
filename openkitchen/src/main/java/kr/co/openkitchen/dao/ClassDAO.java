@@ -52,6 +52,19 @@ public class ClassDAO implements CDaoInter {
 		
 		return ss.selectOne("kr.co.openkitchen.class.selectPaymentC", recNo);
 	}
+
+
+	@Override
+	public int insertPaymentC(Map<String, Object> map) {
+		
+		return ss.insert("kr.co.openkitchen.class.insertPaymentC", map);		
+	}
+	
+
+	
+	
+	
+	
 	
 	
 }

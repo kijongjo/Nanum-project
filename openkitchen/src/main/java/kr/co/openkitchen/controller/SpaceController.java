@@ -15,15 +15,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.ParseInfo;
 
 import kr.co.openkitchen.dto.AuthorityCheckDTO;
 import kr.co.openkitchen.dto.DetailSScheDTO;
@@ -152,14 +157,12 @@ public class SpaceController {
 	
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		
 		// array나 list를 보낼 경우에는 map으로 감싸되 key의 이름을
 		// 정확히 array와 list로 명시해야 된다.
 		map.put("array", no);
 		
 		List<PaymentSpaceDTO> list = ssi.readPaymentS(map);
-		
-		System.out.println("공간정보 사이즈 : "+list.size());
-		
 		// 1. 공간 사이즈가 2개 이상일때만 로직처리를 한다.
 		int count = 0;
 		int amount = 0;
@@ -177,13 +180,41 @@ public class SpaceController {
 		model.addAttribute("paymentAmount",amount*count);
 		model.addAttribute("paymentS", ssi.readPaymentS(map));
 		
+		
 		HttpSession session = request.getSession();
 		if(session != null) {
 			MemberDTO mdto = (MemberDTO)session.getAttribute("openkitchen");
 			model.addAttribute("paymentM", memsi.readPaymentM(mdto.getmNo()));
 		}
 		
+		session.setAttribute("leaseNo", no);
+		
 		return "space/user/spacePayment";
+	}
+	
+	@PostMapping("spacePayment")
+	@ResponseBody
+	public String paymentApproval(@SessionAttribute("leaseNo")int[] lNo,
+			@SessionAttribute("memberNo")int mNo, @ModelAttribute("totalPay")int totalPay,
+			@ModelAttribute("payType")String payType, ModelAndView mav) {
+		
+		System.out.println("leaseNo : "+lNo[0]);
+		System.out.println("memberNo : "+mNo);
+		System.out.println("totalPay : "+totalPay);
+		System.out.println("payType : "+payType);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("leaseNo", lNo[0]);
+		map.put("memberNo", mNo);
+		map.put("totalPay", totalPay);
+		map.put("payType", payType);
+				
+		int result = ssi.addPaymentSData(map);
+		System.out.println(result);
+		
+		
+		return "test";
 	}
 	
 	

@@ -15,4 +15,5 @@ public interface SserviceInter {
 	public DetailSpaceDTO readDetailS(int sNo);
 	public List<DetailSScheDTO> readDetailSSche(Map<String, Object> map);
 	public List<PaymentSpaceDTO> readPaymentS(Map<String, Object> map);
+	public int addPaymentSData(Map<String, Object> map);
 }

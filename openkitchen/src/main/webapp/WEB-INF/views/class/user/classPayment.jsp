@@ -43,59 +43,60 @@
             margin-bottom: 200px;
         }
         /* 신청 내역 섹션 */
-        #lay03 >#left01 > #apply01{
+        #apply01{
             height: 223px;
             padding: 20px 0px 50px 0px;
             /* background-color: orange; */
             border-bottom: 2px lightgray solid;
         }
         /* 신청 내역에 이미지 크기 */
-        #lay03 #apply01 img{
+        #apply01 img{
             width: 130px;
             height: 130px;
             /* float: left; */
        }
        /* 신청 내역에 li 스타일 삭제 */
-       #lay03 #apply01 li {
+       #apply01 li {
            list-style: none;
        }
        /* 신청 내역 h2태그 */
-       #lay03 #apply01 h2{
+       #apply01 h2{
            height: 36px;
            margin: 0px 0px 25px;
        }
        /* 신청 내역의 ul */
-       #lay03 #apply01 ul{
-           float: left;
+       #apply01 ul{
+           /* float: left; */
            margin: 0px;
            padding: 0px;
+
        }
        /* 신청내역의 타이틀 */
-       #lay03 #apply01 ul #li-title{
+       #apply01 ul #li-title{
            height: 32px;
            margin: 0px 0px 10px;
            font-size: 22px;
            font-weight: 600;
        }
        /* 신청내역의 금액 */
-       #lay03 #apply01 ul #li-price{
+       #apply01 ul #li-price{
            height: 24px;
            margin: 6px 0px 0px;
            font-size: 20px;
            font-weight: 500;
        }
        /* 신청 내역의 금액의 ₩ 부분 */
-       #lay03 #apply01 ul #li-price em{
+       #apply01 ul #li-price em{
            color: #8E0032;
            font-style: normal;
            margin: 0px 5px 0px 0px;
        }
        /* 신청내역의 금액 아래부분 */
-       #lay03 #apply01 ul table{
+       #apply01 ul table{
            margin-top: 10px;
        }
        /* 신청 내역의 금액 아래부분의 왼쪽 row */
-       #lay03 #apply01 ul table th{
+       #apply01 ul table th{
            width: 75px;
            height: 28px;
            color: #838383;
@@ -105,11 +106,13 @@
            font-weight: bold;
        }
        /* 신청내역의 금액 아래쪽 부분의 오른쪽 row */
-       #lay03 #apply01 ul table td{
+       #apply01 ul table td{
            font-size: 15px;
            padding: 0px;
            font-weight: bold;
        }
+       
+       /*///////////////////////////////////////////  */
        /* 신청자 정보 섹션 */
        #lay03 > #left01 > #apply02  {
            padding: 50px 0px;
@@ -117,7 +120,6 @@
        }
        /* 쿠폰 마일리지 섹션 */
        #lay03 > #left01 > #apply03 {
-           height: 379px;
            padding: 50px 0px;
            border-bottom: 2px lightgray solid;
        }
@@ -180,7 +182,8 @@
            font-style: normal;
        }
        /* 쿠포마 부분의 전체 사용 버튼  */
-       #lay03 > #left01 > #apply03 .cou-wrap a >input{
+       #lay03 > #left01 > #apply03 .cou-wrap #pointAll,
+       #lay03 > #left01 > #apply03 .cou-wrap #mileageAll {
            /* width: 150px; */
            width: 20%;
            height: 54px;
@@ -443,14 +446,96 @@
            font-size: 20px;
            font-weight: 900;
        }
+       
+       .paymentAlert {
+       	   display: none;
+       	   color: #820032;
+       }
     
+       
+    #pop_share {
+    /* 내용이 잘리게 될때 스크롤바가 보이도록 설정한다. */
+    overflow: auto;
+    position: fixed;
+  
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 81px 25px 0;
+    /* 반투명 설정 */
+    background: rgba(0, 0, 0, 0.67);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+    z-index:-9999;
+	}
+
+    /* #pop_share:target {
+    opacity: 1;
+    z-index: 100;
+    
+	} */
+
+	/* 팝업창에 대한 css 설정 */
+	
+	#pop_inner {
+	    margin: 95px auto 0;
+	    /* 내용물이 가운데로 오도록 설정 */
+	    padding-top: 40px;
+	    padding-bottom: 10px;
+	    /* 550으로 잡아주어야 팝업창 모양이 나온다 안잡아주면 너무 김. */
+	    max-width: 550px;
+	    position: relative;
+	    background: white;
+	    padding: 40px 40px;
+	}
+	
+	#pop_title {
+	    font-weight: 600 !important;
+	    font-size: 24px !important;
+	    line-height: 1.5;
+	    margin-bottom: 30px;
+	}
+      
+	.paymentOk {
+		 /* clear: both; */
+		 text-align: center;
+	}
+	
+	#mainCGoing, #detailCGoing {
+		display: inline-block;
+		width: 222px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 16px;
+		background-color: #8E0032;
+		color: white;
+		border-radius: 3px;			
+	}
+    #pop_share #pop_inner .pop_paymentData {
+    	border-bottom: none;
+    }
+    
+    #mainCGoing {
+    	margin-right: 10px;
+    }
+    
+    #detailCGoing {
+    	margin-left: 10px;
+    }
         
     </style>
 	<script>
-	$(document).ready(function () {		
+	$(document).ready(function () {
+		
+		// 전송해야 될 선택한 결제방법 //
 		var payType = new Array("","");
-		var cnt = 0;
 		var payWay = $(".payWay");
+		var cnt = 0;
+		
+		// 결제 방법 선택
 		payWay.on("click", function () {
 			cnt++;
 			console.log(cnt);
@@ -477,6 +562,7 @@
 			}			
 		});
 		
+		// 일정선택
 		var orderAgree = $("#orderAgree");
 		var payButton = $("#payButton");
 		orderAgree.on("click", function () {	
@@ -489,16 +575,52 @@
 			}
 		});
 		
+		
+		
+		
+		
+		
 		var pointText = $("#point");
 		var mileaseText = $("#mileage");
 		
 		var cPrice = parseInt("<c:out value='${paymentC.cPrice}'/>");
 		var cPoint = parseInt("<c:out value='${paymentM.ptStorage}'/>");
 		var cMileage = parseInt("<c:out value='${paymentM.mgStorage}'/>"); 
+		var cCoupon = parseInt("<c:out value='${paymentM.cType}'/>");
+		var limitDiscount = cPrice-cPrice*0.1;
+		
 		
 		var point = 0;
 		var mileage = 0;
+		// 데이터로 넘겨야 할 최종금액 
 		var totalPay = cPrice;
+		
+		// 쿠폰 옵션 선택 이벤트
+		$("#cpSelect").on("change", function () {
+			if($("#cpSelect option").index($("#cpSelect option:selected"))==0) {
+				totalPay = cPrice;
+				$(".cou-wrap").css("display", "block");
+				$("b").text(totalPay);
+			} else {
+				$(".cou-wrap").css("display", "none");
+				pointText.val("");
+				mileaseText.val("");
+				if(cCoupon==1) {
+					totalPay = cPrice-cPrice*0.1;
+					// $("b").text(cPrice-cPrice*0.1);
+					$("b").text(totalPay);
+				} else {
+					totalPay = cPrice-cPrice*0.05;
+					// $("b").text(cPrice-cPrice*0.05);
+					$("b").text(totalPay);
+				}
+				
+				$(".paymentAlert").remove();
+				$("#cou-div1").after("<div class='paymentAlert'>쿠폰만 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+			}	
+		});
 		
 		
 		/* 
@@ -506,37 +628,162 @@
 			총 금액은 전역변수여야됨. 
 		*/
 		pointText.keyup(function () {
-	
-		    point = parseInt(pointText.val())
+				
+			// 최종 할인 금액만 저장된다.
+		    point = parseInt(pointText.val());
+			console.log(point);
+		    totalPay = cPrice-(point+mileage);
 			if(cPoint >= point) {
+				if(totalPay>=limitDiscount) {
+					$("#ptStorage").text(cPoint-point);
+					$("b").text(totalPay);	
+				} else {
+					
+					$(".paymentAlert").remove();
+					$(".cou-wrap").eq(0).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+					$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+					
+					console.log("할인최대 넘음 point : "+totalPay);
+					
+					totalPay = totalPay+point
+					point = 0;
+
+					$("#ptStorage").text(cPoint);
+					$("b").text(totalPay);
+					pointText.val("");
+				}
+				
+			} else if(isNaN(point)) {
+				point = 0;
+				totalPay = cPrice-(point+mileage);
 				$("#ptStorage").text(cPoint-point);
-				$("b").text();
+				$("b").text(totalPay);
 			} else {
-				console.log("최대 사용 가능 포인트를 초과했습니다. 결제금액의 10% 이하 사용 가능합니다.")
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(0).after("<div class='paymentAlert'>최대 사용 가능 포인트를 초과했습니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				point = 0;
+				totalPay = cPrice-(point+mileage);
+								
 				$("#ptStorage").text(cPoint);
-				$("b").text(cPrice);
+				$("b").text(totalPay);				
 				pointText.val("");
-				totalPay = cPrice;
 				
 			}
 		});
 		
 		mileaseText.keyup(function () {
 			mileage = parseInt(mileaseText.val());
+			totalPay = cPrice-(point+mileage);
 			if(cMileage >= mileage) {		 
+				if(totalPay>=limitDiscount) {
+					$("#mgStorage").text(cMileage-mileage);
+					$("b").text(totalPay);
+				} else {
+					$(".paymentAlert").remove();
+					$(".cou-wrap").eq(1).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+					$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+					
+						
+					totalPay = totalPay+mileage;
+					mileage = 0;
+					
+					$("#mgStorage").text(cMileage);
+					$("b").text(totalPay);
+					mileaseText.val("");
+				}
+			} else if(isNaN(mileage)) {
+				mileage = 0;
+				totalPay = cPrice-(point+mileage);
 				$("#mgStorage").text(cMileage-mileage);
-				$("b").text();
+				$("b").text(totalPay);
 				
 			} else {
-				console.log("최대 사용 가능 마일리지를 초과했습니다. 결제금액의 10% 이하 사용 가능합니다.");
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(1).after("<div class='paymentAlert'>최대 사용 가능 마일리지를 초과했습니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				mileage = 0;
+				totalPay = cPrice-(point+mileage);
+								
 				$("#mgStorage").text(cMileage);
-				$("b").text(cPrice);
+				$("b").text(totalPay);
 				mileaseText.val("");
-				totalPay = cPrice;
+					
 			}
 		});
 		
-	
+		var pointAll = $("#pointAll");
+		var mileageAll = $("#mileageAll");
+		
+		pointAll.on("click", function () {
+			point = cPoint;
+			pointText.val(cPoint);
+			totalPay = cPrice-(point+mileage);
+			if(totalPay>=limitDiscount) {
+				$("#ptStorage").text(0);
+				$("b").text(totalPay);	
+			} else {
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(0).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				totalPay = totalPay+point;
+				point = 0;
+				
+				$("#ptStorage").text(cPoint);
+				$("b").text(totalPay);
+				pointText.val("");
+			}
+		});
+		
+		mileageAll.on("click", function () {
+			mileage = cMileage;
+			mileaseText.val(cMileage);
+			totalPay = cPrice-(point+mileage);
+			if(totalPay>=limitDiscount) {
+				$("#mgStorage").text(0);
+				$("b").text(totalPay);
+			} else {
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(1).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				console.log("할인 최대 넘음 mileage : "+totalPay);	
+
+				totalPay = totalPay+mileage;
+				mileage = 0;
+			
+				$("#mgStorage").text(cMileage);
+				$("b").text(totalPay+mileage);
+				mileaseText.val("");
+			}
+		});
+		
+		$("#payButton").on("click", function () {
+			if(orderAgree.is(":checked")) {
+			$.ajax({
+				    url:'classPayment', // 요청 할 주소
+				    async:true,// false 일 경우 동기 요청으로 변경
+				    type:'POST', // GET, PUT
+				    dataType:'text',// xml, json, script, html
+				    data: {
+				        "totalPay":totalPay,
+				        "payType":payType[0]
+				    }, success:function(data) {
+				    	console.log("성공");
+				    	$("#pop_share").css("opacity","1").css("z-index","100");
+				    },error:function() {
+			    		console.log("실패");
+			    	}
+			    });
+					
+				    
+			} else {
+				return false;
+			}
+		});
 	});
 	</script>
 <jsp:include page="../../headerScript.jsp" flush="false" />
@@ -544,6 +791,59 @@
 <body>
 
 <jsp:include page="../../header.jsp" flush="false" />
+	<!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
+	<!-- 팝업형식으로 나온다. -->
+	<div id="pop_share">
+		<!-- 안쪽에 팝업 창에 대한 내용 -->
+		<div id="pop_inner">
+			<div id="pop_title">결제가 완료되었습니다.</div>
+				<section id="apply01" class="pop_paymentData">
+                <h2>클래스정보</h2>
+                <div id="applyDiv01">
+                <c:forEach var="item" varStatus="i" items="${fn:split(paymentC.cDetailsumnail, ',')}">
+                    <c:if test="${i.count==1}"><img src="<c:url value='${item}' />" alt=""></c:if>
+                </c:forEach >
+                </div> 
+                    <ul id="applyUl">
+                        <li id="li-title">${paymentC.cName}</li>
+                        <li id="li-price"><em>₩</em><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentC.cPrice}"/></li>
+                        <table>
+                            <tr>
+                                <th>수강일</th>
+                                <td> 
+                                	<fmt:formatDate value="${paymentC.lLeasedate}" pattern="yy.MM.dd (E)"/> 
+                                	<c:choose>
+                                		<c:when test="${paymentC.lLeasetime eq '오전'}">
+                                			/ 10:00 - 14:00
+                                		</c:when>
+                                		<c:when test="${paymentC.lLeasetime eq '오후'}">
+                                			/ 14:00 - 18:00
+                                		</c:when>
+                                		<c:otherwise>
+                                			/ 18:00 - 22:00
+                                		</c:otherwise>
+                                	</c:choose>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>선생님</th>
+                                <td>${paymentC.tHavenickname} ${paymentC.tExpertname}</td>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <td>${paymentC.sLoc}</td>
+                            </tr>
+                        </table>
+                    </ul>  
+            </section>
+            <div class="paymentOk">
+              	<a href="index" id="mainCGoing">메인으로 이동</a>
+              	<a href="mypage/in" id="detailCGoing">예약상세 확인하기</a>
+            </div>
+		</div>
+	</div>
+
+
     <div id="lay03">
         <section id="left01">
             <section id="apply01">
@@ -622,7 +922,7 @@
                 <h3>쿠폰/포인트/마일리지</h3>
                 <div id="cou-div1">
                     <p class="cou-title">쿠폰</p>
-                    <select name="" id="">
+                    <select name="" id="cpSelect">
                         <option value="">쿠폰을 선택해 주세요.</option>
                         <c:choose>
                         	<c:when test="${paymentM.cType eq 1}">
@@ -645,9 +945,9 @@
                 </p>
                 <div>
 	                <input type="text" name="" id="point" placeholder="0P">
-	                <a href="">
-	                	<input type="button" value="전체사용">
-                	</a>
+	      
+	                	<input type="button" id="pointAll" value="전체사용">
+                	
                 </div>
              </div>
             <div class="cou-wrap">
@@ -661,7 +961,7 @@
                 </p>
                 <div>
                 <input type="text" name="" id="mileage" placeholder="0원">
-                <a href=""><input type="button" value="전체사용"></a>
+                <input type="button" id="mileageAll" value="전체사용">
                 </div>
             </div>
             </section>
@@ -705,7 +1005,7 @@
                 </span>
             </p>
             </div>
-            <a href=""><input type="button" value="결제하기" id="payButton" disabled></a>
+            <input type="button" value="결제하기" id="payButton">
         </section>
     </div>
     <jsp:include page="../../footer.jsp" flush="false" />

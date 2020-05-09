@@ -52,5 +52,16 @@ public class ClassService implements CserviceInter {
 			return dao.selectPaymentC(recNo);
 		}
 		
+		@Override
+		public int addPaymentCData(Map<String, Object> map) {
+			
+			return dao.insertPaymentC(map);
+			
+		}
+		
+		
+		
+		
+		
 		
 }

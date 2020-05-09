@@ -5,7 +5,6 @@
     /* 내용이 잘리게 될때 스크롤바가 보이도록 설정한다. */
     overflow: auto;
     position: fixed;
-  
     left: 0;
     top: 0;
     box-sizing: border-box;
@@ -17,7 +16,9 @@
     opacity: 0;
     transition-property: opacity;
     transition-duration: 1s;
+    z-index:-9999;
 }
+
   #pop_share:target {
     opacity: 1;
     z-index: 100;

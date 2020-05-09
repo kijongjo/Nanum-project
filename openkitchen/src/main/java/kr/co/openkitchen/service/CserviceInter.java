@@ -15,5 +15,6 @@ public interface CserviceInter {
 	public List<DetailCScheDTO> readDetailCSche(Map<String, String> map);
 	public List<ClassIndexDTO> moreClass(int count);
 	public PaymentClassDTO readPaymentC(int recNo);
+	public int addPaymentCData(Map<String, Object> map);
 	
 }

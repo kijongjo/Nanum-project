@@ -44,6 +44,8 @@ public class MemberController {
 		MemberDTO memberDTO = ms.selectUserData(user.getUsername());
 
 		session.setAttribute("openkitchen", memberDTO);
+		session.setAttribute("memberNo", memberDTO.getmNo());
+		
 		Object classNo = session.getAttribute("classNo");
 		Object spaceNo = session.getAttribute("spaceNo");
 		
