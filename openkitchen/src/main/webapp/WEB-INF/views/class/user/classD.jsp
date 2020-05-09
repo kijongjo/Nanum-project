@@ -171,6 +171,7 @@
 		padding-left: 20px;
 	}
 		
+		
 </style>
 
 <jsp:include page="../../headerScript.jsp" flush="false" />
@@ -246,6 +247,31 @@ $(document).ready(function () {
 			 } // for문 end
 	    }	
 	});
+	
+	
+	$(".btn-wishlist").on("click", function () {
+		console.log("test");
+		$(this).toggleClass("active");
+		$.ajax({
+		    url:'spacePayment', // 요청 할 주소
+		    async:true,// false 일 경우 동기 요청으로 변경
+		    type:'POST', // GET, PUT
+		    dataType:'text',// xml, json, script, html
+		    data: {
+		    	"type":"class",
+		        "totalPay":totalPay,
+		        "payType":payType[0]
+		    }, success:function(data) {
+		    	console.log("성공");
+		    	$("#pop_share").css("opacity","1").css("z-index","100");
+		    },error:function() {
+	    		console.log("실패");
+	    	}
+	    });
+	});
+	
+	
+	
 });
 
 
