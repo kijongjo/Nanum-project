@@ -86,7 +86,7 @@
 			      REN.T_NO = T.T_NO AND REN.L_NO = L.L_NO AND L.S_NO = S.S_NO
 			      AND REC.REC_NO = #{no}
   		</select>
-  		<insert id="insertPayment" parameterType="map">
+  		<insert id="insertPaymentC" parameterType="map">
   			<selectKey keyProperty="eNo" resultType="int" order="BEFORE">
   				SELECT ENROL_SEQ.NEXTVAL FROM DUAL
   			</selectKey>

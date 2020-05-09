@@ -55,9 +55,9 @@ public class ClassDAO implements CDaoInter {
 
 
 	@Override
-	public int insertPayment(Map<String, Object> map) {
+	public int insertPaymentC(Map<String, Object> map) {
 		
-		return ss.insert("kr.co.openkitchen.class.insertPayment", map);		
+		return ss.insert("kr.co.openkitchen.class.insertPaymentC", map);		
 	}
 	
 

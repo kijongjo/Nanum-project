@@ -43,58 +43,58 @@
             margin-bottom: 200px;
         }
         /* 신청 내역 섹션 */
-        #lay03 >#left01 > #apply01{
+        #apply01{
             /* height: 223px; */
             padding: 20px 0px 50px 0px;
             /* background-color: orange; */
             border-bottom: 2px lightgray solid;
         }
         /* 신청 내역에 이미지 크기 */
-        #lay03 #apply01 img{
+        #apply01 img{
             width: 130px;
             height: 130px;
             /* float: left; */
        }
        /* 신청 내역에 li 스타일 삭제 */
-       #lay03 #apply01 li {
+       #apply01 li {
            list-style: none;
        }
        /* 신청 내역 h2태그 */
-       #lay03 #apply01 h2{
+       #apply01 h2{
            height: 36px;
            margin: 0px 0px 25px;
        }
        /* 신청 내역의 ul */
-       #lay03 #apply01 ul{
+       #apply01 ul{
            margin: 0px;
            padding: 0px;
        }
        /* 신청내역의 타이틀 */
-       #lay03 #apply01 ul #li-title{
+       #apply01 ul #li-title{
            height: 32px;
            margin: 0px 0px 10px;
            font-size: 22px;
            font-weight: 600;
        }
        /* 신청내역의 금액 */
-       #lay03 #apply01 ul #li-price{
+       #apply01 ul #li-price{
            height: 24px;
            margin: 6px 0px 0px;
            font-size: 20px;
            font-weight: 500;
        }
        /* 신청 내역의 금액의 ₩ 부분 */
-       #lay03 #apply01 ul #li-price em{
+       #apply01 ul #li-price em{
            color: #8E0032;
            font-style: normal;
            margin: 0px 5px 0px 0px;
        }
        /* 신청내역의 금액 아래부분 */
-       #lay03 #apply01 table{
+       #apply01 table{
            margin-top: 10px;
        }
        /* 신청 내역의 금액 아래부분의 왼쪽 row */
-       #lay03 #apply01 table th{
+       #apply01 table th{
            width: 75px;
            height: 28px;
            color: #838383;
@@ -105,7 +105,7 @@
        }
        
        /* 신청내역의 금액 아래쪽 부분의 오른쪽 row */
-       #lay03 #apply01 table td{
+       #apply01 table td{
            font-size: 15px;
            padding: 0px;
            font-weight: bold;
@@ -787,43 +787,73 @@
 		<div id="pop_inner">
 			<div id="pop_title">결제가 완료되었습니다.</div>
 				<section id="apply01" class="pop_paymentData">
-                <h2>클래스정보</h2>
+                <h2>공간정보</h2>
                 <div id="applyDiv01">
-                <c:forEach var="item" varStatus="i" items="${fn:split(paymentC.cDetailsumnail, ',')}">
-                    <c:if test="${i.count==1}"><img src="<c:url value='${item}' />" alt=""></c:if>
+                <c:forEach var="item" varStatus="i" items="${paymentS}">
+                    <c:if test="${i.index==0}">
+                    	<c:forEach var="detailItem" varStatus="j" items="${fn:split(item.sDetailsumnail, ',')}">
+	                    	<c:if test="${j.index==0}">
+		                    	<img src="<c:url value='${detailItem}' />" alt="">	                	                    	
+	                    	</c:if>
+                    	</c:forEach>
+                   	</c:if>
                 </c:forEach >
                 </div> 
                     <ul id="applyUl">
-                        <li id="li-title">${paymentC.cName}</li>
-                        <li id="li-price"><em>₩</em><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentC.cPrice}"/></li>
-                        <table>
+                    	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                    		<c:if test="${i.index==0}">
+                    			<li id="li-title">${item.sName}</li>
+                        		<li id="li-price"><em>₩</em>
+	                    			<c:choose>
+	                    				<c:when test="${item.sCapacity le 6}">
+	                    					80,000
+	                    				</c:when>
+	                    				<c:when test="${item.sCapacity ge 7}">
+	                    					110,000
+	                    				</c:when>
+	                    			</c:choose>
+                    			</li>		
+                    		</c:if>
+                    	</c:forEach>
+                                           
+                    </ul>
+                    <table>
                             <tr>
-                                <th>수강일</th>
+                                <th>대여일</th>
                                 <td> 
-                                	<fmt:formatDate value="${paymentC.lLeasedate}" pattern="yy.MM.dd (E)"/> 
-                                	<c:choose>
-                                		<c:when test="${paymentC.lLeasetime eq '오전'}">
-                                			/ 10:00 - 14:00
-                                		</c:when>
-                                		<c:when test="${paymentC.lLeasetime eq '오후'}">
-                                			/ 14:00 - 18:00
-                                		</c:when>
-                                		<c:otherwise>
-                                			/ 18:00 - 22:00
-                                		</c:otherwise>
-                                	</c:choose>
+                                	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                                		<fmt:formatDate value="${item.lLeasedate}" pattern="yy.MM.dd (E)"/> 
+	                                	<c:choose>
+	                                		<c:when test="${item.lLeasetime eq '오전'}">
+	                                			/ 10:00 - 14:00 <br />
+	                                		</c:when>
+	                                		<c:when test="${item.lLeasetime eq '오후'}">
+	                                			/ 14:00 - 18:00 <br />
+	                                		</c:when>
+	                                		<c:otherwise>
+	                                			/ 18:00 - 22:00 <br />
+	                                		</c:otherwise>
+	                                	</c:choose>
+                                	</c:forEach>
                                 </td>
                             </tr>
                             <tr>
-                                <th>선생님</th>
-                                <td>${paymentC.tHavenickname} ${paymentC.tExpertname}</td>
+                                <th>호스트</th>
+                            	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                            		<c:if test="${i.index==0}">
+		                                <td>${item.mName}</td>                            	                        		
+                            		</c:if>
+                            	</c:forEach>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td>${paymentC.sLoc}</td>
+                                <c:forEach items="${paymentS}" var="item" varStatus="i">
+                            		<c:if test="${i.index==0}">                            	                        		
+		                                <td>${item.sLoc}</td>
+                            		</c:if>
+                            	</c:forEach>
                             </tr>
-                        </table>
-                    </ul>  
+                        </table>  
             </section>
             <div class="paymentOk">
               	<a href="index" id="mainCGoing">메인으로 이동</a>

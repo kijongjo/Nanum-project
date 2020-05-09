@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.ParseInfo;
 
 import kr.co.openkitchen.dto.AuthorityCheckDTO;
 import kr.co.openkitchen.dto.DetailSScheDTO;
@@ -193,14 +194,25 @@ public class SpaceController {
 	
 	@PostMapping("spacePayment")
 	@ResponseBody
-	public String paymentApproval(@SessionAttribute("leaseNo")String[] lNo,
+	public String paymentApproval(@SessionAttribute("leaseNo")int[] lNo,
 			@SessionAttribute("memberNo")int mNo, @ModelAttribute("totalPay")int totalPay,
 			@ModelAttribute("payType")String payType, ModelAndView mav) {
 		
-		System.out.println("leaseNo : "+lNo);
+		System.out.println("leaseNo : "+lNo[0]);
 		System.out.println("memberNo : "+mNo);
 		System.out.println("totalPay : "+totalPay);
 		System.out.println("payType : "+payType);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("leaseNo", lNo[0]);
+		map.put("memberNo", mNo);
+		map.put("totalPay", totalPay);
+		map.put("payType", payType);
+				
+		int result = ssi.addPaymentSData(map);
+		System.out.println(result);
+		
 		
 		return "test";
 	}

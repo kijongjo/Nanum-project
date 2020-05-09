@@ -15,6 +15,6 @@ public interface CDaoInter {
 	public List<DetailCScheDTO> selectDetailCSche(Map<String, String> map);
 	public List<ClassIndexDTO> moreClass(int count);
 	public PaymentClassDTO selectPaymentC(int recNo);
-	public int insertPayment(Map<String, Object> map);
+	public int insertPaymentC(Map<String, Object> map);
 
 }

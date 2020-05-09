@@ -51,6 +51,14 @@ public class SpaceService implements SserviceInter {
 			
 			return dao.selectPaymentS(map);
 		}
+
+		@Override
+		public int addPaymentSData(Map<String, Object> map) {
+			
+			return dao.insertPaymentS(map);
+		}
+		
+		
 		
 		
 }

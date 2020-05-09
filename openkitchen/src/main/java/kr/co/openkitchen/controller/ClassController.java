@@ -159,7 +159,7 @@ public class ClassController {
 		map.put("totalPay", totalPay);
 		map.put("payType", payType);
 				
-		int result = csi.addPaymentData(map);
+		int result = csi.addPaymentCData(map);
 		System.out.println(result);
 		return "test";
 	}

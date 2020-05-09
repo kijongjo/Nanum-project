@@ -15,4 +15,5 @@ public interface SDaoInter {
 	public DetailSpaceDTO selectDetailS(int sNo);
 	public List<DetailSScheDTO> selectDetailSSche(Map<String, Object> map);
 	public List<PaymentSpaceDTO> selectPaymentS(Map<String, Object> map);
+	public int insertPaymentS(Map<String, Object> map);
 }

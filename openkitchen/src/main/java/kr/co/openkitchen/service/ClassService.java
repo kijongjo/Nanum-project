@@ -53,9 +53,9 @@ public class ClassService implements CserviceInter {
 		}
 		
 		@Override
-		public int addPaymentData(Map<String, Object> map) {
+		public int addPaymentCData(Map<String, Object> map) {
 			
-			return dao.insertPayment(map);
+			return dao.insertPaymentC(map);
 			
 		}
 		
