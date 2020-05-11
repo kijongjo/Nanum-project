@@ -58,20 +58,22 @@
 	</update>
 
 	<select id="leaseList" parameterType="int" resultType="crldto">
-		SELECT /*+ ordered use_nl(S,MIX) */
-		MIX.REN_NO,S.S_NAME,TO_CHAR(MIX.L_LEASEDATE,'YYYY-MM-DD')lLeasedate,MIX.L_LEASETIME,S_MAINSUMNAIL
+			SELECT /*+ ordered use_nl(S,MIX) */
+		MIX.C_NO,MIX.REN_NO,S.S_NAME,TO_CHAR(MIX.L_LEASEDATE,'YYYY-MM-DD')lLeasedate,MIX.L_LEASETIME,S_MAINSUMNAIL
 		FROM SPACE S,
-		(SELECT /*+ ordered use_nl(L,R) */
-		 R.REN_NO,L.L_LEASEDATE,L.L_LEASETIME,L.S_NO
-		 FROM LEASE L,RENTAL R
+		(SELECT /*+ ordered use_nl(C,L,R) */
+		C.C_NO, R.REN_NO,L.L_LEASEDATE,L.L_LEASETIME,L.S_NO
+		 FROM CLASS C , LEASE L,RENTAL R
 		 
 		 WHERE
-		 R.T_NO=#{tNo}
+		 R.T_NO=99
 		 AND R.L_NO=L.L_NO
-		 AND L.L_PERSTATUS='진행') MIX
+		 AND L.L_PERSTATUS='진행'
+         AND C.C_PERSTATUS='신청') MIX
 		
 	 	WHERE
 		S.S_NO=MIX.S_NO
+
 
 
 	</select>

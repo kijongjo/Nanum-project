@@ -24,6 +24,7 @@ public class ClassRegistDTO {
 	private int cMaxrecruitperson;
 	private int tNo;
 	private String cTema;
+	
 	public int getcNo() {
 		return cNo;
 	}
