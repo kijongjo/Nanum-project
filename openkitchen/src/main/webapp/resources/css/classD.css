@@ -575,6 +575,10 @@
 	z-index: 99;
 }
 
+#right02>.selectSchedule>.selectTop>.btn-wishlist.active {
+	background-color: #8E0032;
+}
+
 #right02>.selectSchedule>.selectTop>.btn-message::before {
 	content: "";
 	background: url(../img/icon/messageIcon.png) no-repeat 11%/28px auto;

@@ -29,4 +29,14 @@
 		</foreach>
   	
   	</select>
+  	<insert id="insertPaymentS" parameterType="map">
+  			<selectKey keyProperty="renNo" resultType="int" order="BEFORE">
+  				SELECT RENTAL_SEQ.NEXTVAL FROM DUAL
+  			</selectKey>
+  			INSERT ALL
+			INTO RENTAL VALUES(#{renNo}, '예약대기', SYSDATE, #{memberNo}, #{leaseNo})
+			INTO SPACE_PAY VALUES(SPACE_PAY_SEQ.NEXTVAL, #{payType}, '승인', SYSDATE, #{totalPay}, #{renNo})
+			SELECT *
+			FROM DUAL
+  		</insert>
   </mapper>

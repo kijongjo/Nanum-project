@@ -7,19 +7,43 @@
 	
 <select id="mypageInfo" parameterType="int" resultType="mydto">
 
-		SELECT DISTINCT MIX.T_PERSTATUS,MIX2.C_PERSTATUS,S_PERSTATUS,M.M_NAME
+		SELECT  MIX.T_PERSTATUS,MIX2.C_PERSTATUS,S_PERSTATUS,M.M_NAME, ROWNUM
 		FROM
 		(SELECT NVL(T_PERSTATUS,'NOINFO') T_PERSTATUS
 		FROM TEACHER RIGHT OUTER JOIN DUAL
-		ON T_NO=#{mNo}) MIX ,
-		( SELECT NVL(C_PERSTATUS,'NOINFO') C_PERSTATUS
+		ON T_NO=99) MIX ,
+		( SELECT NVL(C_PERSTATUS,'NOINFO'), C_PERSTATUS
 		FROM CLASS RIGHT OUTER JOIN DUAL
-		ON T_NO=#{mNo}) MIX2,(SELECT NVL(S_PERSTATUS,'NOINFO') S_PERSTATUS
+		ON T_NO=99
+        
+        ORDER BY C_REGDATE DESC 
+       
+        ) MIX2,(SELECT NVL(S_PERSTATUS,'NOINFO') S_PERSTATUS
 		FROM SPACE RIGHT OUTER JOIN DUAL
-		ON H_NO=#{mNo}) S,(SELECT M_NAME FROM MEMBERINFO WHERE M_NO=#{mNo}) M
+		ON H_NO=99) S,(SELECT M_NAME FROM MEMBERINFO WHERE M_NO=99) M
+        WHERE ROWNUM=1
 
 
 	</select>
-
+	<insert id="insertWishlist" parameterType="map">
+		INSERT INTO WISHLIST
+		<choose>
+			<when test="type=='space'">
+				VALUES(WISHLIST_SEQ.NEXTVAL,SYSDATE,#{mNo},#{number},0,0)
+			</when>
+			<when test="type=='class'">
+				VALUES(WISHLIST_SEQ.NEXTVAL,SYSDATE,#{mNo},0,#{number},0)
+			</when>
+			<otherwise>
+				VALUES(WISHLIST_SEQ.NEXTVAL,SYSDATE,#{mNo},0,0,#{number})
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<select id="selectWishlist" parameterType="map" resultType="int">
+		SELECT W_NO
+		FROM WISHLIST
+		WHERE M_NO=#{mNo} AND C_NO=#{cNo}
+	</select>
 
 </mapper>

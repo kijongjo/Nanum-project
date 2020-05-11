@@ -200,7 +200,7 @@
 	<!-- submit -->
 	<div id="btn_submit">
 		<div>
-			<input type="button" value="임시저장" id="go"> <input type="submit" value="다음" id="nextGo">
+			<input type="button" value="임시저장" id="go"> <input type="button" value="다음" id="nextGo">
 		</div>
 	</div>
  

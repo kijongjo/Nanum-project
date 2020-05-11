@@ -19,7 +19,7 @@ $(function() {
                                         
 									contents1 = item.cMainsumnail;
 				
-									contents2 = '<a href="classD?no=1"><img src="' + contents1 + '">';
+									contents2 = '<a href="../classD?no='+item.cNo+'"><img src="' + contents1 + '">';
 									contents3 = '<h3>'+item.cName+'</h3>';
 									contents4 = '<div class="Price"><strong>￦</strong>'+item.cPrice.toLocaleString()+'</div>';
 									contents5 = '<p>'+item.recPerstatus +'<i class="ico-more_arrow"></i>'+'</p>'+'</a>';

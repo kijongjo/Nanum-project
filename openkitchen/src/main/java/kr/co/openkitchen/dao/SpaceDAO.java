@@ -51,6 +51,14 @@ public class SpaceDAO implements SDaoInter {
 		
 		return ss.selectList("kr.co.openkitchen.space.selectPaymentS", map);
 	}
+
+	@Override
+	public int insertPaymentS(Map<String, Object> map) {
+		
+		return ss.insert("kr.co.openkitchen.space.insertPaymentS", map);	
+	}
+	
+	
 	
 	
 	

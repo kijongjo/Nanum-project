@@ -15,6 +15,7 @@ public class OngoingClassDTO {
 	private int cMaxRecruitPerson;
 	private String lLeasedate;
 	private int eApply;
+	private int cNo;
 
 	public String getcMainsumnail() {
 		return cMainsumnail;
@@ -64,4 +65,13 @@ public class OngoingClassDTO {
 		this.eApply = eApply;
 	}
 
+	public int getcNo() {
+		return cNo;
+	}
+
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
+	}
+
+	
 }

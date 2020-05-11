@@ -19,7 +19,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
-
+<jsp:include page="../headerScript.jsp" flush="false" />
 <script>
 	$(document).ready(function() {
 		$('.bxslider').bxSlider({

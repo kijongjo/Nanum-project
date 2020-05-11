@@ -12,7 +12,7 @@
   		</select>
   		
   		<select id="selectDetailC" resultType="dcdto" parameterType="int">
-  			SELECT DISTINCT C_DETAILSUMNAIL, C_NAME, C_SHORTINTRO, C_HASHTAG, C_PRICE, C_MINRECRUITPERSON, C_MAXRECRUITPERSON, 
+  			SELECT DISTINCT C.C_NO, C_DETAILSUMNAIL, C_NAME, C_SHORTINTRO, C_HASHTAG, C_PRICE, C_MINRECRUITPERSON, C_MAXRECRUITPERSON, 
   			       TO_CHAR(C_LONGINTRO) C_LONGINTRO, TO_CHAR(C_REFERENCE) AS C_REFERENCE, T.T_NO, T_HAVENICKNAME, T_EXPERT, T_EXPERTNAME, 
   			       S.S_NO AS S_NO, S_LOC, S_TYPE, S_MAINSUMNAIL, M_MAINSUMNAIL
 			FROM CLASS C ,  RECRUIT REC , RENTAL REN , LEASE L , SPACE S , TEACHER  T, MEMBER M
@@ -86,5 +86,15 @@
 			      REN.T_NO = T.T_NO AND REN.L_NO = L.L_NO AND L.S_NO = S.S_NO
 			      AND REC.REC_NO = #{no}
   		</select>
+  		<insert id="insertPaymentC" parameterType="map">
+  			<selectKey keyProperty="eNo" resultType="int" order="BEFORE">
+  				SELECT ENROL_SEQ.NEXTVAL FROM DUAL
+  			</selectKey>
+  			INSERT ALL
+			INTO ENROL VALUES(#{eNo}, '예약대기', SYSDATE, #{memberNo}, #{classNo})
+			INTO CLASS_PAY VALUES(CLASS_PAY_SEQ.NEXTVAL, #{payType}, '승인', #{totalPay},SYSDATE, #{eNo})
+			SELECT *
+			FROM DUAL
+  		</insert>
   		
   </mapper>

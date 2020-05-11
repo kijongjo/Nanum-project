@@ -22,10 +22,10 @@
 <!-- fontawesome icon링크 -->
 <script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
 <script src="<c:url value='/resources/js/applyClass.js'/>"></script>
-<script src="https://kit.fontawesome.com/e87b1eec4b.js" crossorigin="anonymous"></script>
 <!-- 달력 api -->
 <script src="<c:url value='/resources/js/datepicker.min.js'/>"></script>
 <script src="<c:url value='/resources/js/datepicker.en.js'/>"></script>
+<jsp:include page="../../headerScript.jsp" flush="false" />
 
 <script>
 	/* 상황에 따른 script 불러오기 방법 통일성을 위해  나중엔 jstl말고 javascript로 if문 처리해야함  */

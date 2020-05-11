@@ -11,6 +11,7 @@ $(function() {
 				type : 'POST',
 				success : function(data) {
 					var obj = JSON.parse(data);
+					console.log(obj);
 					if (obj == "noValue") {
 
 					} else {
@@ -26,8 +27,7 @@ $(function() {
 									}
 
 									contents1 = item.cMainsumnail;
-
-									contents2 = '<a href="classD?no=1"><img class="finishedImg" src="'
+									contents2 = '<a href="../classD?no='+item.cNo+'"><img class="finishedImg" src="'
 											+ contents1 + '">';
 									contents3 = '<h3>' + item.cName + '</h3>';
 									contents4 = '<div class="time-wrapper"><span class="date">'

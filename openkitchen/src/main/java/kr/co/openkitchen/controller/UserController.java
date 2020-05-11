@@ -88,7 +88,7 @@ public class UserController {
 			model.addAttribute("mydto", mydto);
 			return "/mypage/mypageIn";
 		} else {
-			return "/login/login";
+			return "redirect:/login/login";
 		}
 	}
 
@@ -130,8 +130,20 @@ public class UserController {
 
 	// 선생님 [기본정보]등록 요청
 	@RequestMapping(value = "teacherBaseInfo", method = RequestMethod.POST)
-	public String teacherBaseInfo(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request) {
-
+	public String teacherBaseInfo(@ModelAttribute TeacherRegistDTO dto, MultipartHttpServletRequest request,
+			HttpServletRequest requestS) {
+		// 선생님번호=회원번호
+		int tNo = 0;
+		// Session
+		HttpSession session = requestS.getSession();
+		if (session.getAttribute("openkitchen") != null) {
+			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+			tNo = mdto.getmNo();
+			
+		} else {
+			
+			tNo = dto.getmNo();
+		}
 		// FactoryPattern Service Instance
 		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLE);
 		// 파일 저장되는 경로
@@ -140,8 +152,7 @@ public class UserController {
 		String tDetailsumnail = "";
 		// 사진 번호 부여
 		int count = 1;
-		// 선생님번호=회원번호
-		int tNo = dto.getmNo();
+
 		// 넘어온 파일 리스트
 		Iterator<String> fileList = request.getFileNames();
 
@@ -189,7 +200,19 @@ public class UserController {
 
 	// 선생님 [공간]등록 요청
 	@RequestMapping(value = "teacherSpaceInfo", method = RequestMethod.POST)
-	public String teacherSpaceInfo(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request) {
+	public String teacherSpaceInfo(@ModelAttribute TeacherRegistDtoS dto, MultipartHttpServletRequest request,HttpServletRequest requestS) {
+		// 선생님번호=회원번호
+				int hNo = 0;
+				// Session
+				HttpSession session = requestS.getSession();
+				if (session.getAttribute("openkitchen") != null) {
+					MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
+					hNo = mdto.getmNo();
+					
+				} else {
+					hNo = dto.gethNo();
+				}
+		
 		// FactoryPattern Service Instance
 		registServiceF = registOrderServiceF.receiveOrderF(RegistServiceTypeF.REGISTTEACHERIMPLES);
 		// 파일 저장되는 경로
@@ -198,7 +221,6 @@ public class UserController {
 		String sDetailsumnail = "";
 		// 사진 끝번호
 		int count = 1;
-		int hNo = dto.gethNo();
 		// form data에 저장된 name들을 뽑아낸다.
 		Iterator<String> fileList = request.getFileNames();
 
@@ -230,7 +252,7 @@ public class UserController {
 		if (sDetailsumnail != "") {
 			dto.setsDetailsumnail(sDetailsumnail);
 		} // 데이터 유효성 판단 end
-
+		dto.sethNo(hNo);
 		registServiceF.insertDTO(dto);
 
 		return "mypage/teacher/teacherBase";
@@ -258,7 +280,7 @@ public class UserController {
 	@RequestMapping(value = { "spaceBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String spaceBookList(HttpServletRequest request) {
-		
+
 		HttpSession session = request.getSession();
 		// JacksonLibrary 사용
 		String str = "";
@@ -269,7 +291,7 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		if (session.getAttribute("openkitchen") != null) {
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			// FactoryPattern Service Instance
@@ -277,15 +299,16 @@ public class UserController {
 			// 선생님 번호= 회원번호
 			int tNo = mdto.getmNo();
 			List<ClassRegistDtoL> sumnailList = registService.selectOne(tNo).getCrdl();
-			//aws s3
+			// aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
 
-			//request url from s3
+			// request url from s3
 			for (int i = 0; i < sumnailList.size(); i++) {
 				sumnailList.get(i).setsMainsumnail(s3client.geturl(sumnailList.get(i).getsMainsumnail()));
-			}
 			
-             //데이터 json 변환
+			}
+
+			// 데이터 json 변환
 			if (sumnailList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(sumnailList);
@@ -293,8 +316,8 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}//list end
-		}//session end 
+			} // list end
+		} // session end
 		return str;
 	}
 
@@ -349,15 +372,19 @@ public class UserController {
 	}
 
 	// 클래스 [공간정보] 등록시 필요한 파일을 등록하는 프로그램
-	@RequestMapping(value = "classSpaceRegist", method = RequestMethod.POST)
+	@RequestMapping(value = "classSpaceRegist", method = RequestMethod.POST,produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String classSpaceRegist(@RequestBody List<ClassRegistDtoR> rentalNoList) {
+	public String classSpaceRegist(@RequestBody List<ClassRegistDtoR> rentalNoList ,HttpServletRequest request) {
+		
+
+	    HttpSession session = request.getSession();
 		// FactoryPattern Service Instance
 		registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLES);
 		// JacksonLibrary
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
-		
+		Object sessionCNO = rentalNoList.get(0).getcNo();
+		session.setAttribute("sessioncNo",sessionCNO);
 		if (rentalNoList.get(0).getcNo() != 0) {
 			registService.insertDTO(Util.packingR(rentalNoList));
 			try {
@@ -373,7 +400,7 @@ public class UserController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}//if end
+		} // if end
 		return str;
 	}
 
@@ -381,7 +408,7 @@ public class UserController {
 	@RequestMapping(value = "totalScheduleList", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String TotalScheduleList(HttpServletRequest request) {
-        //변수선언
+		// 변수선언
 		HttpSession session = request.getSession();
 		// JacksonLibrary
 		String str = "";
@@ -392,15 +419,17 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-        //데이터 서비스단 처리
-		if (session.getAttribute("cNo") != null) {
+
+		// 데이터 서비스단 처리
+		if (session.getAttribute("sessioncNo") != null) {
 			// FactoryPattern Service Instance
 			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
-			int cNo = Integer.parseInt((String) session.getAttribute("cNo"));
-			List<ClassRegistDtoSch> scheduleList = registService.selectOne(cNo).getCrdsch();
 		
-			//데이터 유효성 검사
+			int cNo =(int)session.getAttribute("sessioncNo");
+			
+			List<ClassRegistDtoSch> scheduleList = registService.selectOne(cNo).getCrdsch();
+
+			// 데이터 유효성 검사
 			if (scheduleList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(scheduleList);
@@ -428,12 +457,14 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-		if (session.getAttribute("mNo") != null) {
+		
+		
+		if (session.getAttribute("sessioncNo") != null) {
 			// FactoryPattern Service Instance
 			registService = registOrderService.receiveOrder(RegistServiceType.REGISTCLASSIMPLESCH);
-			int cNo = Integer.parseInt((String) session.getAttribute("mNo"));
+			int cNo =(int)session.getAttribute("sessioncNo");
 			registService.insertDTO(cNo);
+			System.out.println("mNo로 넘어옴");
 
 			try {
 				str = mapper.writeValueAsString("complete");
@@ -462,8 +493,8 @@ public class UserController {
 	@RequestMapping(value = { "cookBookList" }, produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String cookBookList(HttpServletRequest request) {
-        
-		//변수 선언
+
+		// 변수 선언
 		HttpSession session = request.getSession();
 		// JacksonLibrary
 		String str = "";
@@ -474,8 +505,8 @@ public class UserController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-        //데이터 Service단 처리 
+
+		// 데이터 Service단 처리
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKBOOK);
@@ -483,13 +514,13 @@ public class UserController {
 			int tNo = mdto.getmNo();
 			S3ClientFactory s3client = new S3ClientFactory();
 			List<CookBookDTO> bookingList = mypageCook.selectOne(tNo).getCbd();
-			
+
 			// request url form s3
 			for (int i = 0; i < bookingList.size(); i++) {
 				bookingList.get(i).setcMainsumnail(s3client.geturl(bookingList.get(i).getcMainsumnail()));
 			} // for end
-            
-			//데이터유효성 검사
+
+			// 데이터유효성 검사
 			if (bookingList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(bookingList);
@@ -512,27 +543,27 @@ public class UserController {
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			str=mapper.writeValueAsString("noValue");
+			str = mapper.writeValueAsString("noValue");
 		} catch (JsonProcessingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKREFUND);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
 			List<CookRefundDTO> refundList = mypageCook.selectOne(tNo).getCrd();
-			//aws s3
+			// aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-              
-			//request url form s3
+
+			// request url form s3
 			for (int i = 0; i < refundList.size(); i++) {
 				refundList.get(i).setcMainsumnail(s3client.geturl(refundList.get(i).getcMainsumnail()));
 			} // for end
-			
-            //데이터 json 변환
+
+			// 데이터 json 변환
 			if (refundList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(refundList);
@@ -540,8 +571,8 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}//list end 
-		} //session end
+			} // list end
+		} // session end
 		return str;
 	}
 
@@ -555,27 +586,27 @@ public class UserController {
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			str=mapper.writeValueAsString("noValue");
+			str = mapper.writeValueAsString("noValue");
 		} catch (JsonProcessingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageCook = mypageCookOrder.receiveOrder(MypageCookInterType.MYPAGECOOKEND);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
 			List<CookRefundDTO> endList = mypageCook.selectOne(tNo).getCrd();
-			//aws s3
+			// aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
 
 			// request url from s3
 			for (int i = 0; i < endList.size(); i++) {
 				endList.get(i).setcMainsumnail(s3client.geturl(endList.get(i).getcMainsumnail()));
 			} // for end
-			
-            //데이터 json 변환
+
+			// 데이터 json 변환
 			if (endList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(endList);
@@ -583,8 +614,8 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}//list end 
-		} //session end
+			} // list end
+		} // session end
 		return str;
 	}
 
@@ -610,27 +641,27 @@ public class UserController {
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			str=mapper.writeValueAsString("noValue");
+			str = mapper.writeValueAsString("noValue");
 		} catch (JsonProcessingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGESTANDBYCLASS);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
 			List<StandByClassDTO> standByList = mypageOpenClass.selectOne(tNo).getSbcd();
-			//aws s3
+			// aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-           
-			//request url from s3
+
+			// request url from s3
 			for (int i = 0; i < standByList.size(); i++) {
 				standByList.get(i).setcMainsumnail(s3client.geturl(standByList.get(i).getcMainsumnail()));
 			} // for end
-            
-			//데이터 json 변환
+
+			// 데이터 json 변환
 			if (standByList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(standByList);
@@ -638,8 +669,8 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} //list end
-		}//session end
+			} // list end
+		} // session end
 		return str;
 	}
 
@@ -653,27 +684,27 @@ public class UserController {
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			str=mapper.writeValueAsString("noValue");
+			str = mapper.writeValueAsString("noValue");
 		} catch (JsonProcessingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGEONGOINGCLASS);
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
 			List<OngoingClassDTO> ongoingList = mypageOpenClass.selectOne(tNo).getOcd();
-			//aws s3
+			// aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
-			
-			//request url from s3
+
+			// request url from s3
 			for (int i = 0; i < ongoingList.size(); i++) {
 				ongoingList.get(i).setcMainsumnail(s3client.geturl(ongoingList.get(i).getcMainsumnail()));
 			} // for end
-			
-           //데이터 json 변환
+
+			// 데이터 json 변환
 			if (ongoingList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(ongoingList);
@@ -681,8 +712,8 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}//list end 
-		} //session end
+			} // list end
+		} // session end
 		return str;
 	}
 
@@ -696,27 +727,28 @@ public class UserController {
 		String str = "";
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			str=mapper.writeValueAsString("noValue");
+			str = mapper.writeValueAsString("noValue");
 		} catch (JsonProcessingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		if (session.getAttribute("openkitchen") != null) {
 			// FactoryPattern Service Instance
 			MemberDTO mdto = (MemberDTO) session.getAttribute("openkitchen");
 			int tNo = mdto.getmNo();
 			mypageOpenClass = mypageOpenClassOrder.receiveOrder(MypageOpenCType.MYPAGECOMPLETECLASS);
 			List<CompleteClassDTO> completeList = mypageOpenClass.selectOne(tNo).getCcd();
-			//aws s3
+			// aws s3
 			S3ClientFactory s3client = new S3ClientFactory();
- 
-			//request url from s3
+              
+			// request url from s3
 			for (int i = 0; i < completeList.size(); i++) {
 				completeList.get(i).setcMainsumnail(s3client.geturl(completeList.get(i).getcMainsumnail()));
+				System.out.println(completeList.get(i).toString());
 			} // for end
-           
-			//데이터 json 변환
+
+			// 데이터 json 변환
 			if (completeList.size() != 0) {
 				try {
 					str = mapper.writeValueAsString(completeList);
@@ -724,8 +756,8 @@ public class UserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}//list end 
-		}//session end 
+			} // list end
+		} // session end
 		return str;
 	}
 
@@ -741,5 +773,5 @@ public class UserController {
 	public String spaceIntro() {
 		return "mypage/space/spaceIntro";
 	}
-
+	
 }

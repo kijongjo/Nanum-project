@@ -8,6 +8,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class DetailClassDTO {
+	int cNo;
 	String cDetailsumnail;
 	String cName;
 	String cShortintro;
@@ -138,7 +139,11 @@ public class DetailClassDTO {
 	public void settNo(int tNo) {
 		this.tNo = tNo;
 	}
-	
-	
+	public int getcNo() {
+		return cNo;
+	}
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
+	}
 	
 }
