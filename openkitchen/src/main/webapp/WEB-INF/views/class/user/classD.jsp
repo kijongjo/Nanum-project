@@ -171,6 +171,7 @@
 		padding-left: 20px;
 	}
 		
+		
 </style>
 
 <jsp:include page="../../headerScript.jsp" flush="false" />
@@ -246,6 +247,54 @@ $(document).ready(function () {
 			 } // for문 end
 	    }	
 	});
+	
+	
+	var type = "class";
+	var number = "<c:out value='${detailClass.cNo}' />";
+	var isAuthenticated = "<c:out value='${isAuthenticated}' />";
+	console.log("로그인 인증 검사 : "+isAuthenticated);
+	var checkWishlist = "<c:out value='${checkWishlist}' />";
+	console.log("즐겨찾기 검사 : "+checkWishlist);
+	
+	// 즐겨찾기 check 검사
+	 if(isAuthenticated != "" && checkWishlist != "") {
+		 $(".btn-wishlist").addClass("active");
+		 
+	 }
+
+	// 1. 로그인 되어야 사용 할 수 있어야 한다.
+	$(".btn-wishlist").on("click", function () {
+		if(isAuthenticated != "") {
+			wishlist(type, number);
+		} else {
+			alert("로그인을 해주세요.")
+		}
+	});
+	
+	
+	// 1. 전송해야될 주소
+	// 2. 전송해야 할 타입
+	function wishlist(type, number) {
+		$.ajax({
+		    url:'userWishlist', // 요청 할 주소
+		    async:true,// false 일 경우 동기 요청으로 변경
+		    type:'POST', // GET, PUT
+		    dataType:'text',// xml, json, script, html
+		    data: {
+		    	"type":type,
+		    	"number":number
+		    }, success:function(data) {
+		    	console.log("성공");
+		    	$(".btn-wishlist").toggleClass("active");
+		    	console.log(data);
+		    },error:function() {
+	    		console.log("실패");
+	    	}
+	    });
+	} 
+	
+	
+	
 });
 
 
@@ -254,6 +303,7 @@ $(document).ready(function () {
 
 <body>
 <jsp:include page="../../header.jsp" flush="false" />
+	<div></div>
 	<!-- /////////////////////////////////////공유하기 팝업창 시작//////////////////////////////////////////////// -->
 
 	<!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
@@ -576,7 +626,7 @@ $(document).ready(function () {
 				<div class="selectTop">
 					<button class="btn-message">선생님께 궁금한 점을 물어보세요.</button>
 					<!--  wishlist 버튼이다. 이 버튼의 position 상태가 변화한다.-->
-					<button class="btn-wishlist"></button>
+					<button class="btn-wishlist" value=""></button>
 				</div>
 				<!--  일정 기능이 있는 부분을 Body라고 지정했다. -->
 				<div class="selectBody">

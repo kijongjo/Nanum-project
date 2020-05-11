@@ -773,5 +773,5 @@ public class UserController {
 	public String spaceIntro() {
 		return "mypage/space/spaceIntro";
 	}
-
+	
 }

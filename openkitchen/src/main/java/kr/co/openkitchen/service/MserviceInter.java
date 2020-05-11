@@ -14,4 +14,6 @@ public interface MserviceInter {
 	public List<ManwonClassDTO> readOnlyOneC();
 	public List<PopularClassDTO> readPopularC(Map<String, Object> map);
 	public List<BestClassDTO> readBestC(Map<String, Object> map);
+	public int addWishlist(Map<String, Object> map);
+	public int readWishlist(Map<String, Object> map);
 }

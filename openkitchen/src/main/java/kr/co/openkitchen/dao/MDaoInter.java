@@ -20,5 +20,7 @@ public interface MDaoInter {
 	public List<ManwonClassDTO> selectOnlyoneC();
 	public List<PopularClassDTO> selectPopularC(Map<String, Object> map);
 	public List<BestClassDTO> selectBestC(Map<String, Object> map);
+	public int insertWishlist(Map<String, Object> map);
+	public int selectWishlist(Map<String, Object> map);
 
 }

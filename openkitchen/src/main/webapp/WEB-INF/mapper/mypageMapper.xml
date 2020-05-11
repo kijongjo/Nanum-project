@@ -25,6 +25,25 @@
 
 
 	</select>
-
+	<insert id="insertWishlist" parameterType="map">
+		INSERT INTO WISHLIST
+		<choose>
+			<when test="type=='space'">
+				VALUES(WISHLIST_SEQ.NEXTVAL,SYSDATE,#{mNo},#{number},0,0)
+			</when>
+			<when test="type=='class'">
+				VALUES(WISHLIST_SEQ.NEXTVAL,SYSDATE,#{mNo},0,#{number},0)
+			</when>
+			<otherwise>
+				VALUES(WISHLIST_SEQ.NEXTVAL,SYSDATE,#{mNo},0,0,#{number})
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<select id="selectWishlist" parameterType="map" resultType="int">
+		SELECT W_NO
+		FROM WISHLIST
+		WHERE M_NO=#{mNo} AND C_NO=#{cNo}
+	</select>
 
 </mapper>

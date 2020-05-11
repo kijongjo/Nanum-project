@@ -32,6 +32,7 @@ import kr.co.openkitchen.dto.DetailCScheDTO;
 import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.service.CserviceInter;
 import kr.co.openkitchen.service.MemberServiceInter;
+import kr.co.openkitchen.service.MserviceInter;
 import lombok.Setter;
 
 @Controller
@@ -41,9 +42,15 @@ public class ClassController {
 	
 	@Setter(onMethod = @__({ @Autowired }))
 	MemberServiceInter memsi;
+	
+	@Setter(onMethod = @__({ @Autowired }))
+	MserviceInter msi;
+	
 
 	@GetMapping("classD")
-	public String classD(@RequestParam("no") int cNo, Model model) {
+	public String classD(@RequestParam("no") int cNo, Model model,
+			HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		Map<String, String> map1 = new HashMap<String, String>();
 		Map<String, String> map2 = new HashMap<String, String>();
 		
@@ -62,6 +69,25 @@ public class ClassController {
 	    	System.out.println(fm.format(dcsdto.lLeasedate));
 	    	list2.add(fm.format(dcsdto.lLeasedate));
 	    }
+	    
+	    HttpSession session = request.getSession();
+	    // 회원번호하고 클래스번호
+		if(session.getAttribute("memberNo") == null) {
+			model.addAttribute("isAuthenticated", "");	
+		} else {
+			// 로그인 했을 때 담을 정보
+			map.put("mNo", session.getAttribute("memberNo"));
+			map.put("cNo", cNo);
+//			System.out.println(msi.readWishlist(map)); 
+//			System.out.println("mNo : "+session.getAttribute("memberNo")); 
+//			System.out.println("cNo : "+cNo);
+//			if(msi.readWishlist(map) != 0) {
+//				model.addAttribute("checkWishlist", msi.readWishlist(map));
+//			} 
+			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
+		}
+		
+		// 로그인 유무에 상관없이 항상 담겨야 할 데이터
 		model.addAttribute("detailClass", csi.readDetailC(cNo));
 		model.addAttribute("detailCSche1", csi.readDetailCSche(map1));
 		model.addAttribute("detailCSche2", csi.readDetailCSche(map2));
