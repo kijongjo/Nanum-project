@@ -77,13 +77,13 @@ public class ClassController {
 		} else {
 			// 로그인 했을 때 담을 정보
 			map.put("mNo", session.getAttribute("memberNo"));
-			map.put("cNo", cNo);
-//			System.out.println(msi.readWishlist(map)); 
-//			System.out.println("mNo : "+session.getAttribute("memberNo")); 
-//			System.out.println("cNo : "+cNo);
-//			if(msi.readWishlist(map) != 0) {
-//				model.addAttribute("checkWishlist", msi.readWishlist(map));
-//			} 
+			map.put("number", cNo);
+			map.put("type", "class");
+			System.out.println(msi.readWishlist(map)); 
+			System.out.println("mNo : "+session.getAttribute("memberNo")); 
+			System.out.println("cNo : "+cNo);
+			
+			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
 			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
 		}
 		

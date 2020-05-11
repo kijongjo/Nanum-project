@@ -252,29 +252,29 @@ $(document).ready(function () {
 	var type = "class";
 	var number = "<c:out value='${detailClass.cNo}' />";
 	var isAuthenticated = "<c:out value='${isAuthenticated}' />";
-	console.log("로그인 인증 검사 : "+isAuthenticated);
 	var checkWishlist = "<c:out value='${checkWishlist}' />";
+	console.log("로그인 인증 검사 : "+isAuthenticated);
 	console.log("즐겨찾기 검사 : "+checkWishlist);
 	
 	// 즐겨찾기 check 검사
-	 if(isAuthenticated != "" && checkWishlist != "") {
-		 $(".btn-wishlist").addClass("active");
-		 
+	 if(isAuthenticated != "" && checkWishlist != -1) {
+		 $(".btn-wishlist").addClass("active"); 
 	 }
 
 	// 1. 로그인 되어야 사용 할 수 있어야 한다.
 	$(".btn-wishlist").on("click", function () {
 		if(isAuthenticated != "") {
-			wishlist(type, number);
+			if ($(this).hasClass("active")) {
+				wishlist(type, number, "delete");
+			} else {
+				wishlist(type, number, "insert");					
+			}
 		} else {
 			alert("로그인을 해주세요.")
 		}
 	});
 	
-	
-	// 1. 전송해야될 주소
-	// 2. 전송해야 할 타입
-	function wishlist(type, number) {
+	function wishlist(type, number, status) {
 		$.ajax({
 		    url:'userWishlist', // 요청 할 주소
 		    async:true,// false 일 경우 동기 요청으로 변경
@@ -282,17 +282,21 @@ $(document).ready(function () {
 		    dataType:'text',// xml, json, script, html
 		    data: {
 		    	"type":type,
-		    	"number":number
+		    	"number":number,
+		    	"status":status
 		    }, success:function(data) {
 		    	console.log("성공");
+		    	if(status=="insert") {
+		    		alert("위시리스트에 추가되었습니다.")
+		    	}
 		    	$(".btn-wishlist").toggleClass("active");
-		    	console.log(data);
 		    },error:function() {
 	    		console.log("실패");
 	    	}
 	    });
-	} 
+	}
 	
+
 	
 	
 });

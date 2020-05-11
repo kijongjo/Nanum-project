@@ -5,7 +5,7 @@
 
   <mapper namespace="kr.co.openkitchen.teacher">
   	<select id="selectDetailT" resultType="dtdto" parameterType="int">
-  		SELECT T_DETAILSUMNAIL, T_HAVENICKNAME, T_EXPERTNAME, T_SHORTINTRO, T_CAREER, T_EXPERT, T_AREA, T_LONGINTRO
+  		SELECT T_NO, T_DETAILSUMNAIL, T_HAVENICKNAME, T_EXPERTNAME, T_SHORTINTRO, T_CAREER, T_EXPERT, T_AREA, T_LONGINTRO
 		FROM TEACHER
 		WHERE T_NO = #{tNo}
   	</select>

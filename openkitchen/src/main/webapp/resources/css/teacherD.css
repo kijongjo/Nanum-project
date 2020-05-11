@@ -28,6 +28,11 @@
      z-index: 99;
      /*  animation: wishlistClick 2s infinite; */
  }
+ 
+.btn-wishlist.active {
+	background-color: #8E0032;
+}
+ 
  /* 이미지와 선생님 소개 간의 간격을 조금 좁힌다. */
  #lay01 > #left02 {
     margin-top: 1px;

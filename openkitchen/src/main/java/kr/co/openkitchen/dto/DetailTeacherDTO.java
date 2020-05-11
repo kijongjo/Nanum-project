@@ -8,6 +8,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class DetailTeacherDTO {
+	int tNo;
 	String tDetailsumnail;
 	String tHavenickname;
 	String tExpertname;
@@ -18,6 +19,13 @@ public class DetailTeacherDTO {
 	String tExpert;
 	
 	// setter, getter
+	public int gettNo() {
+		return tNo;
+	}
+	public void settNo(int tNo) {
+		this.tNo = tNo;
+	}
+	
 	public String gettDetailsumnail() {
 		return tDetailsumnail;
 	}
@@ -66,5 +74,6 @@ public class DetailTeacherDTO {
 	public void settExpert(String tExpert) {
 		this.tExpert = tExpert;
 	}
+	
 	
 }

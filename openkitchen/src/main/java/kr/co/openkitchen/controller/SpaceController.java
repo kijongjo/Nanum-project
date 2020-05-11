@@ -36,6 +36,7 @@ import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.dto.PaymentSpaceDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.service.MemberServiceInter;
+import kr.co.openkitchen.service.MserviceInter;
 import kr.co.openkitchen.service.SserviceInter;
 import lombok.Setter;
 
@@ -48,6 +49,10 @@ public class SpaceController {
 	// 권한 검사를 위한 목적
 	@Setter(onMethod = @__({ @Autowired }))
 	MemberServiceInter memsi;
+	
+	@Setter(onMethod = @__({ @Autowired }))
+	MserviceInter msi;
+	
 	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
@@ -65,8 +70,28 @@ public class SpaceController {
 	    	list2.add(fm.format(dssdto.lLeasedate));
 	    }
 	    
-	    System.out.println(list2);
-		
+	    ////////////////////////////////////////////////////////
+	    HttpSession session = request.getSession();
+
+		// 회원번호하고 클래스번호
+		if(session.getAttribute("memberNo") == null) {
+			model.addAttribute("isAuthenticated", "");	
+		} else {
+			// 로그인 했을 때 담을 정보
+			map.put("mNo", session.getAttribute("memberNo"));
+			map.put("number", sNo);
+			map.put("type","space");
+			
+			System.out.println(msi.readWishlist(map)); 
+			System.out.println("mNo : "+session.getAttribute("memberNo")); 
+			System.out.println("sNo : "+sNo);
+			
+			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
+			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
+		}
+		/////////////////////////////////////////////////////////////////
+	    
+	    
 	    // 공간에 대한 기본 정보
 		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
 		// 공간의 호스트가 등록한 정보를 출력함.
@@ -75,7 +100,7 @@ public class SpaceController {
 		// 로그인 했을 때만 일정을 보여줌
 		// 그냥 로그인 했을때만 보여줘야 되나..??
 		// 아님. 일반회원을 볼 수 없어야 함.
-		HttpSession session = request.getSession(); 
+		//HttpSession session = request.getSession(); 
 		// 로그인 한후에 다시 페이지로 돌아오기 위해 session에 데이터를 저장
 		// 쿠키를 사용 할 수 있지 않을까?
 		session.setAttribute("spaceNo", sNo);

@@ -60,8 +60,10 @@ public class MainService implements MserviceInter{
 		
 			return dao.selectWishlist(map);
 		}
-		
-		
-		
-		
+
+		@Override
+		public int deleteWishlist(Map<String, Object> map) {
+			
+			return dao.deleteWishlist(map);
+		}
 }
