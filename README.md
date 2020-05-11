@@ -25,6 +25,7 @@
 <ul>
 <li>OpenKitchen은 약 1개월 간 개발한 주방 공유 &amp;쿠킹 클래스 플랫폼 사이트입니다.</li> 
 <li>Nanum팀은 총 5명의 구성원으로 되어 있으며 각자의 영역을 분담해 개발을 진행했습니다. </li>
+<li>개발언어:Spring Framework(5.2.3),JQuery(3.4.1),Javascript,Oracle(11g),MyBatis(2.0.4),Maven(3.6.3),AWS 외 다수 API </li>	
 </ul>
 
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
