@@ -35,7 +35,6 @@ public class MainDAO implements MDaoInter {
 		return ss.selectList("kr.co.openkitchen.class.selectManwonC");
 	}
 	
-	
 	@Override
 	public List<ManwonClassDTO> selectOnlyoneC() {
 		
@@ -53,6 +52,18 @@ public class MainDAO implements MDaoInter {
 	public List<BestClassDTO> selectBestC(Map<String, Object> map) {
 		
 		return ss.selectList("kr.co.openkitchen.class.selectBestC", map);
+	}
+	
+	@Override
+	public int insertWishlist(Map<String, Object> map) {
+		
+		return ss.insert("kr.co.openkitchen.mypage.insertWishlist", map);
+	}
+
+	@Override
+	public int selectWishlist(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return ss.selectOne("kr.co.openkitchen.mypage.selectWishlist", map);
 	}
 	
 	

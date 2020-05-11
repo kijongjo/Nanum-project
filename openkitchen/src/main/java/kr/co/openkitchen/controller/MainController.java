@@ -3,6 +3,7 @@ package kr.co.openkitchen.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.service.MserviceInter;
@@ -80,6 +85,22 @@ public class MainController {
 	@GetMapping("/questions")
 	public String questions() {
 		return "etc/questions";
+	}
+	
+	@PostMapping("/userWishlist")
+	@ResponseBody
+	public String userWishlist(@SessionAttribute("memberNo")int mNo,@RequestParam("type")String type, 
+			@RequestParam("number")int number) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(mNo);
+		map.put("mNo", mNo);
+		map.put("type", type);
+		map.put("number", number);
+		
+		System.out.println(si.addWishlist(map));
+		
+		return "test";
 	}
 
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.openkitchen.dto.AuthorityCheckDTO;
 import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.service.MemberServiceInter;
 import lombok.Setter;
@@ -45,6 +46,17 @@ public class MemberController {
 
 		session.setAttribute("openkitchen", memberDTO);
 		session.setAttribute("memberNo", memberDTO.getmNo());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mNo", memberDTO.getmNo());
+		AuthorityCheckDTO acdto = ms.readAuthorityCheck(map);
+		System.out.println(acdto);
+		if (acdto.gettNo() != 0) {
+			session.setAttribute("isAuthenticated", "teacher");
+		} else {
+			session.setAttribute("isAuthenticated", "user");				
+		}
+		
 		
 		Object classNo = session.getAttribute("classNo");
 		Object spaceNo = session.getAttribute("spaceNo");
@@ -86,4 +98,6 @@ public class MemberController {
 		
 		return "login/login";
 	}
+	
+	
 }

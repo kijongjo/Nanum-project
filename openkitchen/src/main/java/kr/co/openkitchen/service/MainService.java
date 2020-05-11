@@ -49,5 +49,19 @@ public class MainService implements MserviceInter{
 			return dao.selectBestC(map);
 		}
 		
+		@Override
+		public int addWishlist(Map<String, Object> map) {
+			
+			return dao.insertWishlist(map);
+		}
+
+		@Override
+		public int readWishlist(Map<String, Object> map) {
+		
+			return dao.selectWishlist(map);
+		}
+		
+		
+		
 		
 }
