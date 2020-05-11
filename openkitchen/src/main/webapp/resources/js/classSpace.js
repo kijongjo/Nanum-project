@@ -1,6 +1,6 @@
 var $frag = $(document.createDocumentFragment());
 // html 코드를 입력할 변수 선언
-var contents1, contents2, contents3, contents4, contents5, contents6;
+var contents1, contents2, contents3, contents4, contents5, contents6, contents7;
 // 요청 정지 신호
 var rtn = false;
 // session에 담긴 class번호를 이용.
@@ -28,7 +28,7 @@ $(function() {
 					} else {
 						obj
 								.forEach(function(item) {
-
+									cNo = item.cNo;
 									contents1 = item.sMainsumnail;
 									console.log(contents1);
 									contents2 = '<img src="' + contents1 + '">';
@@ -39,14 +39,14 @@ $(function() {
 									contents5 = '<p>' + item.lLeasedate
 											+ item.lLeasetime + '</p>';
 									contents6 = '<div class="iconDiv"><i class="fas fa-check"></i></div></li>';
-
-									tag = contents2 + contents3 + contents4
-											+ contents5 + contents6;
+									contents7 = tag = contents2 + contents3
+											+ contents4 + contents5 + contents6;
 									$frag.append('<li class="selectBox">' + tag
 											+ '</li>');
 
 								});// foreachend
 						$("#contents_border>ul").append($frag);
+
 					}
 					// 요청 정지
 					return rtn;
@@ -129,9 +129,13 @@ $(function() {
 
 			$.ajax({
 				type : 'POST',
-				contentType : "application/json; charset=utf-8",
+				enctype : 'multipart/form-data',
+				processData : false,
+				cache : false,
 				url : '/openkitchen/mypage' + '/classSpaceRegist',
 				data : jso,
+				
+				contentType : "application/json; charset=UTF-8",
 				success : function(result) {
 					var obj = JSON.parse(result);
 					if (obj == "regist") {

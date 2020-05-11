@@ -6,6 +6,8 @@
 		
 	</ul>
 	<input type="hidden" id="cNo" value="${cNo}" />
+	<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
 	<!-- submit -->
 	<div id="btn-form-wrap">
 		<input type="button" value="다음" id="complete"> <input

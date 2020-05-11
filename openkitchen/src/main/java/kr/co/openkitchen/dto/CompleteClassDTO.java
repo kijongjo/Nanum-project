@@ -12,6 +12,7 @@ private String cMainsumnail;
 private String cName;
 private String lLeasedate;
 private String lLeasetime;
+private int cNo;
 public String getcMainsumnail() {
 	return cMainsumnail;
 }
@@ -35,6 +36,12 @@ public String getlLeasetime() {
 }
 public void setlLeasetime(String lLeasetime) {
 	this.lLeasetime = lLeasetime;
+}
+public int getcNo() {
+	return cNo;
+}
+public void setcNo(int cNo) {
+	this.cNo = cNo;
 }
 
 

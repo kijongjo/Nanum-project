@@ -15,6 +15,7 @@ public class MypageDAO implements MypageDaoInter {
 	
 	@Override
 	public MypageDTO selectOne(int mNo) {
+		System.out.println(mNo+"<-mNo");
 		return  ss.selectOne("kr.co.openkitchen.mypage.mypageInfo",mNo);
 	}
 	 

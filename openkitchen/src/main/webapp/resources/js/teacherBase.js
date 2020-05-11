@@ -397,7 +397,7 @@
            
             }else{formData.append("proType",0);}
             // !!! 회원번호 다른 페이지에서 이쪽 페이지로 올때 넘겨받아야함
-            formData.append("mNo",1000);
+            formData.append("mNo",99);
          
             /* 하나씩 꺼내서 보낸다. */
             $.each(form,function(index){

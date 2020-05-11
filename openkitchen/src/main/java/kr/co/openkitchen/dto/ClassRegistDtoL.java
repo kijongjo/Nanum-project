@@ -13,6 +13,9 @@ public class ClassRegistDtoL {
 	private String lLeasedate;
 	private String lLeasetime;
 	private String sMainsumnail;
+	private int cNo;
+	
+	
 
 	public int getRenNo() {
 		return renNo;
@@ -52,6 +55,14 @@ public class ClassRegistDtoL {
 
 	public void setsMainsumnail(String sMainsumnail) {
 		this.sMainsumnail = sMainsumnail;
+	}
+
+	public int getcNo() {
+		return cNo;
+	}
+
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
 	}
 
 }

@@ -13,6 +13,7 @@ public class CookBookDTO {
 	private String cName;
 	private int cPrice;
 	private String recPerstatus;
+	private int cNo;
 
 	public String getcMainsumnail() {
 		return cMainsumnail;
@@ -46,4 +47,13 @@ public class CookBookDTO {
 		this.recPerstatus = recPerstatus;
 	}
 
+	public int getcNo() {
+		return cNo;
+	}
+
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
+	}
+
+	
 }
