@@ -15,6 +15,7 @@
 
 
 <p align="center"><img src="https://user-images.githubusercontent.com/54735867/80936697-38fc4f80-8e0d-11ea-8294-7d0dda749065.png" width="300" height="300"></p>
+<p align="center">프로젝트 사이트-> http://3.34.22.59:8080/openkitchenFinal/mypage/in<p/>
 
 # OpenKitchen
 <ul>
