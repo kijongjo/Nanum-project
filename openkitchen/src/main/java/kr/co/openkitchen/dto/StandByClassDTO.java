@@ -11,6 +11,7 @@ public class StandByClassDTO {
 	private String cMainsumnail;
 	private String cName;
 	private String cRegdate;
+	private int cNo;
 
 	public String getcMainsumnail() {
 		return cMainsumnail;
@@ -35,5 +36,14 @@ public class StandByClassDTO {
 	public void setcRegdate(String cRegdate) {
 		this.cRegdate = cRegdate;
 	}
+
+	public int getcNo() {
+		return cNo;
+	}
+
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
+	}
+	
 
 }

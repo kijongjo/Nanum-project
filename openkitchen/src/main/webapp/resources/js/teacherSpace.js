@@ -521,7 +521,7 @@
                     		               		}// for end
                           console.log(formsize);
                       	// 필수 등록 수 12를 넘지 못하면 다음으로 이동 불가
-                          if(formsize <14){
+                          if(formsize <12){
                     		alert("신청서를 마저 작성해 주세요");
                     		formData= new FormData();
                     		formsize=0;

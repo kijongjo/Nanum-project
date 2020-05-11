@@ -19,8 +19,9 @@ public class TeacherRegistDaoS implements RegisterDaoInter {
 		System.out.println("dao의insertDTO :    "+dto.toString());
 
 		ss.insert("kr.co.openkitchen.teacherRegist.insertDtoH", dto);
+		
 		ss.insert("kr.co.openkitchen.teacherRegist.insertDtoS", dto);
-
+         
 	}
 	@Override
 	public <T> GenericOne<T> selectOne(T genericOne) {
