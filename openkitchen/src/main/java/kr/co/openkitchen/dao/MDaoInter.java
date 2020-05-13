@@ -23,5 +23,6 @@ public interface MDaoInter {
 	public int insertWishlist(Map<String, Object> map);
 	public int selectWishlist(Map<String, Object> map);
 	public int deleteWishlist(Map<String, Object> map);
-
+	public Map<String, Object> selectEnrolCheck(Map<String, Object> map);
+	public List<Map<String, Object>> selectReviewInfo(Map<String, Object> map);
 }

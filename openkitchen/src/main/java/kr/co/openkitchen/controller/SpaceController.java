@@ -61,7 +61,8 @@ public class SpaceController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("sNo", sNo);
-		
+		map.put("number", sNo);
+		map.put("type","space");
 		
 		List<DetailSScheDTO> list1 = ssi.readDetailSSche(map);
 	    SimpleDateFormat fm = new SimpleDateFormat("yyyy-M-d");
@@ -79,19 +80,17 @@ public class SpaceController {
 		} else {
 			// 로그인 했을 때 담을 정보
 			map.put("mNo", session.getAttribute("memberNo"));
-			map.put("number", sNo);
-			map.put("type","space");
 			
-			System.out.println(msi.readWishlist(map)); 
-			System.out.println("mNo : "+session.getAttribute("memberNo")); 
-			System.out.println("sNo : "+sNo);
 			
+			// model.addAttribute("EnrolCheck", msi.readEnrolCheck(map));		
 			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
 			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
 		}
 		/////////////////////////////////////////////////////////////////
 	    
-	    
+		System.out.println(msi.readRiviewInfo(map));
+		// 로그인 유무에 상관없이 항상 담겨야 할 데이터
+		// model.addAttribute("reviewInfoList", msi.readRiviewInfo(map));
 	    // 공간에 대한 기본 정보
 		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
 		// 공간의 호스트가 등록한 정보를 출력함.
@@ -236,6 +235,11 @@ public class SpaceController {
 		map.put("payType", payType);
 				
 		int result = ssi.addPaymentSData(map);
+		
+		
+		// 대여 할 경우에는 어떤 동작들이 일어나야 하는가?
+		// 1. 임대승인 상태 [진행] UPDATE, RENTAL 데이터 1건 INSERT 
+		// 2. 
 		System.out.println(result);
 		
 		

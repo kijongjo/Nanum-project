@@ -29,6 +29,13 @@
 		</foreach>
   	
   	</select>
+  	
+  	
+  	<update id="updateLease" parameterType="map">
+		UPDATE LEASE
+		SET L_PERSTATUS = '진행'
+		WHERE L_NO = #{leaseNo}
+	</update>
   	<insert id="insertPaymentS" parameterType="map">
   			<selectKey keyProperty="renNo" resultType="int" order="BEFORE">
   				SELECT RENTAL_SEQ.NEXTVAL FROM DUAL
@@ -38,5 +45,7 @@
 			INTO SPACE_PAY VALUES(SPACE_PAY_SEQ.NEXTVAL, #{payType}, '승인', SYSDATE, #{totalPay}, #{renNo})
 			SELECT *
 			FROM DUAL
-  		</insert>
+	</insert>
+	
+	
   </mapper>

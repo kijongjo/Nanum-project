@@ -17,4 +17,6 @@ public interface MserviceInter {
 	public int addWishlist(Map<String, Object> map);
 	public int readWishlist(Map<String, Object> map);
 	public int deleteWishlist(Map<String, Object> map);
+	public Map<String, Object> readEnrolCheck(Map<String, Object> map);
+	public List<Map<String, Object>> readRiviewInfo(Map<String, Object> map);
 }

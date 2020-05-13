@@ -72,4 +72,21 @@ public class MainDAO implements MDaoInter {
 		return ss.delete("kr.co.openkitchen.mypage.deleteWishlist", map);
 	}
 
+	@Override
+	public Map<String, Object> selectEnrolCheck(Map<String, Object> map) {
+		
+		return ss.selectOne("kr.co.openkitchen.mypage.selectEnrolCheck", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectReviewInfo(Map<String, Object> map) {
+
+		return ss.selectList("kr.co.openkitchen.mypage.selectReviewInfo", map);
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -634,7 +634,7 @@
 			</section>
 
 			<!-- 클래스 공간 선생님의 리뷰에 대한 정보가 들어온다 -->
-			<section class="review">
+			<%-- <section class="review">
 				<h3>리뷰</h3>
 				<ul>
 
@@ -722,8 +722,114 @@
 				<p>
 					<a href="#">리뷰 펼치기</a>
 				</p>
+			</section> --%>
+			<!-- 클래스 공간 선생님의 리뷰에 대한 정보가 들어온다 -->
+			<c:if test="${not empty reviewInfoList || not empty EnrolCheck.mNo}">
+			<section class="review">
+				<h3>리뷰</h3>
+				<!-- review 작성 부분  -->
+				<c:if test="${not empty EnrolCheck.mNo}">
+				<div class="reviewWrite">
+					<form action="reviewWrite" method="post">
+					<input type="hidden" name="" value="" />
+					<div class="ContentsBox">
+						<div class="writer">
+							<figure>
+								<c:choose>
+									<c:when test="${not empty EnrolCheck.mMainsumnail}">
+										<img src="<c:url value='${EnrolCheck.mMainsumnail}' />" alt="">									
+									</c:when>
+									<c:otherwise>
+										<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />" alt="">																		
+									</c:otherwise>
+								</c:choose>
+							</figure>
+							<div>${EnrolCheck.mName}</div>
+							<jsp:useBean id="now" class="java.util.Date"/>
+							<div><fmt:formatDate value="${now}" pattern="yyyy.MM.dd"/></div>
+						</div>
+						<div class="write">	
+							<textarea name="contents" class="" cols="80" rows="10"></textarea>
+						</div>
+						<div>
+							<!-- 점수  -->
+							<ul class="rate">
+								<li>
+									<input type="radio" name="radio" id="radio1" value="5" /><label for="radio1" class="goodIcon"></label>
+									<div>추천!</div>
+								</li>
+								<li>
+									<input type="radio" name="radio" id="radio2" value="3" /><label for="radio2" class="normalIcon"></label>
+									<div>보통!</div>
+								</li>
+								<li>
+									<input type="radio" name="radio" id="radio3" value="1" /><label for="radio3" class="badIcon"></label>
+									<div>별로!</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="writeOk">
+						<!-- 전송  -->
+						<input type="submit" value="리뷰 작성완료" id="" />
+					</div>
+					</form>
+				</div>
+				</c:if>
+				<ul>
+					<c:forEach var="reviewInfo" items="${reviewInfoList}">
+					<li>
+						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
+						<div class="reviewInfo">
+							<!-- 회원 이미지가 들어온다. -->
+							<figure>
+								<c:choose>
+									<c:when test="${not empty reviewInfo.mMainsumnail}">
+										<img src="<c:url value='${reviewInfo.mMainsumnail}' />"
+										alt="">	
+									</c:when>
+									<c:otherwise>
+										<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />"
+										alt="">						
+									</c:otherwise>
+								</c:choose>
+							</figure>
+							<!-- 평가와 이름 적은 날짜가 온다. -->
+							<span class="memberInfo"> <!-- 평가 이모티콘 -->
+								<c:choose>
+									<c:when test="${reviewInfo.rvScore eq 5}">
+									<figure>
+										<img src="<c:url value='resources/img/icon/good.png' />"
+										alt="">
+									</figure> <strong>추천!</strong>
+									</c:when>
+									<c:when test="${reviewInfo.rvScore eq 3}">
+									<figure>
+									<img src="<c:url value='resources/img/icon/normal.png' />"
+										alt="">
+									</figure> <strong>보통!</strong>	
+									</c:when>
+									<c:otherwise>
+									<figure>
+									<img src="<c:url value='resources/img/icon/bad.png' />"
+										alt="">
+									</figure> <strong>별로!</strong>
+									</c:otherwise>
+								</c:choose>
+								 <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
+									${reviewInfo.mName} <!--등록 날짜가 온다 --> <em>${reviewInfo.rvDate}</em>
+							</span>
+								<p>${reviewInfo.rvContent}</p> <!-- 더보기 기능이 있는 a태그 --> <!-- div 늘어나는 function -->
+								<!-- 1번째라 매개변수 1을 줌  --> <a href="javascript:reviewOne(0);">더보기</a>
+							</span>
+						</div>
+					</li>
+					</c:forEach>
+				</ul>
 			</section>
-
+			</c:if>
+			
+			
 			<!-- 공간 대한 편의시설이 나와 있다. -->
 			<section id="convenient">
 				<h3>편의시설</h3>

@@ -72,4 +72,6 @@ public class MemberDao implements MemberDaoInter{
 		
 		return ss.selectOne("kr.co.openkitchen.dto.MemberDTO.selectAuthorityCheck", map);
 	}
+	
+	
 }
