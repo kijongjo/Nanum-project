@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -294,10 +295,11 @@
 					    	   "sNo":"<c:out value='${detailSpace.sNo}' />"	
 					    },       
 					    // 동적으로 추가된 태그에 css가 적용되지 않는다.
+					    // 동적으로 추가된 일정의 상태에 따라 선택을 못하게 한다.
 					    success: function(data) {
 					    	for (var i = 0; i < data.length; i++) {
 								var choiceSch = data[i];
-								if(choiceSch.lPerstatus == "진행") {
+								if(choiceSch.lPerstatus == "모집") {
 						    		if(choiceSch.lLeasetime == "오전") {
 						    			$(".choiceSch").
 						    				append("<label class='schTime'>오전<input type='checkbox' class='timeCheck' value='"+choiceSch.lNo+"' /></label>");
