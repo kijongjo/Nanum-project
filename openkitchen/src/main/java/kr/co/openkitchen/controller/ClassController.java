@@ -53,6 +53,8 @@ public class ClassController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Map<String, String> map1 = new HashMap<String, String>();
 		Map<String, String> map2 = new HashMap<String, String>();
+		// Map<String, Object> map3 = new HashMap<String, Object>();
+		// Map<String, Object> map4 = new HashMap<String, Object>();
 		
 		String no = Integer.toString(cNo);
 		map1.put("cNo", no);
@@ -60,6 +62,8 @@ public class ClassController {
 		map2.put("cNo", no);
 		map2.put("type", "2");
 		
+		map.put("number", cNo);
+		map.put("type", "class");
 		
 		
 	    List<DetailCScheDTO> list1 = csi.readDetailCSche(map2);
@@ -77,25 +81,22 @@ public class ClassController {
 		} else {
 			// 로그인 했을 때 담을 정보
 			map.put("mNo", session.getAttribute("memberNo"));
-			map.put("cNo", cNo);
-//			System.out.println(msi.readWishlist(map)); 
-//			System.out.println("mNo : "+session.getAttribute("memberNo")); 
-//			System.out.println("cNo : "+cNo);
-//			if(msi.readWishlist(map) != 0) {
-//				model.addAttribute("checkWishlist", msi.readWishlist(map));
-//			} 
+			
+			
+			model.addAttribute("EnrolCheck", msi.readEnrolCheck(map));
+			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
 			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
 		}
 		
 		// 로그인 유무에 상관없이 항상 담겨야 할 데이터
+		model.addAttribute("reviewInfoList", msi.readRiviewInfo(map));
 		model.addAttribute("detailClass", csi.readDetailC(cNo));
 		model.addAttribute("detailCSche1", csi.readDetailCSche(map1));
 		model.addAttribute("detailCSche2", csi.readDetailCSche(map2));
 		model.addAttribute("detailCSche3", list2);
-		
-		
-	
+			
 		return "class/user/classD";
+		
 	}
 	
 	@GetMapping("classIn")

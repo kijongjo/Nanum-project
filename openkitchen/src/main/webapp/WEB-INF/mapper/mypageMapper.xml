@@ -41,9 +41,79 @@
 	</insert>
 	
 	<select id="selectWishlist" parameterType="map" resultType="int">
-		SELECT W_NO
+		SELECT NVL( MAX(W_NO), -1) AS W_NO
 		FROM WISHLIST
-		WHERE M_NO=#{mNo} AND C_NO=#{cNo}
+		<choose>
+			<when test="type=='space'">
+				WHERE M_NO=#{mNo} AND S_NO=#{number}
+			</when>
+			<when test="type=='class'">
+				WHERE M_NO=#{mNo} AND C_NO=#{number}
+			</when>
+			<otherwise>
+				WHERE M_NO=#{mNo} AND T_NO=#{number}
+			</otherwise>
+		</choose>
 	</select>
-
+		 
+	<delete id="deleteWishlist" parameterType="map">
+		DELETE FROM WISHLIST
+		<choose>
+			<when test="type=='space'">
+				WHERE M_NO=#{mNo} AND S_NO=#{number}
+			</when>
+			<when test="type=='class'">
+				WHERE M_NO=#{mNo} AND C_NO=#{number}
+			</when>
+			<otherwise>
+				WHERE M_NO=#{mNo} AND T_NO=#{number}
+			</otherwise>
+		</choose>
+	</delete>
+	
+	<resultMap type="map" id="selectECList">
+		<result column="M_NO" property="mNo"/>
+		<result column="M_NAME" property="mName"/>
+		<result column="M_MAINSUMNAIL" property="mMainsumnail"/>
+	</resultMap>	
+	
+	<select id="selectEnrolCheck" resultMap="selectECList" parameterType="map">
+		SELECT DISTINCT M.M_NO, M.M_NAME, M_MAINSUMNAIL
+		FROM (SELECT M_NO, M_NAME, M_MAINSUMNAIL
+      		  FROM MEMBER
+      		  WHERE M_NO NOT IN(SELECT M_NO
+                        		FROM MEMBER M, TEACHER T, HOST H
+                        		WHERE M_NO = T_NO AND M_NO = H_NO)) M, ENROL E, RECRUIT R
+		WHERE M.M_NO = E.M_NO AND E.REC_NO = R.REC_NO
+		<choose>
+			<when test="type=='class'">
+		      	AND M.M_NO = #{mNo} AND R.C_NO = #{number} AND R.REC_PERSTATUS = '종료' AND E.E_STATUS = '예약확정'	
+			</when>
+			<when test="type=='space'">
+				AND M.M_NO = #{mNo} AND R.S_NO = #{number} AND R.REC_PERSTATUS = '종료' AND E.E_STATUS = '예약확정'
+			</when>
+		</choose>
+	</select>
+	
+	<resultMap type="map" id="selectRIList">
+		<result column="M_NAME" property="mNo"/>
+		<result column="M_MAINSUMNAIL" property="mMainsumnail"/>
+		<result column="RV_CONTENT" property="rvContent" javaType="String"/>
+		<result column="RV_SCORE" property="rvScore"/>
+		<result column="RV_DATE" property="rvDate"/>
+	</resultMap>
+	
+	<select id="selectReviewInfo" resultMap="selectRIList" parameterType="map">
+		SELECT M.M_NAME, M.M_MAINSUMNAIL, R.RV_CONTENT, R.RV_SCORE, R.RV_DATE
+		FROM REVIEW R, MEMBER M
+		<choose>
+			<when test="type=='class'">
+		      	WHERE R.M_NO = M.M_NO AND R.C_NO = #{number}	
+			</when>
+			<when test="type=='space'">
+				WHERE R.M_NO = M.M_NO AND R.S_NO = #{number}
+			</when>
+		</choose>
+		
+	</select>
 </mapper>

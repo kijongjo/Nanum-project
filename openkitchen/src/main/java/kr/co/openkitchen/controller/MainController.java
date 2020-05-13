@@ -90,17 +90,25 @@ public class MainController {
 	@PostMapping("/userWishlist")
 	@ResponseBody
 	public String userWishlist(@SessionAttribute("memberNo")int mNo,@RequestParam("type")String type, 
-			@RequestParam("number")int number) {
+			@RequestParam("number")int number, @RequestParam("status")String status) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println(mNo);
 		map.put("mNo", mNo);
 		map.put("type", type);
 		map.put("number", number);
+		System.out.println("status : "+status);
 		
-		System.out.println(si.addWishlist(map));
+		int result = 0;
+		if(status.equals("insert")) {
+			result = si.addWishlist(map);
+		} else {
+			result = si.deleteWishlist(map);
+		}
+		
+        System.out.println("wishlist result : "+result);
 		
 		return "test";
 	}
+
 
 }

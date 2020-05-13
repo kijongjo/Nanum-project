@@ -36,6 +36,7 @@ import kr.co.openkitchen.dto.MemberDTO;
 import kr.co.openkitchen.dto.PaymentSpaceDTO;
 import kr.co.openkitchen.dto.SpaceIndexDTO;
 import kr.co.openkitchen.service.MemberServiceInter;
+import kr.co.openkitchen.service.MserviceInter;
 import kr.co.openkitchen.service.SserviceInter;
 import lombok.Setter;
 
@@ -49,6 +50,10 @@ public class SpaceController {
 	@Setter(onMethod = @__({ @Autowired }))
 	MemberServiceInter memsi;
 	
+	@Setter(onMethod = @__({ @Autowired }))
+	MserviceInter msi;
+	
+	
 	// spaceD view로 가는 프로그램
 	@RequestMapping("/spaceD")
 	public String classD(@RequestParam("no")int sNo, Model model, HttpServletRequest request) {
@@ -56,7 +61,8 @@ public class SpaceController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("sNo", sNo);
-		
+		map.put("number", sNo);
+		map.put("type","space");
 		
 		List<DetailSScheDTO> list1 = ssi.readDetailSSche(map);
 	    SimpleDateFormat fm = new SimpleDateFormat("yyyy-M-d");
@@ -65,8 +71,26 @@ public class SpaceController {
 	    	list2.add(fm.format(dssdto.lLeasedate));
 	    }
 	    
-	    System.out.println(list2);
-		
+	    ////////////////////////////////////////////////////////
+	    HttpSession session = request.getSession();
+
+		// 회원번호하고 클래스번호
+		if(session.getAttribute("memberNo") == null) {
+			model.addAttribute("isAuthenticated", "");	
+		} else {
+			// 로그인 했을 때 담을 정보
+			map.put("mNo", session.getAttribute("memberNo"));
+			
+			
+			// model.addAttribute("EnrolCheck", msi.readEnrolCheck(map));		
+			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
+			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
+		}
+		/////////////////////////////////////////////////////////////////
+	    
+		System.out.println(msi.readRiviewInfo(map));
+		// 로그인 유무에 상관없이 항상 담겨야 할 데이터
+		// model.addAttribute("reviewInfoList", msi.readRiviewInfo(map));
 	    // 공간에 대한 기본 정보
 		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
 		// 공간의 호스트가 등록한 정보를 출력함.
@@ -75,7 +99,7 @@ public class SpaceController {
 		// 로그인 했을 때만 일정을 보여줌
 		// 그냥 로그인 했을때만 보여줘야 되나..??
 		// 아님. 일반회원을 볼 수 없어야 함.
-		HttpSession session = request.getSession(); 
+		//HttpSession session = request.getSession(); 
 		// 로그인 한후에 다시 페이지로 돌아오기 위해 session에 데이터를 저장
 		// 쿠키를 사용 할 수 있지 않을까?
 		session.setAttribute("spaceNo", sNo);
@@ -211,6 +235,11 @@ public class SpaceController {
 		map.put("payType", payType);
 				
 		int result = ssi.addPaymentSData(map);
+		
+		
+		// 대여 할 경우에는 어떤 동작들이 일어나야 하는가?
+		// 1. 임대승인 상태 [진행] UPDATE, RENTAL 데이터 1건 INSERT 
+		// 2. 
 		System.out.println(result);
 		
 		

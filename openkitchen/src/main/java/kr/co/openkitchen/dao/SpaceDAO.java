@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.openkitchen.dto.DetailSScheDTO;
 import kr.co.openkitchen.dto.DetailSpaceDTO;
@@ -53,8 +54,9 @@ public class SpaceDAO implements SDaoInter {
 	}
 
 	@Override
+	@Transactional
 	public int insertPaymentS(Map<String, Object> map) {
-		
+		ss.update("kr.co.openkitchen.space.updateLease", map);
 		return ss.insert("kr.co.openkitchen.space.insertPaymentS", map);	
 	}
 	

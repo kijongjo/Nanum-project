@@ -1,7 +1,12 @@
 package kr.co.openkitchen.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +22,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.co.openkitchen.dto.TeacherIndexDTO;
+import kr.co.openkitchen.service.MserviceInter;
 import kr.co.openkitchen.service.TserviceInter;
 import lombok.Setter;
 
@@ -26,14 +32,38 @@ public class TeacherController {
 	@Setter(onMethod = @__({ @Autowired }))
 	TserviceInter si;
 	
+	@Setter(onMethod = @__({ @Autowired }))
+	MserviceInter msi;
+	
 	
 	
 	// teacherD view로 가는 프로그램
 	@RequestMapping("teacherD")
-	public String teacherD(@RequestParam("no")int tNo, Model model) {
+	public String teacherD(@RequestParam("no")int tNo, Model model,
+			HttpServletRequest request) {
 		System.out.println(tNo);
 		model.addAttribute("detailTeacher", si.readDetailT(tNo));
 		System.out.println(si.readDetailT(tNo));
+		
+		HttpSession session = request.getSession();
+		Map<String, Object> map = new HashMap<String, Object>();
+		// 회원번호하고 클래스번호
+		if(session.getAttribute("memberNo") == null) {
+			model.addAttribute("isAuthenticated", "");	
+		} else {
+			// 로그인 했을 때 담을 정보
+			map.put("mNo", session.getAttribute("memberNo"));
+			map.put("number", tNo);
+			map.put("type","teacher");
+			
+			System.out.println(msi.readWishlist(map)); 
+			System.out.println("mNo : "+session.getAttribute("memberNo")); 
+			System.out.println("tNo : "+tNo);
+			
+			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
+			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
+		}
+		
 		return "teacher/user/teacherD";
 	}
 	

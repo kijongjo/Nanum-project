@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +43,12 @@
 <script src="<c:url value='/resources/js/slick.js'/>"></script>
 <script src="<c:url value='/resources/js/main-slick.js'/>"></script>
 
+<!-- jquery ui 충돌나서 사용 할 수 없음 해결 방법 필요-->
+<!-- <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+
+
 <script>
+	
 	$(document).ready(function () {	
 		// 이 페이지로 전달된 el의 값을 jqeury변수에 담아 사용
 		var sType = "<c:out value='${detailClass.sType}' />";
@@ -115,64 +121,6 @@
 	
 	
 </script>
-<style>
-	.datepicker {
-		width: 100%;
-		height: 448px;
-	}
-	
-	/* 선택된 날짜 아래 표기되는 dot  */
-	.dp-note {
-	    background: #8e0032;
-	    width: 5px;
-	    height: 5px;
-	    border-radius: 50%;
-	    left: 50%;
-	    bottom: 1px;
-	    -webkit-transform: translateX(-50%);
-	    transform: translateX(-50%);
-	}
-	
-	.dp-note, .nav {
-		position: absolute;
-	}
-	
-	.choiceSch {
-		border: 1px solid rgba(0, 0, 0, .1);
-		border-bottom: none;
-		padding: 14px 48px;
-		text-align: center;
-		display: none;
-	}
-	
-	.schTitle {
-	 	font-size: 14px;
-	 	color: #585858;
-	 	text-align: left;
-	}
-	
-	.schDate, .schTime {
-		font-size: 20px;
-		color: #303030;
-		font-weight: 600;
-		display: inline-block;
-		box-sizing: border-box;  
-		line-height: 20px;  
-	}
-	
-	.schDate {
-		padding-right: 20px;
-		border-right: 1px solid #d8d8d8;
-		
-		
-	}
-	
-	.schTime {
-		padding-left: 20px;
-	}
-		
-		
-</style>
 
 <jsp:include page="../../headerScript.jsp" flush="false" />
 <script>
@@ -252,29 +200,29 @@ $(document).ready(function () {
 	var type = "class";
 	var number = "<c:out value='${detailClass.cNo}' />";
 	var isAuthenticated = "<c:out value='${isAuthenticated}' />";
-	console.log("로그인 인증 검사 : "+isAuthenticated);
 	var checkWishlist = "<c:out value='${checkWishlist}' />";
+	console.log("로그인 인증 검사 : "+isAuthenticated);
 	console.log("즐겨찾기 검사 : "+checkWishlist);
 	
 	// 즐겨찾기 check 검사
-	 if(isAuthenticated != "" && checkWishlist != "") {
-		 $(".btn-wishlist").addClass("active");
-		 
+	 if(isAuthenticated != "" && checkWishlist != -1) {
+		 $(".btn-wishlist").addClass("active"); 
 	 }
 
 	// 1. 로그인 되어야 사용 할 수 있어야 한다.
 	$(".btn-wishlist").on("click", function () {
 		if(isAuthenticated != "") {
-			wishlist(type, number);
+			if ($(this).hasClass("active")) {
+				wishlist(type, number, "delete");
+			} else {
+				wishlist(type, number, "insert");					
+			}
 		} else {
 			alert("로그인을 해주세요.")
 		}
 	});
 	
-	
-	// 1. 전송해야될 주소
-	// 2. 전송해야 할 타입
-	function wishlist(type, number) {
+	function wishlist(type, number, status) {
 		$.ajax({
 		    url:'userWishlist', // 요청 할 주소
 		    async:true,// false 일 경우 동기 요청으로 변경
@@ -282,28 +230,146 @@ $(document).ready(function () {
 		    dataType:'text',// xml, json, script, html
 		    data: {
 		    	"type":type,
-		    	"number":number
+		    	"number":number,
+		    	"status":status
 		    }, success:function(data) {
 		    	console.log("성공");
+		    	if(status=="insert") {
+		    		alert("위시리스트에 추가되었습니다.")
+		    	}
 		    	$(".btn-wishlist").toggleClass("active");
-		    	console.log(data);
 		    },error:function() {
 	    		console.log("실패");
 	    	}
 	    });
-	} 
-	
-	
+	}
 	
 });
 
 
 </script>
+<style>
+	.datepicker {
+		width: 100%;
+		height: 448px;
+	}
+	
+	/* 선택된 날짜 아래 표기되는 dot  */
+	.dp-note {
+	    background: #8e0032;
+	    width: 5px;
+	    height: 5px;
+	    border-radius: 50%;
+	    left: 50%;
+	    bottom: 1px;
+	    -webkit-transform: translateX(-50%);
+	    transform: translateX(-50%);
+	}
+	
+	.dp-note, .nav {
+		position: absolute;
+	}
+	
+	.choiceSch {
+		border: 1px solid rgba(0, 0, 0, .1);
+		border-bottom: none;
+		padding: 14px 48px;
+		text-align: center;
+		display: none;
+	}
+	
+	.schTitle {
+	 	font-size: 14px;
+	 	color: #585858;
+	 	text-align: left;
+	}
+	
+	.schDate, .schTime {
+		font-size: 20px;
+		color: #303030;
+		font-weight: 600;
+		display: inline-block;
+		box-sizing: border-box;  
+		line-height: 20px;  
+	}
+	
+	.schDate {
+		padding-right: 20px;
+		border-right: 1px solid #d8d8d8;
+	}
+	
+	.schTime {
+		padding-left: 20px;
+	}
+	
+	.reviewWrite {
+		text-align: center;
+	}
+	
+	.ContentsBox {
+		display: inline-flex;
+		margin-bottom: 30px;
+		margin-top: 30px;
+	}
+	
+	.writer {
+		width: 135px;
+	}
+	
+	.rate {
+		width: 135px;
+	}
+	
+	.write {
+		width: 500px;
+		height: 200px;
+	}
+	
+	.write textarea {
+		width: 100%;
+		height: 100%;
+	}
+	
+	
+	.writer figure {
+		overflow: hidden;
+		width: 75px;
+		height: 75px;	
+		border-radius: 50%;
+		background-color: rgb(246, 245, 245);
+		display: inline-block;
+	}
+	
+	.writer figure img {
+		width: 100%;
+		height: 100%;
+	}
+	
+
+
+		
+		
+</style>
+<script>
+	$(document).ready(function () {
+		
+		$(".write").children("textarea").on("click", function () {
+			
+			console.log("textarea 동작")
+		});
+		
+		
+		
+		
+		
+		
+	});
+</script>
 </head>
 
 <body>
 <jsp:include page="../../header.jsp" flush="false" />
-	<div></div>
+	
 	<!-- /////////////////////////////////////공유하기 팝업창 시작//////////////////////////////////////////////// -->
 
 	<!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
@@ -432,94 +498,110 @@ $(document).ready(function () {
 
 
 			<!-- 클래스 공간 선생님의 리뷰에 대한 정보가 들어온다 -->
+			<c:if test="${not empty reviewInfoList || not empty EnrolCheck.mNo}">
 			<section class="review">
 				<h3>리뷰</h3>
+				<!-- review 작성 부분  -->
+				<c:if test="${not empty EnrolCheck.mNo}">
+				<div class="reviewWrite">
+					<form action="reviewWrite" method="post">
+					<input type="hidden" name="" value="" />
+					<div class="ContentsBox">
+						<div class="writer">
+							<figure>
+								<c:choose>
+									<c:when test="${not empty EnrolCheck.mMainsumnail}">
+										<img src="<c:url value='${EnrolCheck.mMainsumnail}' />" alt="">									
+									</c:when>
+									<c:otherwise>
+										<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />" alt="">																		
+									</c:otherwise>
+								</c:choose>
+							</figure>
+							<div>${EnrolCheck.mName}</div>
+							<jsp:useBean id="now" class="java.util.Date"/>
+							<div><fmt:formatDate value="${now}" pattern="yyyy.MM.dd"/></div>
+						</div>
+						<div class="write">	
+							<textarea name="contents" class="" cols="80" rows="10"></textarea>
+						</div>
+						<div>
+							<!-- 점수  -->
+							<ul class="rate">
+								<li>
+									<input type="radio" name="radio" id="radio1" value="5" /><label for="radio1" class="goodIcon"></label>
+									<div>추천!</div>
+								</li>
+								<li>
+									<input type="radio" name="radio" id="radio2" value="3" /><label for="radio2" class="normalIcon"></label>
+									<div>보통!</div>
+								</li>
+								<li>
+									<input type="radio" name="radio" id="radio3" value="1" /><label for="radio3" class="badIcon"></label>
+									<div>별로!</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="writeOk">
+						<!-- 전송  -->
+						<input type="submit" value="리뷰 작성완료" id="" />
+					</div>
+					</form>
+				</div>
+				</c:if>
 				<ul>
-
+					<c:forEach var="reviewInfo" items="${reviewInfoList}">
 					<li>
 						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
 						<div class="reviewInfo">
 							<!-- 회원 이미지가 들어온다. -->
 							<figure>
-
-								<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />"
-									alt="">
+								<c:choose>
+									<c:when test="${not empty reviewInfo.mMainsumnail}">
+										<img src="<c:url value='${reviewInfo.mMainsumnail}' />"
+										alt="">	
+									</c:when>
+									<c:otherwise>
+										<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />"
+										alt="">						
+									</c:otherwise>
+								</c:choose>
 							</figure>
 							<!-- 평가와 이름 적은 날짜가 온다. -->
 							<span class="memberInfo"> <!-- 평가 이모티콘 -->
-								<figure>
-									<img src="<c:url value='resources/img/icon/smileIcon.png' />"
+								<c:choose>
+									<c:when test="${reviewInfo.rvScore eq 5}">
+									<figure>
+										<img src="<c:url value='resources/img/icon/good.png' />"
 										alt="">
-								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
-									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
+									</figure> <strong>추천!</strong>
+									</c:when>
+									<c:when test="${reviewInfo.rvScore eq 3}">
+									<figure>
+									<img src="<c:url value='resources/img/icon/normal.png' />"
+										alt="">
+									</figure> <strong>보통!</strong>	
+									</c:when>
+									<c:otherwise>
+									<figure>
+									<img src="<c:url value='resources/img/icon/bad.png' />"
+										alt="">
+									</figure> <strong>별로!</strong>
+									</c:otherwise>
+								</c:choose>
+								 <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
+									${reviewInfo.mName} <!--등록 날짜가 온다 --> <em>${reviewInfo.rvDate}</em>
 							</span>
-								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
-									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
-									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
-									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <!-- div 늘어나는 function -->
+								<p>${reviewInfo.rvContent}</p> <!-- 더보기 기능이 있는 a태그 --> <!-- div 늘어나는 function -->
 								<!-- 1번째라 매개변수 1을 줌  --> <a href="javascript:reviewOne(0);">더보기</a>
 							</span>
 						</div>
-
-
 					</li>
-					<li>
-						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
-						<div class="reviewInfo">
-							<!-- 회원 이미지가 들어온다. -->
-							<figure>
-								<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />"
-									alt="">
-							</figure>
-							<!-- 평가와 이름 적은 날짜가 온다. -->
-							<span class="memberInfo"> <!-- 평가 이모티콘 -->
-								<figure>
-									<img src="<c:url value='resources/img/icon/smileIcon.png' />"
-										alt="">
-								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
-									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
-							</span>
-								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
-									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
-									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
-									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <a
-								href="javascript:reviewOne(1);">더보기</a>
-							</span>
-						</div>
-					</li>
-					<li>
-						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
-						<div class="reviewInfo">
-							<!-- 회원 이미지가 들어온다. -->
-							<figure>
-
-								<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />"
-									alt="">
-							</figure>
-							<!-- 평가와 이름 적은 날짜가 온다. -->
-							<span class="memberInfo"> <!-- 평가 이모티콘 -->
-								<figure>
-									<img src="<c:url value='resources/img/icon/smileIcon.png' />"
-										alt="">
-								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
-									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
-							</span>
-								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
-									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
-									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
-									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <!-- div 늘어나는 function -->
-								<!-- 1번째라 매개변수 1을 줌  --> <a href="javascript:reviewOne(2);">더보기</a>
-							</span>
-						</div>
-
-
-					</li>
+					</c:forEach>
 				</ul>
-				<p>
-					
-				</p>
 			</section>
-
+			</c:if>
 			<!-- 선생님,클래스,공간에 대한 환불정책이 나와 있다. -->
 			<section class="refundPolicy">
 				<div>

@@ -62,17 +62,31 @@ public class MainDAO implements MDaoInter {
 
 	@Override
 	public int selectWishlist(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		
 		return ss.selectOne("kr.co.openkitchen.mypage.selectWishlist", map);
+	}
+
+	@Override
+	public int deleteWishlist(Map<String, Object> map) {
+		// delete한 행의 개수
+		return ss.delete("kr.co.openkitchen.mypage.deleteWishlist", map);
+	}
+
+	@Override
+	public Map<String, Object> selectEnrolCheck(Map<String, Object> map) {
+		
+		return ss.selectOne("kr.co.openkitchen.mypage.selectEnrolCheck", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectReviewInfo(Map<String, Object> map) {
+
+		return ss.selectList("kr.co.openkitchen.mypage.selectReviewInfo", map);
 	}
 	
 	
-
-
-
 	
-
-
-
-
+	
+	
+	
 }

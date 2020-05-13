@@ -20,13 +20,69 @@
 	rel="stylesheet">
 
 <!-- jquery 불러오기 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
 	<script src="<c:url value='/resources/js/teacherD.js'/>"></script>
+	<style>
+		
+	
+	</style>
+	 <script>
+ 	$(document).ready(function () {
+ 		var type = "teacher";
+ 		var number = "<c:out value='${detailTeacher.tNo}' />";
+ 		var isAuthenticated = "<c:out value='${isAuthenticated}' />";
+ 		var checkWishlist = "<c:out value='${checkWishlist}' />";
+ 		console.log("로그인 인증 검사 : "+isAuthenticated);
+ 		console.log("즐겨찾기 검사 : "+checkWishlist);
+ 		
+ 		// 즐겨찾기 check 검사
+ 		 if(isAuthenticated != "" && checkWishlist != -1) {
+ 			 $(".btn-wishlist").addClass("active"); 
+ 		 }
+
+ 		// 1. 로그인 되어야 사용 할 수 있어야 한다.
+ 		$(".btn-wishlist").on("click", function () {
+ 			if(isAuthenticated != "") {
+ 				if ($(this).hasClass("active")) {
+ 					wishlist(type, number, "delete");
+ 				} else {
+ 					wishlist(type, number, "insert");					
+ 				}
+ 			} else {
+ 				alert("로그인을 해주세요.")
+ 			}
+ 		});
+ 		
+ 		function wishlist(type, number, status) {
+ 			$.ajax({
+ 			    url:'userWishlist', // 요청 할 주소
+ 			    async:true,// false 일 경우 동기 요청으로 변경
+ 			    type:'POST', // GET, PUT
+ 			    dataType:'text',// xml, json, script, html
+ 			    data: {
+ 			    	"type":type,
+ 			    	"number":number,
+ 			    	"status":status
+ 			    }, success:function(data) {
+ 			    	console.log("성공");
+ 			    	if(status=="insert") {
+ 			    		alert("위시리스트에 추가되었습니다.")
+ 			    	}
+ 			    	$(".btn-wishlist").toggleClass("active");
+ 			    },error:function() {
+ 		    		console.log("실패");
+ 		    	}
+ 		    });
+ 		}
+	});
+ </script>
+	
 	
     <title>Document</title>
-  
+
+  	
+  	
 <jsp:include page="../../headerScript.jsp" flush="false" />
 </head>
 
