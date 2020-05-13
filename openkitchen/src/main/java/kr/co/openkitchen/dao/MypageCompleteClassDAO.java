@@ -15,9 +15,9 @@ public class MypageCompleteClassDAO implements MypageOpenClassDaoInter {
 	SqlSession ss;
 
 	@Override
-	public <T> GenericOne<T> selectOne(T genericOne) {
+	public <T> GenericOne<T> selectOne(T tNo) {
 
-		return Util.packingCompleteC(ss.selectList("kr.co.openkitchen.mypageOpenClass.completeClassList", genericOne));
+		return Util.packingCompleteC(ss.selectList("kr.co.openkitchen.mypageOpenClass.completeClassList", tNo));
 	}
 
 }

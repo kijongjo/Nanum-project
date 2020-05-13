@@ -132,7 +132,7 @@ $(function() {
 				enctype : 'multipart/form-data',
 				processData : false,
 				cache : false,
-				url : '/openkitchen/mypage' + '/classSpaceRegist',
+				url : '/openkitchenFinal/mypage' + '/classSpaceRegist',
 				data : jso,
 				
 				contentType : "application/json; charset=UTF-8",

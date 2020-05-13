@@ -409,7 +409,7 @@ $(function() {
             contentType: false,
             cache: false,
             timeout: 600000,
-            url: '/openkitchen/mypage' + '/classBaseInfo',
+            url: '/openkitchenFinal/mypage' + '/classBaseInfo',
             data: formData,
 
             success: function(result) {
@@ -468,7 +468,7 @@ $(function() {
             contentType: false,
             cache: false,
             timeout: 600000,
-            url:'/openkitchen/mypage' + '/classBaseInfo',
+            url:'/openkitchenFinal/mypage' + '/classBaseInfo',
             data: formData,
 
             success: function(result) {

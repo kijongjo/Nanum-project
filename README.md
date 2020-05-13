@@ -4,9 +4,9 @@
 2. [Summary-프로젝트 요약](#summary)<br/>
 3. [Default-기본규칙](#default)<br/>
 4. [공통기술-적용기술설명](#기술)<br/>
-* 개인 기술 Part<br/>
-   [이정용](#이정용)<br/>
+* 개인 기술 * 역할 <br/>
    [조기종](#조기종)<br/>
+  
     
 
 
@@ -17,10 +17,15 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/54735867/80936697-38fc4f80-8e0d-11ea-8294-7d0dda749065.png" width="300" height="300"></p>
 
+<p align="center">사이트</p>
+<p align="center">http://3.34.22.59:8080/openkitchenFinal/mypage/in<p/>
+<h5 align="center">2020.3.08 ~ 2020.4.08</h5>
+
 # OpenKitchen
 <ul>
 <li>OpenKitchen은 약 1개월 간 개발한 주방 공유 &amp;쿠킹 클래스 플랫폼 사이트입니다.</li> 
 <li>Nanum팀은 총 5명의 구성원으로 되어 있으며 각자의 영역을 분담해 개발을 진행했습니다. </li>
+<li>개발언어:Spring Framework(5.2.3),JQuery(3.4.1),Javascript,Oracle(11g),MyBatis(2.0.4),Maven(3.6.3),AWS 외 다수 API </li>	
 </ul>
 
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
@@ -70,10 +75,7 @@ GIT- 소스 트리
 <h5 align="right"> <a href="#목차">목차보기▲</a></h5>
 
 
-##  이정용
 
-각자 맡은 페이지에서 사용한 기술 설명 하기 
-<h5 align="right"> <a href="#목차">목차보기▲</a></h5>
 
 ##  조기종
 <table style="width:600px ;" name="JoList">
@@ -115,6 +117,21 @@ GIT- 소스 트리
             </ul>
         </td>
     </tr>
+	</table>
+	<table>
+	<tr>
+		<td>
+			*로그인이 필요한 부분은 로그인 후 링크를 다시 클릭하시면 됩니다! 감사합니다.
+		 <ul>
+			 <li>(선생님,클래스,공간)상세 페이지UI/UX <br/>샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/classD?no=24</li>
+			 <li>클래스 등록 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/mypage/classBase?no=1</li>
+			  <li>선생님 등록 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플   ▶http://3.34.22.59:8080/openkitchenFinal/mypage/teacherBase?no=1</li>
+			 <li>요리신청 목록 페이지 UI/UX&백엔드로직 (로그인 필요) <br/>샘플 ▶http://3.34.22.59:8080/openkitchenFinal/mypage/cookBookD?no=1</li>
+			 <li>개설된 클래스 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/mypage/ongoingClass?no=2</li>
+			 <li>관리자 페이지UI/UX<br/> 샘플  ▶ http://3.34.22.59:8080/openkitchenFinal/admin/in</li>
+		 </ul>	
+			</td>
+	</tr>
 </table>
 
 <h5  align="right"> <a href="#목차">목차보기▲</a></h5>

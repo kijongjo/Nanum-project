@@ -17,7 +17,7 @@ $(function() {
 	// 공간 예약 목록
 	$
 			.ajax({
-				url : '/openkitchen/mypage' + '/totalScheduleList',
+				url : '/openkitchenFinal/mypage' + '/totalScheduleList',
 
 				type : 'POST',
 				success : function(data) {
@@ -134,7 +134,7 @@ $(function() {
 			$.ajax({
 				type : 'POST',
 				contentType : "application/json; charset=utf-8",
-				url : '/openkitchen/mypage' + '/completeSch',
+				url : '/openkitchenFinal/mypage' + '/completeSch',
 				
 				success : function(result) {
 					var obj = JSON.parse(result);
