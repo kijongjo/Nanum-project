@@ -80,17 +80,16 @@ public class SpaceController {
 		} else {
 			// 로그인 했을 때 담을 정보
 			map.put("mNo", session.getAttribute("memberNo"));
-			
-			
-			// model.addAttribute("EnrolCheck", msi.readEnrolCheck(map));		
+			System.out.println("리뷰 작성 check : "+msi.readReviewCheck(map));
+			model.addAttribute("reviewCheck", msi.readReviewCheck(map));		
 			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
 			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
 		}
 		/////////////////////////////////////////////////////////////////
 	    
-		System.out.println(msi.readRiviewInfo(map));
+		System.out.println("공간 리뷰 데이터"+msi.readRiviewInfo(map));
 		// 로그인 유무에 상관없이 항상 담겨야 할 데이터
-		// model.addAttribute("reviewInfoList", msi.readRiviewInfo(map));
+		model.addAttribute("reviewInfoList", msi.readRiviewInfo(map));
 	    // 공간에 대한 기본 정보
 		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
 		// 공간의 호스트가 등록한 정보를 출력함.

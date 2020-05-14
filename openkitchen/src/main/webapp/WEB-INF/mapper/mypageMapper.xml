@@ -71,26 +71,41 @@
 		</choose>
 	</delete>
 	
-	<resultMap type="map" id="selectECList">
+	<resultMap type="map" id="selectRCList">
 		<result column="M_NO" property="mNo"/>
 		<result column="M_NAME" property="mName"/>
 		<result column="M_MAINSUMNAIL" property="mMainsumnail"/>
+		<result column="E_NO" property="eNo" />
+		<result column="C_NO" property="cNo"/>
+		<result column="E_DATE" property="eDate"/>
+		<result column="REN_NO" property="renNo"/>
+		<result column="S_NO" property="sNo"/>
+		<result column="REN_DATE" property="renDate"/>
 	</resultMap>	
 	
-	<select id="selectEnrolCheck" resultMap="selectECList" parameterType="map">
-		SELECT DISTINCT M.M_NO, M.M_NAME, M_MAINSUMNAIL
-		FROM (SELECT M_NO, M_NAME, M_MAINSUMNAIL
-      		  FROM MEMBER
-      		  WHERE M_NO NOT IN(SELECT M_NO
-                        		FROM MEMBER M, TEACHER T, HOST H
-                        		WHERE M_NO = T_NO AND M_NO = H_NO)) M, ENROL E, RECRUIT R
-		WHERE M.M_NO = E.M_NO AND E.REC_NO = R.REC_NO
+	<select id="selectReviewCheck" resultMap="selectRCList" parameterType="map">
 		<choose>
 			<when test="type=='class'">
-		      	AND M.M_NO = #{mNo} AND R.C_NO = #{number} AND R.REC_PERSTATUS = '종료' AND E.E_STATUS = '예약확정'	
+			  SELECT E.E_NO, E.E_DATE, R.C_NO, M.M_NO, M.M_NAME, M_MAINSUMNAIL
+			  FROM (SELECT M_NO, M_NAME, M_MAINSUMNAIL
+      		  FROM MEMBER
+			  WHERE M_NO NOT IN(SELECT M_NO
+                       		    FROM MEMBER M, TEACHER T, HOST H
+                        	    WHERE M_NO = T_NO AND M_NO = H_NO)) M, ENROL E, RECRUIT R
+			 WHERE M.M_NO = E.M_NO AND E.REC_NO = R.REC_NO
+		     AND M.M_NO = #{mNo} AND R.C_NO = #{number} AND R.REC_PERSTATUS = '종료' AND E.E_STATUS = '예약확정'
+		     AND (E.E_NO, R.C_NO) NOT IN (SELECT RESULT_NO, C_NO 
+                                   		  FROM REVIEW)	
 			</when>
 			<when test="type=='space'">
-				AND M.M_NO = #{mNo} AND R.S_NO = #{number} AND R.REC_PERSTATUS = '종료' AND E.E_STATUS = '예약확정'
+			 SELECT R.REN_NO,R.REN_DATE, S.S_NO, M.M_NO, M.M_NAME, M_MAINSUMNAIL
+			 FROM (SELECT M_NO, M_NAME, M_MAINSUMNAIL
+			 		FROM MEMBER
+      				WHERE M_GRADE = 'ROLE_USER') M, TEACHER T, RENTAL R, LEASE L, SPACE S
+			 WHERE M.M_NO = T.T_NO AND T.T_NO = R.T_NO AND R.L_NO =L.L_NO AND L.S_NO = S.S_NO
+      		 AND T.T_NO = #{mNo} AND L.S_NO= #{number} AND R.REN_STATUS = '예약확정' AND L.L_PERSTATUS = '종료'
+      		 AND T.T_NO != S.H_NO AND (R.REN_NO, S.S_NO) NOT IN (SELECT RESULT_NO, S_NO
+                                                                 FROM REVIEW)
 			</when>
 		</choose>
 	</select>
@@ -102,7 +117,7 @@
 		<result column="RV_SCORE" property="rvScore"/>
 		<result column="RV_DATE" property="rvDate"/>
 	</resultMap>
-	
+		
 	<select id="selectReviewInfo" resultMap="selectRIList" parameterType="map">
 		SELECT M.M_NAME, M.M_MAINSUMNAIL, R.RV_CONTENT, R.RV_SCORE, R.RV_DATE
 		FROM REVIEW R, MEMBER M
@@ -114,6 +129,5 @@
 				WHERE R.M_NO = M.M_NO AND R.S_NO = #{number}
 			</when>
 		</choose>
-		
 	</select>
 </mapper>

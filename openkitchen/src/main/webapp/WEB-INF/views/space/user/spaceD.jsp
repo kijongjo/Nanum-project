@@ -113,6 +113,49 @@
 		display: none;
 	}
 	
+.reviewWrite {
+		text-align: center;
+	}
+	
+	.ContentsBox {
+		display: inline-flex;
+		margin-bottom: 30px;
+		margin-top: 30px;
+	}
+	
+	.writer {
+		width: 135px;
+	}
+	
+	.rate {
+		width: 135px;
+	}
+	
+	.write {
+		width: 500px;
+		height: 200px;
+	}
+	
+	.write textarea {
+		width: 100%;
+		height: 100%;
+	}
+	
+	
+	.writer figure {
+		overflow: hidden;
+		width: 75px;
+		height: 75px;	
+		border-radius: 50%;
+		background-color: rgb(246, 245, 245);
+		display: inline-block;
+	}
+	
+	.writer figure img {
+		width: 100%;
+		height: 100%;
+	}
+	
 </style>
 <script>
 	$(document).ready(function () {
@@ -634,103 +677,12 @@
                 링크에는 공간의 주소가 들어간다. -->
 				<span>${detailSpace.sLoc}</span>
 			</section>
-
 			<!-- 클래스 공간 선생님의 리뷰에 대한 정보가 들어온다 -->
-			<%-- <section class="review">
-				<h3>리뷰</h3>
-				<ul>
-
-					<li>
-						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
-						<div class="reviewInfo">
-							<!-- 회원 이미지가 들어온다. -->
-							<figure>
-								<img src="<c:url value='resources/img/icon/mDefaultIcon.png'/>" alt="">
-							</figure>
-							<!-- 평가와 이름 적은 날짜가 온다. -->
-							<span class="memberInfo"> <!-- 평가 이모티콘 -->
-								<figure>
-									<img src="<c:url value='resources/img/icon/smileIcon.png'/>" alt="">
-								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
-									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
-							</span>
-								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
-									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
-									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
-									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <a
-								href="javascript:reviewOne(0)">더보기</a>
-							</span>
-						</div>
-
-
-					</li>
-					<li>
-						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
-						<div class="reviewInfo">
-							<!-- 회원 이미지가 들어온다. -->
-							<figure>
-
-								<img src="<c:url value='resources/img/icon/mDefaultIcon.png'/>"
-									alt="">
-							</figure>
-							<!-- 평가와 이름 적은 날짜가 온다. -->
-							<span class="memberInfo"> <!-- 평가 이모티콘 -->
-								<figure>
-
-									<img src="	<c:url value='resources/img/icon/smileIcon.png'/>"
-										alt="">
-								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
-									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
-							</span>
-								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
-									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
-									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
-									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <a
-								href="javascript:reviewOne(1)">더보기</a>
-							</span>
-						</div>
-
-
-					</li>
-
-<li>
-						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
-						<div class="reviewInfo">
-							<!-- 회원 이미지가 들어온다. -->
-							<figure>
-								<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />"
-									alt="">
-							</figure>
-							<!-- 평가와 이름 적은 날짜가 온다. -->
-							<span class="memberInfo"> <!-- 평가 이모티콘 -->
-								<figure>
-									<img src="<c:url value='resources/img/icon/smileIcon.png' />"
-										alt="">
-								</figure> <strong>추천해요!</strong> <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
-									신하림 <!--등록 날짜가 온다 --> <em>2020.03.25</em>
-							</span>
-								<p>주스 외에 건강에 관해 여러가지 유익한 말씀도 해주시고 주스 실습때는 어려운 재료손질을 직접 해주시거나
-									부족한 재료를 바로 구해서 오셔서 정말 감사했어요. 소규모로 진행한 지라 서로에 대해 많은 얘기를 했는데 나와
-									다른 분야에 있는 사람들과 이야기를 나누는 경험이 특별했습니다. 카페같이 예쁜 장소에서 클렌즈 주스 수업을
-									듣고싶은 분께 정말 추천드려요!</p> <!-- 더보기 기능이 있는 a태그 --> <a
-								href="javascript:reviewOne(2);">더보기</a>
-							</span>
-						</div>
-					</li>
-
-
-
-				</ul>
-				<p>
-					<a href="#">리뷰 펼치기</a>
-				</p>
-			</section> --%>
-			<!-- 클래스 공간 선생님의 리뷰에 대한 정보가 들어온다 -->
-			<c:if test="${not empty reviewInfoList || not empty EnrolCheck.mNo}">
+			<c:if test="${not empty reviewInfoList || not empty reviewCheck.mNo}">
 			<section class="review">
 				<h3>리뷰</h3>
 				<!-- review 작성 부분  -->
-				<c:if test="${not empty EnrolCheck.mNo}">
+				<c:if test="${not empty reviewCheck.mNo}">
 				<div class="reviewWrite">
 					<form action="reviewWrite" method="post">
 					<input type="hidden" name="" value="" />
@@ -738,15 +690,15 @@
 						<div class="writer">
 							<figure>
 								<c:choose>
-									<c:when test="${not empty EnrolCheck.mMainsumnail}">
-										<img src="<c:url value='${EnrolCheck.mMainsumnail}' />" alt="">									
+									<c:when test="${not empty reviewCheck.mMainsumnail}">
+										<img src="<c:url value='${reviewCheck.mMainsumnail}' />" alt="">									
 									</c:when>
 									<c:otherwise>
 										<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />" alt="">																		
 									</c:otherwise>
 								</c:choose>
 							</figure>
-							<div>${EnrolCheck.mName}</div>
+							<div>${reviewCheck.mName}</div>
 							<jsp:useBean id="now" class="java.util.Date"/>
 							<div><fmt:formatDate value="${now}" pattern="yyyy.MM.dd"/></div>
 						</div>
@@ -779,7 +731,9 @@
 				</div>
 				</c:if>
 				<ul>
-					<c:forEach var="reviewInfo" items="${reviewInfoList}">
+				<c:choose>
+					<c:when test="${not empty reviewInfoList}">
+						<c:forEach var="reviewInfo" items="${reviewInfoList}">
 					<li>
 						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
 						<div class="reviewInfo">
@@ -827,7 +781,13 @@
 						</div>
 					</li>
 					</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<li><div>첫 리뷰를 작성해주세요!</div></li>						
+					</c:otherwise>
+				</c:choose>
 				</ul>
+				
 			</section>
 			</c:if>
 			

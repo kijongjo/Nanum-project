@@ -73,9 +73,9 @@ public class MainDAO implements MDaoInter {
 	}
 
 	@Override
-	public Map<String, Object> selectEnrolCheck(Map<String, Object> map) {
+	public List<Map<String, Object>> selectReviewCheck(Map<String, Object> map) {
 		
-		return ss.selectOne("kr.co.openkitchen.mypage.selectEnrolCheck", map);
+		return ss.selectList("kr.co.openkitchen.mypage.selectReviewCheck", map);
 	}
 
 	@Override

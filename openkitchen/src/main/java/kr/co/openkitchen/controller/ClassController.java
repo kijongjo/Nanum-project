@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -81,9 +82,29 @@ public class ClassController {
 		} else {
 			// 로그인 했을 때 담을 정보
 			map.put("mNo", session.getAttribute("memberNo"));
+	
+			List<Map<String, Object>> temporary = msi.readReviewCheck(map);
+			List<Map<String, Object>> reviewCheck = new ArrayList<Map<String,Object>>();
+			Map<String, Object> reviewMyInfo = new HashMap<String, Object>(); 
+			reviewCheck.addAll(temporary); // 데이터 전체 복사
+			reviewMyInfo.putAll(temporary.get(0));
+			System.out.println("reviewMyInfo"+reviewMyInfo);
+			
+			reviewMyInfo.remove("eNo");
+			
+			for (int i = 0; i < temporary.size(); i++) {
+				reviewCheck.get(i).remove("cNo");	
+				reviewCheck.get(i).remove("mNo");
+				reviewCheck.get(i).remove("mName");
+				reviewCheck.get(i).remove("mMainsumnail");			           
+			}
+			
+			System.out.println(reviewCheck);
+			System.out.println(reviewMyInfo);
 			
 			
-			model.addAttribute("EnrolCheck", msi.readEnrolCheck(map));
+			model.addAttribute("reviewCheck1", reviewMyInfo);
+			model.addAttribute("reviewCheck2", reviewCheck);
 			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
 			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
 		}

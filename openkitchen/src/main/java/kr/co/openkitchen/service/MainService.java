@@ -68,9 +68,9 @@ public class MainService implements MserviceInter{
 		}
 
 		@Override
-		public Map<String, Object> readEnrolCheck(Map<String, Object> map) {
+		public List<Map<String, Object>> readReviewCheck(Map<String, Object> map) {
 			
-			return dao.selectEnrolCheck(map);
+			return dao.selectReviewCheck(map);
 		}
 
 		@Override
