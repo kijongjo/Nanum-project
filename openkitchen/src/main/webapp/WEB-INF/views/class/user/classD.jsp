@@ -35,6 +35,7 @@
 <!-- jquery 불러오기 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
 
 <script src="<c:url value='resources/js/classD.js'/>"></script>
 <script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
@@ -262,7 +263,7 @@ $(document).ready(function () {
 	// script의 순서는 중요하다.
 	$(".resultNo").on("click", function () {
 		resultNo = $(this).val();
-		$("#reviewForm").append("<input type='hidden' name='number' value='"+resultNo+"' />")
+		$("#reviewForm").append("<input type='hidden' name='resultNo' value='"+resultNo+"' />")
 		$(".selectDate").text($(this).text());
 		$(".selectDate").append("<i class='ui-button-icon ui-icon ui-icon-closethick'></i>");
 		$(".selectDate").css("display","inline-block");
@@ -271,26 +272,50 @@ $(document).ready(function () {
 	
 	$(".selectDate").on("click", function () {
 		resultNo=0;
-		$("#reviewForm").remove("")
+		//$("#reviewForm").remove("")
 		$(this).css("display","none");
 	});
 	
+	
+	
+	
 	var option = {
+		type: 'post',
+		async: true ,
 		dataType:'json',
+		/* contentType: 'application/json; charset=UTF-8', */
 		url:'userReviewInsert',
-		success: function(res) {
-			alert("성공");
+		success: function(data) {
+	
 		},
-		error: function(res) {
+		error: function() {
 			alert("실패");
 		}
 			
 	}
 	
-	$('#reviewForm').submit(function() { //submit이 발생하면
-	    $(this).ajaxSubmit(option); //옵션값대로 ajax비동기 동작을 시키고
-	    return false; //기본 동작인 submit의 동작을 막아 페이지 reload를 막는다.
+	$('#reviewForm').submit(function() { //submit이 발생하
+	    // $(this).ajaxSubmit(option); //옵션값대로 ajax비동기 동작을 시키고
+	    var result = true
+	    
+	    if($(".write").children("textarea").val() == "") {
+	    	alert("내용을 입력해주세요.");
+	    	result = false
+	    	
+	    } else if($("input:radio[name=rvScore]").is(":checked") == false) {
+	    	alert("점수를 체크해주세요.");
+	    	result = false
+	    }
+	    
+	    return result; //기본 동작인 submit의 동작을 막아 페이지 reload를 막는다.
 	});
+		
+	/* $("#reviewBtn").on("click", function () {
+		$("#reviewForm").ajaxSubmit(option);
+	}); */
+	
+	
+	
 	
 	
 });
@@ -407,8 +432,11 @@ $(document).ready(function () {
 	}
 	
 	.selectDate {
-		border: 1px solid black;
 		padding: 5px;
+		background-color: #8E0032;
+		color: white;
+		border-radius: 3px;
+		
 	}
 	
 	
@@ -568,7 +596,8 @@ $(document).ready(function () {
 				<!-- review 작성 부분  -->
 				<c:if test="${not empty reviewCheck1.mNo}">
 				<div class="reviewWrite">
-					<form id="reviewForm" action="userRivewInsert" method="post">
+					<form id="reviewForm" action="userReviewInsert" method="post">
+					<input type="hidden" name="rvType" value="class" />
 					<div class="ContentsBox">
 						<div class="writer">
 							<figure>
@@ -589,22 +618,22 @@ $(document).ready(function () {
 							</div>
 						</div>
 						<div class="write">	
-							<textarea name="contents" cols="80" rows="10"></textarea>
+							<textarea name="rvContent" cols="80" rows="10"></textarea>
 							
 						</div>
 						<div>
 							<!-- 점수  -->
 							<ul class="rate">
 								<li>
-									<input type="radio" name="radio" id="radio1" value="5" /><label for="radio1" class="goodIcon"></label>
+									<input type="radio" name="rvScore" id="radio1" value="5" /><label for="radio1" class="goodIcon"></label>
 									<div>추천!</div>
 								</li>
 								<li>
-									<input type="radio" name="radio" id="radio2" value="3" /><label for="radio2" class="normalIcon"></label>
+									<input type="radio" name="rvScore" id="radio2" value="3" /><label for="radio2" class="normalIcon"></label>
 									<div>보통!</div>
 								</li>
 								<li>
-									<input type="radio" name="radio" id="radio3" value="1" /><label for="radio3" class="badIcon"></label>
+									<input type="radio" name="rvScore" id="radio3" value="1" /><label for="radio3" class="badIcon"></label>
 									<div>별로!</div>
 								</li>
 							</ul>
@@ -612,12 +641,12 @@ $(document).ready(function () {
 					</div>
 					<div class="writeOk">
 						<!-- 전송  -->
-						<input type="submit" value="리뷰 작성완료"/>
+						<input type="submit" value="리뷰 작성완료" id="reviewBtn"/>
 					</div>
 					</form>
 				</div>
 				</c:if>
-				<ul>
+				<ul class="reviewInfoList">
 				<c:choose>
 					<c:when test="${not empty reviewInfoList}">
 						<c:forEach var="reviewInfo" items="${reviewInfoList}">
@@ -659,9 +688,10 @@ $(document).ready(function () {
 									</figure> <strong>별로!</strong>
 									</c:otherwise>
 								</c:choose>
-								 <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
-									${reviewInfo.mName} <!--등록 날짜가 온다 --> <em>${reviewInfo.rvDate}</em>
-							</span>
+								 <!--이름과 댓글 등록 날짜가 오게된다. --> 
+								 <span>
+									${reviewInfo.mName}        <em><fmt:formatDate value="${reviewInfo.rvDate}" pattern="yyyy.MM.dd"/></em>
+								</span>
 								<p>${reviewInfo.rvContent}</p> <!-- 더보기 기능이 있는 a태그 --> <!-- div 늘어나는 function -->
 								<!-- 1번째라 매개변수 1을 줌  --> <a href="javascript:reviewOne(0);">더보기</a>
 							</span>

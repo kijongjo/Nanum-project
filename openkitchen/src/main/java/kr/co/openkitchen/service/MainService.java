@@ -1,5 +1,6 @@
 package kr.co.openkitchen.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.openkitchen.dao.MDaoInter;
+import kr.co.openkitchen.dto.AjaxDataDTO;
 import kr.co.openkitchen.dto.BestClassDTO;
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
@@ -69,7 +71,7 @@ public class MainService implements MserviceInter{
 
 		@Override
 		public List<Map<String, Object>> readReviewCheck(Map<String, Object> map) {
-			
+		
 			return dao.selectReviewCheck(map);
 		}
 
@@ -78,6 +80,21 @@ public class MainService implements MserviceInter{
 			
 			return dao.selectReviewInfo(map);
 		}
+
+		@Override
+		public void addReview(AjaxDataDTO addto) {
+			
+			dao.insertReivew(addto);
+			
+		}
+
+		@Override
+		public Map<String, Object> addReviewCheck(int rvNo) {
+	
+			return dao.insertReviewCheck(rvNo);
+		}
+		
+		
 		
 		
 		

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.openkitchen.dto.AjaxDataDTO;
 import kr.co.openkitchen.dto.BestClassDTO;
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ClassIndexDTO;
@@ -83,6 +84,22 @@ public class MainDAO implements MDaoInter {
 
 		return ss.selectList("kr.co.openkitchen.mypage.selectReviewInfo", map);
 	}
+
+	@Override
+	public void insertReivew(AjaxDataDTO addto) {
+
+
+		ss.insert("kr.co.openkitchen.mypage.insertReview", addto);
+		
+	}
+
+	@Override
+	public Map<String, Object> insertReviewCheck(int rvNo) {
+
+		return ss.selectOne("kr.co.openkitchen.mypage.insertReviewCheck", rvNo);
+	}
+	
+	
 	
 	
 	

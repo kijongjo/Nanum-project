@@ -79,7 +79,7 @@
 		<result column="C_NO" property="cNo"/>
 		<result column="E_DATE" property="eDate"/>
 		<result column="REN_NO" property="renNo"/>
-		<result column="S_NO" property="sNo"/>
+		<result column="S_NO" property="sNo" />
 		<result column="REN_DATE" property="renDate"/>
 	</resultMap>	
 	
@@ -111,7 +111,7 @@
 	</select>
 	
 	<resultMap type="map" id="selectRIList">
-		<result column="M_NAME" property="mNo"/>
+		<result column="M_NAME" property="mName"/>
 		<result column="M_MAINSUMNAIL" property="mMainsumnail"/>
 		<result column="RV_CONTENT" property="rvContent" javaType="String"/>
 		<result column="RV_SCORE" property="rvScore"/>
@@ -130,4 +130,20 @@
 			</when>
 		</choose>
 	</select>
+	
+	<insert id="insertReview" parameterType="addto">
+     	<selectKey keyProperty="rvNo" order="AFTER" resultType="int">
+     		SELECT REVIEW_SEQ.currval FROM DUAL
+     	</selectKey>
+		INSERT INTO REVIEW
+		VALUES(REVIEW_SEQ.NEXTVAL, #{rvContent},#{rvScore}, SYSDATE,#{mNo}, #{sNo}, #{cNo},#{resultNo})
+	</insert>
+	<!-- 리펙토링이 필요해 보임 reviewinfo하고 중복성이 크다  -->
+	<select id="insertReviewCheck" resultMap="selectRIList" parameterType="addto">
+		SELECT M.M_NAME, M.M_MAINSUMNAIL, R.RV_CONTENT, R.RV_SCORE, R.RV_DATE
+		FROM REVIEW R, MEMBER M
+		WHERE R.M_NO = M.M_NO AND R.RV_NO = #{rvNo}		
+	</select>
+	
+	
 </mapper>

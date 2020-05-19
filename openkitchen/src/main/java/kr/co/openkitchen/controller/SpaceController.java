@@ -80,10 +80,33 @@ public class SpaceController {
 		} else {
 			// 로그인 했을 때 담을 정보
 			map.put("mNo", session.getAttribute("memberNo"));
-			System.out.println("리뷰 작성 check : "+msi.readReviewCheck(map));
-			model.addAttribute("reviewCheck", msi.readReviewCheck(map));		
-			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
-			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
+			
+			
+			List<Map<String, Object>> temporary = msi.readReviewCheck(map);
+			System.out.println("data 없을 때 상태 : "+temporary);
+			
+			if (temporary.size() != 0) {
+				List<Map<String, Object>> reviewCheck = new ArrayList<Map<String,Object>>();
+				Map<String, Object> reviewMyInfo = new HashMap<String, Object>(); 
+				reviewCheck.addAll(temporary); // 데이터 전체 복사
+				reviewMyInfo.putAll(temporary.get(0));
+				System.out.println("reviewMyInfo : "+reviewMyInfo);
+				
+				reviewMyInfo.remove("eNo");
+				
+				for (int i = 0; i < temporary.size(); i++) {
+					reviewCheck.get(i).remove("sNo");	
+					reviewCheck.get(i).remove("mNo");
+					reviewCheck.get(i).remove("mName");
+					reviewCheck.get(i).remove("mMainsumnail");			           
+				}
+				System.out.println("리뷰 체크 데이터"+reviewCheck);
+				model.addAttribute("reviewCheck1", reviewMyInfo);
+				model.addAttribute("reviewCheck2", reviewCheck);
+			} 
+			
+		model.addAttribute("checkWishlist", msi.readWishlist(map)); 
+		model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
 		}
 		/////////////////////////////////////////////////////////////////
 	    

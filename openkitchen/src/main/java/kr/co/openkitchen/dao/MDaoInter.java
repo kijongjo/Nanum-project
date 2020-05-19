@@ -3,6 +3,7 @@ package kr.co.openkitchen.dao;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.openkitchen.dto.AjaxDataDTO;
 import kr.co.openkitchen.dto.BestClassDTO;
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
@@ -25,4 +26,6 @@ public interface MDaoInter {
 	public int deleteWishlist(Map<String, Object> map);
 	public List<Map<String, Object>> selectReviewCheck(Map<String, Object> map);
 	public List<Map<String, Object>> selectReviewInfo(Map<String, Object> map);
+	public void insertReivew(AjaxDataDTO addto);
+	public Map<String, Object> insertReviewCheck(int rvNo);
 }

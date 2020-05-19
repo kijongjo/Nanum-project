@@ -76,6 +76,7 @@ public class ClassController {
 	    }
 	    
 	    HttpSession session = request.getSession();
+	    session.setAttribute("classNo", cNo);
 	    // 회원번호하고 클래스번호
 		if(session.getAttribute("memberNo") == null) {
 			model.addAttribute("isAuthenticated", "");	
@@ -83,30 +84,33 @@ public class ClassController {
 			// 로그인 했을 때 담을 정보
 			map.put("mNo", session.getAttribute("memberNo"));
 	
-			List<Map<String, Object>> temporary = msi.readReviewCheck(map);
-			List<Map<String, Object>> reviewCheck = new ArrayList<Map<String,Object>>();
-			Map<String, Object> reviewMyInfo = new HashMap<String, Object>(); 
-			reviewCheck.addAll(temporary); // 데이터 전체 복사
-			reviewMyInfo.putAll(temporary.get(0));
-			System.out.println("reviewMyInfo"+reviewMyInfo);
 			
-			reviewMyInfo.remove("eNo");
-			
-			for (int i = 0; i < temporary.size(); i++) {
-				reviewCheck.get(i).remove("cNo");	
-				reviewCheck.get(i).remove("mNo");
-				reviewCheck.get(i).remove("mName");
-				reviewCheck.get(i).remove("mMainsumnail");			           
-			}
-			
-			System.out.println(reviewCheck);
-			System.out.println(reviewMyInfo);
-			
-			
-			model.addAttribute("reviewCheck1", reviewMyInfo);
-			model.addAttribute("reviewCheck2", reviewCheck);
+				List<Map<String, Object>> temporary = msi.readReviewCheck(map);
+				System.out.println("data 없을 때 상태 : "+temporary);
+				
+				if (temporary.size() != 0) {
+					List<Map<String, Object>> reviewCheck = new ArrayList<Map<String,Object>>();
+					Map<String, Object> reviewMyInfo = new HashMap<String, Object>(); 
+					reviewCheck.addAll(temporary); // 데이터 전체 복사
+					reviewMyInfo.putAll(temporary.get(0));
+					System.out.println("reviewMyInfo"+reviewMyInfo);
+					
+					reviewMyInfo.remove("eNo");
+					
+					for (int i = 0; i < temporary.size(); i++) {
+						reviewCheck.get(i).remove("cNo");	
+						reviewCheck.get(i).remove("mNo");
+						reviewCheck.get(i).remove("mName");
+						reviewCheck.get(i).remove("mMainsumnail");			           
+					}
+					
+					model.addAttribute("reviewCheck1", reviewMyInfo);
+					model.addAttribute("reviewCheck2", reviewCheck);
+				} 
+				
 			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
 			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
+			
 		}
 		
 		// 로그인 유무에 상관없이 항상 담겨야 할 데이터
@@ -174,7 +178,7 @@ public class ClassController {
 		HttpSession session = request.getSession();		
 		if(session.getAttribute("openkitchen") == null) {
 			
-			session.setAttribute("classNo", recNo);
+			session.setAttribute("recNo", recNo);
 			// 스프링에서 리다이렉트 시키는 방법
 			return "redirect:login";
 			
