@@ -3,6 +3,7 @@ package kr.co.openkitchen.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.openkitchen.dto.AjaxDataDTO;
 import kr.co.openkitchen.dto.BestClassDTO;
 import kr.co.openkitchen.dto.ClassDTO;
 import kr.co.openkitchen.dto.ManwonClassDTO;
@@ -17,6 +18,8 @@ public interface MserviceInter {
 	public int addWishlist(Map<String, Object> map);
 	public int readWishlist(Map<String, Object> map);
 	public int deleteWishlist(Map<String, Object> map);
-	public Map<String, Object> readEnrolCheck(Map<String, Object> map);
+	public List<Map<String, Object>> readReviewCheck(Map<String, Object> map);
 	public List<Map<String, Object>> readRiviewInfo(Map<String, Object> map);
+	public void addReview(AjaxDataDTO addto);
+	public Map<String, Object> addReviewCheck(int rvNo);
 }

@@ -173,7 +173,7 @@
 #left02>.review>ul {
     width: 100%;
     padding-top: 20px;
-    	height: 400px;
+   	height: 400px;
 	overflow-y: scroll
 }
 
@@ -764,4 +764,68 @@
     font-weight: 600;
     color: #fff;
     cursor: pointer;
+}
+
+	/* 리뷰 평점 매기기  */
+.rate input[type=radio] { 
+	display:none; 
+}
+
+/* .rate input[type=radio] + label { 
+	display: inline-block;
+	cursor: pointer; 
+	width: 36px;
+	height: 36px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	
+} */
+
+.rate input[type=radio] + label { 
+	display: inline-block;
+	cursor: pointer; 
+	width: 36px;
+	height: 36px;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	
+}
+
+#radio1:checked + label { 
+	background-image: url("../img/icon/good.png");
+}
+
+#radio2:checked + label { 
+	background-image: url("../img/icon/normal.png");
+}
+
+#radio3:checked + label { 
+	background-image: url("../img/icon/bad.png");
+}
+
+.goodIcon { 
+	background-image: url("../img/icon/grey-good.png");
+}
+
+.normalIcon { 
+	background-image: url("../img/icon/grey-normal.png");
+}
+
+.badIcon { 
+	background-image: url("../img/icon/grey-bad.png");
+}
+
+.writeOk {
+	text-align: center;
+	
+	
+}
+
+.writeOk input[type=submit] {
+	background-color: #8E0032;
+	color: white;
+	width: 300px;
+	height: 62px;
+	font-size: 18px;
+	
 }

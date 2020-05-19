@@ -82,15 +82,37 @@ public class SpaceController {
 			map.put("mNo", session.getAttribute("memberNo"));
 			
 			
-			// model.addAttribute("EnrolCheck", msi.readEnrolCheck(map));		
-			model.addAttribute("checkWishlist", msi.readWishlist(map)); 
-			model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
+			List<Map<String, Object>> temporary = msi.readReviewCheck(map);
+			System.out.println("data 없을 때 상태 : "+temporary);
+			
+			if (temporary.size() != 0) {
+				List<Map<String, Object>> reviewCheck = new ArrayList<Map<String,Object>>();
+				Map<String, Object> reviewMyInfo = new HashMap<String, Object>(); 
+				reviewCheck.addAll(temporary); // 데이터 전체 복사
+				reviewMyInfo.putAll(temporary.get(0));
+				System.out.println("reviewMyInfo : "+reviewMyInfo);
+				
+				reviewMyInfo.remove("eNo");
+				
+				for (int i = 0; i < temporary.size(); i++) {
+					reviewCheck.get(i).remove("sNo");	
+					reviewCheck.get(i).remove("mNo");
+					reviewCheck.get(i).remove("mName");
+					reviewCheck.get(i).remove("mMainsumnail");			           
+				}
+				System.out.println("리뷰 체크 데이터"+reviewCheck);
+				model.addAttribute("reviewCheck1", reviewMyInfo);
+				model.addAttribute("reviewCheck2", reviewCheck);
+			} 
+			
+		model.addAttribute("checkWishlist", msi.readWishlist(map)); 
+		model.addAttribute("isAuthenticated", session.getAttribute("isAuthenticated"));
 		}
 		/////////////////////////////////////////////////////////////////
 	    
-		System.out.println(msi.readRiviewInfo(map));
+		System.out.println("공간 리뷰 데이터"+msi.readRiviewInfo(map));
 		// 로그인 유무에 상관없이 항상 담겨야 할 데이터
-		// model.addAttribute("reviewInfoList", msi.readRiviewInfo(map));
+		model.addAttribute("reviewInfoList", msi.readRiviewInfo(map));
 	    // 공간에 대한 기본 정보
 		model.addAttribute("detailSpace", ssi.readDetailS(sNo));
 		// 공간의 호스트가 등록한 정보를 출력함.

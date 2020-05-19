@@ -9,17 +9,21 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.co.openkitchen.dto.MemberDTO;
+import kr.co.openkitchen.dto.AjaxDataDTO;
 import kr.co.openkitchen.service.MserviceInter;
 import lombok.Setter;
 
@@ -109,6 +113,46 @@ public class MainController {
 		
 		return "test";
 	}
-
-
+	
+	
+//	@PostMapping("userReviewInsert")
+//	@ResponseBody
+//	public Object userReviewInsert(AjaxDataDTO param, HttpServletRequest request) {
+//		
+//		HttpSession session = request.getSession();
+//		param.setmNo((int)session.getAttribute("memberNo"));
+//		param.setcNo((int)session.getAttribute("classNo"));
+//		
+//		
+//		si.addReview(param);
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("test", si.addReviewCheck(param.getRvNo()));
+//		
+//		
+//		return map;
+//	}
+	
+	@PostMapping("userReviewInsert")
+	public String userReviewInsert(AjaxDataDTO param, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		param.setmNo((int)session.getAttribute("memberNo"));
+		System.out.println("rvtyep :" +param.getRvType());
+		String url = "";
+		if(param.getRvType().equals("class")) {			
+			param.setcNo((int)session.getAttribute("classNo"));
+			url = "redirect:classD?no="+session.getAttribute("classNo");
+		} else if(param.getRvType().equals("space")) {
+			System.out.println("여기가 실행되야 하는데?");
+			param.setsNo((int)session.getAttribute("spaceNo"));
+			url = "redirect:spaceD?no="+session.getAttribute("spaceNo");
+		}
+		
+		si.addReview(param);
+		// Map<String, Object> map = new HashMap<String, Object>();
+		// map.put("test", si.addReviewCheck(param.getRvNo()));
+		
+		
+		return url;
+	}
 }

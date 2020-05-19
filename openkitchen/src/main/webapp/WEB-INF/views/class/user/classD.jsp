@@ -12,6 +12,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/classD.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
@@ -33,6 +34,9 @@
 	
 <!-- jquery 불러오기 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+
 <script src="<c:url value='resources/js/classD.js'/>"></script>
 <script src="<c:url value='/resources/js/scrollMoving.js'/>"></script>
 <!-- 달력 플러그인 js  -->
@@ -244,6 +248,76 @@ $(document).ready(function () {
 	    });
 	}
 	
+	var resultNo = 0;
+			
+		
+	$(".write").children("textarea").on("click", function () {
+		if(resultNo==0) {
+			$('#dialog-message').dialog({
+				modal: true, 
+			});	
+		}
+		
+	});
+	
+	// script의 순서는 중요하다.
+	$(".resultNo").on("click", function () {
+		resultNo = $(this).val();
+		$("#reviewForm").append("<input type='hidden' name='resultNo' value='"+resultNo+"' />")
+		$(".selectDate").text($(this).text());
+		$(".selectDate").append("<i class='ui-button-icon ui-icon ui-icon-closethick'></i>");
+		$(".selectDate").css("display","inline-block");
+		$('#dialog-message').dialog('close');
+	});
+	
+	$(".selectDate").on("click", function () {
+		resultNo=0;
+		//$("#reviewForm").remove("")
+		$(this).css("display","none");
+	});
+	
+	
+	
+	
+	var option = {
+		type: 'post',
+		async: true ,
+		dataType:'json',
+		/* contentType: 'application/json; charset=UTF-8', */
+		url:'userReviewInsert',
+		success: function(data) {
+	
+		},
+		error: function() {
+			alert("실패");
+		}
+			
+	}
+	
+	$('#reviewForm').submit(function() { //submit이 발생하
+	    // $(this).ajaxSubmit(option); //옵션값대로 ajax비동기 동작을 시키고
+	    var result = true
+	    
+	    if($(".write").children("textarea").val() == "") {
+	    	alert("내용을 입력해주세요.");
+	    	result = false
+	    	
+	    } else if($("input:radio[name=rvScore]").is(":checked") == false) {
+	    	alert("점수를 체크해주세요.");
+	    	result = false
+	    }
+	    
+	    return result; //기본 동작인 submit의 동작을 막아 페이지 reload를 막는다.
+	});
+		
+	/* $("#reviewBtn").on("click", function () {
+		$("#reviewForm").ajaxSubmit(option);
+	}); */
+	
+	
+	
+	
+	
 });
 
 
@@ -345,31 +419,49 @@ $(document).ready(function () {
 		height: 100%;
 	}
 	
-
-
+	.resultNo {
+		width: 100%;
+		margin: 0;
+		background-color: #e9e9e9;
+		color: black;
+		margin-bottom: 10px;
+	}
+	
+	.selectDateWrapper {
+		margin-top: 10px;
+	}
+	
+	.selectDate {
+		padding: 5px;
+		background-color: #8E0032;
+		color: white;
+		border-radius: 3px;
+		
+	}
+	
+	
 		
 		
 </style>
-<script>
-	$(document).ready(function () {
-		
-		$(".write").children("textarea").on("click", function () {
-			
-			console.log("textarea 동작")
-		});
-		
-		
-		
-		
-		
-		
-	});
-</script>
 </head>
 
 <body>
 <jsp:include page="../../header.jsp" flush="false" />
+	<div id="dialog-message" title="수강한 클래스를 선택해주세요." style="display:none">
+		<!-- <div class="">
+			수강한 강의를 선택해주세요!
+		</div> -->
+		<div class="resultNo-Wrapper">
+		<c:forEach var="item" items="${reviewCheck2}">
+			<button class="resultNo" value="${item.eNo}"><fmt:formatDate value="${item.eDate}" pattern="yy.MM.dd(E)"/></button>
+		</c:forEach>
+		</div>
+	</div>
+		
+	<!-- <div class="ui-widget-overlay ui-front"> -->
 	
+	
+	<!-- </div> -->
 	<!-- /////////////////////////////////////공유하기 팝업창 시작//////////////////////////////////////////////// -->
 
 	<!-- 이 페이지의 용도 share 링크를 클릭했을 때 공유하기에 관한 div가 나오도록 설정한다. -->
@@ -498,46 +590,50 @@ $(document).ready(function () {
 
 
 			<!-- 클래스 공간 선생님의 리뷰에 대한 정보가 들어온다 -->
-			<c:if test="${not empty reviewInfoList || not empty EnrolCheck.mNo}">
+			<c:if test="${not empty reviewInfoList || not empty reviewCheck1.mNo}">
 			<section class="review">
 				<h3>리뷰</h3>
 				<!-- review 작성 부분  -->
-				<c:if test="${not empty EnrolCheck.mNo}">
+				<c:if test="${not empty reviewCheck1.mNo}">
 				<div class="reviewWrite">
-					<form action="reviewWrite" method="post">
-					<input type="hidden" name="" value="" />
+					<form id="reviewForm" action="userReviewInsert" method="post">
+					<input type="hidden" name="rvType" value="class" />
 					<div class="ContentsBox">
 						<div class="writer">
 							<figure>
 								<c:choose>
-									<c:when test="${not empty EnrolCheck.mMainsumnail}">
-										<img src="<c:url value='${EnrolCheck.mMainsumnail}' />" alt="">									
+									<c:when test="${not empty reviewCheck1.mMainsumnail}">
+										<img src="<c:url value='${reviewCheck1.mMainsumnail}' />" alt="">									
 									</c:when>
 									<c:otherwise>
 										<img src="<c:url value='resources/img/icon/mDefaultIcon.png' />" alt="">																		
 									</c:otherwise>
 								</c:choose>
 							</figure>
-							<div>${EnrolCheck.mName}</div>
-							<jsp:useBean id="now" class="java.util.Date"/>
-							<div><fmt:formatDate value="${now}" pattern="yyyy.MM.dd"/></div>
+							<div>${reviewCheck1.mName}</div>
+							<%-- <jsp:useBean id="now" class="java.util.Date"/>
+							<div><fmt:formatDate value="${now}" pattern="yyyy.MM.dd"/></div> --%>
+							<div class="selectDateWrapper">
+								<span class="selectDate" style="display:none"></span>
+							</div>
 						</div>
 						<div class="write">	
-							<textarea name="contents" class="" cols="80" rows="10"></textarea>
+							<textarea name="rvContent" cols="80" rows="10"></textarea>
+							
 						</div>
 						<div>
 							<!-- 점수  -->
 							<ul class="rate">
 								<li>
-									<input type="radio" name="radio" id="radio1" value="5" /><label for="radio1" class="goodIcon"></label>
+									<input type="radio" name="rvScore" id="radio1" value="5" /><label for="radio1" class="goodIcon"></label>
 									<div>추천!</div>
 								</li>
 								<li>
-									<input type="radio" name="radio" id="radio2" value="3" /><label for="radio2" class="normalIcon"></label>
+									<input type="radio" name="rvScore" id="radio2" value="3" /><label for="radio2" class="normalIcon"></label>
 									<div>보통!</div>
 								</li>
 								<li>
-									<input type="radio" name="radio" id="radio3" value="1" /><label for="radio3" class="badIcon"></label>
+									<input type="radio" name="rvScore" id="radio3" value="1" /><label for="radio3" class="badIcon"></label>
 									<div>별로!</div>
 								</li>
 							</ul>
@@ -545,13 +641,15 @@ $(document).ready(function () {
 					</div>
 					<div class="writeOk">
 						<!-- 전송  -->
-						<input type="submit" value="리뷰 작성완료" id="" />
+						<input type="submit" value="리뷰 작성완료" id="reviewBtn"/>
 					</div>
 					</form>
 				</div>
 				</c:if>
-				<ul>
-					<c:forEach var="reviewInfo" items="${reviewInfoList}">
+				<ul class="reviewInfoList">
+				<c:choose>
+					<c:when test="${not empty reviewInfoList}">
+						<c:forEach var="reviewInfo" items="${reviewInfoList}">
 					<li>
 						<!-- 클래스,공간,선생님에게 다는 댓글에서 회원의 사진,평가,이름,날짜가 들어온다. -->
 						<div class="reviewInfo">
@@ -590,15 +688,21 @@ $(document).ready(function () {
 									</figure> <strong>별로!</strong>
 									</c:otherwise>
 								</c:choose>
-								 <!--이름과 댓글 등록 날짜가 오게된다. --> <span>
-									${reviewInfo.mName} <!--등록 날짜가 온다 --> <em>${reviewInfo.rvDate}</em>
-							</span>
+								 <!--이름과 댓글 등록 날짜가 오게된다. --> 
+								 <span>
+									${reviewInfo.mName}        <em><fmt:formatDate value="${reviewInfo.rvDate}" pattern="yyyy.MM.dd"/></em>
+								</span>
 								<p>${reviewInfo.rvContent}</p> <!-- 더보기 기능이 있는 a태그 --> <!-- div 늘어나는 function -->
 								<!-- 1번째라 매개변수 1을 줌  --> <a href="javascript:reviewOne(0);">더보기</a>
 							</span>
 						</div>
 					</li>
 					</c:forEach>
+					</c:when>
+					<c:otherwise>
+						<li><div>첫 리뷰를 작성해주세요!</div></li>						
+					</c:otherwise>
+				</c:choose>
 				</ul>
 			</section>
 			</c:if>

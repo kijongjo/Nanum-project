@@ -58,19 +58,18 @@ public class MemberController {
 		}
 		
 		
-		Object classNo = session.getAttribute("classNo");
+		Object recNo = session.getAttribute("recNo");
 		Object spaceNo = session.getAttribute("spaceNo");
 		
 		// 클래스 결제 페이지 연관 로직
-		if(classNo != null) {
+		if(recNo != null) {
 			
-			return "redirect:classPayment?no="+classNo;
+			return "redirect:classPayment?no="+recNo;
 			
 		}
 		
 		// 공간 결제 페이지 연관 로직
 		if(spaceNo != null) {
-			
 			return "redirect:spaceD?no="+spaceNo;
 		}
 		
