@@ -163,3 +163,7 @@ button >img{
     height: 100%;
     background-color: darkcyan;
 }
+
+a:focus {
+	outline: none;
+}

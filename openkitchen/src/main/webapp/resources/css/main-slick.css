@@ -1,3 +1,5 @@
+
+
 /* ---------------------- 메인 광고 슬라이드 ---------------------------  */
 
 
@@ -61,3 +63,101 @@
   width: 0;
   height: 4px;
 }
+
+
+
+
+
+/* ---------------------------- 서브 슬라이드 ---------------------------------- */
+
+/* 이전 컨트롤 버튼 */
+.slick-next {
+  right: -28px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+} 
+
+/* 다음 컨트롤 버튼 */
+.slick-prev {
+	left: -28px; 
+	transform: rotate(180deg);
+	box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+button.slick-arrow {
+	position: absolute;
+	top: 15%;
+	text-indent: -9999px;
+	z-index: 9999;
+	width: 51px;
+	height: 51px;
+	border-radius: 50%;
+	background: #fff url("../img/icon/ico-paging_arrow.png") no-repeat 55% 50%/auto 15px;
+} 
+
+.slick-prev.slick-arrow.slick-disabled {
+	display: none !important;
+}
+
+.slick-next.slick-arrow.slick-disabled {
+	display: none;
+}
+
+
+.slick-slide {
+	width: 340px;
+	margin-right: 15px;
+	margin-bottom: 20px;
+}
+
+/* main slide css  */
+.slideItem>ul {
+	margin-top: 25px;
+	display: flex;
+}
+
+.slideItem>ul>li {
+	margin-right: 15px;
+	width: 340px;
+}
+
+.slideItem span {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.slideItem img {
+	width: 340px;
+	height: 214px;
+}
+
+/* contents slide (class, teacher, space) css  */
+#new-content .slider1 img {
+	width: 340px;
+	height: 340px;
+	margin-bottom: 12px;
+}
+
+#new-content .slider1 h2 {
+	font-size: 19px;
+	font-weight: 600;
+}
+
+#new-content .slider1 p {
+	line-height: 1.45;
+	font-size: 17px;
+	margin-bottom: 5px;
+}
+
+.slider1.c-slide button.slick-arrow {
+	top: 22%;
+}
+ 
+.slider1.t-slide button.slick-arrow {
+	top: 22%;
+}
+ 
+.slider1.s-slide button.slick-arrow {
+	top: 23%;
+} 
+

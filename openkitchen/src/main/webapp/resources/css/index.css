@@ -32,26 +32,7 @@ div>ul>li>a>p {
 }
 
 /* �����̴� ���� */
-.slideItem>ul {
-	margin-top: 25px;
-	display: flex;
-}
 
-.slideItem>ul>li {
-	margin-right: 15px;
-	width: 340px;
-}
-
-.slideItem span {
-	font-weight: bold;
-	font-size: 15px;
-}
-
-/* �����̵� �̹��� */
-.slideItem img {
-	width: 340px;
-	height: 214px;
-}
 
 #item01 img {
 	width: 100%;
