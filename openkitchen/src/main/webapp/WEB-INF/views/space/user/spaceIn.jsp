@@ -6,16 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%-- <script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
+<script src="<c:url value='/resources/js/index-slide.js'/>"></script>
+<link rel="stylesheet" href="<c:url value='/resources/css/index-slide.css'/>"> --%>
+
 <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/contents.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="<c:url value='/resources/css/index-slide.css'/>">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="<c:url value='/resources/js/jquery.bxslider.min.js'/>"></script>
-<script src="<c:url value='/resources/js/index-slide.js'/>"></script>
+<!-- slick 슬라이더 css 추가  -->
+<link rel="stylesheet" href="<c:url value='/resources/css/slick.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/slick-theme.css'/>">
+<!-- slick 슬라이드 커스텀 css  -->
+<link rel="stylesheet" href="<c:url value='/resources/css/main-slick.css'/>">
+<!-- slick 슬라이더 js 추가  -->
+<script src="<c:url value='/resources/js/slick.js'/>"></script>
+<script src="<c:url value='/resources/js/main-slick.js'/>"></script>
+
 <script>
 /*!! 문제점: js파일로 따로 빼버리면 img주소에 contextPath 주소를 넣을 때 오류가 발생함. 아직 해결 못했음.  */
 //이미지를 불러와 주소를 입력할 때 contextPath(project명)을 붙여줘야한다. 그 contextPath를 불러오는 기능
@@ -107,11 +117,11 @@ $(document).ready(
 <%-- <h3>${list }</h3> --%>
 	<jsp:include page="../../header.jsp" flush="false" />
     <div id="content">
-        <div id="new-content" class="s-slide">
+        <div id="new-content" class="slideItem">
             <div>
                 <h1>새로운 공간</h1>
             </div>
-            <ul class="bxslider">
+            <ul class="slider1 s-slide">
             	<c:forEach items="${list }" var="spaceIndex">
 	                <li>
 	                    <a href="spaceD?no=${spaceIndex.sNo}">

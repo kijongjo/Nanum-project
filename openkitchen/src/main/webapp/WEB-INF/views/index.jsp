@@ -6,35 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/MainSlider.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/index.css'/>">
-<link rel="stylesheet" 
-	href="<c:url value='/resources/css/index-slide.css'/>">
+<!-- 대형 배너 슬라이드  -->
+<%-- <link rel="stylesheet"
+	href="<c:url value='/resources/css/MainSlider.css'/>"> --%>
+<!-- bxslider css  -->
+<%-- <link rel="stylesheet" 
+	href="<c:url value='/resources/css/index-slide.css'/>"> --%>
 
-
+<!-- 얘는 뭐지?  -->
 <%-- <link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>"> --%>
+
+<!-- 초기화  -->
+<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
+<!-- header and footer css -->
+<link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
+<!-- index page css -->
+<link rel="stylesheet" href="<c:url value='/resources/css/index.css'/>">
+
+<!-- 글씨 폰트  -->
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap"
 	rel="stylesheet">
-
-<link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/main-slick.css'/>">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+
+<!-- jquery  -->
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
 <!-- slick 슬라이더 css 추가  -->
 <link rel="stylesheet" href="<c:url value='/resources/css/slick.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/slick-theme.css'/>">
-<!-- jquery 추가  -->
+<!-- slick 슬라이드 커스텀 css  -->
+<link rel="stylesheet" href="<c:url value='/resources/css/main-slick.css'/>">
 
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- slick 슬라이더 js 추가  -->
 <script src="<c:url value='/resources/js/slick.js'/>"></script>
 <script src="<c:url value='/resources/js/main-slick.js'/>"></script>
 
+<!-- 얘는 용도가 파악 안 됨  -->
 <jsp:include page="headerScript.jsp" flush="false" />
 
 <script>
@@ -120,47 +130,9 @@ $(document).ready(function() {
 </script>
 	
 <style>
-	/* 이전 컨트롤 버튼 */
-	.slick-next {
-	  right: -28px;
-	  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-	} 
-    .slick-prev {
-		left: -28px; 
-		transform: rotate(180deg);
-		box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.5);
-	}
-	
-	/* 다음 컨트롤 버튼 */
-	
-	button.slick-arrow {
-		position: absolute;
-		top: 15%;
-		text-indent: -9999px;
-		z-index: 9999;
-		width: 51px;
-		height: 51px;
-		border-radius: 50%;
-		background: #fff url("<c:url value='/resources/img/icon/ico-paging_arrow.png'/>") no-repeat 55% 50%/auto 15px;
-	} 
-	
-	.slick-prev.slick-arrow.slick-disabled {
-		display: none !important;
-	}
-	
-	.slick-next.slick-arrow.slick-disabled {
-		display: none;
-	}
 
 	
-	.slick-slide {
-		width: 340px;
-		margin-right: 15px;
-		margin-bottom: 20px;
-		
-		
-	}
-
+	
 
 
 	
@@ -227,10 +199,6 @@ $(document).ready(function() {
 		    </div>
  	 	</div>
 	</div>
-
-	
-
-
 	<section>
 		<div id="item01">
 			<div class="itemTitle">
