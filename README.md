@@ -4,17 +4,57 @@
 2. [Summary-프로젝트 요약](#summary)<br/>
 3. [Default-기본규칙](#default)<br/>
 4. [공통기술-적용기술설명](#기술)<br/>
-* 개인 기술 * 역할 <br/>
-   [조기종](#조기종)<br/>
-  
-    
 
-
-
-
-
-
-
+  ##  조기종(소스 코드 보기)
+<table style="width:600px ;" name="JoList">
+    <tr>
+        <th>Front-end</th>
+        <th>Back-end</th>
+        <th>DB</th>
+        <th>기타</th>
+    </tr>
+    <tr>
+        <td>
+            <ul>
+                <li><a href="https://github.com/kijongjo/Nanum-project/blob/Portfolio/%EB%AA%A8%EB%93%88/fileresizing.js">이미지 최적화 & 이미지 용량 Resizing</a></li>
+                <li><a href="https://github.com/kijongjo/Nanum-project/tree/Portfolio/%EB%AA%A8%EB%93%88">모듈 관리</a></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><a href="https://github.com/kijongjo/Nanum-project/blob/Portfolio/openkitchen/src/main/java/kr/co/openkitchen/controller/RestfulUserController.java">RestController</a></li> 
+                <li><a href="https://github.com/kijongjo/Nanum-project/blob/Portfolio/openkitchen/src/main/java/kr/co/openkitchen/classes/RegistServiceFactoryF.java">Factory Design Pattern Factory Class</a></li>
+                <li><a href="https://github.com/kijongjo/Nanum-project/blob/Portfolio/openkitchen/src/test/java/kr/co/openkitchen/testcontroller/ClassBaseInfoTest.java">Controller Unit Test</a> </li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><a href="https://github.com/kijongjo/Nanum-project/blob/Portfolio/openkitchen/src/main/webapp/WEB-INF/mapper/classRegistMapper.xml">Merge Into 구문</a></li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li><a href="https://github.com/kijongjo/Nanum-project/projects/3">GitHub Project Board</a></li>
+                <li><a href="https://github.com/kijongjo/Nanum-project/blob/Portfolio/openkitchen/src/main/java/kr/co/openkitchen/classes/S3ClientFactory.java">AWS S3 Class</a></li>
+            </ul>
+        </td>
+    </tr>
+	</table>
+	<table>
+	<tr>
+		<td>
+			*로그인이 필요한 부분은 로그인 후 링크를 다시 클릭하시면 됩니다! 감사합니다.
+		 <ul>
+			 <li>클래스 등록 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/mypage/users/99/classBases/1</li>
+			  <li>선생님 등록 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플   ▶http://3.34.22.59:8080/openkitchenFinal/mypage/users/99/teacherBase/1</li>
+			 <li>요리신청 목록 페이지 UI/UX&백엔드로직 (로그인 필요) <br/>샘플 ▶http://3.34.22.59:8080/openkitchenFinal/mypage/users/99/cookBooks/1</li>
+			 <li>개설된 클래스 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/mypage/users/99/standByClasses/1</li>
+			 			 <li>(선생님,클래스,공간)상세 페이지UI/UX <br/>샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/classD?no=24</li>
+			 <li>관리자 페이지UI/UX<br/> 샘플  ▶ http://3.34.22.59:8080/openkitchenFinal/admin/in</li>
+		 </ul>	
+			</td>
+	</tr>
+</table>
 <p align="center"><img src="https://user-images.githubusercontent.com/54735867/80936697-38fc4f80-8e0d-11ea-8294-7d0dda749065.png" width="300" height="300"></p>
 
 <p align="center">사이트</p>
@@ -77,61 +117,5 @@ GIT- 소스 트리
 
 
 
-##  조기종
-<table style="width:600px ;" name="JoList">
-    <tr>
-        <th>Front-end</th>
-        <th>Back-end</th>
-        <th>DB</th>
-        <th>기타</th>
-    </tr>
-    <tr>
-        <td>
-            <ul>
-                <li><a href="#F1">이미지 최적화 & 이미지 용량 Resizing</a></li>
-                <li><a href="#F2">documentFragement를 이용한 Append 성능 향상</a></li>
-                <li><a href="#F3">보안을 위한 업로드 유형 제한</a></li>
-                <li><a href="#F4">모듈 관리로 코드 재사용성 및 개발 속도 향상</a></li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li><a href="#B1">JACKSON Library사용으로 POJO Serialization</a></li>
-                <li><a href="#B2">Generic Method & Class사용으로 코드 재사용성 향상</a></li>
-                <li><a href="#B3">Factory Design Pattern을 통한 코드 유연성 향상</a></li>
-                <li><a href="#B4">Controller와 비즈니스 로직의 분리를 통한 Service 재사용성 향상</a> </li>
-                <li><a href="#B5">동일한 코드 형식으로 가독성 & 유지보수 향상</a> </li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li><a href="#D1">View 사용으로 회원 정보 보호</a></li>
-                <li><a href="#D2">Nested Loop Join을 통한 Join 성능 향상</a></li>
-                <li><a href="#D3">Merge Into 구문으로 충돌 방지 및 쿼리 효율 향상</a></li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-                <li><a href="#E1">GitHub Project Board를 이용한 이슈 관리</a></li>
-                <li><a href="#E2">AWS S3를 이용한 리소스 관리 및 비용 감소</a></li>
-            </ul>
-        </td>
-    </tr>
-	</table>
-	<table>
-	<tr>
-		<td>
-			*로그인이 필요한 부분은 로그인 후 링크를 다시 클릭하시면 됩니다! 감사합니다.
-		 <ul>
-			 <li>(선생님,클래스,공간)상세 페이지UI/UX <br/>샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/classD?no=24</li>
-			 <li>클래스 등록 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/mypage/classBase?no=1</li>
-			  <li>선생님 등록 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플   ▶http://3.34.22.59:8080/openkitchenFinal/mypage/teacherBase?no=1</li>
-			 <li>요리신청 목록 페이지 UI/UX&백엔드로직 (로그인 필요) <br/>샘플 ▶http://3.34.22.59:8080/openkitchenFinal/mypage/cookBookD?no=1</li>
-			 <li>개설된 클래스 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플 ▶ http://3.34.22.59:8080/openkitchenFinal/mypage/ongoingClass?no=2</li>
-			 <li>관리자 페이지UI/UX<br/> 샘플  ▶ http://3.34.22.59:8080/openkitchenFinal/admin/in</li>
-		 </ul>	
-			</td>
-	</tr>
-</table>
 
 
