@@ -1,0 +1,463 @@
+/* 선생님 등록시 공통적으로 적용되는 CSS 설정입니다. */
+
+
+/* 리스트 선택시 선택시 */
+ #lay03 > #left01 .On_active{
+     font-weight: 600;
+     border-bottom: 3px solid #8E0032;
+     position: relative;
+    display: inline-block;
+ }
+ #lay03 > #left01 .On_active::after{
+    content: "";
+    position: absolute; top: 5px; right: -23px;
+    width: 19px; height: 18px;
+    background-image: url("../img/icon/ico-tab_check.svg");
+    background-position: 0;
+}
+
+
+/* 오른쪽 */
+#right01{
+    padding: 45px 0 120px 60px;
+    background-color: #F6F5F5;
+    font-size: 15px;
+    line-height: 22px;
+    border-radius: 9px;
+ }
+ 
+ /* class select */
+.selectBox{
+	border : 3px solid #8E0032;
+	border-radius: 5px;
+}
+ 
+ /* 항목 타이틀 */
+#right01 > form > h4{
+    margin-bottom: 8px;
+    color: #5B5B5B;
+}
+#right01 > form > h4:nth-child(n+2){
+    margin-top: 40px;
+}
+.basic_apply{
+    width: 907px;
+    background-color: white;
+}
+#apply02 p,
+#makeSpace02 > #guide p{
+    padding-top:  10px;
+    background-color: #F6F5F5;
+    color: #838383;
+}
+
+/* 프로필 사진 */
+#apply01 p{
+    width: 580px;
+    font-weight: 200;
+    color: #B7B7B7;
+}
+/* input txt */
+#right01 input{
+    border: none;
+    padding: 0 20px;
+    width: 815px; height: 46px;
+    
+}
+#right01 input[type="text"]{
+	width:100%;
+}
+/* txt area */
+#right01 textarea{
+    border: none;
+    outline-color: #8E0032;
+    width: 100%; height: 100%;
+    font: 400 13.3333px Arial;
+    word-break: keep-all;
+    overflow: auto;
+    vertical-align: top;
+    resize: none; 
+}
+#txtarea01{
+    height: 120px;
+}
+#txtarea02{
+    height: 360px;
+}
+
+
+/* 체크박스 */
+#right01 .Off-CheckBox,
+.buisness span,
+#facility span{
+    margin-right: 10px;
+    position: relative;
+    padding-left: 24px;
+    width: 300px;
+    font-weight: 400;
+    color: #838383;
+    cursor: pointer;
+}
+#right01 .Off-CheckBox::before,
+.buisness span::before,
+#facility span::before{
+    content: "";
+    position: absolute; left: 0px; top: 2px;
+    width: 16px ; height: 16px;
+    background-image: url("../img/icon/bg-checkbox.png");
+    background-size: 40px;
+}
+#right01 div.On-CheckBox,
+.buisness span.On-CheckBox,
+#facility span.On-CheckBox{
+    font-weight: 600;
+    color: black;
+}
+.On-CheckBox::before,
+.buisness span,
+#facility span{
+    border: none;
+    background-position: 17px;
+}
+#apply02 p,
+#makeTeacher01 > div:nth-child(2) p{
+    padding-top: 10px;
+    background-color: #F6F5F5;
+    color: #838383;
+}
+
+/* ㅡ,.ㅡ 전문분야 */
+#right01 h3{
+    margin: 40px 0 8px;
+    color: #5B5B5B;
+    font-size: 15px;
+}
+#right01 h3 span{
+    margin-left: 5px;
+    font-weight: 400;
+    color: #838383;
+}
+#Specialty ul{
+    display: grid;
+    grid-template-columns: repeat(8, 95px);
+    grid-gap: 10px;
+}
+#Specialty ul li{
+    border-radius: 40px;
+    height: 41px;
+    text-align: center;
+    line-height: 41px;
+    color: #b7b7b7;
+    background-color: white;
+}
+/* - _ - 전분분야 선택시 */
+#Specialty ul .On-Specialty{
+    color: white;
+    background-color: #8E0032;
+}
+
+#btn_submit{
+    width: 855px;
+    margin-top: 50px;
+}
+#btn_submit div{
+    float:right;
+}
+#btn_submit input{
+    border-radius: 3px;
+    margin-left: 12px;
+    width: 168px; height: 64px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 64px;
+    
+}
+#btn_submit input:nth-child(1){
+    color: #2e2e2e;
+    background-color: white;
+}
+#btn_submit input:nth-child(2){
+    color: white;
+    background-color: #8E0032;
+}
+/* makeSpace02 */
+#makeSpace02 > div:nth-child(2) div{
+    margin-top: 15px;
+}
+
+
+#space_textarea textarea{
+    width: 815px;
+    padding: 20px;
+    height: 360px;
+}
+
+
+
+/* 헤쉬태그 */
+#hashtag{
+	position: relative;
+}
+#hashtag::after{
+	content:"";
+	position: absolute;
+	top:12px;
+	width:20px; height:20px;
+	background-image: url("../icon/ico-file_add.png");
+	background-size: 100%;
+	
+}
+#hashtagTxt span{
+	display:inline-block;
+	border:1px solid;
+	border-radius: 8px;
+	margin:8px 7px 0 0;
+	padding: 15px 32px;
+	color: #707070;
+}
+#facility{
+	margin: 10px;
+}
+
+/* 공간등록 form 위치 css 설정 */
+#makeTeacher02{
+	position: relative;
+    right: 27px;
+	
+}
+/*/////////////////////////////////////////체크박스 기본 모듈//////////////////////////////////// */
+#all-check {
+	border-bottom: 2px solid #e5e5e5;
+	margin: 30px 0 16px;
+	padding-bottom: 16px;
+}
+
+.checkboxSection div {
+	position: relative;
+}
+
+.checkboxSection div.checkboxWrap {
+	display: flex;
+}
+/* 넓이 조정하기 */
+.checkboxSection div#WrapWidth1 {
+	width: 82px;
+}
+
+.checkboxSection div#WrapWidth2 {
+	width: 130px;
+}
+.checkboxSection div#WrapWidth3 {
+	width: 200px;
+	
+}
+/* 기본 체크박스 디자인 삭제하기 (라벨을 대신 쓰기 위함) */
+.checkboxSection div.checkbox {
+	width: 100%;
+	position: relative;
+	float: left;
+}
+
+.checkboxSection div.checkbox input {
+	width: 60%;
+}
+/* //////////////// //////////////// 체크박스 설정 //////////////// //////////////// //////////////// //////////////// */
+input[type="checkbox"] {
+	display: block;
+	top: -1px;
+	padding: 10;
+	opacity: 0;
+	cursor: pointer;
+	height: 20px;
+	position: relative;
+	z-index: 3;
+}
+/* 체크박스의 위치 지정 요소 */
+input[type="checkbox"]+label {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	z-index: 1;
+}
+/* 체크박스 새로운 디자인 (라벨 이용) */
+input[type="checkbox"]+label:before {
+	content: "";
+	display: block;
+	/* 체크박스 크기조절 */
+	width: 15px;
+	height: 15px;
+	line-height: 18px;
+	margin: 0px 8px 0 0;
+	text-align: center;
+	background: #fff;
+	border: 1px solid #cacece;
+	border-radius: 3px;
+}
+/* 클릭할시 디자인 */
+input[type="checkbox"]:checked+label:before {
+	background-image: url("../img/icon/bg-checkbox.png");
+	/* 클릭할 시 체크박스 모양 디자인 */
+	background-position-x: -17px;
+	background-repeat: no-repeat;
+	background-size: 214%;
+}
+/* 체크박스 txt */
+input[type="checkbox"]+label::after {
+	width: 300px;
+	position: absolute;
+	top: -3px;
+	left: 30px;
+	font-weight: 400;
+	font-size: 16px;
+	color: #838383;
+}
+
+input[name="nickname"]+label::after {
+	content: "클래스 등록시 닉네임을 사용합니다.";
+	font-weight: 300;
+	color: #838383;
+}
+/* //////////////// //////////////// 체크박스 설정 끝 //////////////// //////////////// //////////////// //////////////// */
+
+/* //////////////// //////////////// 라디오박스 설정 //////////////// //////////////// //////////////// //////////////// */
+input[type="radio"] {
+	display: block;
+	top: -1px;
+	padding: 10;
+	opacity: 0;
+	cursor: pointer;
+	height: 20px;
+	position: relative;
+	z-index: 3;
+}
+/* 라디오박스의 위치 지정 css 설정 */
+input[type="radio"]+label {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	z-index: 1;
+}
+/* 라디오박스 새로운 디자인 (라벨 이용) */
+input[type="radio"]+label:before {
+	content: "";
+	display: block;
+	/* ㄹ디오박스 크기조절 */
+	width: 15px;
+	height: 15px;
+	line-height: 18px;
+	margin: 0px 8px 0 0;
+	text-align: center;
+	background: #fff;
+	border: 1px solid #cacece;
+	border-radius: 3px;
+	/* 라디오 박스 모양 만들기 */
+	border-radius: 11px;
+}
+/* 클릭시 디자인 변경 */
+input[type="radio"]:checked+label:before {
+	background-image: url("../img/icon/bg-checkbox.png");
+	/* 클릭할 시 체크박스 모양 디자인 */
+	background-position-x: -17px;
+	background-repeat: no-repeat;
+	background-size: 214%;
+	border-radius: 11px;
+}
+/* 라디오박스 txt 라디오박스모양 다음에 text가 나온다. */
+input[type="radio"]+label::after {
+	width: 300px;
+	position: absolute;
+	top: -3px;
+	left: 30px;
+	font-weight: 400;
+	font-size: 16px;
+	color: #838383;
+}
+
+/*같은 radio 끼리 name을 같게 하고 id로 식별해준다.  */
+/* 사업자유형 type1~ type4로 지정 */
+input[id="type1"]+label::after {
+	content: "개인과세자";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[id="type2"]+label::after {
+	content: "일반과세자";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[id="type3"]+label::after {
+	content: "면세과세자";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[id="type4"]+label::after {
+	content: "간이과세자";
+	font-weight: 600;
+	color: #838383;
+}
+/* 사업자유형 type1~ type4로 지정 */
+input[id="norental"]+label::after {
+	content: "내 공간을 보유하고 있습니다.";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[id="yesrental"]+label::after {
+	content: "공간 대여를 원합니다.";
+	font-weight: 600;
+	color: #838383;
+}
+/* 사업자유형 type1~ type4로 지정 */
+input[name="F-type1"]+label::after {
+	content: "화장실";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="F-type2"]+label::after {
+	content: "환풍기";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="F-type3"]+label::after {
+	content: "전등";
+	font-weight: 600;
+	color: #838383;
+}
+/* 클래스 만들기 */
+input[name="F-type4"]+label::after {
+	content: "주차시설";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="S-type1"]+label::after {
+	content: "소화기";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="S-type2"]+label::after {
+	content: "화재 감지기";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="S-type3"]+label::after {
+	content: "안전 카드";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[name="S-type4"]+label::after {
+	content: "구급 상자";
+	font-weight: 600;
+	color: #838383;
+}
+
+
+/*/////////////////////////////////////////   radio 모듈 끝//////////////////////////////////// */

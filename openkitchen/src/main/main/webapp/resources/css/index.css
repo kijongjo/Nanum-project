@@ -1,0 +1,138 @@
+section {
+	margin: 0 auto;
+	width: 1200px;
+}
+
+section>div {
+	margin-top: 70px;
+	
+}
+
+section span, #item05 div div {
+	color: #7F7F7F;
+}
+
+/*-------------- Item �����ڵ�------------------- */
+/* Ÿ��Ʋ ���� */
+
+.itemTitle h2 {
+	letter-spacing: -1.5px;
+	font-family: 'Roboto', 'Noto', sans-serif;
+}
+
+.itemTitle h2:nth-child(2) {
+	margin-top: 3px;
+}
+
+/* ���� Ÿ��Ʋ & ���ټҰ� */
+div>ul>li>a>p {
+	font-size: 15px;
+	letter-spacing: -2px;
+	font-weight: 500;
+}
+
+/* �����̴� ���� */
+.slideItem>ul {
+	margin-top: 25px;
+	display: flex;
+}
+
+.slideItem>ul>li {
+	margin-right: 15px;
+	width: 340px;
+}
+
+.slideItem span {
+	font-weight: bold;
+	font-size: 15px;
+}
+
+/* �����̵� �̹��� */
+.slideItem img {
+	width: 340px;
+	height: 214px;
+}
+
+#item01 img {
+	width: 100%;
+}
+/* �����̵� contents */
+.slideItem h4 {
+	margin-top: 12px;
+	font-weight: 800;
+	font-size: 18px;
+	letter-spacing: -1.5px;
+}
+
+.slideItem ul li>a>div:nth-child(3) {
+	margin-top: 4px;
+}
+
+.slideItem ul li>a>div:nth-child(4) {
+	margin-top: 10px;
+}
+#showMoreInfo{
+	border: 0;
+    outline: 0;
+}
+/* sapn after */
+.slideItem>ul>li>a>div>span:nth-child(1), .slideItem>ul>li>a>div>span:nth-child(2)
+	{
+	padding-right: 7px;
+	position: relative;
+}
+
+.slideItem>ul>li>a>div>span:nth-child(1)::after, .slideItem>ul>li>a>div>span:nth-child(2)::after
+	{
+	content: "";
+	position: absolute;
+	top: 5px;
+	right: 0;
+	background-color: #8D8D8D;
+	width: 1px;
+	height: 14px;
+}
+
+/* -----------------------------------------------------------
+        ------------------------------------------------------------- */
+
+/* Item01 � Ŭ������ ã���ó���?*/
+#item01 img {
+	height: 100%;
+}
+
+#item01>ul {
+	margin: 25px 0 0 -12px;
+	width: 1212px;
+	height: 245.625px;
+}
+
+#item01>ul>li {
+	margin: 0 7px;
+	float: left;
+	width: 390px;
+}
+
+/* Item05 ������ ��ȹ��*/
+#item05 .hashtag div {
+	display: inline-block;
+	border: 1px solid #C6C6C6;
+	border-radius: 14px;
+	margin: 0 2px 7px 0;
+	padding: 0 8px;
+	font-size: 15px;
+	font-weight: 600;
+	letter-spacing: -2px;
+	line-height: 25px;
+}
+ 
+
+/* Event AD */
+#Event-AD {
+	overflow: hidden;
+}
+
+
+#Event-AD img {
+	width: 100%;
+}

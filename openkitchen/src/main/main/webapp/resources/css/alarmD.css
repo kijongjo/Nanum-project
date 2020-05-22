@@ -1,0 +1,350 @@
+/* section{border: 1px solid;} */
+/* 전체 페이지 섹션 크기 지정 */
+#lay03Alarm {
+   display: grid;
+   grid-template-columns: 285px 1fr;
+   width: 1200px;
+   margin: 0 auto;
+}
+/* 왼쪽 섹션의 크기 지정 */
+#lay03Alarm>#left01MsgAlarm {
+   height: 126px;
+   /* background: red; */
+}
+/* 왼쪽 섹션의 p태그(공공의 주방) */
+#lay03Alarm>#left01MsgAlarm>p {
+   height: 24px;
+   margin: 0px;
+   font-size: 16px;
+}
+/* 왼쪽 태그의 h1 태그(1:1 메세지) */
+#lay03Alarm>#left01MsgAlarm h1 {
+   height: 43px;
+   margin: 0px;
+   font-size: 30px;
+   font-weight: bold;
+}
+/* 오른쪽 섹션 속성 */
+#lay03Alarm>#right01Alarm {
+   width: 100%;
+   /* height: 453px; */
+   padding: 0px 0px 120px;
+   /* background-color: green; */
+}
+/* 오른쪽 섹션 안에 맨 위에 div */
+#lay03Alarm>#right01Alarm>#alarmSelectDiv {
+   width: 100%;
+   height: 23px;
+   text-align: left;
+   /* background-color: pink; */
+}
+/* 오른쪽 섹션 안에 select를 감싸고 있는 div */
+#lay03Alarm>#right01Alarm>div>#labelDiv {
+   /* display: inline-block; */
+   float: right;
+   /* background-color: blue; */
+}
+/* 오른쪽 섹션의 select, option 속성 */
+#lay03Alarm>#right01Alarm>div>#labelDiv select, option {
+   font-size: 17px;
+   font-weight: bold;
+   font-family: 'Roboto', 'Noto Sans', 'Noto Sans KR', sans-serif;
+   padding: 0px 18px 0px 0px;
+   color: #8E0032;
+}
+/* 오른쪽 섹션의 select 속성(화살표 관련) */
+#lay03Alarm>#right01Alarm>div>#labelDiv>select {
+   border: 0;
+   width: 150px;
+   height: 25px;
+   appearance: none;
+   -webkit-appearance: none;
+   background: url(../img/icon/ico-sel_arrow.png) no-repeat right 20px center;
+   background-size: 5%;
+}
+/* select 누를시에 테두리가 나오는것을 방지 하기 위함 */
+#lay03Alarm>#right01Alarm>div>#labelDiv>select:focus {
+   outline: none;
+}
+/* 화살표 수정 한 것을 explore 에서도 보여주기 위함 */
+#lay03Alarm>#right01Alarm>div>#labelDiv>select::-ms-expand {
+   display: none;
+}
+/* 전체 리스트를 감싸고 있는 div */
+#list-alarm {
+   width: 100%;
+   margin-top: 30px;
+}
+/* 오른쪽 섹션 안에 ul의 속성 */
+#lay03Alarm>#right01Alarm>#list-alarm>ul {
+   list-style: none;
+   width: 100%;
+   margin: 0px;
+   padding: 0px;
+}
+/* 오른쪽 섹션의 li 속성 */
+#lay03Alarm>#right01Alarm #list-alarm>ul li {
+   width: 915px;
+   height: 115px;
+   padding: 25px 40px;
+   /* background-color: pink; */
+   border-top: 0.5px #E1E1E1 solid;
+}
+/* 오른쪽 섹션의 a태그 */
+#lay03Alarm>#right01Alarm #list-alarm>ul a {
+   margin: 0 auto;
+   width: 100%;
+   /* background-color: blue; */
+   float: left;
+   /* height: 76px; */
+   /* background-color: red; */
+}
+/* 오른쪽 섹션의 이미지 속성 */
+#lay03Alarm>#right01Alarm #list-alarm a>img {
+   width: 64px;
+   height: 64px;
+   border-radius: 32px;
+   float: left;
+}
+/* 오른쪽 섹션의 div 속성 */
+#lay03Alarm>#right01Alarm .list-alarm-con {
+   float: left;
+   width: 771px;
+   /* height: 76px; */
+   padding: 0px 80px 0px 20px;
+   /* background-color: orange; */
+}
+/* 오른쪽 섹션의 제목태그 */
+#lay03Alarm .alarmS {
+   display: block;
+   width: 580px;
+   height: 21px;
+   margin: 8px 0px;
+   font-size: 18px;
+   overflow: hidden;
+}
+/* 오른쪽 섹션의 메세지 내용 태그 속성 */
+#lay03Alarm>#right01Alarm .list-alarm-con p {
+   font-size: 16px;
+   margin: 4px 0px 0px;
+   overflow: hidden;
+}
+/* 오른쪽 섹션의 시간 태그를 감싸고 있는 div */
+#lay03Alarm>#right01Alarm .list-alarm-con .alarmDate {
+   width: 70px;
+   height: 18px;
+   margin: 0px;
+   padding: 0px 0px 0px 10px;
+   float: right;
+   position: relative;
+   left: 75px;
+}
+/* 오른쪽 섹션의 시간 div 안에 있는 span 속성 */
+#lay03Alarm>#right01Alarm .list-alarm-con .alarmTime {
+   width: 60px;
+   height: 18px;
+   font-size: 14px;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* ------------------------------------페이징----------------------------------------- */
+/* --------------------------------------------------------------------------------------- */
+
+/* paging 아이콘 출력 영역 */
+.contents-paging {
+   margin-top: 34px;
+   text-align: center;
+}
+
+/* prev, next 아이콘 통합 설정 
+
+        */
+.contents-paging>.paging-wrapper>.extra {
+   /* 공간을 한정짓기 위해 포지션 relative 설정 */
+   position: relative;
+   display: inline-block;
+   width: 24px;
+   height: 24px;
+   background: url(../img/icon/ico-arrow_right.png) no-repeat 50%/7px auto;
+   transform: rotate(180deg);
+   vertical-align: middle;
+}
+
+/* next 아이콘 설정 
+           이 방식은 무엇인가..?  
+        */
+.contents-paging>.paging-wrapper>ul ~ .extra {
+   transform: rotate(0deg);
+}
+
+/* minus-next 아이콘 출력 */
+.contents-paging>.paging-wrapper>.extra:first-child::after {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 5px;
+   width: 100%;
+   height: 100%;
+   background: url(../img/icon/ico-arrow_right.png) no-repeat 50%/7px auto;;
+}
+
+/* plust-next 아이콘 출력 */
+.contents-paging>.paging-wrapper>.extra:last-child::after {
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 5px;
+   width: 100%;
+   height: 100%;
+   background: url(../img/icon/ico-arrow_right.png) no-repeat 50%/7px auto;;
+}
+
+/* 데이터량의 따라 늘어나는 숫자를 담고있는 영역 */
+.contents-paging>.paging-wrapper>ul {
+   display: inline-block;
+   margin: 0 8px;
+}
+
+/* 페이징 숫자를 출력하는 영역  */
+.contents-paging>.paging-wrapper>ul>li {
+   display: inline-block;
+   margin: 0 12px;
+   position: relative;
+   font-size: 18px;
+   font-weight: 600;
+}
+
+/* 현재 숫자를 표시하는 부분 */
+.contents-paging>.paging-wrapper>ul>li::after {
+   content: "";
+   position: absolute;
+   bottom: -2px;
+   left: 0;
+   width: 100%;
+   height: 2px;
+   background-color: #8E0032;
+}
+
+.msgPopup {
+   position: fixed;
+   left: 50%;
+   top: 50%;
+   z-index: -1;
+   opacity: 0;
+   transform: translate(-50%, -50%);
+   width: 550px;
+   height: 650px;
+   /* text-align: right; */
+   padding: 40px 35px 114px 35px;
+   box-sizing: border-box;
+   /* background-color: gray; */
+}
+
+.msgPopup:target {
+   opacity: 1;
+   z-index: 5;
+}
+
+.msgPopup:target+#msgGrayDim {
+   opacity: 1;
+   z-index: 3;
+}
+
+.msgPopup:target+#right01Msg {
+   overflow-y: hidden;
+   overflow-x: hidden;
+}
+
+#msgGrayDim {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   z-index: -1;
+   background-color: rgba(0, 0, 0, 0.67);
+   opacity: 0;
+   padding: 0px 25px;
+}
+
+.msgPopup {
+   text-decoration: none;
+   background-color: white;
+}
+
+.msgPopup>#msgSection {
+   width: 480px;
+   height: 100%;
+   /* background-color: white; */
+}
+
+.msgPopup>a {
+   position: relative;
+   left: 520px;
+   bottom: 40px;
+}
+
+.msgPopup #msg-wrap {
+   width: 520px;
+   height: 100%;
+   margin: 0px -35px 0px -5px;
+   background-color: white;
+   padding-right: 35px;
+   overflow: auto;
+   position: relative;
+   bottom: 70px;
+}
+
+.msgPopup #msg-wrap .msgDate-inline {
+   width: 468px;
+   height: 88px;
+   font-size: 16px;
+   text-align: center;
+   padding-bottom: 8px;
+   display: table-cell;
+   vertical-align: middle;
+   /* background-color: red; */
+}
+
+.msgPopup #msg-wrap .msgchatLeft {
+   width: 468px;
+   height: 151px;
+   padding: 0px 25px 0px 84px;
+   margin: 42px 0px 0px;
+   /* background-color: yellow; */
+   word-break: break-all;
+   text-align: left;
+}
+
+.msgPopup #msg-wrap .msgchatLeft img {
+   position: relative;
+   right: 76px;
+}
+
+.msgPopup #msg-wrap .msgchatLeft .chatL {
+   width: 359px;
+   position: relative;
+   bottom: 70.5px;
+   /* background-color: orange; */
+}
+
+.msgPopup #msg-wrap .chatName {
+   font-size: 18px;
+   height: 24px;
+}
+
+.msgPopup #msg-wrap .chatTime {
+   font-size: 14px;
+   margin-left: 6px;
+   height: 21px;
+}
+
+.msgPopup #msg-wrap .msgchatLeft .chatL-content {
+   font-size: 16px;
+   background-color: #F6F5F5;
+   margin: 12px 0px 0px;
+   padding: 20px 25px;
+   color: #3A3A3A;
+   font-weight: 600;
+   border-radius: 5px;
+}

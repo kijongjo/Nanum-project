@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.openkitchen.mypageOpenClass">
+	<select id="standByClassList" parameterType="int"
+		resultType="sbcdto">
+		SELECT /*+ use_nl(T,C) */
+		C.C_MAINSUMNAIL,C.C_NAME,TO_CHAR(C.C_REGDATE,'YYYY-MM-DD'),C.C_NO
+		cRegdate
+		FROM TEACHER T ,CLASS C
+
+		WHERE T.T_NO=#{genericOne}
+
+		AND T.T_NO=C.T_NO
+		AND C.C_PERSTATUS='신청'
+
+
+	</select>
+
+	<select id="ongoingClassList" parameterType="int"
+		resultType="ocdto">
+
+		SELECT /*+ use_nl(MIX4,E) */
+		MIX4.C_NO,MIX4.C_MAINSUMNAIL,MIX4.C_NAME,MIX4.C_PERSTATUS,MIX4.C_MAXRECRUITPERSON,MIX4.lLeasedate,count(MIX4.REC_NO)
+		AS EAPPLY
+		FROM(
+
+		SELECT /*+ use_nl(MIX3,L) */
+		MIX3.C_NO,MIX3.C_MAINSUMNAIL,MIX3.C_NAME,MIX3.C_PERSTATUS,MIX3.C_MAXRECRUITPERSON,MIX3.REC_NO,TO_CHAR(L.L_LEASEDATE,'YYYY-MM-DD')
+		lLeasedate
+		FROM (
+
+		SELECT /*+ use_nl(MIX2,REN) */
+		MIX2.C_NO,MIX2.C_MAINSUMNAIL,MIX2.C_NAME,MIX2.C_PERSTATUS,MIX2.C_MAXRECRUITPERSON,MIX2.REC_NO,REN.L_NO
+		FROM(
+
+		SELECT /*+ use_nl(MIX1,REC) */
+		MIX1.C_NO,MIX1.C_MAINSUMNAIL,MIX1.C_NAME,MIX1.C_PERSTATUS,MIX1.C_MAXRECRUITPERSON,REC.REN_NO,REC.REC_NO
+		FROM (
+
+		SELECT /*+ use_nl(T,C) */
+		C.C_MAINSUMNAIL,C.C_NAME,C.C_PERSTATUS,C.C_MAXRECRUITPERSON,C.C_NO
+		FROM TEACHER T,CLASS C
+
+		WHERE T.T_NO=#{tNo}
+
+		AND T.T_NO=C.T_NO
+		AND C.C_PERSTATUS='승인'
+
+		) MIX1, RECRUIT REC
+
+		WHERE MIX1.C_NO=REC.C_NO
+
+		AND REC.REC_PERSTATUS IN('모집','진행')
+
+		) MIX2,RENTAL REN
+
+		WHERE MIX2.REN_NO=REN.REN_NO) MIX3,LEASE L
+		WHERE MIX3.L_NO=L.L_NO)MIX4,ENROL
+		E
+		WHERE MIX4.REC_NO=E.REC_NO
+
+		AND E.E_STATUS='예약확정'
+
+		GROUP BY
+		MIX4.REC_NO,
+		MIX4.C_MAINSUMNAIL,
+		MIX4.C_NAME,
+		MIX4.C_PERSTATUS,
+		MIX4.C_MAXRECRUITPERSON,
+		MIX4.lLeasedate,
+        MIX4.C_NO
+
+
+
+	
+
+
+	</select>
+	<select id="completeClassList" parameterType="int"
+		resultType="ccdto">
+		SELECT /*+ use_nl(MIX3,L) */
+		DISTINCT MIX3.C_NO, MIX3.C_MAINSUMNAIL,MIX3.C_NAME,TO_CHAR(L.L_LEASEDATE,'YYYY-MM-DD')
+		lLeasedate,L.L_LEASETIME
+		FROM (
+		
+		SELECT /*+ use_nl(MIX2,REN) */
+		MIX2.C_NO,MIX2.C_MAINSUMNAIL,MIX2.C_NAME,REN.L_NO
+		FROM(
+		
+		SELECT /*+ use_nl(MIX1,REC)*/
+		MIX1.C_NO,MIX1.C_MAINSUMNAIL,MIX1.C_NAME,REC.REN_NO
+		FROM (
+		
+		SELECT /*+use_nl(T,C) */
+		C.C_NO,C.C_MAINSUMNAIL,C.C_NAME
+		FROM
+		TEACHER T,CLASS C
+		
+		WHERE T.T_NO=#{tNo}
+		
+		AND T.T_NO=C.T_NO
+		
+		) MIX1,RECRUIT REC
+		
+		WHERE MIX1.C_NO=REC.C_NO
+		
+		AND REC.REC_PERSTATUS='종료'
+		
+		) MIX2 , RENTAL REN
+		
+		WHERE MIX2.REN_NO=REN.REN_NO
+		
+		) MIX3 , LEASE L
+		
+		WHERE MIX3.L_NO=L.L_NO
+	</select>
+
+
+
+
+
+</mapper>

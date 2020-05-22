@@ -1,0 +1,1062 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="<c:url value='/resources/css/reset.css'/>">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Noto+Sans+KR|Open+Sans|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value='/resources/css/Header.css'/>">
+	<link rel="stylesheet" href="<c:url value='/resources/css/footer.css'/>">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        /* section{border: 1px solid;} */
+        /* 섹션 나누기 */
+        #lay03{
+            display: grid;
+            grid-template-columns: 770px 1fr;
+            width: 1200px;
+            /* height: 2000px; */
+            margin: 0 auto;
+            /* background-color: gray; */
+        }
+        /* 오른쪽 결제창 전체 감싸고 있는 섹션 속성 */
+        #lay03 > #right01{
+            position: sticky;
+            top: 10px;
+            /* background-color: blue; */
+            margin-left: 60px;
+            width: 370px;
+            height: 293px;
+            padding: 50px 0px;
+            /* grid-column: 1/2;
+            grid-row: 2/3; */
+        }
+        /* footer 삽입시 너무 꽉차 보이는것을 방지 하기 위한 margin 추후 수정 필요 */
+        #lay03 > #left01{
+            margin-bottom: 200px;
+        }
+        /* 신청 내역 섹션 */
+        #apply01{
+            /* height: 223px; */
+            padding: 20px 0px 50px 0px;
+            /* background-color: orange; */
+            border-bottom: 2px lightgray solid;
+        }
+        /* 신청 내역에 이미지 크기 */
+        #apply01 img{
+            width: 130px;
+            height: 130px;
+            /* float: left; */
+       }
+       /* 신청 내역에 li 스타일 삭제 */
+       #apply01 li {
+           list-style: none;
+       }
+       /* 신청 내역 h2태그 */
+       #apply01 h2{
+           height: 36px;
+           margin: 0px 0px 25px;
+       }
+       /* 신청 내역의 ul */
+       #apply01 ul{
+           margin: 0px;
+           padding: 0px;
+       }
+       /* 신청내역의 타이틀 */
+       #apply01 ul #li-title{
+           height: 32px;
+           margin: 0px 0px 10px;
+           font-size: 22px;
+           font-weight: 600;
+       }
+       /* 신청내역의 금액 */
+       #apply01 ul #li-price{
+           height: 24px;
+           margin: 6px 0px 0px;
+           font-size: 20px;
+           font-weight: 500;
+       }
+       /* 신청 내역의 금액의 ₩ 부분 */
+       #apply01 ul #li-price em{
+           color: #8E0032;
+           font-style: normal;
+           margin: 0px 5px 0px 0px;
+       }
+       /* 신청내역의 금액 아래부분 */
+       #apply01 table{
+           margin-top: 10px;
+       }
+       /* 신청 내역의 금액 아래부분의 왼쪽 row */
+       #apply01 table th{
+           width: 75px;
+           height: 28px;
+           color: #838383;
+           font-size: 15px;
+           padding: 0px;
+           text-align: left;
+           font-weight: bold;
+       }
+       
+       /* 신청내역의 금액 아래쪽 부분의 오른쪽 row */
+       #apply01 table td{
+           font-size: 15px;
+           padding: 0px;
+           font-weight: bold;
+       }
+       /* 신청자 정보 섹션 */
+       #lay03 > #left01 > #apply02  {
+           padding: 50px 0px;
+           border-bottom: 2px lightgray solid;
+       }
+       /* 쿠폰 마일리지 섹션 */
+       #lay03 > #left01 > #apply03 {
+           padding: 50px 0px;
+           border-bottom: 2px lightgray solid;
+       }
+       /* 쿠폰/포인트/마일리지 h3 태그 */
+       #lay03 > #left01 > #apply03 h3{
+           height: 32px;
+           margin: 0px 0px 30px;
+           padding: 15px 0px 10px;
+           font-size: 22px;
+           font-weight: 900;
+       }
+       /* 쿠포마 부분의 각각의 타이틀 */
+       #lay03 > #left01 > #apply03 .cou-title{
+           font-size: 20px;
+           color: #838383;
+           height: 22px;
+           margin: 0px 0px 8px;
+           font-weight: bold;
+       }
+       /* 쿠폰 부분을 감싸고 있는 div */
+       #lay03 > #left01 > #apply03 #cou-div1{
+           height: 83.33px;
+       }
+       /* 쿠폰 부분의 input:text */
+       /* #lay03 > #left01 > #apply03 #cou-div1 select{ */
+        #lay03 > #left01 > #apply03 input[type="text"], select{
+           background-color: #F6F5F5;
+           border: none;
+           padding: 0px 20px;
+           width: 100%;
+           height: 54px;
+           font-size: 15px;
+           font-weight: 700;
+           color: gray;
+       }
+       /* 포인트와 마일리지를 감싸고 있는 div */
+       #lay03 > #left01 > #apply03 .cou-wrap{
+            height: 84px;
+            margin: 20px 0px 0px;
+       }
+       /* 포인트 마일리지를 감싸고 있는 div 안에 input:text */
+       #lay03 > #left01 > #apply03 .cou-wrap> div input{
+           /* width: 566px; */
+           width: 73%;
+           height: 54px;
+           padding: 0px 20px;
+           background-color: #F6F5F5;
+           border: none;
+       }
+       /* 포인트 마일리지 안에 있는 잔여 부분 */
+       #lay03 > #left01 > #apply03 .cou-wrap small{
+           height: 26px;
+           font-size: 18px;
+           padding: 0px 0px 0px 15px;
+           color: black;
+           font-weight: 600;
+       }
+       /* 그 안에 있는 em 태그 */
+       #lay03 > #left01 > #apply03 .cou-wrap em{
+           font-style: normal;
+       }
+       /* 쿠포마 부분의 전체 사용 버튼  */
+       #lay03 > #left01 > #apply03 .cou-wrap #pointAll,
+       #lay03 > #left01 > #apply03 .cou-wrap #mileageAll {
+           /* width: 150px; */
+           width: 20%;
+           height: 54px;
+           background-color: #8E0032;
+           color: white;
+           margin: 0px 0px 0px 8px;
+           padding: 0px;
+           border: none;
+           font-size: 20px;
+           font-weight: bold;
+       }
+       /* 결제 페이지 오른쪽 창 */
+       #asideApplyPayment{
+        /* background-color: red; */
+        height: 163px;
+        margin: 7px 0px 0px;
+        padding: 25px 25px 0px;
+        border: 0.5px lightgray solid;
+       }
+       /* 오른쪽 결제창 결제금액(h3) 속성  */
+       #asideApplyPayment h3{
+           font-size: 22px;
+           margin: 0px 0px 25px;
+           padding: 15px 0px 10px;
+           height: 58px;
+           font-weight: 900;
+       }
+       /* 오른쪽 결제창 클래스 금액 관련 속성 */
+       #right01 > #asideApplyPayment ul {
+           padding: 0px;
+           height: 54px;
+           margin: 25px 0px 0px;
+           padding: 0px 0px 30px;
+        }
+        /* 오른쪽 결제창 클래스 금액 속성 */
+        #right01 > #asideApplyPayment ul li{
+            height: 21px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+         
+       /* #rigtht01 > #asideApplyPayment span{ */
+
+        /* 오른쪽 결제금액의 클래스 금액 오른쪽 금액(50,000원) */
+        #rightUpSpan{
+          /* position: relative;
+          left: 160px; */
+          float: right;
+       }
+       /* 결제 페이지 오른쪽 창 li 스타일 제거 */
+       #asideApplyPayment li{
+           list-style: none;
+       }
+       /* 결제 페이지 오른쪽 창 총 결제 금액 부분  */
+       #rightPaymentP{
+           height: 70px;
+           padding: 20px 25px;
+           margin: 0px;
+           border: 0.5px solid lightgray;
+           border-top: none;
+           overflow: hidden;
+       }
+       /* 오른쪽 결제창 총 결제 금액 관련 속성 */
+       #rightPaymentP strong{
+        font-size: 18px;
+        font-weight: bold;
+       }
+       /* 총 결제 금액 왼쪽 '총 결제 금액' 속성 */
+       #rightDownSpan{
+        font-size: 18px;
+        font-weight: 500;
+        /* position: relative;
+        left: 110px; */
+        float: right;
+        height: 28.75px;
+       }
+       /* 총 결제 금액 오른쪽 액수 속성 */
+       #rightDownSpan b{
+        font-size: 27px;
+        font-weight: 500;
+        font-weight: bold;
+       }
+
+       /* 결제하기 버튼 */
+       #right01 #payButton{
+        padding: 0px;
+        width: 100%;
+        height: 54px;
+        border: none;
+        background-color: #D9D9D9;
+        color: white;
+        font-size: 18px;
+        font-weight: 900;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+       }
+
+       /* 신청 내역 이미지 감싸고 있는 div */
+        #applyDiv01{
+            width: 160px;
+            height: 130px;
+            float: left;
+        }
+        #lay03 > #left01 > #apply04{
+            height: 241px;
+            padding: 50px 0px;
+        }
+        /* 결제 방법 선택을 감싼 큰 wrap div */
+        #payWayWrap{
+            width: 100%;
+            height: 66px;
+            /* background-color: gray; */
+        }
+        /* 결제 방법 선택의 각각의 div */
+        .payWay{
+            padding: 0px 5px;
+            width: 32%;
+            float: left;
+        }
+        /* 결제 방법 선택의 각각의 버튼 */
+        .payWay input{
+            width: 100%;
+            height: 66px;
+            margin-left: 0.5px;
+            font-size: 22px;
+            color: #2e2e2e;
+            font-weight: bold;
+            border: 0.5px gray solid;
+            border-radius: 5px;
+        }
+        /* 결제 방법 선택의 버튼을 누를시 버튼의 테두리가 나오는것을 없앰 */
+        .payWay input:focus{
+            outline: none;
+        }
+        /* 결제 방법 선택 h3 태그*/
+        #apply04 h3{
+            height: 32px;
+            margin: 0px 0px 30px;
+            padding: 15px 0px 10px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        /* 결제 방법 선택에 체크박스 감싸고 있는div */
+        #payWayCheck{
+            height: 69px;
+            margin: 20px 0px 0px;
+        }
+        /* 결제 방법 선택에 p태그 */
+        #payWayCheck p{
+            height: 18.4px;
+            margin: 6px 0px 0px;
+            padding: 0px 0px 0px 25px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #7f7f7f;
+        }
+        /* 결제 방법 선택에 체크박스 감싸고 있는 라벨 */
+        #payWayCheck label{
+            font-size: 16px;
+            font-weight: 900;
+            color: #7f7f7f;
+        }
+        /* 신청자 정보 배치 */
+        #apply02>h3{
+            height: 32px;
+            margin: 0px 0px 30px;
+            padding: 15px 0px 10px;
+            font-size: 22px;
+            font-weight: 900;
+        }
+        /* 신청자 정보 이름 배치 */
+        #apply02Name{
+            font-size: 15px;
+            font-weight: bold;
+            color: #838383;
+            margin: 0px 0px 8px;
+        }
+        /* 신청자 정보의 텍스트 넓이 */
+        #apply02Name input{
+            width: 100%;
+        }
+        /* 신청자 정보 텍스트 */
+        .apply02Input{
+            width: 730px;
+            height: 48px;
+            padding: 0px 20px;
+            border: none;
+            background: #F6F5F5;
+        }
+        /* 신청자 정보의 성별을 감싸고 있는 wrap  */
+        #apply02Gender{
+            width: 100%;
+            height: 66px;
+            margin: 30px 0px 0px;
+            font-size: 20px;
+           font-weight: bold;
+           color: #838383;
+        }
+        /* 신청자 정보 성별 배치 */
+       #apply02Gender span{
+        font-size: 15px;
+        font-weight: bold;
+        color: #838383;
+        display: block;
+        height: 22px;
+        margin: 0px 0px 8px;
+       }
+       /* 신청자 정보 생년월일 p태그 */
+       #apply02BirthP{
+           font-size: 15px;
+           font-weight: bold;
+           color: #838383;
+           height: 26px;
+           margin: 0px 0px 10px;
+       }
+       /* 신청자 정보 생년월일 div margin  */
+       #apply02Birth{
+           margin-top: 30px;
+       }
+       /* 신청자 정보 생년월일의 input:text font 속성 */
+       #apply02Birth input{
+           font-size: 15px;
+           font-weight: bold;
+       }
+       /* 신청자 정보 핸드폰번호 div margin */
+       #apply02Phone{
+           margin: 30px 0px 0px;
+       }
+       /* 신청자 정보 핸드폰번호 p태그 */
+       #apply02Phone p{
+            font-size: 15px;
+            font-weight: bold;
+            color: #838383;
+           margin: 0px 0px 10px;
+       }
+       /* 신청자 정보 핸드폰 번호 2개의 input 감싸고 있는 div 정보 */
+       #apply02Phone div{
+          width: 100%; 
+          height: 50px;
+       }
+       /* 신청자 정보 핸드폰 번호 input:text 정보 */
+       #apply02Phone div >input:nth-child(1){
+           width: 564px;
+           height: 50px;
+           padding: 0px 30px 0px 12px;
+           border: none;
+           background: #F6F5F5;
+           font-size: 15px;
+           font-weight: bold;
+       }
+       /* 신청자 정보 핸드폰 번호 input:button 정보 */
+       #apply02Phone div> a>input{
+           width: 147px;
+           height: 50px;
+           margin: 0px 0px 0px 8px;
+           padding: 0px;
+           background-color: #D9D9D9;
+           color: white;
+           border: none;
+           font-size: 20px;
+           font-weight: 900;
+       }
+    	
+       #pop_share {
+    /* 내용이 잘리게 될때 스크롤바가 보이도록 설정한다. */
+    overflow: auto;
+    position: fixed;
+  
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 81px 25px 0;
+    /* 반투명 설정 */
+    background: rgba(0, 0, 0, 0.67);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+    z-index:-9999;
+	}
+
+    /* #pop_share:target {
+    opacity: 1;
+    z-index: 100;
+    
+	} */
+
+	/* 팝업창에 대한 css 설정 */
+	
+	#pop_inner {
+	    margin: 95px auto 0;
+	    /* 내용물이 가운데로 오도록 설정 */
+	    padding-top: 40px;
+	    padding-bottom: 10px;
+	    /* 550으로 잡아주어야 팝업창 모양이 나온다 안잡아주면 너무 김. */
+	    max-width: 550px;
+	    position: relative;
+	    background: white;
+	    padding: 40px 40px;
+	}
+	
+	#pop_title {
+	    font-weight: 600 !important;
+	    font-size: 24px !important;
+	    line-height: 1.5;
+	    margin-bottom: 30px;
+	}
+      
+	.paymentOk {
+		 /* clear: both; */
+		 text-align: center;
+	}
+	
+	#mainCGoing, #detailCGoing {
+		display: inline-block;
+		width: 222px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 16px;
+		background-color: #8E0032;
+		color: white;
+		border-radius: 3px;			
+	}
+    #pop_share #pop_inner .pop_paymentData {
+    	border-bottom: none;
+    }
+    
+    #mainCGoing {
+    	margin-right: 10px;
+    }
+    
+    #detailCGoing {
+    	margin-left: 10px;
+    }	
+        
+    </style>
+	<script>
+	$(document).ready(function () {		
+		var payType = new Array("","");
+		var cnt = 0;
+		var payWay = $(".payWay");
+		payWay.on("click", function () {
+			cnt++;
+			console.log(cnt);
+			
+			if(cnt == 1) {
+				payType[0] = $(this).children("input").val();
+				$(this).children("input").css("backgroundColor", "#8E0032");
+				$(this).children("input").css("color", "white");
+				
+			} else if (cnt == 2) {
+				   payType[1] = $(this).children("input").val();
+				   if(payType[0]==payType[1]) {
+				   	   cnt = 1;   
+				   	  
+				   } else if(payType[0] != payType[1]) {
+					   payType[0] = $(this).children("input").val();
+				
+					   payWay.children("input").css("backgroundColor", "#f0f0f0");
+					   payWay.children("input").css("color", "#2e2e2e")
+					   $(this).children("input").css("backgroundColor", "#8E0032");
+					   $(this).children("input").css("color", "white");
+					   cnt = 1;
+				   }
+			}			
+		});
+		
+		// 일정선택
+		var orderAgree = $("#orderAgree");
+		var payButton = $("#payButton");
+		orderAgree.on("click", function () {	
+			if(orderAgree.is(":checked") && payType[0] != "") {
+				payButton.css("backgroundColor", "#8E0032");
+				payButton.css({'cursor':'Pointer'});
+			} else {
+				payButton.css("backgroundColor", "#f0f0f0");
+				payButton.css({'cursor':'Default'});
+			}
+		});
+		
+		
+		
+		
+		
+		
+		var pointText = $("#point");
+		var mileaseText = $("#mileage");
+		
+		var cPrice = parseInt("<c:out value='${paymentAmount}'/>");
+		var cPoint = parseInt("<c:out value='${paymentM.ptStorage}'/>");
+		var cMileage = parseInt("<c:out value='${paymentM.mgStorage}'/>"); 
+		var cCoupon = parseInt("<c:out value='${paymentM.cType}'/>");
+		var limitDiscount = cPrice-cPrice*0.1;
+		
+		
+		var point = 0;
+		var mileage = 0;
+		// 데이터로 넘겨야 할 최종금액 
+		var totalPay = cPrice;
+		
+		// 쿠폰 옵션 선택 이벤트
+		$("#cpSelect").on("change", function () {
+			if($("#cpSelect option").index($("#cpSelect option:selected"))==0) {
+				totalPay = cPrice;
+				$(".cou-wrap").css("display", "block");
+				$("b").text(totalPay);
+			} else {
+				$(".cou-wrap").css("display", "none");
+				pointText.val("");
+				mileaseText.val("");
+				if(cCoupon==1) {
+					totalPay = cPrice-cPrice*0.1;
+					console.log("cPrice : "+cPrice);
+					// $("b").text(cPrice-cPrice*0.1);
+					$("b").text(totalPay);
+				} else {
+					totalPay = cPrice-cPrice*0.05;
+					// $("b").text(cPrice-cPrice*0.05);
+					$("b").text(totalPay);
+				}
+				
+				$(".paymentAlert").remove();
+				$("#cou-div1").after("<div class='paymentAlert'>쿠폰만 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+			}	
+		});
+		
+		
+		/* 
+			키가 눌릴때마다 총 금액의 숫자가 바껴야됨.
+			총 금액은 전역변수여야됨. 
+		*/
+		pointText.keyup(function () {
+				
+			// 최종 할인 금액만 저장된다.
+		    point = parseInt(pointText.val());
+			console.log("뭐임 : "+point);
+		    totalPay = cPrice-(point+mileage);
+			if(cPoint >= point) {
+				console.log("최종 : "+totalPay);
+				if(totalPay>=limitDiscount) {
+					$("#ptStorage").text(cPoint-point);
+					$("b").text(totalPay);	
+				} else {
+					
+					$(".paymentAlert").remove();
+					$(".cou-wrap").eq(0).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+					$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+					
+					console.log("할인최대 넘음 point : "+totalPay);
+					
+					totalPay = totalPay+point
+					point = 0;
+
+					$("#ptStorage").text(cPoint);
+					$("b").text(totalPay);
+					pointText.val("");
+				}
+				
+			} else if(isNaN(point)) {
+				point = 0;
+				totalPay = cPrice-(point+mileage);
+				$("#ptStorage").text(cPoint-point);
+				$("b").text(totalPay);
+			} else {
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(0).after("<div class='paymentAlert'>최대 사용 가능 포인트를 초과했습니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				point = 0;
+				totalPay = cPrice-(point+mileage);
+								
+				$("#ptStorage").text(cPoint);
+				$("b").text(totalPay);				
+				pointText.val("");
+				
+			}
+		});
+		
+		mileaseText.keyup(function () {
+			mileage = parseInt(mileaseText.val());
+			totalPay = cPrice-(point+mileage);
+			if(cMileage >= mileage) {		 
+				if(totalPay>=limitDiscount) {
+					$("#mgStorage").text(cMileage-mileage);
+					$("b").text(totalPay);
+				} else {
+					$(".paymentAlert").remove();
+					$(".cou-wrap").eq(1).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+					$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+					
+						
+					totalPay = totalPay+mileage;
+					mileage = 0;
+					
+					$("#mgStorage").text(cMileage);
+					$("b").text(totalPay);
+					mileaseText.val("");
+				}
+			} else if(isNaN(mileage)) {
+				mileage = 0;
+				totalPay = cPrice-(point+mileage);
+				$("#mgStorage").text(cMileage-mileage);
+				$("b").text(totalPay);
+				
+			} else {
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(1).after("<div class='paymentAlert'>최대 사용 가능 마일리지를 초과했습니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				mileage = 0;
+				totalPay = cPrice-(point+mileage);
+								
+				$("#mgStorage").text(cMileage);
+				$("b").text(totalPay);
+				mileaseText.val("");
+					
+			}
+		});
+		
+		var pointAll = $("#pointAll");
+		var mileageAll = $("#mileageAll");
+		
+		pointAll.on("click", function () {
+			point = cPoint;
+			pointText.val(cPoint);
+			totalPay = cPrice-(point+mileage);
+			if(totalPay>=limitDiscount) {
+				$("#ptStorage").text(0);
+				$("b").text(totalPay);	
+			} else {
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(0).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				totalPay = totalPay+point;
+				point = 0;
+				
+				$("#ptStorage").text(cPoint);
+				$("b").text(totalPay);
+				pointText.val("");
+			}
+		});
+		
+		mileageAll.on("click", function () {
+			mileage = cMileage;
+			mileaseText.val(cMileage);
+			totalPay = cPrice-(point+mileage);
+			if(totalPay>=limitDiscount) {
+				$("#mgStorage").text(0);
+				$("b").text(totalPay);
+			} else {
+				$(".paymentAlert").remove();
+				$(".cou-wrap").eq(1).after("<div class='paymentAlert'>결제금액의 10% 이하 사용 가능합니다.</div>");
+				$(".paymentAlert").slideDown(500).delay(2000).slideUp(500);
+				
+				console.log("할인 최대 넘음 mileage : "+totalPay);	
+
+				totalPay = totalPay+mileage;
+				mileage = 0;
+			
+				$("#mgStorage").text(cMileage);
+				$("b").text(totalPay+mileage);
+				mileaseText.val("");
+			}
+		});
+		
+		$("#payButton").on("click", function () {
+			if(orderAgree.is(":checked")) {
+				console.log("test");		
+		
+				$.ajax({
+				    url:'spacePayment', // 요청 할 주소
+				    async:true,// false 일 경우 동기 요청으로 변경
+				    type:'POST', // GET, PUT
+				    dataType:'text',// xml, json, script, html
+				    data: {
+				        "totalPay":totalPay,
+				        "payType":payType[0]
+				    }, success:function(data) {
+				    	console.log("성공");
+				    	$("#pop_share").css("opacity","1").css("z-index","100");
+				    },error:function() {
+			    		console.log("실패");
+			    	}
+			    });
+					
+				    
+			} else {
+				return false;
+			}
+		});
+	});
+	</script>
+<jsp:include page="../../headerScript.jsp" flush="false" />
+</head>
+<body>
+
+<jsp:include page="../../header.jsp" flush="false" />
+	<div id="pop_share">
+		<!-- 안쪽에 팝업 창에 대한 내용 -->
+		<div id="pop_inner">
+			<div id="pop_title">결제가 완료되었습니다.</div>
+				<section id="apply01" class="pop_paymentData">
+                <h2>공간정보</h2>
+                <div id="applyDiv01">
+                <c:forEach var="item" varStatus="i" items="${paymentS}">
+                    <c:if test="${i.index==0}">
+                    	<c:forEach var="detailItem" varStatus="j" items="${fn:split(item.sDetailsumnail, ',')}">
+	                    	<c:if test="${j.index==0}">
+		                    	<img src="<c:url value='${detailItem}' />" alt="">	                	                    	
+	                    	</c:if>
+                    	</c:forEach>
+                   	</c:if>
+                </c:forEach >
+                </div> 
+                    <ul id="applyUl">
+                    	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                    		<c:if test="${i.index==0}">
+                    			<li id="li-title">${item.sName}</li>
+                        		<li id="li-price"><em>₩</em>
+	                    			<c:choose>
+	                    				<c:when test="${item.sCapacity le 6}">
+	                    					80,000
+	                    				</c:when>
+	                    				<c:when test="${item.sCapacity ge 7}">
+	                    					110,000
+	                    				</c:when>
+	                    			</c:choose>
+                    			</li>		
+                    		</c:if>
+                    	</c:forEach>
+                                           
+                    </ul>
+                    <table>
+                            <tr>
+                                <th>대여일</th>
+                                <td> 
+                                	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                                		<fmt:formatDate value="${item.lLeasedate}" pattern="yy.MM.dd (E)"/> 
+	                                	<c:choose>
+	                                		<c:when test="${item.lLeasetime eq '오전'}">
+	                                			/ 10:00 - 14:00 <br />
+	                                		</c:when>
+	                                		<c:when test="${item.lLeasetime eq '오후'}">
+	                                			/ 14:00 - 18:00 <br />
+	                                		</c:when>
+	                                		<c:otherwise>
+	                                			/ 18:00 - 22:00 <br />
+	                                		</c:otherwise>
+	                                	</c:choose>
+                                	</c:forEach>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>호스트</th>
+                            	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                            		<c:if test="${i.index==0}">
+		                                <td>${item.mName}</td>                            	                        		
+                            		</c:if>
+                            	</c:forEach>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <c:forEach items="${paymentS}" var="item" varStatus="i">
+                            		<c:if test="${i.index==0}">                            	                        		
+		                                <td>${item.sLoc}</td>
+                            		</c:if>
+                            	</c:forEach>
+                            </tr>
+                        </table>  
+            </section>
+            <div class="paymentOk">
+              	<a href="index" id="mainCGoing">메인으로 이동</a>
+              	<a href="mypage/in" id="detailCGoing">예약상세 확인하기</a>
+            </div>
+		</div>
+	</div>
+
+
+
+    <div id="lay03">
+        <section id="left01">
+            <section id="apply01">
+                <h2>신청내역</h2>
+                <div id="applyDiv01">
+                <c:forEach var="item" varStatus="i" items="${paymentS}">
+                    <c:if test="${i.index==0}">
+                    	<c:forEach var="detailItem" varStatus="j" items="${fn:split(item.sDetailsumnail, ',')}">
+	                    	<c:if test="${j.index==0}">
+		                    	<img src="<c:url value='${detailItem}' />" alt="">	                	                    	
+	                    	</c:if>
+                    	</c:forEach>
+                   	</c:if>
+                </c:forEach >
+                </div> 
+                    <ul id="applyUl">
+                    	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                    		<c:if test="${i.index==0}">
+                    			<li id="li-title">${item.sName}</li>
+                        		<li id="li-price"><em>₩</em>
+	                    			<c:choose>
+	                    				<c:when test="${item.sCapacity le 6}">
+	                    					80,000
+	                    				</c:when>
+	                    				<c:when test="${item.sCapacity ge 7}">
+	                    					110,000
+	                    				</c:when>
+	                    			</c:choose>
+                    			</li>		
+                    		</c:if>
+                    	</c:forEach>
+                                           
+                    </ul>
+                    <table>
+                            <tr>
+                                <th>대여일</th>
+                                <td> 
+                                	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                                		<fmt:formatDate value="${item.lLeasedate}" pattern="yy.MM.dd (E)"/> 
+	                                	<c:choose>
+	                                		<c:when test="${item.lLeasetime eq '오전'}">
+	                                			/ 10:00 - 14:00 <br />
+	                                		</c:when>
+	                                		<c:when test="${item.lLeasetime eq '오후'}">
+	                                			/ 14:00 - 18:00 <br />
+	                                		</c:when>
+	                                		<c:otherwise>
+	                                			/ 18:00 - 22:00 <br />
+	                                		</c:otherwise>
+	                                	</c:choose>
+                                	</c:forEach>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>호스트</th>
+                            	<c:forEach items="${paymentS}" var="item" varStatus="i">
+                            		<c:if test="${i.index==0}">
+		                                <td>${item.mName}</td>                            	                        		
+                            		</c:if>
+                            	</c:forEach>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <c:forEach items="${paymentS}" var="item" varStatus="i">
+                            		<c:if test="${i.index==0}">                            	                        		
+		                                <td>${item.sLoc}</td>
+                            		</c:if>
+                            	</c:forEach>
+                            </tr>
+                        </table>
+                 
+            </section>
+            <section id="apply02">
+                <h3>신청자 정보</h3>
+            <div>
+                <span id="apply02Name">이름</span>
+                <input type="text" name="" id="a" class="apply02Input" value="${paymentM.mName}" readonly="readonly">
+            </div>
+            <c:if test="${paymentM.mGender eq null}">
+	            <div id="apply02Gender">
+	                <span>성별</span>
+	                <!-- 라디오 버튼 성늘을 위한 name 입력(테스트) 수정 해도 됨 -->
+	                <input type="radio" name="appGen" id="" style="width: 18px; height: 18px;">남자
+	                <input type="radio" name="appGen" id="" style="width: 18px; height: 18px;">여자
+	                
+	            </div>
+            </c:if>
+            <c:if test="${paymentM.mBirth eq null}">
+	            <div id="apply02Birth">
+	                <p id="apply02BirthP">생년월일</p>
+	                <input type="text" name="" id="b" class="apply02Input" placeholder="8자리로 입력해 주세요(예시 : 19880101)">
+	            </div>
+            </c:if>
+            <c:if test="${paymentM.mPhone eq null}">
+	            <div id="apply02Phone">
+	                <p>핸드폰 번호 인증</p>
+	                <div>
+	                    <input type="text" name="" id="" placeholder="‘ - ’ 빼고 입력해주세요">
+	                    <a href=""><input type="button" value="인증번호 발송"></a>
+	                </div>
+	            </div>
+            </c:if>
+             </section>
+             <section id="apply03">
+                <h3>쿠폰/포인트/마일리지</h3>
+                <div id="cou-div1">
+                    <p class="cou-title">쿠폰</p>
+                    <select name="" id="cpSelect">
+                        <option value="">쿠폰을 선택해 주세요.</option>
+                        <c:choose>
+                        	<c:when test="${paymentM.cType eq 1}">
+                        		<option value="">10% 할인 쿠폰</option>                      	
+                        	</c:when>
+                        	<c:otherwise>
+                        		<option value="">5% 할인 쿠폰</option>                      	                        	
+                        	</c:otherwise>
+                        </c:choose>
+                    </select>
+                </div>
+                <div class="cou-wrap">
+                <p class="cou-title">
+                    포인트 사용
+                    <small>
+                        잔여 포인트
+                        <em id="ptStorage">${paymentM.ptStorage}</em>
+                        P
+                    </small>
+                </p>
+                <div>
+	                <input type="text" name="" id="point" placeholder="0P">
+	                	<input type="button" id="pointAll" value="전체사용">
+                </div>
+             </div>
+            <div class="cou-wrap">
+                <p class="cou-title">
+                    마일리지 사용
+                    <small>
+                        잔여 마일리지
+                        <em id="mgStorage">${paymentM.mgStorage}</em>
+                        원
+                    </small>
+                </p>
+                <div>
+                <input type="text" name="" id="mileage" placeholder="0원">
+                <input type="button" id="mileageAll" value="전체사용">
+                </div>
+            </div>
+            </section>
+            <section id="apply04">
+                <h3>결제방법 선택</h3>
+                <div id="payWayWrap">
+                    <div class="payWay">
+                        <input type="button" value="신용/체크카드" >
+                    </div>
+                    <div class="payWay">
+                        <input type="button" value="계좌이체">
+                    </div>
+                    <div class="payWay">
+                        <input type="button" value="휴대폰결제">
+                    </div>
+                </div>
+
+                <!-- label사용을 위해서 임의로 id를 설정 !!! 바꿔야 할 상황에 바꾸면 됨 -->
+                <div id="payWayCheck">
+                    <label for="orderAgree" style="cursor: pointer;"><input type="checkbox" name="" id="orderAgree">주문내역 확인 동의(필수)</label>
+                    <p>클래스/선생님/공간정보, 가격, 할인내역, 환불정책등을 최종확인하였으며, 구매에 동의하시겠습니까? (전자상거래법 제 8조 2항)</p>
+                </div>
+
+            </section>
+        </section>
+        <section id="right01">
+            <div id="asideApplyPayment">
+                <h3>결제 금액</h3>
+                <ul>
+                    <li>
+                        <strong>공간 금액</strong>
+                        <span id="rightUpSpan">
+                        	<b><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentAmount}"/></b>원
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+            <p id="rightPaymentP">
+                <strong>총 결제 금액</strong>
+                <span id="rightDownSpan">
+                    <b><fmt:formatNumber type="number" maxFractionDigits="3" value="${paymentAmount}"/></b>원
+                </span>
+            </p>
+            </div>
+            <input type="button" value="결제하기" id="payButton">
+        </section>
+    </div>
+    <jsp:include page="../../footer.jsp" flush="false" />
+</body>
+</html>

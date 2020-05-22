@@ -1,0 +1,294 @@
+#lay03Msg {
+   display: grid;
+   grid-template-columns: 285px 1fr;
+   width: 1200px;
+   margin: 0 auto;
+}
+/* 왼쪽 섹션의 크기 지정 */
+#lay03Msg>#left01Msg {
+   height: 126px;
+   /* background: red; */
+}
+/* 왼쪽 섹션의 p태그(공공의 주방) */
+#lay03Msg>#left01Msg>p {
+   height: 24px;
+   margin: 0px;
+   font-size: 16px;
+}
+/* 왼쪽 태그의 h1 태그(1:1 메세지) */
+#lay03Msg>#left01Msg h1 {
+   height: 42px;
+   margin: 0px;
+   font-size: 30px;
+   font-weight: bold;
+}
+/* 오른쪽 섹션의 속성 */
+#lay03Msg>#right01Msg {
+   /* background: springgreen; */
+   padding: 0px 0px 120px;
+}
+/* 오른쪽 섹션 안에 ul의 속성 */
+#lay03Msg>#right01Msg ul {
+   list-style: none;
+   width: 100%;
+   margin: 0px;
+   padding: 0px;
+}
+/* 오른쪽 섹션의 li 속성 */
+#lay03Msg>#right01Msg li {
+   width: 915px;
+   height: 127px;
+   padding: 25px 40px;
+   /* background-color: pink; */
+   border-bottom: 0.5px #E1E1E1 solid;
+}
+/* 오른쪽 섹션의 a태그 */
+#lay03Msg>#right01Msg a {
+   margin: 0 auto;
+   width: 100%;
+   /* background-color: blue; */
+   float: left;
+   height: 76px;
+}
+/* 오른쪽 섹션의 이미지 속성 */
+#lay03Msg>#right01Msg a>img {
+   width: 64px;
+   height: 64px;
+   border-radius: 32px;
+   float: left;
+}
+/* 오른쪽 섹션의 div 속성 */
+#lay03Msg>#right01Msg .list-content {
+   float: left;
+   width: 771px;
+   /* height: 76px; */
+   padding: 0px 80px 0px 20px;
+   /* background-color: orange; */
+}
+/* 오른쪽 섹션의 제목태그 */
+.list-title {
+   display: block;
+   width: 580px;
+   height: 21px;
+   margin-bottom: 8px;
+   font-size: 18px;
+   overflow: hidden;
+}
+/* 오른쪽 섹션의 메세지 내용 태그 속성 */
+#lay03Msg>#right01Msg .list-content p {
+   font-size: 16px;
+   margin: 4px 0px 0px;
+   overflow: hidden;
+}
+/* 오른쪽 섹션의 시간 태그를 감싸고 있는 div */
+#lay03Msg>#right01Msg .list-content .al-r {
+   width: 70px;
+   height: 18px;
+   margin: 0px;
+   padding: 0px 0px 0px 10px;
+   float: right;
+   position: relative;
+   left: 75px;
+}
+/* 오른쪽 섹션의 시간 div 안에 있는 span 속성 */
+#lay03Msg>#right01Msg .list-content .MsgTime {
+   width: 60px;
+   height: 18px;
+   font-size: 14px;
+}
+
+.msgPopup {
+   position: fixed;
+   left: 50%;
+   top: 50%;
+   z-index: -1;
+   opacity: 0;
+   transform: translate(-50%, -50%);
+   width: 550px;
+   height: 740px;
+   /* text-align: right; */
+   padding: 40px 35px 114px 35px;
+   box-sizing: border-box;
+   /* background-color: gray; */
+}
+
+.msgPopup:target {
+   opacity: 1;
+   z-index: 3;
+}
+
+.msgPopup:target+#msgGrayDim {
+   opacity: 1;
+   z-index: 2;
+}
+
+.msgPopup:target+#right01Msg {
+   overflow-y: hidden;
+   overflow-x: hidden;
+}
+
+#msgGrayDim {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   z-index: -1;
+   background-color: rgba(0, 0, 0, 0.67);
+   opacity: 0;
+   padding: 0px 25px;
+}
+
+.msgPopup {
+   text-decoration: none;
+   background-color: white;
+}
+
+.msgPopup>#msgSection {
+   width: 480px;
+   height: 586px;
+   /* background-color: white; */
+}
+
+.msgPopup>a {
+   position: relative;
+   left: 520px;
+   bottom: 40px;
+}
+
+.msgPopup #msg-wrap {
+   width: 520px;
+   height: 586px;
+   margin: 0px -35px 0px -5px;
+   background-color: white;
+   padding-right: 35px;
+   overflow: auto;
+}
+
+.msgPopup #msgSection form {
+   position: relative;
+   bottom: 65px;
+}
+
+.msgPopup #msg-wrap .msgDate-inline {
+   width: 468px;
+   height: 88px;
+   font-size: 16px;
+   text-align: center;
+   padding-bottom: 8px;
+   display: table-cell;
+   vertical-align: middle;
+   /* background-color: red; */
+}
+
+.msgPopup #msg-wrap .msgchatLeft {
+   width: 468px;
+   height: 151px;
+   padding: 0px 25px 0px 84px;
+   margin: 42px 0px 0px;
+   /* background-color: yellow; */
+   word-break: break-all;
+   text-align: left;
+}
+
+.msgPopup #msg-wrap .msgchatLeft img {
+   position: relative;
+   right: 76px;
+   border: 1px solid black;
+   border-radius : 64px;
+}
+
+.msgPopup #msg-wrap .msgchatLeft .chatL {
+   width: 359px;
+   position: relative;
+   bottom: 70.5px;
+   /* background-color: orange; */
+}
+
+.msgPopup #msg-wrap .chatName {
+   font-size: 18px;
+   height: 24px;
+}
+
+.msgPopup #msg-wrap .chatTime {
+   font-size: 14px;
+   margin-left: 6px;
+   height: 21px;
+}
+
+.msgPopup #msg-wrap .msgchatLeft .chatL-content {
+   font-size: 16px;
+   background-color: #F6F5F5;
+   margin: 12px 0px 0px;
+   padding: 20px 25px;
+   color: #3A3A3A;
+   font-weight: 600;
+   border-radius: 5px;
+}
+
+.msgPopup #msgSection #msg-input {
+   position: relative;
+   right: 35px;
+   width: 550px;
+   height: 114px;
+   padding: 20px 40px 40px;
+   /* background-color: #FFFFFF; */
+   /* background-color: black; */
+}
+
+.msgPopup #msgSection #msg-input input[type=text] {
+   width: 315px;
+   height: 54px;
+   padding: 0px 14px;
+   background-color: #F6F5F5;
+   border: none;
+   font-size: 18px;
+   border-radius: 5px;
+}
+
+.msgPopup #msgSection #msg-input input[type=text]::placeholder {
+   color: lightslategray
+}
+
+.msgPopup #msgSection #msg-input input[type=submit] {
+   width: 110px;
+   height: 54px;
+   color: #FFFFFF;
+   font-size: 18px;
+   background-color: #D9D9D9;
+   padding: 0px 20px;
+   border: none;
+   font-weight: 900;
+   border-radius: 5px;
+}
+
+.msgPopup #msg-wrap .msgchatRight {
+   width: 468px;
+   margin: 13px 0px 0px;
+   padding: 0px 7px 0px 21px;
+   /* background-color: skyblue; */
+   text-align: right;
+}
+
+.msgPopup #msg-wrap .msgchatRight .chatR {
+   width: 440px;
+}
+
+.msgPopup #msg-wrap .msgchatRight .chatR .chatR-title {
+   width: 100%;
+   height: 27px;
+   text-align: right;
+}
+
+.msgPopup #msg-wrap .msgchatRight .chatR .chatR-content {
+   /* width: 100%; */
+   font-size: 16px;
+   margin: 12px 0px 0px;
+   padding: 20px 25px;
+   background-color: #838383;
+   color: #FFFFFF;
+   font-weight: 600;
+   display: inline-block;
+   /* text-align: right; */
+   border-radius: 5px;
+}

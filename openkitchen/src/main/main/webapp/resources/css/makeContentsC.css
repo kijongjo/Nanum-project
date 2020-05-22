@@ -1,0 +1,324 @@
+/* 클래스 등록시 공통적으로 적용되는 CSS 설정입니다. */
+
+
+/* 리스트 선택시 */
+ #lay03 > #left01 .On_active{
+     font-weight: 600;
+     border-bottom: 3px solid #8E0032;
+     position: relative;
+    display: inline-block;
+ }
+ #lay03 > #left01 .On_active::after{
+    content: "";
+    position: absolute; top: 5px; right: -23px;
+    width: 19px; height: 18px;
+    background-image: url("../img/icon/ico-tab_check.svg");
+    background-position: 0;
+}
+
+
+/* 오른쪽 */
+#right01{
+    padding: 45px 0 120px 60px;
+    background-color: #F6F5F5;
+    font-size: 15px;
+    line-height: 22px;
+    border-radius: 9px;
+	min-height: 478px;
+
+ }
+ 
+ /* class select */
+.selectBox{
+	border : 3px solid #8E0032;
+	border-radius: 5px;
+	background-color:white;
+}
+ 
+ /* 항목 타이틀 프로필부분이면 맨윗부분에 프로필이라고 쓰는 것처럼 FORM 안에 들어있는 글씨  */
+#right01 > form > h4{
+    margin-bottom: 8px;
+    color: #5B5B5B;
+}
+#right01 > form > h4:nth-child(n+2){
+    margin-top: 40px;
+}
+/* 텍스트 입력창 CSS 설정 */
+.basic_apply{
+    width: 907px;
+    background-color: white;
+}
+/* 닉네임 입력할때 아래에 도움말 css 설정 */
+#apply02 p,
+#makeSpace02 > #guide p{
+    padding-top:  10px;
+    background-color: #F6F5F5;
+    color: #838383;
+}
+
+
+/*텍스트 입력창 뿐만 아니라 다른 입력창도  css 설정함 */
+#right01 input{
+    border: none;
+    padding: 0 20px;
+    width: 815px; height: 46px;
+    
+}
+/* 텍스트창 넓이 100으로 잡아줘야 클릭시 생기는 테두리가 흰색 배경과 딱 맞음 */
+#right01 input[type="text"]{
+	width:100%;
+}
+/* txt area css 설정 */
+#right01 textarea{
+    border: none;
+    outline-color: #8E0032;
+    width: 100%; height: 100%;
+    font: 400 13.3333px Arial;
+    word-break: keep-all;
+    overflow: auto;
+    vertical-align: top;
+    resize: none; 
+}
+/* 주요활동 */
+#txtarea01{
+    height: 120px;
+}
+/*주요활동 바로 아래 자기 소개 */
+#txtarea02{
+    height: 360px;
+}
+
+
+/*전문분야 제목 css 설정*/
+#right01 h3{
+    margin: 40px 0 8px;
+    color: #5B5B5B;
+    font-size: 15px;
+}
+/* *문장 css 설정 */
+#right01 h3 span{
+    margin-left: 5px;
+    font-weight: 400;
+    color: #838383;
+}
+
+
+#contents_border #btn-form-wrap {
+	height: 64px;
+	margin: 124px 21px 0px;
+	background-color: #F6F5F5;
+}
+
+#contents_border #btn-form-wrap #complete  {
+	float: right;
+	font-size: 18px;
+	height: 64px;
+	width: 168px;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+}
+
+#contents_border #btn-form-wrap #complete {
+	background: #8e0032;
+	color: white;
+	margin-left: 12px;
+}
+
+#contents_border #btn-form-wrap input[type="button"]:nth-child(2) {
+	background: white;
+	color: #2e2e2e;
+}
+/* 임시저장 버튼 */
+#contents_border #btn-form-wrap>#go {
+	float: right;
+	font-size: 18px;
+	height: 64px;
+	width: 168px;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+	background: white;
+	color: #2e2e2e;
+}
+/*/////////////////////////////////////////체크박스 기본 모듈//////////////////////////////////// */
+#all-check {
+	border-bottom: 2px solid #e5e5e5;
+	margin: 30px 0 16px;
+	padding-bottom: 16px;
+}
+
+.checkboxSection div {
+	position: relative;
+}
+
+.checkboxSection div.checkboxWrap {
+	display: flex;
+}
+/* 넓이 조정하기 */
+.checkboxSection div#WrapWidth1 {
+	width: 82px;
+}
+
+.checkboxSection div#WrapWidth2 {
+	width: 130px;
+}
+.checkboxSection div#WrapWidth3 {
+	width: 200px;
+
+	
+}
+/* 기본 체크박스 디자인 삭제하기 (라벨을 대신 쓰기 위함) */
+.checkboxSection div.checkbox {
+	width: 100%;
+	position: relative;
+	float: left;
+}
+
+.checkboxSection div.checkbox input {
+	width: 60%;
+}
+
+/* //////////////// //////////////// 라디오박스 설정 //////////////// //////////////// //////////////// //////////////// */
+input[type="radio"] {
+	display: block;
+	top: -1px;
+	padding: 10;
+	opacity: 0;
+	cursor: pointer;
+	height: 20px;
+	position: relative;
+	z-index: 3;
+}
+/* 라디오박스의 위치 지정 css 설정 */
+input[type="radio"]+label {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	z-index: 1;
+}
+/* 라디오박스 새로운 디자인 (라벨 이용) */
+input[type="radio"]+label:before {
+	content: "";
+	display: block;
+	/* ㄹ디오박스 크기조절 */
+	width: 15px;
+	height: 15px;
+	line-height: 18px;
+	margin: 0px 8px 0 0;
+	text-align: center;
+	background: #fff;
+	border: 1px solid #cacece;
+	border-radius: 3px;
+	/* 라디오 박스 모양 만들기 */
+	border-radius: 11px;
+}
+/* 클릭시 디자인 변경 */
+input[type="radio"]:checked+label:before {
+	background-image: url("../img/icon/bg-checkbox.png");
+	/* 클릭할 시 체크박스 모양 디자인 */
+	background-position-x: -17px;
+	background-repeat: no-repeat;
+	background-size: 214%;
+	border-radius: 11px;
+}
+/* 라디오박스 txt 라디오박스모양 다음에 text가 나온다. */
+input[type="radio"]+label::after {
+	width: 300px;
+	position: absolute;
+	top: -3px;
+	left: 30px;
+	font-weight: 400;
+	font-size: 16px;
+	color: #838383;
+}
+
+/*같은 radio 끼리 name을 같게 하고 id로 식별해준다.  */
+/*클래스 유형 */
+input[id="ordinary"]+label::after {
+	content: "일반 클래스";
+	font-weight: 600;
+	color: #838383;
+}
+
+input[id="manwon"]+label::after {
+	content: "만원의 행복 클래스";
+	font-weight: 600;
+	color: #838383;
+}
+input[id="onlyOne"]+label::after {
+	content: "단 한명 클래스";
+	font-weight: 600;
+	color: #838383;
+}
+
+
+/*/////////////////////////////////////////   radio 모듈 끝//////////////////////////////////// */
+
+/* border에 존재하는 list목록 css 설정 */
+#contents_border img{
+    width: 100%; height: 185px;
+}
+#contents_border h3{
+    margin: 14px 0 3px;
+}
+#contents_border .Price{
+    margin-bottom: 8px;
+}
+#contents_border > ul{
+    width: 965px;
+    min-height: 487px;
+    overflow: hidden;
+}
+#contents_border > ul > li{
+    margin: 0 10px 20px 0;
+    width: 294px; height: 340px;
+    overflow: hidden;
+    float: left;
+    padding: 3px;
+}
+#contents_border>ul>li>a{
+ display:block;
+ 
+	
+}
+/* 아이콘 설정 */
+#contents_border>ul>li>.iconDiv{
+	display: inline-block;
+    font-size: 104px;
+    position: relative;
+    color: #ffffff;
+    bottom: 274px;
+    background: rgba(0, 0, 0, 0.67);
+    width: 100%;
+    height: 328px;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 74px;
+    opacity:0;
+    z-index:-1;
+}
+
+div > #right02 #contents_border{
+	text-align: start;
+}
+/* 로딩 css */
+ .wrap-loading div{ /*로딩 이미지*/
+
+        position: fixed;
+
+        top:44%;
+
+        left:60%;
+
+        margin-left: -21px;
+
+        margin-top: -21px;
+
+    }
+
+    .display-none{ /*감추기*/
+
+        display:none;
+
+    }

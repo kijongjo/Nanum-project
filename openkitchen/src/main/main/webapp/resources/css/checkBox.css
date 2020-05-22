@@ -1,0 +1,99 @@
+input,
+textarea{
+    width: 100%;
+    border: none;
+}
+
+/* all-check */
+#all-check{
+    border-bottom: 2px solid #e5e5e5;
+    margin: 30px 0 16px;
+    padding-bottom: 16px;
+}
+#right01 div.checkboxWrap{
+	overflow: hidden;
+	display: flex;
+}
+#right01 div.checkBox{
+	width:100%;
+	position: relative;
+	float:left;
+}
+#right01 div.checkBox input{
+	width:60%;
+}
+/* checkBox */
+/* 기본 체크박스 디자인 삭제 */
+input[type="checkbox"] {
+    display: block;
+    top: -1px;
+    padding: 10;
+    opacity: 0;
+    cursor: pointer;
+    height: 20px;
+    position: relative;
+    z-index: 3;
+} 
+/* 체크박스의 위치*/
+input[type="checkbox"] + label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    z-index: 1;
+}
+/* 체크박스 새로운 디자인 */
+input[type="checkbox"] + label:before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    margin: -2px 8px 0 0;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #cacece;
+    border-radius: 3px;
+}
+/* 클릭할시 디자인 */
+input[type="checkbox"]:checked + label:before {
+    background-image: url("../img/icon/bg-checkbox.png");
+    background-position-x: -21px;
+    background-repeat: no-repeat;
+    background-size: 214%;
+}
+/* 체크박스 txt */
+input[type="checkbox"] + label::after{
+    width: 300px;
+    position: absolute;
+    top: -3px; left: 30px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #838383;
+}
+input[name="all_agreement"] + label::after{
+    content: "전체동의";
+}
+input[name="terms_use"] + label::after{
+    content: "이용약관(필수)";
+}
+input[name="terms_establishment"] + label::after{
+    content: "개설자약관(필수)";
+}
+input[name="privacy"] + label::after{
+    content: "개인정보 수집 및 이용동의 (필수)";
+}
+input[name="sns_agree"] + label::after{
+    content: "SMS 및 이메일 수신동의 (선택)";
+}
+
+
+/* 클래스 만들기 */
+input[name="nomal"] + label::after{
+    content: "일반 클래스";
+}
+input[name="manwon"] + label::after{
+    content: "만원의 클래스";
+}
+input[name="onepeople"] + label::after{
+    content: "한명 클래스";
+}

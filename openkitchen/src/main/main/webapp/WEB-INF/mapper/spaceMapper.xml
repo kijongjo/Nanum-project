@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="kr.co.openkitchen.space">
+  	<select id="selectDetailS" resultType="dsdto" parameterType="int">
+		SELECT S_NO, S_DETAILSUMNAIL, S_NAME, S_SHORTINTRO, S_HASHTAG, S_TEMA, S_LOC, 
+			   S_LONGINTRO, S_CAPACITY, S_REFERENCE, S_CONVENIENT, S_SAFETY
+			   FROM SPACE
+               WHERE S_NO = #{sNo}		
+  	</select>
+  	
+  	<select id="selectDetailSSche" resultType="dssdto" parameterType="map">
+  		SELECT L_NO, L_LEASEDATE, L_LEASETIME, L_PERSTATUS
+		FROM SPACE S, LEASE L
+		WHERE S.S_NO = L.S_NO AND S.S_NO = #{sNo}
+		<if test="leaseDate != null">
+		AND L_LEASEDATE = #{leaseDate}
+		ORDER BY DECODE(L_LEASETIME,'오전','1','오후','2') 
+		</if>
+  	</select>
+  	<select id="selectPaymentS" resultType="psdto" parameterType="map">
+  		SELECT S.S_NAME, S.S_DETAILSUMNAIL, S.S_CAPACITY, L.L_LEASEDATE, L.L_LEASETIME, S.S_LOC, MEM.M_NAME
+		FROM LEASE L, SPACE S, HOST H, MEMBER MEM
+		WHERE L.S_NO = S.S_NO AND S.H_NO = H.H_NO AND H.H_NO = MEM.M_NO
+      		  AND L.L_NO in
+		<foreach collection="array" item="item" open="(" close=")" separator=",">
+		 	#{item}
+		</foreach>
+  	
+  	</select>
+  	<insert id="insertPaymentS" parameterType="map">
+  			<selectKey keyProperty="renNo" resultType="int" order="BEFORE">
+  				SELECT RENTAL_SEQ.NEXTVAL FROM DUAL
+  			</selectKey>
+  			INSERT ALL
+			INTO RENTAL VALUES(#{renNo}, '예약대기', SYSDATE, #{memberNo}, #{leaseNo})
+			INTO SPACE_PAY VALUES(SPACE_PAY_SEQ.NEXTVAL, #{payType}, '승인', SYSDATE, #{totalPay}, #{renNo})
+			SELECT *
+			FROM DUAL
+  		</insert>
+  </mapper>

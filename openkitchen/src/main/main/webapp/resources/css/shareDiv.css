@@ -1,0 +1,137 @@
+@charset "UTF-8";
+/* 공유 팝업창 CSS  */
+
+#pop_share {
+    /* 내용이 잘리게 될때 스크롤바가 보이도록 설정한다. */
+    overflow: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 81px 25px 0;
+    /* 반투명 설정 */
+    background: rgba(0, 0, 0, 0.67);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 1s;
+    z-index:-9999;
+}
+
+  #pop_share:target {
+    opacity: 1;
+    z-index: 100;
+    
+}
+
+/* 팝업창에 대한 css 설정 */
+
+#pop_inner {
+    margin: 95px auto 0;
+    /* 내용물이 가운데로 오도록 설정 */
+    padding-top: 40px;
+    padding-bottom: 10px;
+    /* 550으로 잡아주어야 팝업창 모양이 나온다 안잡아주면 너무 김. */
+    max-width: 550px;
+    text-align: center;
+    position: relative;
+    background: white;
+}
+
+
+/* "공유하기"  css 설정*/
+
+#pop_title {
+    font-weight: 600 !important;
+    font-size: 24px !important;
+    line-height: 1.5;
+}
+
+#pop_content {
+    height: 100%;
+}
+
+#pop_content>ul {
+    /* 410을 줘서 안의 요소들을 정렬함 */
+    width: 410px;
+    margin: 30px auto 0 70px;
+    font-size: 0;
+}
+
+#pop_content>ul>li {
+    /* 요소들 정렬하기  */
+    display: inline-block;
+    /* 요소들 정렬하기 */
+    width: 33.33%;
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+
+/* a의 크기안에서 앞쪽의 icon 설정 */
+
+#pop_content>ul>li>a::before {
+    content: "";
+    display: block;
+    width: 71px;
+    height: 71px;
+    /* margin:top right&left bottom */
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    /*백분율로 계산해서 이미지의 위치를 잡아준다.  */
+    background: no-repeat 50%/71px auto;
+}
+
+#pop_content>ul>li>a {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    color: #000;
+}
+
+#pop_content>ul>li>#facebook::before {
+    background-image: url(../img/icon/facebookIcon.png);
+}
+
+#pop_content>ul>li>#twitter::before {
+    background-image: url(../img/icon/twitterIcon.png);
+}
+
+#pop_content>ul>li>#kakaoS::before {
+    background-image: url(../img/icon/kakaoSIcon.png);
+}
+
+#pop_content>ul>li>#band::before {
+    background-image: url(../img/icon/bandIcon.png);
+}
+
+#pop_content>ul>li>#kakaoT::before {
+    background-image: url(../img/icon/kakaoTIcon.png);
+}
+
+#pop_content>ul>li>#line::before {
+    background-image: url(../img/icon/lineIcon.png);
+}
+
+#pop_content>ul>li>#mail::before {
+    background-image: url(../img/icon/mailIcon.png);
+}
+
+#pop_content>ul>li>#url::before {
+    background-image: url(../img/icon/urlIcon.png);
+}
+
+
+/* /////////////////////////////////////닫기 버튼 설정 시작//////////////////////////////////////// */
+
+#pop_share>#pop_inner>#btn-close {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    background: url(../img/icon/btnCloseWhite.png) no-repeat 50%/30px auto;
+}

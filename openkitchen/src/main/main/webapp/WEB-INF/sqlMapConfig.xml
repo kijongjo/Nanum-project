@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  <!-- _가 붙은 테이블 컬럼명과 카멜표현식을 사용한 멤버필드를 매핑  -->
+  	<settings>
+  		<setting name="mapUnderscoreToCamelCase" value="true"/>
+  	</settings>
+  	<!-- 
+  		스프링 설정파일에서 이미 mapper와 db.propertis를 다 써놧기때문에 
+  	   	typeAliases(별칭) 지정시에만 사용 -->
+  	<typeAliases>
+	    <!-- 별칭 지정 : mapper에서 쿼리할 때 파라미터로 사용하기 위해서 등록  -->
+  		<typeAlias type="kr.co.openkitchen.dto.ClassDTO" alias="cdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.ManwonClassDTO" alias="mcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.PopularClassDTO" alias="pcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailClassDTO" alias="dcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailCScheDTO" alias="dcsdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.ClassIndexDTO" alias="rdto"/>
+  		<typeAlias type="kr.co.openkitchen.dto.TeacherIndexDTO" alias="tcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.SpaceIndexDTO" alias="spdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailTeacherDTO" alias="dtdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.MemberDTO" alias="mbdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailSpaceDTO" alias="dsdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.BestClassDTO" alias="bcdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.PaymentClassDTO" alias="pmcdto" />
+        <typeAlias type="kr.co.openkitchen.dto.TeacherRegistDTO" alias="trdto" />
+        <typeAlias type="kr.co.openkitchen.dto.TeacherRegistDtoS" alias="trsdto" />
+        <typeAlias type="kr.co.openkitchen.dto.PaymentMemDTO" alias="pmdto" />
+  		<typeAlias type="kr.co.openkitchen.dto.DetailSScheDTO" alias="dssdto" />
+        <typeAlias type="kr.co.openkitchen.dto.ClassRegistDTO" alias="crdto" />
+        <typeAlias type="kr.co.openkitchen.dto.ClassRegistDtoL" alias="crldto"/>
+        <typeAlias type="kr.co.openkitchen.dto.ClassRegistDtoSch" alias="crschdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.AuthorityCheckDTO" alias="acdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.PaymentSpaceDTO" alias="psdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.MypageDTO" alias="mydto"/>
+        <typeAlias type="kr.co.openkitchen.dto.CookBookDTO" alias="cbdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.CookRefundDTO" alias="credto"/>
+        <typeAlias type="kr.co.openkitchen.dto.StandByClassDTO" alias="sbcdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.OngoingClassDTO" alias="ocdto"/>
+        <typeAlias type="kr.co.openkitchen.dto.CompleteClassDTO" alias="ccdto"/>
+  	</typeAliases>
+  </configuration>

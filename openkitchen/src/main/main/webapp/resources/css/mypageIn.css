@@ -1,0 +1,649 @@
+  /* 태그 초기화 */
+
+
+ /* em, i 초기화 */
+ em, i {
+    font-style: normal;
+}
+
+
+/* section으로 감싼 모든 font size를 변경 */
+section {
+ 
+    font-size: 18px;
+}
+/* rayout 좌/우 size 
+   border size도 같이 먹기 때문에 1~2px 오차가 있음
+*/
+#lay03{
+    grid-template-columns: 287px 919px;
+}
+
+/* left01 공공의 주방 */
+#left01 > .breadcrumb > .parent  {
+    font-size: 16px;
+    line-height: 24px;
+    color: #000;
+
+}
+
+/* left01 마이페이지 */
+.breadcrumb > h1 {
+    font-size: 30px;
+    line-height: 43px;
+    font-weight: 700;
+}
+
+/* 회원정보 개인 사진을 감싸는 figure
+  figure : 사진, 도표, 삽화, 오디오, 비디오, 코드 등을 담는 컨테이너 역할을 하는 태그        
+*/
+.profile {
+    float: left;
+    margin-right: 28px;
+    position: relative;
+}
+
+/* 회원정보 사진을 감싸는 span 
+   overflow : 요소의 박스에 내용이 더 길때 어떻게 보일지 선택하는 속성
+   hidden : 내용이 넘치면 자름. 자른 부분은 보이지 않음. 
+   사진을 감싸는 span의 모서리를 둥글게 하면 사진은 넘치는 상태가 됨
+   이 때 오버플로우 히든 속성을 통해 넘치는 값은 잘라서 span과 동일한 상태를 만듬
+*/
+.profile > .img {
+    overflow: hidden;
+    display: block;
+    width: 125px;
+    border-radius: 50%;
+   
+}
+
+
+
+/*  
+   회원정보의 사진 
+   여기서 vertical-align의 역할은?
+   vertical-align : 인라인 요소와 인라인 블록요소의 수직정렬
+   middle : 부모 요소 중앙에 위치
+   상위 부모와 사진의 사이즈를 동일하게 지정하고
+   중앙에 위치 
+*/
+.img > .myimg {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
+/* 
+    table-cell : <td>처럼 셀을 생성, 간단하게 가로/세로 정렬이 가능
+    테이블셀에서의 vertical-align:middle
+    테이블칸에서 padding box 중앙에 위치
+*/
+.intro > .hello {
+    display: table-cell;
+    height: 125px;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+/* 로그인 멘트 출력(~님 안녕하세요.)  */
+.hello > p {
+    font-size: 28px;
+}
+
+/* 회원 수강생 표시 공간 */
+.badge {
+    margin-top: 18px;
+}
+
+/* 회원 수강생 표시 span  */
+.badge > .student {
+    font-size: 15px;
+    background: #8e0032;
+    color: #fff;
+    border-radius: 28px;
+    padding: 0 17px;
+    font-weight: 600;
+    display: inline-block;
+    line-height: 28px;
+} 
+
+/* 요리 배우기, 클래스 만들기, 공간 공유하기  
+   block 상태를 inline 형태로 변경하여 나열
+*/
+.main-list {
+    display: flex;
+    margin-top: 50px;
+    padding-top: 14px;
+    padding-bottom: 40px;
+}
+
+/* 요리 배우기, 클래스 만들기, 공간 공유하기 블록  
+   box-sizing 속성을 border-box로 지정하면  테두리를 포함한 크기를 지정
+*/
+.list-wrap {
+    position: relative;
+    width: 32.2%;
+    padding: 56px 0 76px;
+    margin-left: 1.7%;
+    border: 1px solid rgba(151,151,151,.2);
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.list-wrap:first-child {
+  margin-left: 0;
+}
+
+/* 
+    제목 ex) 요리 배우기
+    transeform : 엘리먼트의 크기, 위치, 모양을 변경하는 속성
+    translateX : x축으로  이동   
+*/
+.title {
+    display: inline-block;
+    position: absolute;
+    top: -0.6em;
+    /* 현재 이것의 목적은? */
+    /* padding: 0 .4em; */
+    font-size: 21px;
+    color: #000;
+    background-color: #fff;
+    /* ??? 속성 이해할 필요 있음 */
+    transform: translateX(-50%);
+}
+
+/* 항목 ex) 요리 배우기 항목 */
+.list > li {
+    margin-top: 5px;
+    line-height: 27px;
+}
+
+/* a태그를 상위 li의 사이즈와 동일하게 지정하고
+   사이즈 변경을 위해 inline-block 속성으로 변경
+ */
+.list > li > a {
+    width: 100%;
+    display: inline-block;
+}
+
+
+/* 클래스 만들기, 공간 공유하기 아이콘 */
+.ico-more_arrow {
+    /* content가 없기때문에 공간을 확보 
+       사전처리로 inline속성을 변경해줘야됨
+    */
+    
+    width: 18px;
+    height: 18px;
+    /* 글자와 아이콘을 벌리는 역할 */
+    margin-left: 8px;
+    /* 글자와 아이콘의 중앙정렬 오차를 줄이기 위함 */
+    margin-bottom: 4px;
+    /* 태그의 배경에 이미지를 씌움 */
+    background-image: url(../img/icon/ico-more_type2.png);
+    /* i태그는 inline형태라 사이즈를 변경 할 수 없음
+       inline-block 속성으로 바꿔 사이즈를 변경 할 수 있게함.
+     */
+    display: inline-block;
+    /* 배경 이미지 크기조절 속성 */
+    background-size: 100% auto;
+    /* 배경 이미지의 위치를 지정
+       가로, 세로의 위치를 지정(x, y)
+     */
+    background-position: 50% 50%;
+    /* repeat : 이미지를 어떻게 배열 할 것인지 선택 
+       no-repeat : 반복 배열하지 않음
+    */
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+/* mini write 아이콘 */
+.profile .inp-file {
+    position: absolute;
+    top: 5em;
+    transform: translateX(5em);       
+    box-shadow: 0 1px 3px rgba(176, 176, 176, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    width: 29px;
+    height: 29px;
+    background-image:url(../img/icon/ico-modify_plus02.png);
+    background-color: #fff;
+    background-size: 50% auto;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+
+
+.dashboard {
+    display: inline-table;
+    table-layout: fixed;
+}
+
+
+/* dashboard dl padding 초기화 */
+.dashboard dl {
+    padding: 10px 0;
+}
+
+/* dashboard dl간의 간격조절 목적 */
+.dashboard dl + dl {
+    margin-top: 15px;
+}
+
+/* dashboard dt(제목) 세부 설정  */
+.dashboard dl dt {
+    /* width: 100%; */
+    /* dt 간에 간격 조절 */
+    padding: 20px 0 4px;
+    /* font-weight: 400; */
+    font-size: 15px;
+    /* line-height: 22px; */
+    /* dt 상위 라인  */
+    border-top: 0.5px solid rgba(151, 151, 151, 0.5);
+}
+
+/* dashboard 전체 dt 첫번째 요소 세부 설정 
+   dt의 상위 라인을 지울 목적
+*/
+.dashboard dl dt:first-child {
+   border-top: none;
+}
+
+/* dashboard 전체  형제 dl dt padding 초기화 
+   및 요소 중앙 배치  
+*/
+.dashboard dl + dl dt:first-child {
+   padding: 10px 0;
+}
+
+/* dashboard dd(내용) 세부 설정 */
+ .dashboard dl dd {
+    padding-bottom: 20px;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 29px;
+}
+
+/* 
+    dashboard dd em
+    가격 단위(건, p, 개) size 설정 
+*/
+.dashboard dl dd em {
+    font-weight: 200;
+    font-size: 18px;
+}
+
+/* dashboard 모든 a태그 설정 */
+.dashboard dl dt a {
+    position: relative;
+    display: block;
+}
+
+/* 
+    dashboard td의 아이콘 세부 설정
+    가상요소를 활용 ::before  
+    no-repeate? / auto?
+*/
+.dashboard dl dt a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 11px;
+    height: 11px;
+    margin-top: -6px;
+    background: url(../img/icon/ico-more_type5.png) no-repeat 50% / auto 100%;
+}
+
+
+/* 
+    table 마일리지, 포인트, 쿠폰, 1:1 메시지 part
+    dl,dt,dd를 table의 성질을 가지게 함
+*/
+.dashboard .table {
+    display: table-cell;
+    width: 335px;
+}
+
+/* table dl 안에 문자 가운데 정렬 목적  */
+.dashboard .table > dl {
+    padding: 10px 30px;
+    background-color: #f6f5f5;
+}
+
+
+
+/* 알림 notification  */
+.dashboard .notification {
+    /* 
+        position은 왜 이렇게 주는가? 
+        relative를 줘야 알림 x 아이콘과 텍스트를 출력 할 수 있음.
+    */
+    position: relative;
+    /* td cell 속성을 가지게 함 */
+    display: table-cell; 
+    /* 현재 vertical-align의 역할은? */
+    vertical-align: top; 
+    padding-left: 60px;
+    width: 600px;
+
+}
+
+/* 알림이 없을 경우 띄우는 아이콘과 텍스트 종합 설정 */
+.notification::before, .notification::after {
+    content: "";
+    position: absolute;
+    top: 150px;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 48px;
+}
+
+/* 알림이 없을 경우 띄우는 아이콘 */
+.dashboard .notification::before {
+    background: url(../img/icon/ico-bell.png) no-repeat 50%/auto 100%;
+
+}
+
+
+/* 알림이 없을 경우 띄우는 텍스트 */
+.dashboard .notification::after {
+    content: "받은 알림이 없습니다";
+    top: 204px;
+
+}
+
+/* notification dd 하단 너비 설정 */
+.notification dl dd {
+    padding-bottom: 8px;
+}
+
+/* 알림 리스트 ul 전체 설정 
+   데이터가 있을 경우 데이터가 없음을 알리는 이미지와
+   메시지창을 가리기 위해 사용
+*/
+.notification ul {
+     position: relative; 
+     display: inline-block;
+     min-height: 275px; 
+     background-color: #fff;
+     z-index: 10; 
+}
+
+/* li 세부 설정  */
+.notification ul li {
+   /* 리스트간 간격 설정 */ 
+   padding: 25px 0;
+   /* font-size 0으로 지정해주지 않으면 */
+   font-size: 0;
+   /* 리스트간 border line 설정 */
+   border-top: 0.5px solid rgba(151, 151, 151, 0.7);
+}
+
+/* li 상위 border line 없애는 역할 */
+.notification ul li:first-child {
+    border-top: none;
+}
+
+/* notification 모든 a태그 세부 설정
+   a태그가 inline-block 성질을 가지고 table의
+   성질을 가진 상태가 됨. 
+*/
+.notification ul li a {
+    display: inline-table;
+    width: 100%;
+    /* 테이블의 크기를 고정
+       데이터가 지정한 너비이상으로 셀을 밀어버리는 것을 방지  
+    */
+    table-layout: fixed;
+}
+
+/* 사진을 담고 있는 figure 태그  */
+.notification ul li a figure {
+    /* figure에 table에 td 성질을 부여 */
+    display: table-cell;
+    /* 이미지의 size 조정을 위한 너비/높이 */
+    width: 40px;
+    height: 40px;
+    /* 텍스트와 간격 조절 */
+    padding-right: 15px;
+    /* 이미지와 텍스트의 수직의 중심을 맞추기 위함 */
+    vertical-align: middle;
+}
+
+/* 알림 이미지 figure의 크기로 고정 */
+.notification ul li a figure img {
+    /* 여기서 이거 왜 사용하는지는 모르겠다. */
+    max-width: 100%;   
+}
+
+/* 알림 텍스트 출력 공간 */
+.notification ul li .list-content {
+    position: relative;
+    display: table-cell;
+    /* 이미지와 텍스트의 수직의 중심을 맞추기 위함 */
+    vertical-align: middle;
+}
+
+/* 알림 title */
+.notification ul li .list-content strong {
+   /*  font-weight: 600; */
+    font-size: 16px;
+  /*   line-height: 19px; */
+    /* margin-bottom: 5px; */
+}
+
+ /* 알림 title 날짜  */
+ .notification ul li .list-content strong .time {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 14px;
+    color: #6b6b6b;
+    font-weight: normal;
+}
+
+/* 알림 content */
+.notification ul li .list-content p {
+   font-size: 14px;
+}
+
+/* wishlist 하단 공간 부여 */
+.wishlist {
+    padding-bottom: 120px;
+    position: relative;
+    height: 458px;
+
+}
+
+/* 즐겨찾기 데이터가 없을 경우 출력되는 이미지와 텍스트 공통 설정  */
+.wishlist::before, .wishlist::after {
+    content: "";
+    position: absolute;
+    top: 228px;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 48px;
+}
+
+/* 즐겨찾기 데이터가 없을 경우 출력되는 이미지 */
+.wishlist::before {
+    background: url(../img/icon/ico-wish.png) no-repeat 50%/auto 100%;
+}
+
+/* 즐겨찾기 데이터가 없을 경우 출력되는 텍스트 */
+.wishlist::after {
+    content: "좋아요 한 위시리스트가 없어요";
+    top: 282px;
+}
+
+/* wishlist title을 출력하는 영역 */
+.wishlist dl dt {
+    padding: 50px 0 4px;
+    font-size: 15px;
+
+}
+
+/* 추가한 wishlist 갯수를 출력하는 영역 */
+.wishlist dl dd {
+    padding-bottom: 20px;
+    font-size: 25px;
+}
+
+.wishlist dl dt a {
+    position: relative;
+    display: block;
+
+}
+
+.wishlist dl dt a::before {
+   content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 11px;
+    height: 11px;
+    margin-top: -6px;
+    background: url(../img/icon/ico-more_type5.png) no-repeat 50% / auto 100%;
+}
+
+/* 추가한 wishlist를 이동시키기 위한 버튼과
+   사진, 이름, 태그, 지역을 출력하는 영역  
+*/
+
+/* 버튼을 최상단으로 빼기 위한 설정
+   bxslider의 css에서 버튼을 제한하는 영역의 relative를 풀어줘야한다.
+*/
+.wishlist .list-scroll {
+    position: relative;
+    margin-top: 0;
+    background-color: #fff;
+    z-index: 10;
+} 
+
+/* 사진 리스트 li 태그 설정 */
+/*  .wishlist .list-scroll li {
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 15px;
+    padding-bottom: 20px;
+} */
+
+/* 사진 이동시키는 버튼 종합 설정 */
+/* .wishlist .list-scroll .scroll-btn {
+    position: absolute;
+    top: 32.5%;
+    right: -26px;
+    width: 51px;
+    height: 51px;
+    margin: -26px 0 0 0;
+    border-radius: 50%;
+    background: #fff url(../img/ico-paging_arrow.png) no-repeat 55% 50%/auto 15px;
+    z-index: 50;
+} */
+
+/* 이전 버튼 */
+/* .wishlist .list-scroll .scroll-btn.prev {
+    transform: rotate(180deg);
+    box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.5);
+    left: -26px;
+} */
+
+/* 다음 버튼 */
+/* .wishlist .list-scroll .scroll-btn.next {
+    box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.5);
+    right: -26px;
+} */
+
+/* 사진이 증가될 때 지정된 공간의 범위를 넘어서는 것을
+   제한하는 역할
+*/
+.inner {
+    overflow: hidden;
+}
+
+/* .list-scroll ul {
+    font-size: 1px;
+} */
+
+/* 슬라이드 사진을 랩핑하는 영역 
+   사진 수직 => 수평 나열 및
+   데이터 있을시 데이터가 없을 때 나오는 출력 이미지와 멘트를
+   덮는 역할  
+*/
+/* .swiper-wrapper {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: #fff;
+} */
+
+.bxslider li a figure img {
+    border-radius: 3px;
+}
+
+.bxslider li {
+    padding-bottom: 20px;
+}
+
+/* wishlist 이름과 태그와 위치를 출력하는 영역  */
+.list-content {
+    margin-top: 12px;
+    color: #000;
+} 
+
+/* wishlist 이름 */
+.list-content strong {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* 추가한 wishlist 태그와 위치를 출력하는 공간 */
+.list-content .text-info {
+    margin: 3px 0 11px;
+}
+
+/* wishlist 태그와 위치 */
+.list-content .text-info span {
+    font-size: 14px;
+    color: #7f7f7f;
+    display: inline-block;
+    position: relative;
+    margin-right: 8px;
+    padding-left: 12px;
+} 
+
+.list-content .text-info span:first-child {
+    padding-left: 0;
+}
+
+/* 태그 padding값 초기화 */
+/* .wishlist .list-scroll li .list-content .text-info span:first-child {
+    padding-left: 0;
+} */
+
+/* 위치 조정 */
+.list-content .text-info span:nth-child(2):after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -6px;
+    width: 1px;
+    height: 12px;
+    background: #e4e4e4;
+} 

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="kr.co.openkitchen.teacher">
+  	<select id="selectDetailT" resultType="dtdto" parameterType="int">
+  		SELECT T_DETAILSUMNAIL, T_HAVENICKNAME, T_EXPERTNAME, T_SHORTINTRO, T_CAREER, T_EXPERT, T_AREA, T_LONGINTRO
+		FROM TEACHER
+		WHERE T_NO = #{tNo}
+  	</select>
+  
+  </mapper>

@@ -1,0 +1,270 @@
+#right01 input{
+	outline-color: #8E0032 ;
+	
+	
+}
+.inp-wrap {
+	height: 723.5px;
+}
+
+.inp-wrap>span:nth-child(1) {
+	height: 22px;
+	color: #5b5b5b;
+	font-size: 15px;
+	margin: 7px 0px 8px;
+	font-weight: 900;
+}
+
+.inp-wrap>div {
+	width: 905px;
+	height: 650.5px;
+	padding: 20px;
+	background-color: white;
+}
+
+.inp-wrap>div p {
+	color: #b7b7b7;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.inp-wrap>div>div:nth-child(2) {
+	/* background-color: pink; */
+	width: 427.5px;
+	height: 294.91px;
+	margin-top: 25px;
+	padding-right: 5px;
+	/* display: inline-block; */
+	float: left;
+}
+
+.inp-wrap>div>div:nth-child(2)>div:nth-child(1) {
+	color: #5b5b5b;
+	margin-bottom: 8px;
+	font-size: 14px;
+	display: inline-block;
+	height: 20px;
+	font-weight: 700;
+}
+
+.inp-wrap>div>div:nth-child(2)>div:nth-child(2) {
+	/* background-color: greenyellow; */
+	width: 100%;
+	height: 266.91px;
+}
+
+.inp-wrap>div>div:nth-child(2)>div:nth-child(2) label {
+	display: inline-block;
+	width: 420.5px;
+	padding: 239.91px 0px 0px;
+	line-height: normal;
+	/* vertical-align: middle; */
+	cursor: pointer;
+	/* background-color: white; */
+	border: 0.5px dotted black;
+
+}
+
+
+.inp-wrap>div>div:nth-child(2)>div:nth-child(2) label span {
+	font-size: 19px;
+	color: #838383;
+	width: 106.44px;
+	height: 79px;
+	/* background-color: skyblue; */
+	position: relative;
+	bottom: 120px;
+	left: 150px;
+}
+
+.inp-wrap>div>div:nth-child(3) {
+	/* background-color: pink; */
+	width: 427.5px;
+	height: 450.5px;
+	margin-top: 25px;
+	padding-left: 5px;
+	display: inline-block;
+}
+
+.inp-wrap>div>div:nth-child(3)>div:nth-child(2) {
+	/* background-color: greenyellow; */
+	width: 100%;
+	height: 100%;
+}
+
+.inp-wrap>div>div:nth-child(3)>div:nth-child(2) label {
+	display: inline-block;
+	width: 420.5px;
+	padding: 400.5px 0px 0px;
+	line-height: normal;
+	vertical-align: middle;
+	cursor: pointer;
+	/* background-color: white; */
+	border: 0.5px dotted black;
+	margin-left:19px;
+}
+
+.inp-wrap>div>div:nth-child(3)>div:nth-child(2) input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	border: 0;
+}
+
+.inp-wrap>div>div:nth-child(3)>div:nth-child(2) label span {
+	font-size: 19px;
+	color: #838383;
+	width: 106.44px;
+	height: 79px;
+	/* background-color: skyblue; */
+	position: relative;
+	bottom: 210px;
+	left: 150px;
+}
+
+.inp-wrap>div>div:nth-child(3)>div:nth-child(1) {
+	color: #5b5b5b;
+	margin-bottom: 8px;
+	margin-left: 19px;
+	font-size: 14px;
+	display: inline-block;
+	height: 20px;
+	font-weight: 700;
+}
+/*  은행선택관련 css 설정 */
+.basic_apply>select{
+	border: 0;
+    width: 100%;
+    height: 46px;
+    font-size: 15px;
+    color: #b7b7b7;
+    font-weight: 600;
+    outline-color: #8E0032;
+	
+}
+/* form 태그 아래 사진 올리기에 대한  */
+ #uploadForm>#apply01{
+	height: 688px;
+}
+/* 임시저장 */
+#btn_submit a input:nth-child(1){
+    color: white;
+   background-color: #8E0032;
+}
+#right01 input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	border: 0;
+}
+
+/* 통장 사본 첨부 css  */
+#right01 #proAccounting{
+	border: none;
+    padding: 0 20px;
+    width: 815px;
+    height: 46px;
+    outline-style: none;
+    position: static;
+    font-size: 15px;
+    color: #b7b7b7;
+    font-weight: 600;
+    padding-top: 14px;
+	
+}
+/* 통장 사본 첨부 css  */
+#right01 #proRegimg{
+	border: none;
+    padding: 0 20px;
+    width: 815px;
+    height: 46px;
+    outline-style: none;
+    position: static;
+    font-size: 15px;
+    color: #b7b7b7;
+    font-weight: 600;
+    padding-top: 14px;
+	
+}
+/*메인썸네일을 감싸는 박스  */
+#mainThum .preview-box {
+	width: 100%;
+	height: 100%;
+	
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	bottom: 269px;
+}
+/*메인썸네일  */
+#mainThum img {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+/* 디테일 썸네일을 감싸는 박스 */
+#detailThum .preview-box {
+	width: 100%;
+	height: 100%;
+	margin-left: 16px;
+	margin: 0px;
+	padding: 0px;
+	position: relative;
+	bottom: 430px;
+}
+/* 디테일 썸네일 */
+#detailThum img {
+	width: 100%;
+	height: 100%;
+	border-radius: 5px;
+}
+
+/* 사진 썸네일 취소 버튼 */
+#mainThum button {
+	width: 10px;
+	height: 10px;
+	padding: 0px;
+	margin: 0px;
+	font-weight: 900;
+	float: right;
+	position: relative;
+	right: 30px;
+	bottom: 25px;
+}
+
+
+#mainThum button:hover {
+	color: #8e0032;
+}
+/* 사진 썸네일 취소 버튼 */
+#detailThum button {
+	width: 10px;
+	height: 10px;
+	padding: 0px;
+	margin: 0px;
+	font-weight: 900;
+	float: right;
+	position: relative;
+	right: 30px;
+	bottom: 22px;
+}
+
+#detailThum button:hover {
+	color: #8e0032;
+}
+
+/* form 태그 위치 잡아줌   */
+#uploadForm {
+	position: relative;
+	right: 30px;
+	bottom: 35px;
+}
+/*닉네임사용?  */
+#tHavenickname{width: 100% !important;
+}
