@@ -1,18 +1,17 @@
  //by 조기종 이미지 리사이징_200329
  //모듈: 파일 업로드시 프론트 단에서 용량을 줄인다. 줄이고싶은 용량크기를 정해 줄일 수 있다.
  // 이미지 파일 blob 파일로 변환
+ // 최대폭을 400으로 정했을 때 최대 폭을 넘어가는 경우 canvas 크기를 변경해준다.
+ // size기준으로 용량을 줄이게 되면 모양이 이상해 질수 있다.크기 기준으로 줄이자.
+ // 크기기준으로 줄이기=> 루트(실제파일크기/축소하고싶은 용량 크기) =>나온 값 R=> (Width/R) *(Height/R) =>MaxSize
+ var base_size = 1024000; // 1MB (썸네일 작업을 할지 말지 기준이 되는size)
+ var comp_size = 102400; // 100kb (썸네일 작업 결과물 사이즈)
+
+ //by조기종 이미지객체 Blob화_200329
  function imgToBlob(img, file, form_Data) {
      // canvas에 이미지 객체를 리사이징해서 담는 과정
      var canvas = document.createElement("canvas");
      var canvasContext = canvas.getContext("2d");
-
-
-     // 최대폭을 400으로 정했을 때 최대 폭을 넘어가는 경우 canvas 크기를 변경해준다.
-     // size기준으로 용량을 줄이게 되면 모양이 이상해 질수 있다.크기 기준으로 줄이자.
-     // 크기기준으로 줄이기=> 루트(실제파일크기/축소하고싶은 용량 크기) =>나온 값 R=> (Width/R) *(Height/R) =>MaxSize
-     var base_size = 1024000; // 1MB (썸네일 작업을 할지 말지 기준이 되는size)
-     var comp_size = 102400; // 100kb (썸네일 작업 결과물 사이즈)
-
      // 이미지 크기
      var width = img.width;
      var height = img.height;
@@ -33,17 +32,17 @@
 
          // canvas의 dataurl를 blob(file)화 하는 과정
          var dataURI = canvas.toDataURL("image/jpeg"); // png=>jpg 등으로 변환 가능
-
          // !!!!!byteType과 mimeType으로 변환하기 . 개념이 조금 복잡해서 공부가 필요함
          var byteString = atob(dataURI.split(',')[1]);
          var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
          // 일반 고정 길이 이진 데이터 버퍼를 나타내는 데 사용되는 데이터형 바이너리 데이터 조작하기 위함
          var ab = new ArrayBuffer(byteString.length);
          var ia = new Uint8Array(ab);
+
          for (var i = 0; i < byteString.length; i++) {
              ia[i] = byteString.charCodeAt(i);
          }
+
          var tmpThumbFile = new Blob([ab], {
              type: mimeString
          }); // bytetype으로 변환하기 끝
@@ -58,7 +57,7 @@
      }
  }; // function imgToBlob end
 
- // binary 파일 준비
+ //by조기종 binary 파일 준비_200329
  function blobToBinary(imgFile, form_Data) {
      var fileList = imgFile[0].files;
      $.each(fileList, function(i, file) {

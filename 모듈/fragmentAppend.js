@@ -1,5 +1,5 @@
+//by 조기종 append 성능향상_200318
 //모듈: Javascript의 성능을 높여줄 수 있는 append 모듈
-
 //fragment
 var $frag = $(document.createDocumentFragment());
 //json

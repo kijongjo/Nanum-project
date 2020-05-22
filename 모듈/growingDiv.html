@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <!-- by 조기종 event시 css 변환_200319 -->
+    <!--  모듈: 특정 태그 클릭 시 div가 늘어나고 줄어드는 기능이다.   
+     늘어나는 div를 overflow로 감싸야 더 보기 기능이 완성됨. 
+    window 시작 되고나서 jquery 발동 됨. script의 위치에 상관없이 작동하도록 하기 위함.  -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,9 +23,6 @@
         }
     </style>
     <script>
-        /* 모듈: 특정 태그 클릭 시 div가 늘어나고 줄어드는 기능이다.   */
-        /* 늘어나는 div를 overflow로 감싸야 더 보기 기능이 완성됨. */
-        /* window 시작 되고나서 jquery 발동 됨. script의 위치에 상관없이 작동하도록 하기 위함. */
         $(document).ready(function() {
             /* state가 1이면 늘어나고 0이면 줄어들도록 설정한다. */
             var state = 1;

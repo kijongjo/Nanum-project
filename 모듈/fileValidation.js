@@ -1,3 +1,5 @@
+//by 조기종 이미지 파일 유효성 체크_200317
+//모듈
 // client-side validation
 // always server-side validation required
 // 파일 형식 체크
