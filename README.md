@@ -50,7 +50,7 @@
 			 <li>요리신청 목록 페이지 UI/UX&백엔드로직 (로그인 필요) <br/>샘플 ▶http://www.ouropenkitchen.com//openkitchenFinal/mypage/users/99/cookBooks/1</li>
 			 <li>개설된 클래스 페이지 UI/UX&백엔드로직 (로그인 필요)<br/> 샘플 ▶ http://www.ouropenkitchen.com/openkitchenFinal/mypage/users/99/standByClasses/1</li>
 			 			 <li>(선생님,클래스,공간)상세 페이지UI/UX <br/>샘플 ▶ http://www.ouropenkitchen.com/openkitchenFinal/classD?no=24</li>
-			 <li>관리자 페이지UI/UX<br/> 샘플  ▶ http://3.34.22.59:8080/openkitchenFinal/admin/in</li>
+			 <li>관리자 페이지UI/UX<br/> 샘플  ▶ http://www.ouropenkitchen.com/openkitchenFinal/admin/in</li>
 		 </ul>	
 			</td>
 	</tr>
